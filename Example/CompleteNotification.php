@@ -18,6 +18,7 @@ use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Api\Message\Recipient;
 use Serhiy\Pushover\Api\Message\Response;
+use Serhiy\Pushover\Api\Message\Sound;
 
 /**
  * Complete Notification Example.
@@ -48,6 +49,8 @@ class CompleteNotification
 
         // create notification
         $notification = new Notification($application, $recipient, $message);
+        // set notification sound
+        $notification->setSound(new Sound(Sound::PUSHOVER));
 
         // push notification
         /** @var Response $response */
