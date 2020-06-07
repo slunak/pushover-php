@@ -11,6 +11,7 @@
 
 namespace Serhiy\Pushover\Api\Message;
 
+use Cassandra\Date;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**
@@ -72,6 +73,18 @@ class Message
      */
     private $isHtml = false;
 
+    /**
+     * Message Time.
+     * Messages are stored on the Pushover servers with a timestamp of when they were initially received through the API.
+     * This timestamp is shown to the user, and messages are listed in order of their timestamps. In most cases, this default timestamp is acceptable.
+     * In some cases, such as when messages have been queued on a remote server before reaching the Pushover servers,
+     * or delivered to Pushover out of order, this default timestamping may cause a confusing order of messages when viewed on the user's device.
+     * For these scenarios, your app may send messages to the API with the timestamp parameter set to the Unix timestamp of the original message.
+     *
+     * @var \DateTime
+     */
+    private $timestamp;
+
 
     public function __construct(string $message, string $title = null)
     {
@@ -80,6 +93,8 @@ class Message
         if (null !== $title) {
             $this->setTitle($title);
         }
+
+        $this->timestamp = new \DateTime();
     }
 
     /**
@@ -192,5 +207,21 @@ class Message
     public function setIsHtml(?bool $isHtml): void
     {
         $this->isHtml = $isHtml;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimestamp(): int
+    {
+        return $this->timestamp->getTimestamp();
+    }
+
+    /**
+     * @param \DateTime $timestamp
+     */
+    public function setTimestamp(\DateTime $timestamp): void
+    {
+        $this->timestamp = $timestamp;
     }
 }

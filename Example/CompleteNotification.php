@@ -42,6 +42,7 @@ class CompleteNotification
         $message->setUrl("https://www.example.com");
         $message->setUrlTitle("Example URL");
         $message->setisHtml(false);
+        $message->setTimestamp(new \DateTime('now'));
         // assign priority to the notification
         $message->setPriority(new Priority(Priority::NORMAL));
 
