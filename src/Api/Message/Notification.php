@@ -35,6 +35,10 @@ class Notification
      */
     private $message;
 
+    /**
+     * @var Sound
+     */
+    private $sound;
 
     public function __construct(Application $application, Recipient $recipient, Message $message)
     {
@@ -89,5 +93,21 @@ class Notification
     public function setMessage(Message $message): void
     {
         $this->message = $message;
+    }
+
+    /**
+     * @return Sound|null
+     */
+    public function getSound(): ?Sound
+    {
+        return $this->sound;
+    }
+
+    /**
+     * @param Sound|null $sound
+     */
+    public function setSound(?Sound $sound): void
+    {
+        $this->sound = $sound;
     }
 }

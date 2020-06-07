@@ -100,6 +100,10 @@ class Client extends ApiClient
             $curlPostFields['html'] = 1;
         }
 
+        if (null !== $notification->getSound()) {
+            $curlPostFields['sound'] = $notification->getSound()->getSound();
+        }
+
         return $curlPostFields;
     }
 
