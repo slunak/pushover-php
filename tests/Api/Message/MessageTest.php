@@ -29,10 +29,10 @@ class MessageTest extends TestCase
         // assign priority to the notification
         $message->setPriority(new Priority(Priority::NORMAL));
 
-        $this->assertInstanceOf(
-            Message::class,
-            $message
-        );
+        $datetime = new \DateTime();
+        $message->setTimestamp($datetime);
+
+        $this->assertInstanceOf(Message::class, $message);
 
         $this->assertEquals("This is a test message", $message->getMessage());
 
@@ -45,5 +45,7 @@ class MessageTest extends TestCase
         $this->assertFalse($message->getIsHtml());
 
         $this->assertInstanceOf(Priority::class, $message->getPriority());
+
+        $this->assertEquals($datetime->getTimestamp(), $message->getTimestamp());
     }
 }

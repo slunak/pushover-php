@@ -71,6 +71,7 @@ class Client extends ApiClient
             "token" => $notification->getApplication()->getToken(),
             "user" => $notification->getRecipient()->getUserKey(),
             "message" => $notification->getMessage()->getMessage(),
+            "timestamp" => $notification->getMessage()->getTimestamp(),
         );
 
         if (null !== $notification->getRecipient()->getDevice()) {
