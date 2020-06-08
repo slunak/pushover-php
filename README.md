@@ -1,8 +1,8 @@
 # Pushover PHP API Wrapper
 
 [![Build Status](https://travis-ci.org/slunak/pushover-php.svg?branch=master)](https://travis-ci.org/slunak/pushover-php)
-[![Latest Stable Version](https://poser.pugx.org/serhiy/pushover/v)](//packagist.org/packages/serhiy/pushover)
-[![Total Downloads](https://poser.pugx.org/serhiy/pushover/downloads)](//packagist.org/packages/serhiy/pushover)
+[![Latest Stable Version](https://poser.pugx.org/serhiy/pushover/v)](https://packagist.org/packages/serhiy/pushover)
+[![Total Downloads](https://poser.pugx.org/serhiy/pushover/downloads)](https://packagist.org/packages/serhiy/pushover)
 [![License](https://poser.pugx.org/serhiy/pushover/license)](LICENSE)
 
 Light, simple and fast wrapper for the Pushover API.
