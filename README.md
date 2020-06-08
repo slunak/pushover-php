@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/slunak/pushover-php.svg?branch=master)](https://travis-ci.org/slunak/pushover-php)
 [![Latest Stable Version](https://poser.pugx.org/serhiy/pushover/v)](//packagist.org/packages/serhiy/pushover)
 [![Total Downloads](https://poser.pugx.org/serhiy/pushover/downloads)](//packagist.org/packages/serhiy/pushover)
-[![License](https://poser.pugx.org/serhiy/pushover/license)](//packagist.org/packages/serhiy/pushover)
+[![License](https://poser.pugx.org/serhiy/pushover/license)](LICENSE)
 
 Light, simple and fast wrapper for the Pushover API.
 
@@ -80,7 +80,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
