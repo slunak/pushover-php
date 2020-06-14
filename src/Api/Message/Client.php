@@ -92,8 +92,11 @@ class Client extends ApiClient
 
         if (null !== $notification->getMessage()->getPriority()) {
             $curlPostFields['priority'] = $notification->getMessage()->getPriority()->getPriority();
-            $curlPostFields['retry'] = $notification->getMessage()->getPriority()->getRetry();
-            $curlPostFields['expire'] = $notification->getMessage()->getPriority()->getExpire();
+
+            if (Priority::EMERGENCY == $notification->getMessage()->getPriority()->getPriority()) {
+                $curlPostFields['retry'] = $notification->getMessage()->getPriority()->getRetry();
+                $curlPostFields['expire'] = $notification->getMessage()->getPriority()->getExpire();
+            }
         }
 
         if (true === $notification->getMessage()->getIsHtml()) {
