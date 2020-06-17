@@ -15,17 +15,18 @@ use Serhiy\Pushover\Api\Message\Application;
 use Serhiy\Pushover\Api\Message\Client;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
+use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Api\Message\Recipient;
 use Serhiy\Pushover\Api\Message\Response;
 
 /**
- * HTML Notification Example.
+ * Emergency Notification Example.
  *
  * @author Serhiy Lunak
  */
-class HtmlNotification
+class EmergencyNotificationExample
 {
-    public function sendHtmlNotification()
+    public function sendEmergencyNotification()
     {
         // instantiate pushover client, application and recipient of the notification (can be injected into service using Dependency Injection)
         $application = new Application("replace_with_pushover_application_api_token");
@@ -33,9 +34,11 @@ class HtmlNotification
         $client = new Client();
 
         // compose a message
-        $message = new Message("This is <b>example</b> of <u>HTML</u> styled <i>message</i>.", "HTML Notification");
-        // set message to html, see https://pushover.net/api#html for details
-        $message->setIsHtml(true);
+        $message = new Message("This is a test message", "Simple Notification");
+        // set priority by creating new Priority object with priority value, retry and expire parameters.
+        // Retry and expire parameters required only with emergency priority
+        // See https://pushover.net/api#priority for details.
+        $message->setPriority(new Priority(Priority::EMERGENCY, 30, 600));
 
         // create notification
         $notification = new Notification($application, $recipient, $message);
