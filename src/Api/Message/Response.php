@@ -44,6 +44,14 @@ class Response
     private $receipt;
 
     /**
+     * Original curl response.
+     * Original, unmodified response from curl request.
+     *
+     * @var mixed
+     */
+    private $curlResponse;
+
+    /**
      * Array detailing which parameters were invalid.
      *
      * @var array
@@ -103,5 +111,21 @@ class Response
     public function setReceipt(string $receipt): void
     {
         $this->receipt = $receipt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurlResponse()
+    {
+        return $this->curlResponse;
+    }
+
+    /**
+     * @param mixed $curlResponse
+     */
+    public function setCurlResponse($curlResponse): void
+    {
+        $this->curlResponse = $curlResponse;
     }
 }

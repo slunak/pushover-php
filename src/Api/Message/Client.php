@@ -56,7 +56,7 @@ class Client extends ApiClient
             throw new LogicException('Curl should return json encoded string because CURLOPT_RETURNTRANSFER is set, "true" returned instead.');
         }
 
-        return $this->processResponse(json_decode($curlResponse));
+        return $this->processResponse($curlResponse);
     }
 
     /**
@@ -118,13 +118,17 @@ class Client extends ApiClient
      */
     private function processResponse($curlResponse)
     {
-        $response = new Response($curlResponse->status, $curlResponse->request);
+        $decodedCurlResponse = json_decode($curlResponse);
+
+        $response = new Response($decodedCurlResponse->status, $decodedCurlResponse->request);
+
+        $response->setCurlResponse($curlResponse);
 
         if ($response->getStatus() != 1) {
-            $response->setErrors($curlResponse->errors);
+            $response->setErrors($decodedCurlResponse->errors);
         }
 
-        if (isset($curlResponse->receipt)) {
+        if (isset($decodedCurlResponse->receipt)) {
             $response->setReceipt($curlResponse->receipt);
         }
 
