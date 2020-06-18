@@ -26,8 +26,20 @@ class Client extends ApiClient
      */
     const API_PATH = 'messages.json';
 
+    /**
+     * @var Request
+     */
+    private $request;
+
+    /**
+     * @var Response
+     */
+    private $response;
+
     public function __construct()
     {
+        $this->request = new Request(self::API_BASE_URL, self::API_VERSION, self::API_PATH);
+        $this->response = new Response();
     }
 
     /**
@@ -38,9 +50,26 @@ class Client extends ApiClient
      */
     public function push(Notification $notification)
     {
+        $this->request->setCurlPostFields($notification);
+        $this->request->setNotification($notification);
+
+        $curlResponse = $this->doCurl();
+
+        $this->processCurlResponse($curlResponse);
+
+        $this->response->setRequest($this->request);
+
+        return $this->response;
+    }
+
+    /**
+     * @return mixed
+     */
+    private function doCurl()
+    {
         curl_setopt_array($ch = curl_init(), array(
-            CURLOPT_URL => self::API_BASE_URL.'/'.self::API_VERSION.'/'.self::API_PATH,
-            CURLOPT_POSTFIELDS => $this->buildCurlPostFields($notification),
+            CURLOPT_URL => $this->request->getFullUrl(),
+            CURLOPT_POSTFIELDS => $this->request->getCurlPostFields(),
             CURLOPT_SAFE_UPLOAD => true,
             CURLOPT_RETURNTRANSFER => true,
         ));
@@ -56,82 +85,36 @@ class Client extends ApiClient
             throw new LogicException('Curl should return json encoded string because CURLOPT_RETURNTRANSFER is set, "true" returned instead.');
         }
 
-        return $this->processResponse($curlResponse);
-    }
-
-    /**
-     * Builds array for CURLOPT_POSTFIELDS curl argument.
-     *
-     * @param Notification $notification
-     * @return array
-     */
-    private function buildCurlPostFields(Notification $notification)
-    {
-        $curlPostFields = array(
-            "token" => $notification->getApplication()->getToken(),
-            "user" => $notification->getRecipient()->getUserKey(),
-            "message" => $notification->getMessage()->getMessage(),
-            "timestamp" => $notification->getMessage()->getTimestamp(),
-        );
-
-        if (null !== $notification->getRecipient()->getDevice()) {
-            $curlPostFields['device'] = $notification->getRecipient()->getDeviceListCommaSeparated();
-        }
-
-        if (null !== $notification->getMessage()->getTitle()) {
-            $curlPostFields['title'] = $notification->getMessage()->getTitle();
-        }
-
-        if (null !== $notification->getMessage()->getUrl()) {
-            $curlPostFields['url'] = $notification->getMessage()->getUrl();
-        }
-
-        if (null !== $notification->getMessage()->getUrlTitle()) {
-            $curlPostFields['url_title'] = $notification->getMessage()->getUrlTitle();
-        }
-
-        if (null !== $notification->getMessage()->getPriority()) {
-            $curlPostFields['priority'] = $notification->getMessage()->getPriority()->getPriority();
-
-            if (Priority::EMERGENCY == $notification->getMessage()->getPriority()->getPriority()) {
-                $curlPostFields['retry'] = $notification->getMessage()->getPriority()->getRetry();
-                $curlPostFields['expire'] = $notification->getMessage()->getPriority()->getExpire();
-            }
-        }
-
-        if (true === $notification->getMessage()->getIsHtml()) {
-            $curlPostFields['html'] = 1;
-        }
-
-        if (null !== $notification->getSound()) {
-            $curlPostFields['sound'] = $notification->getSound()->getSound();
-        }
-
-        return $curlPostFields;
+        return $curlResponse;
     }
 
     /**
      * Processes curl response and returns Response object.
      *
      * @param mixed $curlResponse
-     * @return Response
+     * @return void
      */
-    private function processResponse($curlResponse)
+    private function processCurlResponse($curlResponse)
     {
         $decodedCurlResponse = json_decode($curlResponse);
 
-        $response = new Response($decodedCurlResponse->status, $decodedCurlResponse->request);
+        $this->response->setRequestStatus($decodedCurlResponse->status);
+        $this->response->setRequestToken($decodedCurlResponse->request);
+        $this->response->setCurlResponse($curlResponse);
 
-        $response->setCurlResponse($curlResponse);
+        if ($this->response->getRequestStatus() == 1) {
+            $this->response->setIsSuccessful(true);
+        }
 
-        if ($response->getStatus() != 1) {
-            $response->setErrors($decodedCurlResponse->errors);
+        if ($this->response->getRequestStatus() != 1) {
+            $this->response->setErrors($decodedCurlResponse->errors);
+            $this->response->setIsSuccessful(false);
         }
 
         if (isset($decodedCurlResponse->receipt)) {
-            $response->setReceipt($curlResponse->receipt);
+            $this->response->setReceipt($curlResponse->receipt);
         }
 
-        return $response;
+        return;
     }
 }

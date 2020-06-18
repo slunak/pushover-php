@@ -37,6 +37,10 @@ composer require "serhiy/pushover"
 Instantiate the client, application and recipient of the notification:
 
 ```php
+use Serhiy\Pushover\Api\Message\Client;
+use Serhiy\Pushover\Api\Message\Application;
+use Serhiy\Pushover\Api\Message\Recipient;
+
 $client = new Client();
 $application = new Application("replace_with_pushover_application_api_token");
 $recipient = new Recipient("replace_with_pushover_user_key");
@@ -47,26 +51,73 @@ Or use Dependency Injection to inject them into the services of your app.
 Compose a message:
 
 ```php
+use Serhiy\Pushover\Api\Message\Message;
+
 $message = new Message("This is a test message", "This is a title of the message");
 ```
 
 Create notification:
 
 ```php
+use Serhiy\Pushover\Api\Message\Notification;
+
 $notification = new Notification($application, $recipient, $message);
 ```
         
-And push it:
+Push it:
 
 ```php
-/** @var Response $response */
+/** @var \Serhiy\Pushover\Api\Message\Response $response */
 $response = $client->push($notification);
 ```
 
-Client returns Response object which contains the status, request ID, receipt if any and errors array.
+## Working with response
+
+*Note: For complete example refer to [ResponseExample.php](Example/ResponseExample.php)*
+
+Client returns Response object. Checking if the message was accepted is easy:
 
 ```php
-var_dump($response);
+if ($response->isSuccessful()) {
+    // ...
+}
+```
+
+One can get status and token returned by Pushover:
+
+```php
+$response->getRequestStatus();
+$response->getRequestToken();
+```
+
+Or even unmodified json response from the API (json_decode into an array if needed):
+
+```php
+$response->getCurlResponse();
+``` 
+
+Response also contains original Request object:
+
+```php
+/** @var \Serhiy\Pushover\Api\Message\Request $request */
+$request = $response->getRequest();
+```
+
+Request contains original notification object, which in turn contains application, recipient and message objects.
+
+```php
+/** @var \Serhiy\Pushover\Api\Message\Notification $notification */
+$notification = $request->getNotification(); // Notification object
+$notification->getApplication();
+$notification->getRecipient();
+$notification->getMessage();
+```
+
+As well as an array for CURLOPT_POSTFIELDS curl argument and full API URL.
+        
+```php
+$request->getCurlPostFields();
+$request->getFullUrl();
 ``` 
 
 For more code examples, see `Example` folder in the root of the project. You may also generate and see code documentation.
