@@ -26,7 +26,7 @@ class ResponseTest extends TestCase
 {
     public function testCanBeCrated()
     {
-        $response = new Response(1, '11111111-aaaa-2222-bbbb-333333cccccc');
+        $response = new Response();
 
         $this->assertInstanceOf(Response::class, $response);
     }
@@ -42,7 +42,8 @@ class ResponseTest extends TestCase
         $response = $client->push($notification);
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertEquals(0, $response->getStatus());
+        $this->assertEquals(false, $response->isSuccessful());
+        $this->assertEquals(0, $response->getRequestStatus());
         $this->assertEquals("invalid", json_decode($response->getCurlResponse())->token);
     }
 }

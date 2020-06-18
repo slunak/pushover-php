@@ -16,22 +16,31 @@ namespace Serhiy\Pushover\Api\Message;
  * If your POST request to our API was valid, you will receive an HTTP 200 (OK) status,
  * with a JSON object containing a status code of 1. If any input was invalid, you will receive an HTTP 4xx status,
  * with a JSON object containing a status code of something other than 1, and an errors array detailing which parameters were invalid.
+ *
+ * @author Serhiy Lunak
  */
 class Response
 {
     /**
-     * Either 1 if successful or something other than 1 if unsuccessful.
+     * True if request was successful, false otherwise. Reflects $requestStatus property.
+     *
+     * @var bool
+     */
+    private $isSuccessful;
+
+    /**
+     * Either 1 if successful or something other than 1 if unsuccessful. Reflects $isSuccessful property.
      *
      * @var int
      */
-    private $status;
+    private $requestStatus;
 
     /**
      * Randomly-generated unique token that we have associated with your request.
      *
      * @var string
      */
-    private $request;
+    private $requestToken;
 
     /**
      * Receipt.
@@ -44,7 +53,7 @@ class Response
     private $receipt;
 
     /**
-     * Original curl response.
+     * Original curl response in json format.
      * Original, unmodified response from curl request.
      *
      * @var mixed
@@ -58,27 +67,64 @@ class Response
      */
     private $errors;
 
-    public function __construct(int $status, string $request)
+    /**
+     * Object that contains original request.
+     *
+     * @var Request
+     */
+    private $request;
+
+    public function __construct()
     {
-        $this->status = $status;
-        $this->request = $request;
         $this->errors = array();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSuccessful(): bool
+    {
+        return $this->isSuccessful;
+    }
+
+    /**
+     * @param bool $isSuccessful
+     */
+    public function setIsSuccessful(bool $isSuccessful): void
+    {
+        $this->isSuccessful = $isSuccessful;
     }
 
     /**
      * @return int
      */
-    public function getStatus(): int
+    public function getRequestStatus(): int
     {
-        return $this->status;
+        return $this->requestStatus;
+    }
+
+    /**
+     * @param int $requestStatus
+     */
+    public function setRequestStatus(int $requestStatus): void
+    {
+        $this->requestStatus = $requestStatus;
     }
 
     /**
      * @return string
      */
-    public function getRequest(): string
+    public function getRequestToken(): string
     {
-        return $this->request;
+        return $this->requestToken;
+    }
+
+    /**
+     * @param string $requestToken
+     */
+    public function setRequestToken(string $requestToken): void
+    {
+        $this->requestToken = $requestToken;
     }
 
     /**
@@ -127,5 +173,21 @@ class Response
     public function setCurlResponse($curlResponse): void
     {
         $this->curlResponse = $curlResponse;
+    }
+
+    /**
+     * @return Request
+     */
+    public function getRequest(): Request
+    {
+        return $this->request;
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function setRequest(Request $request): void
+    {
+        $this->request = $request;
     }
 }

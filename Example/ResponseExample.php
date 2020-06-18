@@ -16,6 +16,7 @@ use Serhiy\Pushover\Api\Message\Client;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Recipient;
+use Serhiy\Pushover\Api\Message\Request;
 use Serhiy\Pushover\Api\Message\Response;
 
 /**
@@ -47,12 +48,20 @@ class ResponseExample
         $response = $client->push($notification);
 
         /**
+         * True if request was successful, false otherwise. Reflects $requestStatus property.
+         *
+         * @var bool
+         */
+        $response->isSuccessful();
+
+        /**
          * Status returned by Pushover API.
          * Either 1 if successful or something other than 1 if unsuccessful.
+         * Reflects $isSuccessful property.
          *
          * @var int
          */
-        $response->getStatus();
+        $response->getRequestStatus();
 
         /**
          * Request returned by Pushover API.
@@ -60,7 +69,7 @@ class ResponseExample
          *
          * @var string
          */
-        $response->getRequest();
+        $response->getRequestToken();
 
         /**
          * Receipt.
@@ -87,5 +96,20 @@ class ResponseExample
          * @var mixed
          */
         $response->getCurlResponse();
+
+        /**
+         * Object Containing request.
+         * It contains notification object, which in turn contains application, recipient and message objects.
+         * It also contains array for CURLOPT_POSTFIELDS curl argument and API URL.
+         *
+         * @var Request
+         */
+        $request = $response->getRequest();
+        $request->getNotification(); // Notification object
+        $request->getNotification()->getApplication();
+        $request->getNotification()->getRecipient();
+        $request->getNotification()->getMessage();
+        $request->getCurlPostFields(); // array, array for CURLOPT_POSTFIELDS curl argument
+        $request->getFullUrl(); // string, API URL
     }
 }
