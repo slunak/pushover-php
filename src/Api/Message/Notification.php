@@ -40,6 +40,11 @@ class Notification
      */
     private $sound;
 
+    /**
+     * @var Attachment
+     */
+    private $attachment;
+
     public function __construct(Application $application, Recipient $recipient, Message $message)
     {
         $this->application = $application;
@@ -109,5 +114,21 @@ class Notification
     public function setSound(?Sound $sound): void
     {
         $this->sound = $sound;
+    }
+
+    /**
+     * @return Attachment|null
+     */
+    public function getAttachment(): ?Attachment
+    {
+        return $this->attachment;
+    }
+
+    /**
+     * @param Attachment|null $attachment
+     */
+    public function setAttachment(?Attachment $attachment): void
+    {
+        $this->attachment = $attachment;
     }
 }
