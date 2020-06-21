@@ -43,7 +43,7 @@ class Client extends ApiClient
     }
 
     /**
-     * Sends notification.
+     * Sends notification and returns Response object.
      *
      * @param Notification $notification
      * @return Response
@@ -89,7 +89,7 @@ class Client extends ApiClient
     }
 
     /**
-     * Processes curl response and returns Response object.
+     * Processes curl response.
      *
      * @param mixed $curlResponse
      * @return void
