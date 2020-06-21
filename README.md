@@ -34,6 +34,8 @@ composer require "serhiy/pushover"
 
 ## Pushing Messages
 
+*Note: For more code examples, see [Example](Example) folder in the root of the project. You may also generate and see code documentation.*
+
 Instantiate the client, application and recipient of the notification:
 
 ```php
@@ -119,8 +121,6 @@ As well as an array for CURLOPT_POSTFIELDS curl argument and full API URL.
 $request->getCurlPostFields();
 $request->getFullUrl();
 ``` 
-
-For more code examples, see `Example` folder in the root of the project. You may also generate and see code documentation.
 
 ## Contributing
 
