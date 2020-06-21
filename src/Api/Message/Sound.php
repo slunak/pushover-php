@@ -96,17 +96,8 @@ class Sound
      */
     private $sound;
 
-    /**
-     * Array of all available sounds, auto generated from constants in this class when Sound object is instantiated.
-     *
-     * @var array
-     */
-    private $availableSounds;
-
-
     public function __construct(string $sound)
     {
-        $this->availableSounds = $this->generateAvailableSounds();
         $this->setSound($sound);
     }
 
@@ -115,18 +106,10 @@ class Sound
      *
      * @return array
      */
-    private function generateAvailableSounds()
+    public function getAvailableSounds()
     {
         $oClass = new \ReflectionClass(__CLASS__);
         return $oClass->getConstants();
-    }
-
-    /**
-     * @return array
-     */
-    public function getAvailableSounds(): array
-    {
-        return $this->availableSounds;
     }
 
     /**
@@ -142,7 +125,7 @@ class Sound
      */
     public function setSound(string $sound): void
     {
-        if (!in_array($sound, $this->availableSounds)) {
+        if (!in_array($sound, $this->getAvailableSounds())) {
             throw new InvalidArgumentException(sprintf('Sound "%s" is not available.', $sound));
         }
 
