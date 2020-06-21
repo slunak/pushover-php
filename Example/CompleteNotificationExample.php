@@ -12,6 +12,7 @@
 namespace Serhiy\Pushover\Example;
 
 use Serhiy\Pushover\Api\Message\Application;
+use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Api\Message\Client;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
@@ -51,6 +52,8 @@ class CompleteNotificationExample
         $notification = new Notification($application, $recipient, $message);
         // set notification sound
         $notification->setSound(new Sound(Sound::PUSHOVER));
+        // add attachment
+        $notification->setAttachment(new Attachment("/path/to/file.jpg", Attachment::MIME_TYPE_JPEG));
 
         // push notification
         /** @var Response $response */

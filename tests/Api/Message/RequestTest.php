@@ -13,11 +13,13 @@ namespace Api\Message;
 
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Application;
+use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Api\Message\Client;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Recipient;
 use Serhiy\Pushover\Api\Message\Request;
+use Serhiy\Pushover\Exception\LogicException;
 
 /**
  * @author Serhiy Lunak
@@ -82,5 +84,20 @@ class RequestTest extends TestCase
         $this->assertEquals("uQiRzpo4DXghDmr9QzzfQu27cmVRsG", $curlPostFields["user"]);
         $this->assertEquals("This is a test message", $curlPostFields["message"]);
         $this->assertEquals("This is a title of the message", $curlPostFields["title"]);
+    }
+
+    /**
+     * Necessary to test logic exception when file does not exist or is not readable.
+     *
+     * @depends testNotification
+     * @param Request $request
+     */
+    public function testAttachment(Request $request)
+    {
+        $notification = $request->getNotification();
+        $notification->setAttachment(new Attachment("/path/to/file.jpg", Attachment::MIME_TYPE_JPEG));
+
+        $this->expectException(LogicException::class);
+        $request->setCurlPostFields($notification);
     }
 }

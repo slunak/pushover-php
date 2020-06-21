@@ -11,6 +11,8 @@
 
 namespace Serhiy\Pushover\Api\Message;
 
+use Serhiy\Pushover\Exception\LogicException;
+
 /**
  * Request object.
  *
@@ -144,6 +146,21 @@ class Request
 
         if (null !== $notification->getSound()) {
             $curlPostFields['sound'] = $notification->getSound()->getSound();
+        }
+
+        if (null !== $notification->getAttachment()) {
+            if (! is_readable($notification->getAttachment()->getFilename())) {
+                throw new LogicException(sprintf('File "%s" does not exist or is not readable.', $notification->getAttachment()->getFilename()));
+            }
+
+            if (2621440 < filesize($notification->getAttachment()->getFilename())) {
+                throw new LogicException(sprintf('Attachments are currently limited to 2621440 bytes (2.5 megabytes). %s bytes attachment provided.', filesize($notification->getAttachment()->getFilename())));
+            }
+
+            $curlPostFields['attachment'] = curl_file_create(
+                $notification->getAttachment()->getFilename(),
+                $notification->getAttachment()->getMimeType()
+            );
         }
 
         return $curlPostFields;

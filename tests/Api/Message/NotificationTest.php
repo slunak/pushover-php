@@ -13,6 +13,7 @@ namespace Api\Message;
 
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Application;
+use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Recipient;
@@ -57,5 +58,28 @@ class NotificationTest extends TestCase
         $notification->setSound(null);
 
         $this->assertNull($notification->getSound());
+    }
+
+    /**
+     * @depends testCanBeCreated
+     * @param Notification $notification
+     */
+    public function testNotificationAttachment(Notification $notification)
+    {
+        $notification->setAttachment(new Attachment("/path/to/file.jpg", Attachment::MIME_TYPE_JPEG));
+
+        $this->assertEquals('/path/to/file.jpg', $notification->getAttachment()->getFilename());
+        $this->assertEquals('image/jpeg', $notification->getAttachment()->getMimeType());
+    }
+
+    /**
+     * @depends testCanBeCreated
+     * @param Notification $notification
+     */
+    public function testNoAttachment(Notification $notification)
+    {
+        $notification->setAttachment(null);
+
+        $this->assertNull($notification->getAttachment());
     }
 }
