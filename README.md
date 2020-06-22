@@ -7,7 +7,7 @@
 
 Light, simple and fast wrapper for the Pushover API.
 
-## Features
+### Features
 - Message API
   - image attachment
   - user's device name(s)
@@ -21,10 +21,16 @@ Light, simple and fast wrapper for the Pushover API.
 
 These instructions will get you a copy of the project up and running.
 
+### Installing
+
+```
+composer require "serhiy/pushover"
+```
+
 ### Requirements
 
 I aim to keep the project as simple as possible. All you need to run it is a PHP supported version,
-plus its curl and json extensions. See below the `require` section of composer.json file:
+plus its curl and json extensions. See below the `require` section of project's composer.json file:
 
 ```json
 {
@@ -34,12 +40,6 @@ plus its curl and json extensions. See below the `require` section of composer.j
         "ext-json": "*"
     }
 }
-```
-
-### Installing
-
-```
-composer require "serhiy/pushover"
 ```
 
 ## Pushing Messages
