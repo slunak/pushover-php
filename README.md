@@ -7,6 +7,16 @@
 
 Light, simple and fast wrapper for the Pushover API.
 
+## Features
+- Message API
+  - image attachment
+  - user's device name(s)
+  - message's title
+  - supplementary URL and its title
+  - notification priority
+  - sound
+  - timestamp
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running.
