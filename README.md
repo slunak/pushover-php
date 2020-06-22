@@ -9,13 +9,14 @@ Light, simple and fast wrapper for the Pushover API.
 
 ### Features
 - Message API
-  - image attachment
-  - user's device name(s)
-  - message's title
-  - supplementary URL and its title
-  - notification priority
-  - sound
-  - timestamp
+  - Image attachment
+  - User's device name(s)
+  - Message's title
+  - HTML messages
+  - Supplementary URL and its title
+  - Notification priority
+  - Notification sound
+  - Message time
 
 ## Getting Started
 
