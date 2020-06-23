@@ -12,12 +12,12 @@
 namespace Api\Message;
 
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\Api\Message\Application;
 use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
-use Serhiy\Pushover\Api\Message\Recipient;
 use Serhiy\Pushover\Api\Message\Sound;
+use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Recipient;
 
 /**
  * @author Serhiy Lunak

@@ -11,6 +11,9 @@
 
 namespace Serhiy\Pushover\Api\Message;
 
+use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Recipient;
+
 /**
  * Notification.
  *
