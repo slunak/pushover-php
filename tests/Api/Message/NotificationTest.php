@@ -16,6 +16,7 @@ use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Sound;
+use Serhiy\Pushover\ApiClient\Message\MessageResponse;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
@@ -81,5 +82,16 @@ class NotificationTest extends TestCase
         $notification->setAttachment(null);
 
         $this->assertNull($notification->getAttachment());
+    }
+
+    public function testPush()
+    {
+        $application = new Application("azGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
+        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $message = new Message("This is a test message", "This is a title of the message");
+        $notification = new Notification($application, $recipient, $message);
+        $response = $notification->push();
+
+        $this->assertInstanceOf(MessageResponse::class, $response);
     }
 }

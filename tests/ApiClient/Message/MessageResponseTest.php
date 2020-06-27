@@ -9,26 +9,26 @@
  * file that was distributed with this source code.
  */
 
-namespace Api\Message;
+namespace ApiClient\Message;
 
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\Api\Message\Client;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
-use Serhiy\Pushover\Api\Message\Response;
+use Serhiy\Pushover\ApiClient\Message\MessageClient;
+use Serhiy\Pushover\ApiClient\Message\MessageResponse;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
 /**
  * @author Serhiy Lunak
  */
-class ResponseTest extends TestCase
+class MessageResponseTest extends TestCase
 {
     public function testCanBeCrated()
     {
-        $response = new Response();
+        $response = new MessageResponse();
 
-        $this->assertInstanceOf(Response::class, $response);
+        $this->assertInstanceOf(MessageResponse::class, $response);
     }
 
     public function testRealResponseForInvalidRequest()
@@ -37,11 +37,9 @@ class ResponseTest extends TestCase
         $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
         $message = new Message("This is a test message", "This is a title of the message");
         $notification = new Notification($application, $recipient, $message);
-        $client = new Client();
+        $response = $notification->push();
 
-        $response = $client->push($notification);
-
-        $this->assertInstanceOf(Response::class, $response);
+        $this->assertInstanceOf(MessageResponse::class, $response);
         $this->assertEquals(false, $response->isSuccessful());
         $this->assertEquals(0, $response->getRequestStatus());
         $this->assertEquals("invalid", json_decode($response->getCurlResponse())->token);

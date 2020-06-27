@@ -11,10 +11,9 @@
 
 namespace Serhiy\Pushover\Example;
 
-use Serhiy\Pushover\Api\Message\Client;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
-use Serhiy\Pushover\Api\Message\Response;
+use Serhiy\Pushover\ApiClient\Message\MessageResponse;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
@@ -27,10 +26,9 @@ class SimpleNotificationExample
 {
     public function sendSimpleNotification()
     {
-        // instantiate pushover client, application and recipient of the notification (can be injected into service using Dependency Injection)
+        // instantiate pushover application and recipient of the notification (can be injected into service using Dependency Injection)
         $application = new Application("replace_with_pushover_application_api_token");
         $recipient = new Recipient("replace_with_pushover_user_key");
-        $client = new Client();
 
         // compose a message
         $message = new Message("This is a test message", "Simple Notification");
@@ -39,10 +37,12 @@ class SimpleNotificationExample
         $notification = new Notification($application, $recipient, $message);
 
         // push notification
-        /** @var Response $response */
-        $response = $client->push($notification);
+        /** @var MessageResponse $response */
+        $response = $notification->push();
 
         // work with response object
-        var_dump($response);
+        if ($response->isSuccessful()) {
+            //...
+        }
     }
 }

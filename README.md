@@ -47,14 +47,12 @@ plus its curl and json extensions. See below the `require` section of project's 
 
 *Note: For more code examples, see [Example](Example) folder in the root of the project. You may also generate and see code documentation.*
 
-Instantiate the client, application and recipient of the notification:
+Instantiate pushover application and recipient of the notification:
 
 ```php
-use Serhiy\Pushover\Api\Message\Client;
 use Serhiy\Pushover\Api\Message\Application;
 use Serhiy\Pushover\Api\Message\Recipient;
 
-$client = new Client();
 $application = new Application("replace_with_pushover_application_api_token");
 $recipient = new Recipient("replace_with_pushover_user_key");
 ```
@@ -80,8 +78,8 @@ $notification = new Notification($application, $recipient, $message);
 Push it:
 
 ```php
-/** @var \Serhiy\Pushover\Api\Message\Response $response */
-$response = $client->push($notification);
+/** @var \Serhiy\Pushover\ApiClient\Message\MessageResponse $response */
+$response = $notification->push();
 ```
 
 ## Working with response
@@ -112,25 +110,15 @@ $response->getCurlResponse();
 Response also contains original Request object:
 
 ```php
-/** @var \Serhiy\Pushover\Api\Message\Request $request */
+/** @var \Serhiy\Pushover\ApiClient\Request $request */
 $request = $response->getRequest();
 ```
 
-Request contains original notification object, which in turn contains application, recipient and message objects.
-
-```php
-/** @var \Serhiy\Pushover\Api\Message\Notification $notification */
-$notification = $request->getNotification(); // Notification object
-$notification->getApplication();
-$notification->getRecipient();
-$notification->getMessage();
-```
-
-As well as an array for CURLOPT_POSTFIELDS curl argument and full API URL.
+Request contains array for CURLOPT_POSTFIELDS curl argument and full API URL.
         
 ```php
 $request->getCurlPostFields();
-$request->getFullUrl();
+$request->getApiUrl();
 ``` 
 
 ## Contributing
