@@ -106,7 +106,7 @@ class Sound
      *
      * @return array
      */
-    public function getAvailableSounds()
+    static function getAvailableSounds(): array
     {
         $oClass = new \ReflectionClass(__CLASS__);
         return $oClass->getConstants();

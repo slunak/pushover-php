@@ -93,7 +93,7 @@ class Attachment
      *
      * @return array
      */
-    public function getSupportedAttachmentTypes(): array
+    static function getSupportedAttachmentTypes(): array
     {
         $oClass = new \ReflectionClass(__CLASS__);
         return $oClass->getConstants();
@@ -105,7 +105,7 @@ class Attachment
      *
      * @return array
      */
-    public function getSupportedAttachmentExtensions(): array
+    static function getSupportedAttachmentExtensions(): array
     {
         return array(
             'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp'
