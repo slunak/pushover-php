@@ -9,95 +9,77 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\Api\Message;
+namespace Serhiy\Pushover\ApiClient\Message;
 
+use Serhiy\Pushover\Api\Message\Notification;
+use Serhiy\Pushover\Api\Message\Priority;
+use Serhiy\Pushover\ApiClient\ClientInterface;
+use Serhiy\Pushover\ApiClient\CurlHelper;
+use Serhiy\Pushover\ApiClient\Request;
 use Serhiy\Pushover\Exception\LogicException;
 
 /**
- * Request object.
- *
- * Holds curl and other request data.
+ * Pushover HTTP Client for Message Component.
  *
  * @author Serhiy Lunak
  */
-class Request
+class MessageClient implements ClientInterface
 {
     /**
-     * @var string
+     * The path part of the API URL.
      */
-    private $api_base_url;
-    /**
-     * @var string
-     */
-    private $api_version;
-    /**
-     * @var string
-     */
-    private $api_path;
+    const API_PATH = 'messages.json';
+
+    public function __construct()
+    {
+    }
 
     /**
-     * CURLOPT_POSTFIELDS.
+     * Sends notification and returns Response object.
      *
-     * Array for CURLOPT_POSTFIELDS curl argument.
+     * @param Request $request
+     * @return MessageResponse
+     */
+    public function send(Request $request): MessageResponse
+    {
+        $curlResponse = CurlHelper::post($request);
+
+        $response = $this->processCurlResponse($curlResponse);
+        $response->setRequest($request);
+
+        return $response;
+    }
+
+    /**
+     * Processes curl response.
      *
-     * @var array
+     * @param mixed $curlResponse
+     * @return MessageResponse
      */
-    private $curlPostFields;
-
-    /**
-     * Object that contains notification.
-     *
-     * @var Notification
-     */
-    private $notification;
-
-    public function __construct(string $api_base_url, string $api_version, string $api_path)
+    private function processCurlResponse($curlResponse): MessageResponse
     {
-        $this->api_base_url = $api_base_url;
-        $this->api_version = $api_version;
-        $this->api_path = $api_path;
-    }
+        $response = new MessageResponse();
 
-    /**
-     * Builds API URL
-     *
-     * @return string
-     */
-    public function getFullUrl()
-    {
-        return $this->api_base_url.'/'.$this->api_version.'/'.$this->api_path;
-    }
+        $decodedCurlResponse = json_decode($curlResponse);
 
-    /**
-     * @return array
-     */
-    public function getCurlPostFields(): array
-    {
-        return $this->curlPostFields;
-    }
+        $response->setRequestStatus($decodedCurlResponse->status);
+        $response->setRequestToken($decodedCurlResponse->request);
+        $response->setCurlResponse($curlResponse);
 
-    /**
-     * @param Notification $notification
-     */
-    public function setCurlPostFields(Notification $notification): void
-    {
-        $this->curlPostFields = $this->buildCurlPostFields($notification);
-    }
+        if ($response->getRequestStatus() == 1) {
+            $response->setIsSuccessful(true);
+        }
 
-    /**
-     * @return Notification
-     */
-    public function getNotification(): Notification
-    {
-        return $this->notification;
-    }
+        if ($response->getRequestStatus() != 1) {
+            $response->setErrors($decodedCurlResponse->errors);
+            $response->setIsSuccessful(false);
+        }
 
-    /**
-     * @param Notification $notification
-     */
-    public function setNotification(Notification $notification): void
-    {
-        $this->notification = $notification;
+        if (isset($decodedCurlResponse->receipt)) {
+            $response->setReceipt($decodedCurlResponse->receipt);
+        }
+
+        return $response;
     }
 
     /**
@@ -106,7 +88,7 @@ class Request
      * @param Notification $notification
      * @return array
      */
-    private function buildCurlPostFields(Notification $notification)
+    public function buildCurlPostFields(Notification $notification): array
     {
         $curlPostFields = array(
             "token" => $notification->getApplication()->getToken(),
@@ -164,5 +146,13 @@ class Request
         }
 
         return $curlPostFields;
+    }
+
+    /**
+     * @return string
+     */
+    public function buildApiUrl(): string
+    {
+        return CurlHelper::API_BASE_URL."/".CurlHelper::API_VERSION."/".self::API_PATH;
     }
 }

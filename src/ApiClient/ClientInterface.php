@@ -9,22 +9,25 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\Api;
+namespace Serhiy\Pushover\ApiClient;
+
+use Serhiy\Pushover\ApiClient\Message\MessageResponse;
 
 /**
- * Base class for Pushover HTTP Client.
+ * Client Interface.
  *
  * @author Serhiy Lunak
  */
-class ApiClient
+interface ClientInterface
 {
     /**
-     * API base URL.
+     * @return string
      */
-    const API_BASE_URL = 'https://api.pushover.net';
+    public function buildApiUrl();
 
     /**
-     * API version.
+     * @param Request $request
+     * @return MessageResponse
      */
-    const API_VERSION = '1';
+    public function send(Request $request);
 }

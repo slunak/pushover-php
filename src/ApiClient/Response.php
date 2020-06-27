@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\Api\Message;
+namespace Serhiy\Pushover\ApiClient;
 
 /**
- * Response object.
+ * Response represents response object.
+ *
  * If your POST request to our API was valid, you will receive an HTTP 200 (OK) status,
  * with a JSON object containing a status code of 1. If any input was invalid, you will receive an HTTP 4xx status,
  * with a JSON object containing a status code of something other than 1, and an errors array detailing which parameters were invalid.
@@ -43,16 +44,6 @@ class Response
     private $requestToken;
 
     /**
-     * Receipt.
-     * When your application sends an emergency-priority notification, our API will respond with a receipt value
-     * that can be used to get information about whether the notification has been acknowledged.
-     * See {@link https://pushover.net/api/receipts} for more information.
-     *
-     * @var string
-     */
-    private $receipt;
-
-    /**
      * Original curl response in json format.
      * Original, unmodified response from curl request.
      *
@@ -65,7 +56,7 @@ class Response
      *
      * @var array
      */
-    private $errors;
+    private $errors = array();
 
     /**
      * Object that contains original request.
@@ -74,10 +65,6 @@ class Response
      */
     private $request;
 
-    public function __construct()
-    {
-        $this->errors = array();
-    }
 
     /**
      * @return bool
@@ -141,22 +128,6 @@ class Response
     public function setErrors(array $errors): void
     {
         $this->errors = $errors;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReceipt(): string
-    {
-        return $this->receipt;
-    }
-
-    /**
-     * @param string $receipt
-     */
-    public function setReceipt(string $receipt): void
-    {
-        $this->receipt = $receipt;
     }
 
     /**

@@ -12,8 +12,8 @@
 namespace Api\Message;
 
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\Api\Message\Recipient;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
+use Serhiy\Pushover\Recipient;
 
 /**
  * @author Serhiy Lunak

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\Api\Message;
+namespace Serhiy\Pushover;
 
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
