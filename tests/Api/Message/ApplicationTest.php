@@ -12,7 +12,7 @@
 namespace Api\Message;
 
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\Api\Message\Application;
+use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**

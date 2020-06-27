@@ -11,6 +11,12 @@
 
 namespace Serhiy\Pushover\Api\Message;
 
+use Serhiy\Pushover\ApiClient\Message\MessageClient;
+use Serhiy\Pushover\ApiClient\Message\MessageResponse;
+use Serhiy\Pushover\ApiClient\Request;
+use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Recipient;
+
 /**
  * Notification.
  *
@@ -130,5 +136,16 @@ class Notification
     public function setAttachment(?Attachment $attachment): void
     {
         $this->attachment = $attachment;
+    }
+
+    /**
+     * @return MessageResponse
+     */
+    public function push(): MessageResponse
+    {
+        $client = new MessageClient();
+        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($this));
+
+        return $client->send($request);
     }
 }

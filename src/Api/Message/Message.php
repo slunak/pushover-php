@@ -11,7 +11,6 @@
 
 namespace Serhiy\Pushover\Api\Message;
 
-use Cassandra\Date;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**
