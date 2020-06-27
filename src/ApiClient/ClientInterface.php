@@ -12,6 +12,7 @@
 namespace Serhiy\Pushover\ApiClient;
 
 use Serhiy\Pushover\ApiClient\Message\MessageResponse;
+use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationResponse;
 
 /**
  * Client Interface.
@@ -21,13 +22,17 @@ use Serhiy\Pushover\ApiClient\Message\MessageResponse;
 interface ClientInterface
 {
     /**
+     * Builds and returns full API URL
+     *
      * @return string
      */
     public function buildApiUrl();
 
     /**
+     * Send request and returns response object.
+     *
      * @param Request $request
-     * @return MessageResponse
+     * @return MessageResponse|UserGroupValidationResponse
      */
     public function send(Request $request);
 }
