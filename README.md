@@ -18,6 +18,8 @@ Light, simple and fast wrapper for the Pushover API.
   - Notification sound
   - Message time
 
+*Note: Project is in constant development, update to newer versions with caution.*
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running.
