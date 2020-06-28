@@ -45,7 +45,6 @@ class UserGroupValidationClientTest extends TestCase
         $this->assertEquals(array(
             "token" => "zaGDORePK8gMaC0QOYAMyEEuzJnyUi",
             "user" => "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
-            "device" => "",
         ), $curlPostFields);
     }
 

@@ -58,7 +58,7 @@ class UserGroupValidationClient implements ClientInterface
             "user" => $recipient->getUserKey(),
         );
 
-        if (null !== $recipient->getDevice()) {
+        if (! empty($recipient->getDevice())) {
             if (count($recipient->getDevice()) > 1) {
                 throw new LogicException(sprintf('Api can validate only 1 device at a time. "%s" devices provided.', count($recipient->getDevice())));
             }

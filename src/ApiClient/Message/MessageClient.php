@@ -95,7 +95,7 @@ class MessageClient implements ClientInterface
             "timestamp" => $notification->getMessage()->getTimestamp(),
         );
 
-        if (null !== $notification->getRecipient()->getDevice()) {
+        if (! empty($notification->getRecipient()->getDevice())) {
             $curlPostFields['device'] = $notification->getRecipient()->getDeviceListCommaSeparated();
         }
 
