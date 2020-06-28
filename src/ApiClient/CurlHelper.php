@@ -41,7 +41,6 @@ class CurlHelper
         curl_setopt_array($ch = curl_init(), array(
             CURLOPT_URL => $request->getApiUrl(),
             CURLOPT_POSTFIELDS => $request->getCurlPostFields(),
-            CURLOPT_SAFE_UPLOAD => true,
             CURLOPT_RETURNTRANSFER => true,
         ));
 
