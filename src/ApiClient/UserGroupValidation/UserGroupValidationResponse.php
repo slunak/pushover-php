@@ -41,7 +41,7 @@ class UserGroupValidationResponse extends Response
     }
 
     /**
-     * @param array $devices
+     * @param array<string> $devices
      */
     public function setDevices(array $devices): void
     {
@@ -57,7 +57,7 @@ class UserGroupValidationResponse extends Response
     }
 
     /**
-     * @param array $licenses
+     * @param array<string> $licenses
      */
     public function setLicenses(array $licenses): void
     {

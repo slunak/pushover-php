@@ -91,7 +91,7 @@ class Attachment
     /**
      * Generates array with all supported attachment types. Attachment types are taken from the constants of this class.
      *
-     * @return array
+     * @return array<string>
      */
     public static function getSupportedAttachmentTypes(): array
     {
@@ -103,7 +103,7 @@ class Attachment
      * Supported extensions.
      * Returns array of supported extensions.
      *
-     * @return array
+     * @return array<string>
      */
     public static function getSupportedAttachmentExtensions(): array
     {

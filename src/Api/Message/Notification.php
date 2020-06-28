@@ -42,12 +42,12 @@ class Notification
     private $message;
 
     /**
-     * @var Sound
+     * @var Sound|null
      */
     private $sound;
 
     /**
-     * @var Attachment
+     * @var Attachment|null
      */
     private $attachment;
 

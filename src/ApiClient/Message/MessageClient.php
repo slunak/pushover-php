@@ -84,7 +84,7 @@ class MessageClient implements ClientInterface
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
      * @param Notification $notification
-     * @return array
+     * @return array[]
      */
     public function buildCurlPostFields(Notification $notification): array
     {

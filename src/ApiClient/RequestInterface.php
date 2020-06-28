@@ -24,7 +24,7 @@ interface RequestInterface
     public function getApiUrl();
 
     /**
-     * @return array
+     * @return array[]
      */
     public function getCurlPostFields();
 }

@@ -30,10 +30,15 @@ class Request implements RequestInterface
      *
      * Array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @var array
+     * @var array[]
      */
     private $curlPostFields;
 
+    /**
+     * Request constructor.
+     * @param string $apiUrl
+     * @param array[] $curlPostFields
+     */
     public function __construct(string $apiUrl, array $curlPostFields)
     {
         $this->apiUrl = $apiUrl;
@@ -51,7 +56,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * @return array
+     * @return array[]
      */
     public function getCurlPostFields(): array
     {

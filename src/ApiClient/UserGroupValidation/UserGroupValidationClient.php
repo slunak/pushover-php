@@ -49,9 +49,9 @@ class UserGroupValidationClient implements ClientInterface
      *
      * @param Application $application
      * @param Recipient $recipient
-     * @return array
+     * @return array[]
      */
-    public function buildCurlPostFields(Application $application, Recipient $recipient)
+    public function buildCurlPostFields(Application $application, Recipient $recipient): array
     {
         $curlPostFields = array(
             "token" => $application->getToken(),

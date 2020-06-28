@@ -38,7 +38,7 @@ class Recipient
      * Your user's device name to send the message directly to that device,
      * rather than all of the user's devices (multiple devices may be separated by a comma).
      *
-     * @var array
+     * @var array<string>
      */
     private $device;
 
@@ -66,7 +66,7 @@ class Recipient
     }
 
     /**
-     * @return array
+     * @return array<string>
      */
     public function getDevice(): array
     {

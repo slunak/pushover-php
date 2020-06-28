@@ -104,7 +104,7 @@ class Sound
     /**
      * Generates array with all available sounds. Sounds are taken from the constants of this class.
      *
-     * @return array
+     * @return array<string>
      */
     public static function getAvailableSounds(): array
     {
