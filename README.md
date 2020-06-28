@@ -17,6 +17,9 @@ Light, simple and fast wrapper for the Pushover API.
   - Notification priority
   - Notification sound
   - Message time
+- User/Group Validation API ([Example](Example/UserGroupValidationExample.php))
+  - Validation by user or group key
+  - Validation by user and device
 
 *Note: Project is in constant development, update to newer versions with caution.*
 

@@ -30,8 +30,7 @@ class ValidationTest extends TestCase
     public function testCanBeCreated(): Validation
     {
         $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
-        $validation = new Validation($application, $recipient);
+        $validation = new Validation($application);
 
         $this->assertInstanceOf(Validation::class, $validation);
 
@@ -52,20 +51,11 @@ class ValidationTest extends TestCase
      * @depends testCanBeCreated
      * @param Validation $validation
      */
-    public function testGetRecipient(Validation $validation)
-    {
-        $this->assertInstanceOf(Recipient::class, $validation->getRecipient());
-        $this->assertEquals("uQiRzpo4DXghDmr9QzzfQu27cmVRsG", $validation->getRecipient()->getUserKey());
-    }
-
-    /**
-     * @depends testCanBeCreated
-     * @param Validation $validation
-     */
     public function testValidateRecipient(Validation $validation)
     {
+        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
         $client = new UserGroupValidationClient();
-        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($validation->getApplication(), $validation->getRecipient()));
+        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($validation->getApplication(), $recipient));
         $response = $client->send($request);
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);

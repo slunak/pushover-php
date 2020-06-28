@@ -29,15 +29,10 @@ class Validation
      * @var Application
      */
     private $application;
-    /**
-     * @var Recipient
-     */
-    private $recipient;
 
-    public function __construct(Application $application, Recipient $recipient)
+    public function __construct(Application $application)
     {
         $this->application = $application;
-        $this->recipient = $recipient;
     }
 
     /**
@@ -49,22 +44,15 @@ class Validation
     }
 
     /**
-     * @return Recipient
-     */
-    public function getRecipient(): Recipient
-    {
-        return $this->recipient;
-    }
-
-    /**
      * Validates recipient and its device, and returns Response object.
      *
+     * @param Recipient $recipient
      * @return UserGroupValidationResponse
      */
-    public function validateRecipient(): UserGroupValidationResponse
+    public function validate(Recipient $recipient): UserGroupValidationResponse
     {
         $client = new UserGroupValidationClient();
-        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($this->application, $this->recipient));
+        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($this->application, $recipient));
 
         return $client->send($request);
     }
