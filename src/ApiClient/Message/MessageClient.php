@@ -35,9 +35,7 @@ class MessageClient implements ClientInterface
     }
 
     /**
-     * Sends notification and returns Response object.
-     *
-     * @param Request $request
+     * @inheritDoc
      * @return MessageResponse
      */
     public function send(Request $request): MessageResponse
@@ -149,7 +147,7 @@ class MessageClient implements ClientInterface
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function buildApiUrl(): string
     {

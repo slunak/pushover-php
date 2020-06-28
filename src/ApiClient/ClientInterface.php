@@ -29,7 +29,7 @@ interface ClientInterface
     public function buildApiUrl();
 
     /**
-     * Send request and returns response object.
+     * Sends request and returns response object.
      *
      * @param Request $request
      * @return MessageResponse|UserGroupValidationResponse
