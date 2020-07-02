@@ -62,7 +62,7 @@ class UserGroupValidationClientTest extends TestCase
         $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
         $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
         $client = new UserGroupValidationClient();
-        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($application, $recipient));
+        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($application, $recipient));
         $response = $client->send($request);
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);

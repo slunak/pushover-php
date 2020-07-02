@@ -44,7 +44,7 @@ class MessageClientTest extends TestCase
         $notification = new Notification($application, $recipient, $message);
 
         $client = new MessageClient();
-        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($notification));
+        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($notification));
 
         $response = $client->send($request);
 

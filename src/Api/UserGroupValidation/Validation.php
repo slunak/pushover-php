@@ -52,7 +52,7 @@ class Validation
     public function validate(Recipient $recipient): UserGroupValidationResponse
     {
         $client = new UserGroupValidationClient();
-        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($this->application, $recipient));
+        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($this->application, $recipient));
 
         return $client->send($request);
     }
