@@ -117,6 +117,10 @@ class MessageClient implements ClientInterface
             if (Priority::EMERGENCY == $notification->getMessage()->getPriority()->getPriority()) {
                 $curlPostFields['retry'] = $notification->getMessage()->getPriority()->getRetry();
                 $curlPostFields['expire'] = $notification->getMessage()->getPriority()->getExpire();
+
+                if (null !== $notification->getMessage()->getPriority()->getCallback()) {
+                    $curlPostFields['callback'] = $notification->getMessage()->getPriority()->getCallback();
+                }
             }
         }
 

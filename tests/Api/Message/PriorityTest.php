@@ -33,6 +33,8 @@ class PriorityTest extends TestCase
         $priority = new Priority(Priority::EMERGENCY, 30, 600);
 
         $this->assertInstanceOf(Priority::class, $priority);
+
+        return $priority;
     }
 
     public function testCannotBeCreatedWithInvalidPriority()
@@ -47,5 +49,28 @@ class PriorityTest extends TestCase
         $this->expectException(LogicException::class);
 
         new Priority(Priority::EMERGENCY);
+    }
+
+    /**
+     * @depends testCanBeCreatedWithEmergencyPriority
+     * @param Priority $priority
+     * @return Priority
+     */
+    public function testSetCallback(Priority $priority)
+    {
+        $priority->setCallback("https://callback.example.com");
+
+        $this->assertInstanceOf(Priority::class, $priority);
+
+        return $priority;
+    }
+
+    /**
+     * @depends testSetCallback
+     * @param Priority $priority
+     */
+    public function testGetCallback(Priority $priority)
+    {
+        $this->assertEquals("https://callback.example.com", $priority->getCallback());
     }
 }
