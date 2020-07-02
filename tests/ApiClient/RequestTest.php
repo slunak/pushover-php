@@ -24,7 +24,7 @@ class RequestTest extends TestCase
      */
     public function testCanBeCrated()
     {
-        $request = new Request("https://test.com/api", array());
+        $request = new Request("https://test.com/api", Request::POST, array());
 
         $this->assertInstanceOf(Request::class, $request);
 

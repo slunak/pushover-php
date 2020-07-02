@@ -36,13 +36,18 @@ class CurlHelper
      * @param Request $request
      * @return mixed
      */
-    public static function post(Request $request)
+    public static function do(Request $request)
     {
-        curl_setopt_array($ch = curl_init(), array(
+        $curlOptions = array(
             CURLOPT_URL => $request->getApiUrl(),
-            CURLOPT_POSTFIELDS => $request->getCurlPostFields(),
             CURLOPT_RETURNTRANSFER => true,
-        ));
+        );
+
+        if (null !== $request->getCurlPostFields()) {
+            $curlOptions[CURLOPT_POSTFIELDS] = $request->getCurlPostFields();
+        }
+
+        curl_setopt_array($ch = curl_init(), $curlOptions);
 
         $curlResponse = curl_exec($ch);
         curl_close($ch);

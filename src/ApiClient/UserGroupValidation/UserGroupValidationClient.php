@@ -36,7 +36,7 @@ class UserGroupValidationClient implements ClientInterface
      */
     public function send(Request $request): UserGroupValidationResponse
     {
-        $curlResponse = CurlHelper::post($request);
+        $curlResponse = CurlHelper::do($request);
 
         $response = $this->processCurlResponse($curlResponse);
         $response->setRequest($request);

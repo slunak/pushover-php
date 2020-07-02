@@ -21,7 +21,22 @@ namespace Serhiy\Pushover\ApiClient;
 class Request implements RequestInterface
 {
     /**
-     * @var string Full API URL
+     * HTTP GET method.
+     */
+    const GET = "GET";
+
+    /**
+     * HTTP POST method.
+     */
+    const POST = "POST";
+
+    /**
+     * @var string Either GET or POST.
+     */
+    private $method;
+
+    /**
+     * @var string Full API URL.
      */
     private $apiUrl;
 
@@ -30,18 +45,20 @@ class Request implements RequestInterface
      *
      * Array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @var array[]
+     * @var array[]|null
      */
     private $curlPostFields;
 
     /**
      * Request constructor.
      * @param string $apiUrl
-     * @param array[] $curlPostFields
+     * @param string $method
+     * @param array[]|null $curlPostFields
      */
-    public function __construct(string $apiUrl, array $curlPostFields)
+    public function __construct(string $apiUrl, string $method, array $curlPostFields = null)
     {
         $this->apiUrl = $apiUrl;
+        $this->method = $method;
         $this->curlPostFields = $curlPostFields;
     }
 
@@ -56,9 +73,9 @@ class Request implements RequestInterface
     }
 
     /**
-     * @return array[]
+     * @return array[]|null
      */
-    public function getCurlPostFields(): array
+    public function getCurlPostFields(): ?array
     {
         return $this->curlPostFields;
     }

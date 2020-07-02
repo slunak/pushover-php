@@ -40,7 +40,7 @@ class MessageClient implements ClientInterface
      */
     public function send(Request $request): MessageResponse
     {
-        $curlResponse = CurlHelper::post($request);
+        $curlResponse = CurlHelper::do($request);
 
         $response = $this->processCurlResponse($curlResponse);
         $response->setRequest($request);

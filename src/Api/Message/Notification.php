@@ -144,7 +144,7 @@ class Notification
     public function push(): MessageResponse
     {
         $client = new MessageClient();
-        $request = new Request($client->buildApiUrl(), $client->buildCurlPostFields($this));
+        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($this));
 
         return $client->send($request);
     }
