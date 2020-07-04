@@ -12,14 +12,14 @@
 namespace Serhiy\Pushover\ApiClient\Receipts;
 
 use Serhiy\Pushover\Api\Receipts\Receipt;
+use Serhiy\Pushover\ApiClient\Client;
 use Serhiy\Pushover\ApiClient\ClientInterface;
 use Serhiy\Pushover\ApiClient\CurlHelper;
-use Serhiy\Pushover\ApiClient\Request;
 
 /**
  * @author Serhiy Lunak
  */
-class CancelRetryClient implements ClientInterface
+class CancelRetryClient extends Client implements ClientInterface
 {
     /**
      * @var string 30 character string.
@@ -40,19 +40,6 @@ class CancelRetryClient implements ClientInterface
     }
 
     /**
-     * @inheritDoc
-     */
-    public function send(Request $request): CancelRetryResponse
-    {
-        $curlResponse = CurlHelper::do($request);
-
-        $response = $this->processCurlResponse($curlResponse);
-        $response->setRequest($request);
-
-        return $response;
-    }
-
-    /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
      * @param Receipt $receipt
@@ -69,7 +56,7 @@ class CancelRetryClient implements ClientInterface
      * @param mixed $curlResponse
      * @return CancelRetryResponse
      */
-    private function processCurlResponse($curlResponse): CancelRetryResponse
+    protected function processCurlResponse($curlResponse): CancelRetryResponse
     {
         $response = new CancelRetryResponse();
 
