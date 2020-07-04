@@ -20,8 +20,11 @@ Light, simple and fast wrapper for the Pushover API.
 - User/Group Validation API ([Example](Example/UserGroupValidationExample.php))
   - Validation by user or group key
   - Validation by user and device
+- Receipt API ([Example](Example/ReceiptExample.php))
+  - Query emergency priority receipt
+  - Cancel emergency priority retry
 
-*Note: Project is in constant development, update to newer versions with caution.*
+*Note: Project is in constant development; update to newer versions with caution.*
 
 ## Getting Started
 
