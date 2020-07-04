@@ -11,14 +11,14 @@
 
 namespace Serhiy\Pushover\ApiClient\UserGroupValidation;
 
+use Serhiy\Pushover\ApiClient\Client;
 use Serhiy\Pushover\ApiClient\ClientInterface;
 use Serhiy\Pushover\ApiClient\CurlHelper;
-use Serhiy\Pushover\ApiClient\Request;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Exception\LogicException;
 use Serhiy\Pushover\Recipient;
 
-class UserGroupValidationClient implements ClientInterface
+class UserGroupValidationClient extends Client implements ClientInterface
 {
     const API_PATH = "users/validate.json";
 
@@ -28,20 +28,6 @@ class UserGroupValidationClient implements ClientInterface
     public function buildApiUrl()
     {
         return CurlHelper::API_BASE_URL."/".CurlHelper::API_VERSION."/".self::API_PATH;
-    }
-
-    /**
-     * @inheritDoc
-     * @return UserGroupValidationResponse
-     */
-    public function send(Request $request): UserGroupValidationResponse
-    {
-        $curlResponse = CurlHelper::do($request);
-
-        $response = $this->processCurlResponse($curlResponse);
-        $response->setRequest($request);
-
-        return $response;
     }
 
     /**
@@ -75,7 +61,7 @@ class UserGroupValidationClient implements ClientInterface
      * @param mixed $curlResponse
      * @return UserGroupValidationResponse
      */
-    private function processCurlResponse($curlResponse): UserGroupValidationResponse
+    protected function processCurlResponse($curlResponse): UserGroupValidationResponse
     {
         $response = new UserGroupValidationResponse();
 

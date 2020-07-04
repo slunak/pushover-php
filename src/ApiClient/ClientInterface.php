@@ -11,11 +11,6 @@
 
 namespace Serhiy\Pushover\ApiClient;
 
-use Serhiy\Pushover\ApiClient\Message\MessageResponse;
-use Serhiy\Pushover\ApiClient\Receipts\CancelRetryResponse;
-use Serhiy\Pushover\ApiClient\Receipts\ReceiptResponse;
-use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationResponse;
-
 /**
  * Client Interface.
  *
@@ -29,12 +24,4 @@ interface ClientInterface
      * @return string
      */
     public function buildApiUrl();
-
-    /**
-     * Sends request and returns response object.
-     *
-     * @param Request $request
-     * @return MessageResponse|UserGroupValidationResponse|ReceiptResponse|CancelRetryResponse
-     */
-    public function send(Request $request);
 }

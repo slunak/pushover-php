@@ -13,9 +13,9 @@ namespace Serhiy\Pushover\ApiClient\Message;
 
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Priority;
+use Serhiy\Pushover\ApiClient\Client;
 use Serhiy\Pushover\ApiClient\ClientInterface;
 use Serhiy\Pushover\ApiClient\CurlHelper;
-use Serhiy\Pushover\ApiClient\Request;
 use Serhiy\Pushover\Exception\LogicException;
 
 /**
@@ -23,7 +23,7 @@ use Serhiy\Pushover\Exception\LogicException;
  *
  * @author Serhiy Lunak
  */
-class MessageClient implements ClientInterface
+class MessageClient extends Client implements ClientInterface
 {
     /**
      * The path part of the API URL.
@@ -35,26 +35,12 @@ class MessageClient implements ClientInterface
     }
 
     /**
-     * @inheritDoc
-     * @return MessageResponse
-     */
-    public function send(Request $request): MessageResponse
-    {
-        $curlResponse = CurlHelper::do($request);
-
-        $response = $this->processCurlResponse($curlResponse);
-        $response->setRequest($request);
-
-        return $response;
-    }
-
-    /**
      * Processes curl response.
      *
      * @param mixed $curlResponse
      * @return MessageResponse
      */
-    private function processCurlResponse($curlResponse): MessageResponse
+    protected function processCurlResponse($curlResponse): MessageResponse
     {
         $response = new MessageResponse();
 

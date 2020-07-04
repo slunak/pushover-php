@@ -11,13 +11,13 @@
 
 namespace Serhiy\Pushover\ApiClient\Receipts;
 
+use Serhiy\Pushover\ApiClient\Client;
 use Serhiy\Pushover\ApiClient\ClientInterface;
 use Serhiy\Pushover\ApiClient\CurlHelper;
-use Serhiy\Pushover\ApiClient\Request;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
-class ReceiptClient implements ClientInterface
+class ReceiptClient extends Client implements ClientInterface
 {
     /**
      * @var Application
@@ -43,24 +43,12 @@ class ReceiptClient implements ClientInterface
     }
 
     /**
-     * @inheritDoc
-     */
-    public function send(Request $request): ReceiptResponse
-    {
-        $curlResponse = CurlHelper::do($request);
-        $response = $this->processCurlResponse($curlResponse);
-        $response->setRequest($request);
-
-        return $response;
-    }
-
-    /**
      * Processes curl response.
      *
      * @param $curlResponse
      * @return ReceiptResponse
      */
-    private function processCurlResponse($curlResponse): ReceiptResponse
+    protected function processCurlResponse($curlResponse): ReceiptResponse
     {
         $response = new ReceiptResponse();
 
