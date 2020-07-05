@@ -13,6 +13,7 @@ namespace Serhiy\Pushover\Example;
 
 use Serhiy\Pushover\Api\UserGroupValidation\Validation;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -35,6 +36,7 @@ class UserGroupValidationExample
         $validation = new Validation($application);
 
         // validate the recipient
+        /** @var UserGroupValidationResponse $response */
         $response = $validation->validate($recipient);
 
         // or loop over recipients

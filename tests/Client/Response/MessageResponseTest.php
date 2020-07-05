@@ -9,14 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiClient\Message;
+namespace Client\Response;
 
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
-use Serhiy\Pushover\ApiClient\Message\MessageClient;
-use Serhiy\Pushover\ApiClient\Message\MessageResponse;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -26,7 +25,8 @@ class MessageResponseTest extends TestCase
 {
     public function testCanBeCrated()
     {
-        $response = new MessageResponse();
+        $curlResponse = '{"receipt":"rbogyxojsr515ax5dxho419qd443fh","status":1,"request":"6g890a90-7943-4at2-b739-4aubi545b508"}';
+        $response = new MessageResponse($curlResponse);
 
         $this->assertInstanceOf(MessageResponse::class, $response);
     }

@@ -9,8 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient;
+namespace Serhiy\Pushover\Client\Curl;
 
+use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Exception\LogicException;
 
 /**
@@ -18,7 +19,7 @@ use Serhiy\Pushover\Exception\LogicException;
  *
  * @author Serhiy Lunak
  */
-class CurlHelper
+class Curl
 {
     /**
      * API base URL.

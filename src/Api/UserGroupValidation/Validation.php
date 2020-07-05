@@ -11,9 +11,10 @@
 
 namespace Serhiy\Pushover\Api\UserGroupValidation;
 
-use Serhiy\Pushover\ApiClient\Request;
-use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationClient;
-use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationResponse;
+use Serhiy\Pushover\Client\Curl\Curl;
+use Serhiy\Pushover\Client\Request\Request;
+use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
+use Serhiy\Pushover\Client\UserGroupValidationClient;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
@@ -54,6 +55,11 @@ class Validation
         $client = new UserGroupValidationClient();
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($this->application, $recipient));
 
-        return $client->send($request);
+        $curlResponse = Curl::do($request);
+
+        $response = new UserGroupValidationResponse($curlResponse);
+        $response->setRequest($request);
+
+        return $response;
     }
 }

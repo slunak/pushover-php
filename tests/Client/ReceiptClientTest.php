@@ -9,13 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiClient\Receipts;
+namespace Client;
 
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\ApiClient\Receipts\ReceiptClient;
-use Serhiy\Pushover\ApiClient\Receipts\ReceiptResponse;
-use Serhiy\Pushover\ApiClient\Request;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Curl\Curl;
+use Serhiy\Pushover\Client\ReceiptClient;
+use Serhiy\Pushover\Client\Request\Request;
+use Serhiy\Pushover\Client\Response\ReceiptResponse;
 
 /**
  * @author Serhiy Lunak
@@ -55,7 +56,9 @@ class ReceiptClientTest extends TestCase
     {
         $request = new Request($client->buildApiUrl(), Request::GET);
 
-        $response = $client->send($request);
+        $curlResponse = Curl::do($request);
+
+        $response = new ReceiptResponse($curlResponse);
 
         $this->assertInstanceOf(ReceiptResponse::class, $response);
         $this->assertFalse($response->isSuccessful());

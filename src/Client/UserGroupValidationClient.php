@@ -9,11 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient\UserGroupValidation;
+namespace Serhiy\Pushover\Client;
 
-use Serhiy\Pushover\ApiClient\Client;
-use Serhiy\Pushover\ApiClient\ClientInterface;
-use Serhiy\Pushover\ApiClient\CurlHelper;
+use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Exception\LogicException;
 use Serhiy\Pushover\Recipient;
@@ -27,7 +25,7 @@ class UserGroupValidationClient extends Client implements ClientInterface
      */
     public function buildApiUrl()
     {
-        return CurlHelper::API_BASE_URL."/".CurlHelper::API_VERSION."/".self::API_PATH;
+        return Curl::API_BASE_URL."/".Curl::API_VERSION."/".self::API_PATH;
     }
 
     /**
@@ -53,35 +51,5 @@ class UserGroupValidationClient extends Client implements ClientInterface
         }
 
         return $curlPostFields;
-    }
-
-    /**
-     * Processes curl response.
-     *
-     * @param mixed $curlResponse
-     * @return UserGroupValidationResponse
-     */
-    protected function processCurlResponse($curlResponse): UserGroupValidationResponse
-    {
-        $response = new UserGroupValidationResponse();
-
-        $decodedCurlResponse = json_decode($curlResponse);
-
-        $response->setRequestStatus($decodedCurlResponse->status);
-        $response->setRequestToken($decodedCurlResponse->request);
-        $response->setCurlResponse($curlResponse);
-
-        if ($response->getRequestStatus() == 1) {
-            $response->setIsSuccessful(true);
-            $response->setDevices($decodedCurlResponse->devices);
-            $response->setLicenses($decodedCurlResponse->licenses);
-        }
-
-        if ($response->getRequestStatus() != 1) {
-            $response->setErrors($decodedCurlResponse->errors);
-            $response->setIsSuccessful(false);
-        }
-
-        return $response;
     }
 }

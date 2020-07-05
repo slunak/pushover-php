@@ -11,12 +11,13 @@
 
 namespace Serhiy\Pushover\Api\Receipts;
 
-use Serhiy\Pushover\ApiClient\Receipts\CancelRetryClient;
-use Serhiy\Pushover\ApiClient\Receipts\CancelRetryResponse;
-use Serhiy\Pushover\ApiClient\Receipts\ReceiptClient;
-use Serhiy\Pushover\ApiClient\Receipts\ReceiptResponse;
-use Serhiy\Pushover\ApiClient\Request;
+use Serhiy\Pushover\Client\CancelRetryClient;
+use Serhiy\Pushover\Client\Curl\Curl;
+use Serhiy\Pushover\Client\ReceiptClient;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Request\Request;
+use Serhiy\Pushover\Client\Response\CancelRetryResponse;
+use Serhiy\Pushover\Client\Response\ReceiptResponse;
 
 /**
  * Applications sending emergency-priority notifications will receive a receipt parameter from our API when a notification has been queued.
@@ -49,25 +50,33 @@ class Receipt
      * @param string $receipt
      * @return ReceiptResponse
      */
-    public function query(string $receipt)
+    public function query(string $receipt): ReceiptResponse
     {
         $client = new ReceiptClient($this->application, $receipt);
-
         $request = new Request($client->buildApiUrl(), Request::GET);
 
-        return $client->send($request);
+        $curlResponse = Curl::do($request);
+
+        $response = new ReceiptResponse($curlResponse);
+        $response->setRequest($request);
+
+        return $response;
     }
 
     /**
      * @param string $receipt
      * @return CancelRetryResponse
      */
-    public function cancelRetry(string $receipt)
+    public function cancelRetry(string $receipt): CancelRetryResponse
     {
         $client = new CancelRetryClient($receipt);
-
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($this));
 
-        return $client->send($request);
+        $curlResponse = Curl::do($request);
+
+        $response = new CancelRetryResponse($curlResponse);
+        $response->setRequest($request);
+
+        return $response;
     }
 }

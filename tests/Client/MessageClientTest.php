@@ -9,19 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiClient\Message;
+namespace Client;
 
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Api\Message\Sound;
-use Serhiy\Pushover\ApiClient\Message\MessageClient;
-use Serhiy\Pushover\ApiClient\Message\MessageResponse;
-use Serhiy\Pushover\ApiClient\Request;
+use Serhiy\Pushover\Client\Curl\Curl;
+use Serhiy\Pushover\Client\MessageClient;
 use Serhiy\Pushover\Application;
-use Serhiy\Pushover\Exception\LogicException;
+use Serhiy\Pushover\Client\Request\Request;
+use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -46,7 +45,10 @@ class MessageClientTest extends TestCase
         $client = new MessageClient();
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($notification));
 
-        $response = $client->send($request);
+        $curlResponse = Curl::do($request);
+
+        $response = new MessageResponse($curlResponse);
+        $response->setRequest($request);
 
         $this->assertInstanceOf(MessageResponse::class, $response);
         $this->assertFalse($response->isSuccessful());

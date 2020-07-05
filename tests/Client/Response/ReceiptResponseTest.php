@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiClient\Receipts;
+namespace Client\Response;
 
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\ApiClient\Receipts\ReceiptResponse;
+use Serhiy\Pushover\Client\Response\ReceiptResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -25,17 +25,11 @@ class ReceiptResponseTest extends TestCase
      */
     public function testCanBeCreated(): ReceiptResponse
     {
-        $response = new ReceiptResponse();
+        $curlResponse = '{"status":1,"acknowledged":1,"acknowledged_at":1593975206,"acknowledged_by":"uQiRzpo4DXghDmr9QzzfQu27cmVRsG","acknowledged_by_device":"my-device","last_delivered_at":1593975186,"expired":1,"expires_at":1593975485,"called_back":0,"called_back_at":0,"request":"6g890a90-7943-4at2-b739-4aubi545b508"}';
+        $response = new ReceiptResponse($curlResponse);
 
         $this->assertInstanceOf(ReceiptResponse::class, $response);
 
-        $response->setIsAcknowledged(true);
-        $response->setAcknowledgedAt(new \DateTime());
-        $response->setAcknowledgedBy(new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"));
-        $response->setAcknowledgedByDevice("my-device");
-        $response->setLastDeliveredAt(new \DateTime());
-        $response->setIsExpired(false);
-        $response->setExpiresAt(new \DateTime());
         $response->setHasCalledBack(true);
         $response->setCalledBackAt(new \DateTime());
 
@@ -121,6 +115,6 @@ class ReceiptResponseTest extends TestCase
      */
     public function testIsExpired(ReceiptResponse $response)
     {
-        $this->assertFalse($response->isExpired());
+        $this->assertTrue($response->isExpired());
     }
 }

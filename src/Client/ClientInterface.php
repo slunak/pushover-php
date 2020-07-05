@@ -9,16 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient\Receipts;
-
-use Serhiy\Pushover\ApiClient\Response;
+namespace Serhiy\Pushover\Client;
 
 /**
+ * Client Interface.
+ *
  * @author Serhiy Lunak
  */
-class CancelRetryResponse extends Response
+interface ClientInterface
 {
-    public function __construct()
-    {
-    }
+    /**
+     * Builds and returns full API URL
+     *
+     * @return string
+     */
+    public function buildApiUrl();
 }

@@ -13,10 +13,8 @@ namespace Api\UserGroupValidation;
 
 use Serhiy\Pushover\Api\UserGroupValidation\Validation;
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\ApiClient\Request;
-use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationClient;
-use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationResponse;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -54,9 +52,7 @@ class ValidationTest extends TestCase
     public function testValidateRecipient(Validation $validation)
     {
         $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
-        $client = new UserGroupValidationClient();
-        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($validation->getApplication(), $recipient));
-        $response = $client->send($request);
+        $response = $validation->validate($recipient);
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
     }

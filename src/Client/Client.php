@@ -9,19 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient;
+namespace Serhiy\Pushover\Client;
 
 /**
- * Client Interface.
+ * Base class for the API client.
  *
  * @author Serhiy Lunak
  */
-interface ClientInterface
+class Client
 {
-    /**
-     * Builds and returns full API URL
-     *
-     * @return string
-     */
-    public function buildApiUrl();
 }

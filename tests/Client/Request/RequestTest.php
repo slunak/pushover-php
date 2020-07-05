@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiClient;
+namespace Client\Request;
 
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\ApiClient\Request;
+use Serhiy\Pushover\Client\Request\Request;
 
 /**
  * @author Serhiy Lunak

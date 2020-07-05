@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiClient\UserGroupValidation;
+namespace Client\Response;
 
-use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationResponse;
+use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -24,7 +24,8 @@ class UserGroupValidationResponseTest extends TestCase
      */
     public function testCanBeCreated(): UserGroupValidationResponse
     {
-        $response = new UserGroupValidationResponse();
+        $curlResponse = '{"status":1,"group":0,"devices":["iphone"],"licenses":["Android","iOS"],"request":"6g890a90-7943-4at2-b739-4aubi545b508"}';
+        $response = new UserGroupValidationResponse($curlResponse);
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
 
