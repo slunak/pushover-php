@@ -16,8 +16,8 @@ use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Api\Message\Sound;
-use Serhiy\Pushover\ApiClient\Message\MessageResponse;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**

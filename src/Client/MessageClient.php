@@ -9,13 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient\Message;
+namespace Serhiy\Pushover\Client;
 
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Priority;
-use Serhiy\Pushover\ApiClient\Client;
-use Serhiy\Pushover\ApiClient\ClientInterface;
-use Serhiy\Pushover\ApiClient\CurlHelper;
+use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Exception\LogicException;
 
 /**
@@ -35,35 +33,11 @@ class MessageClient extends Client implements ClientInterface
     }
 
     /**
-     * Processes curl response.
-     *
-     * @param mixed $curlResponse
-     * @return MessageResponse
+     * @inheritDoc
      */
-    protected function processCurlResponse($curlResponse): MessageResponse
+    public function buildApiUrl(): string
     {
-        $response = new MessageResponse();
-
-        $decodedCurlResponse = json_decode($curlResponse);
-
-        $response->setRequestStatus($decodedCurlResponse->status);
-        $response->setRequestToken($decodedCurlResponse->request);
-        $response->setCurlResponse($curlResponse);
-
-        if ($response->getRequestStatus() == 1) {
-            $response->setIsSuccessful(true);
-        }
-
-        if ($response->getRequestStatus() != 1) {
-            $response->setErrors($decodedCurlResponse->errors);
-            $response->setIsSuccessful(false);
-        }
-
-        if (isset($decodedCurlResponse->receipt)) {
-            $response->setReceipt($decodedCurlResponse->receipt);
-        }
-
-        return $response;
+        return Curl::API_BASE_URL."/".Curl::API_VERSION."/".self::API_PATH;
     }
 
     /**
@@ -134,13 +108,5 @@ class MessageClient extends Client implements ClientInterface
         }
 
         return $curlPostFields;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function buildApiUrl(): string
-    {
-        return CurlHelper::API_BASE_URL."/".CurlHelper::API_VERSION."/".self::API_PATH;
     }
 }

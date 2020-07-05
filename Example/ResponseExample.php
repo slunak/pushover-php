@@ -13,9 +13,9 @@ namespace Serhiy\Pushover\Example;
 
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
-use Serhiy\Pushover\ApiClient\Message\MessageResponse;
-use Serhiy\Pushover\ApiClient\Request;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Request\Request;
+use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**

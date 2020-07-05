@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient\UserGroupValidation;
+namespace Serhiy\Pushover\Client\Response;
 
-use Serhiy\Pushover\ApiClient\Response;
+use Serhiy\Pushover\Client\Response\Base\Response;
 
 /**
  * @author Serhiy Lunak
@@ -28,8 +28,12 @@ class UserGroupValidationResponse extends Response
      */
     private $licenses;
 
-    public function __construct()
+    /**
+     * @param mixed $curlResponse
+     */
+    public function __construct($curlResponse)
     {
+        $this->processCurlResponse($curlResponse);
     }
 
     /**
@@ -62,5 +66,30 @@ class UserGroupValidationResponse extends Response
     public function setLicenses(array $licenses): void
     {
         $this->licenses = $licenses;
+    }
+
+    /**
+     * Processes curl response.
+     *
+     * @param mixed $curlResponse
+     */
+    private function processCurlResponse($curlResponse): void
+    {
+        $decodedCurlResponse = json_decode($curlResponse);
+
+        $this->setRequestStatus($decodedCurlResponse->status);
+        $this->setRequestToken($decodedCurlResponse->request);
+        $this->setCurlResponse($curlResponse);
+
+        if ($this->getRequestStatus() == 1) {
+            $this->setIsSuccessful(true);
+            $this->setDevices($decodedCurlResponse->devices);
+            $this->setLicenses($decodedCurlResponse->licenses);
+        }
+
+        if ($this->getRequestStatus() != 1) {
+            $this->setErrors($decodedCurlResponse->errors);
+            $this->setIsSuccessful(false);
+        }
     }
 }

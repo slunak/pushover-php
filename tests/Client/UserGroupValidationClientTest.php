@@ -9,13 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiClient\UserGroupValidation;
+namespace Client;
 
-use Serhiy\Pushover\ApiClient\Request;
-use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationClient;
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\ApiClient\UserGroupValidation\UserGroupValidationResponse;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Curl\Curl;
+use Serhiy\Pushover\Client\Request\Request;
+use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
+use Serhiy\Pushover\Client\UserGroupValidationClient;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -63,10 +64,12 @@ class UserGroupValidationClientTest extends TestCase
         $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
         $client = new UserGroupValidationClient();
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($application, $recipient));
-        $response = $client->send($request);
+
+        $curlResponse = Curl::do($request);
+
+        $response = new UserGroupValidationResponse($curlResponse);
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertInstanceOf(Request::class, $response->getRequest());
     }
 }

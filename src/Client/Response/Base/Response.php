@@ -9,7 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient;
+namespace Serhiy\Pushover\Client\Response\Base;
+
+use Serhiy\Pushover\Client\Request\Request;
 
 /**
  * Response represents response object.

@@ -12,9 +12,10 @@
 namespace Serhiy\Pushover\Example;
 
 use Serhiy\Pushover\Api\Receipts\Receipt;
-use Serhiy\Pushover\ApiClient\Receipts\CancelRetryResponse;
-use Serhiy\Pushover\ApiClient\Receipts\ReceiptResponse;
+
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Response\CancelRetryResponse;
+use Serhiy\Pushover\Client\Response\ReceiptResponse;
 use Serhiy\Pushover\Recipient;
 
 /**

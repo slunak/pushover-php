@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient;
+namespace Serhiy\Pushover\Client\Request;
 
 /**
  * Request object.
@@ -67,7 +67,7 @@ class Request implements RequestInterface
      *
      * @return string
      */
-    public function getApiUrl()
+    public function getApiUrl(): string
     {
         return $this->apiUrl;
     }

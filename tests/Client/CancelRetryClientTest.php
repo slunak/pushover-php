@@ -9,14 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace ApiClient\Receipts;
+namespace Client;
 
 use Serhiy\Pushover\Api\Receipts\Receipt;
-use Serhiy\Pushover\ApiClient\Receipts\CancelRetryClient;
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\ApiClient\Receipts\CancelRetryResponse;
-use Serhiy\Pushover\ApiClient\Request;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\CancelRetryClient;
+use Serhiy\Pushover\Client\Curl\Curl;
+use Serhiy\Pushover\Client\Request\Request;
+use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 
 /**
  * @author Serhiy Lunak
@@ -71,7 +72,9 @@ class CancelRetryClientTest extends TestCase
     {
         $request = new Request($client->buildApiUrl(), Request::POST);
 
-        $response = $client->send($request);
+        $curlResponse = Curl::do($request);
+
+        $response = new CancelRetryResponse($curlResponse);
 
         $this->assertInstanceOf(CancelRetryResponse::class, $response);
         $this->assertFalse($response->isSuccessful());

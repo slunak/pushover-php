@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient\Receipts;
+namespace Serhiy\Pushover\Client\Response;
 
-use Serhiy\Pushover\ApiClient\Response;
+use Serhiy\Pushover\Client\Response\Base\Response;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -64,8 +64,12 @@ class ReceiptResponse extends Response
      */
     private $calledBackAt;
 
-    public function __construct()
+    /**
+     * @param mixed $curlResponse
+     */
+    public function __construct($curlResponse)
     {
+        $this->processCurlResponse($curlResponse);
     }
 
     /**
@@ -210,5 +214,53 @@ class ReceiptResponse extends Response
     public function setCalledBackAt(\DateTime $calledBackAt): void
     {
         $this->calledBackAt = $calledBackAt;
+    }
+
+    /**
+     * Processes curl response.
+     *
+     * @param mixed $curlResponse
+     */
+    private function processCurlResponse($curlResponse): void
+    {
+        $decodedCurlResponse = json_decode($curlResponse);
+
+        $this->setRequestStatus($decodedCurlResponse->status);
+        $this->setRequestToken($decodedCurlResponse->request);
+        $this->setCurlResponse($curlResponse);
+
+        if ($this->getRequestStatus() == 1) {
+            $this->setIsSuccessful(true);
+
+            if ($decodedCurlResponse->acknowledged == 1) {
+                $this->setIsAcknowledged(true);
+                $this->setAcknowledgedAt(new \DateTime('@'.$decodedCurlResponse->acknowledged_at));
+
+                $recipient = new Recipient($decodedCurlResponse->acknowledged_by);
+                $recipient->addDevice($decodedCurlResponse->acknowledged_by_device);
+                $this->setAcknowledgedBy($recipient);
+                $this->setAcknowledgedByDevice($recipient->getDeviceListCommaSeparated());
+            }
+
+            $this->setLastDeliveredAt(new \DateTime('@'.$decodedCurlResponse->last_delivered_at));
+
+            if ($decodedCurlResponse->expired == 1) {
+                $this->setIsExpired(true);
+            } else {
+                $this->setIsExpired(false);
+            }
+
+            $this->setExpiresAt(new \DateTime('@'.$decodedCurlResponse->expires_at));
+
+            if ($decodedCurlResponse->called_back == 1) {
+                $this->setHasCalledBack(true);
+                $this->setCalledBackAt(new \DateTime('@'.$decodedCurlResponse->called_back_at));
+            }
+        }
+
+        if ($this->getRequestStatus() != 1) {
+            $this->setErrors($decodedCurlResponse->errors);
+            $this->setIsSuccessful(false);
+        }
     }
 }

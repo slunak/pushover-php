@@ -13,7 +13,7 @@ Document your code with [phpDocumentor](https://github.com/phpDocumentor/phpDocu
 
 #### Static Analysis
 
-Analyze your code with [PHPStan](https://github.com/phpstan/phpstan) and make sure there are no errors on level 5.
+Analyze your code with [PHPStan](https://github.com/phpstan/phpstan) and make sure there are no errors except for `buildCurlPostFields` method.
 
 #### Test
 

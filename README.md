@@ -58,8 +58,8 @@ plus its curl and json extensions. See below the `require` section of project's 
 Instantiate pushover application and recipient of the notification:
 
 ```php
-use Serhiy\Pushover\Api\Message\Application;
-use Serhiy\Pushover\Api\Message\Recipient;
+use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Recipient;
 
 $application = new Application("replace_with_pushover_application_api_token");
 $recipient = new Recipient("replace_with_pushover_user_key");
@@ -86,7 +86,7 @@ $notification = new Notification($application, $recipient, $message);
 Push it:
 
 ```php
-/** @var \Serhiy\Pushover\ApiClient\Message\MessageResponse $response */
+/** @var \Serhiy\Pushover\Client\Response\MessageResponse $response */
 $response = $notification->push();
 ```
 
@@ -118,7 +118,7 @@ $response->getCurlResponse();
 Response also contains original Request object:
 
 ```php
-/** @var \Serhiy\Pushover\ApiClient\Request $request */
+/** @var \Serhiy\Pushover\Client\Request\Request $request */
 $request = $response->getRequest();
 ```
 

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Serhiy\Pushover\ApiClient;
+namespace Serhiy\Pushover\Client\Request;
 
 /**
  * Request Interface.
