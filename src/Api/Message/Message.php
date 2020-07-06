@@ -50,7 +50,7 @@ class Message
      *
      * @var string|null
      */
-    private $url_title;
+    private $urlTitle;
 
     /**
      * Message Priority.
@@ -161,19 +161,19 @@ class Message
      */
     public function getUrlTitle(): ?string
     {
-        return $this->url_title;
+        return $this->urlTitle;
     }
 
     /**
-     * @param string $url_title
+     * @param string $urlTitle
      */
-    public function setUrlTitle(string $url_title): void
+    public function setUrlTitle(string $urlTitle): void
     {
-        if (strlen($url_title) > 100) {
-            throw new InvalidArgumentException('URL title contained ' . strlen($url_title) . ' characters. URL titles are limited to 100 characters.');
+        if (strlen($urlTitle) > 100) {
+            throw new InvalidArgumentException('URL title contained ' . strlen($urlTitle) . ' characters. URL titles are limited to 100 characters.');
         }
 
-        $this->url_title = $url_title;
+        $this->urlTitle = $urlTitle;
     }
 
     /**
