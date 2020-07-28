@@ -163,4 +163,24 @@ class Response
     {
         $this->request = $request;
     }
+
+    /**
+     * Processes initial curl response, common to all response objects.
+     *
+     * @param $decodedCurlResponse
+     */
+    protected function processInitialCurlResponse($decodedCurlResponse)
+    {
+        $this->setRequestStatus($decodedCurlResponse->status);
+
+        if ($this->getRequestStatus() == 1) {
+            $this->setIsSuccessful(true);
+            $this->setRequestToken($decodedCurlResponse->request);
+        }
+
+        if ($this->getRequestStatus() != 1) {
+            $this->setErrors($decodedCurlResponse->errors);
+            $this->setIsSuccessful(false);
+        }
+    }
 }

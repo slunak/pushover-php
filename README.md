@@ -23,6 +23,11 @@ Light, simple and fast wrapper for the Pushover API.
 - Receipt API ([Example](Example/ReceiptExample.php))
   - Query emergency priority receipt
   - Cancel emergency priority retry
+- Groups API ([Example](Example/GroupsExample.php))
+  - Retrieve information about the group
+  - Add / Remove users
+  - Enable / Disable users
+  - Rename the group
 
 *Note: Project is in constant development; update to newer versions with caution.*
 
