@@ -59,20 +59,7 @@ class MessageResponse extends Response
      */
     private function processCurlResponse($curlResponse): void
     {
-        $decodedCurlResponse = json_decode($curlResponse);
-
-        $this->setRequestStatus($decodedCurlResponse->status);
-        $this->setRequestToken($decodedCurlResponse->request);
-        $this->setCurlResponse($curlResponse);
-
-        if ($this->getRequestStatus() == 1) {
-            $this->setIsSuccessful(true);
-        }
-
-        if ($this->getRequestStatus() != 1) {
-            $this->setErrors($decodedCurlResponse->errors);
-            $this->setIsSuccessful(false);
-        }
+        $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
         if (isset($decodedCurlResponse->receipt)) {
             $this->setReceipt($decodedCurlResponse->receipt);

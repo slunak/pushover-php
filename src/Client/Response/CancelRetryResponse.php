@@ -31,19 +31,6 @@ class CancelRetryResponse extends Response
      */
     private function processCurlResponse($curlResponse): void
     {
-        $decodedCurlResponse = json_decode($curlResponse);
-
-        $this->setRequestStatus($decodedCurlResponse->status);
-        $this->setCurlResponse($curlResponse);
-
-        if ($this->getRequestStatus() == 1) {
-            $this->setIsSuccessful(true);
-            $this->setRequestToken($decodedCurlResponse->request);
-        }
-
-        if ($this->getRequestStatus() != 1) {
-            $this->setErrors($decodedCurlResponse->errors);
-            $this->setIsSuccessful(false);
-        }
+        $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
     }
 }

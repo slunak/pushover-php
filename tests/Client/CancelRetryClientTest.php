@@ -15,9 +15,6 @@ use Serhiy\Pushover\Api\Receipts\Receipt;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\CancelRetryClient;
-use Serhiy\Pushover\Client\Curl\Curl;
-use Serhiy\Pushover\Client\Request\Request;
-use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 
 /**
  * @author Serhiy Lunak
@@ -62,22 +59,5 @@ class CancelRetryClientTest extends TestCase
             "https://api.pushover.net/1/receipts/sraw8swp2qh9bp6o4n7bw6o6cic94j/cancel.json",
             $client->buildApiUrl()
         );
-    }
-
-    /**
-     * @depends testCabBeCreated
-     * @param CancelRetryClient $client
-     */
-    public function testSend(CancelRetryClient $client)
-    {
-        $request = new Request($client->buildApiUrl(), Request::POST);
-
-        $curlResponse = Curl::do($request);
-
-        $response = new CancelRetryResponse($curlResponse);
-
-        $this->assertInstanceOf(CancelRetryResponse::class, $response);
-        $this->assertFalse($response->isSuccessful());
-        $this->assertInstanceOf(Request::class, $request);
     }
 }

@@ -167,20 +167,28 @@ class Response
     /**
      * Processes initial curl response, common to all response objects.
      *
-     * @param $decodedCurlResponse
+     * @param mixed $curlResponse
+     * @return mixed
      */
-    protected function processInitialCurlResponse($decodedCurlResponse)
+    protected function processInitialCurlResponse($curlResponse)
     {
+        $this->setCurlResponse($curlResponse);
+
+        $decodedCurlResponse = json_decode($curlResponse);
+
         $this->setRequestStatus($decodedCurlResponse->status);
+        $this->setRequestToken($decodedCurlResponse->request);
 
         if ($this->getRequestStatus() == 1) {
             $this->setIsSuccessful(true);
             $this->setRequestToken($decodedCurlResponse->request);
         }
 
-        if ($this->getRequestStatus() != 1) {
+        if ($this->getRequestStatus() == 0) {
             $this->setErrors($decodedCurlResponse->errors);
             $this->setIsSuccessful(false);
         }
+
+        return $decodedCurlResponse;
     }
 }

@@ -31,10 +31,6 @@ class AddUserToGroupResponse extends Response
      */
     private function processCurlResponse($curlResponse): void
     {
-        $this->setCurlResponse($curlResponse);
-
-        $decodedCurlResponse = json_decode($curlResponse);
-
-        $this->processInitialCurlResponse($decodedCurlResponse);
+        $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
     }
 }

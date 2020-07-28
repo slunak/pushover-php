@@ -75,21 +75,11 @@ class UserGroupValidationResponse extends Response
      */
     private function processCurlResponse($curlResponse): void
     {
-        $decodedCurlResponse = json_decode($curlResponse);
-
-        $this->setRequestStatus($decodedCurlResponse->status);
-        $this->setRequestToken($decodedCurlResponse->request);
-        $this->setCurlResponse($curlResponse);
+        $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
         if ($this->getRequestStatus() == 1) {
-            $this->setIsSuccessful(true);
             $this->setDevices($decodedCurlResponse->devices);
             $this->setLicenses($decodedCurlResponse->licenses);
-        }
-
-        if ($this->getRequestStatus() != 1) {
-            $this->setErrors($decodedCurlResponse->errors);
-            $this->setIsSuccessful(false);
         }
     }
 }

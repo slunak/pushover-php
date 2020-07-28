@@ -223,15 +223,9 @@ class ReceiptResponse extends Response
      */
     private function processCurlResponse($curlResponse): void
     {
-        $decodedCurlResponse = json_decode($curlResponse);
-
-        $this->setRequestStatus($decodedCurlResponse->status);
-        $this->setRequestToken($decodedCurlResponse->request);
-        $this->setCurlResponse($curlResponse);
+        $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
         if ($this->getRequestStatus() == 1) {
-            $this->setIsSuccessful(true);
-
             if ($decodedCurlResponse->acknowledged == 1) {
                 $this->setIsAcknowledged(true);
                 $this->setAcknowledgedAt(new \DateTime('@'.$decodedCurlResponse->acknowledged_at));
@@ -256,11 +250,6 @@ class ReceiptResponse extends Response
                 $this->setHasCalledBack(true);
                 $this->setCalledBackAt(new \DateTime('@'.$decodedCurlResponse->called_back_at));
             }
-        }
-
-        if ($this->getRequestStatus() != 1) {
-            $this->setErrors($decodedCurlResponse->errors);
-            $this->setIsSuccessful(false);
         }
     }
 }
