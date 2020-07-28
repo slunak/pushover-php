@@ -1,8 +1,8 @@
 {
     "name": "serhiy/pushover",
-    "description": "Light, simple and fast wrapper for the Pushover API.",
+    "description": "Light, simple and fast, yet comprehensive wrapper for the Pushover API.",
     "type": "library",
-    "keywords": ["pushover","pushover.net", "wrapper", "client"],
+    "keywords": ["pushover", "pushover.net", "wrapper", "client"],
     "homepage": "https://github.com/slunak/pushover-php",
     "require": {
         "php": "^7.1",

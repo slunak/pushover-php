@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/serhiy/pushover/downloads)](https://packagist.org/packages/serhiy/pushover)
 [![License](https://poser.pugx.org/serhiy/pushover/license)](LICENSE)
 
-Light, simple and fast wrapper for the Pushover API.
+Light, simple and fast, yet comprehensive wrapper for the Pushover API.
 
 ### Features
 - Message API
