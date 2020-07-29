@@ -28,6 +28,12 @@ Light, simple and fast, yet comprehensive wrapper for the Pushover API.
   - Add / Remove users
   - Enable / Disable users
   - Rename the group
+- Glances API ([Example](Example/GlancesExample.php))
+  - Title
+  - Text
+  - Subtext
+  - Count
+  - Percent
 
 *Note: Project is in constant development; update to newer versions with caution.*
 
