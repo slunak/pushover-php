@@ -30,7 +30,7 @@ class GroupsExample
 {
     public function groupsExample()
     {
-        // instantiate pushover application and recipient to verify (can be injected into service using Dependency Injection)
+        // instantiate pushover application and recipient (can be injected into service using Dependency Injection)
         $application = new Application("replace_with_pushover_application_api_token");
         $recipient = new Recipient("replace_with_pushover_user_key");
 
