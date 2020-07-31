@@ -37,6 +37,8 @@ Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pus
 - Licensing API ([Example](Example/LicensingExample.php))
   - Check remaining credits
   - Assign license (not tested)
+- Subscription API ([Example](Example/SubscriptionExample.php))
+  - User Key Migration 
 
 *Note: Project is in constant development; update to newer versions with caution.*
 
