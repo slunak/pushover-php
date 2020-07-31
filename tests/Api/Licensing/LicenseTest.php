@@ -160,7 +160,7 @@ class LicenseTest extends TestCase
             'OS_ANDROID' => "Android",
             'OS_IOS' => "iOS",
             'OS_DESKTOP' => "Desktop",
-            'OS_ANY' => NULL,
+            'OS_ANY' => null,
         );
 
         $this->assertEquals($licenseTypes, $license->getAvailableOsTypes());
