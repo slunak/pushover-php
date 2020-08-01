@@ -35,6 +35,15 @@ class RequestTest extends TestCase
      * @depends testCanBeCrated
      * @param Request $request
      */
+    public function testGetMethod(Request $request)
+    {
+        $this->assertEquals(Request::POST, $request->getMethod());
+    }
+
+    /**
+     * @depends testCanBeCrated
+     * @param Request $request
+     */
     public function testGetFullUrl(Request $request)
     {
         $this->assertEquals("https://test.com/api", $request->getApiUrl());

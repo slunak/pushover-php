@@ -62,6 +62,11 @@ class Request implements RequestInterface
         $this->curlPostFields = $curlPostFields;
     }
 
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
     /**
      * Returns API URL
      *

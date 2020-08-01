@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -21,10 +21,15 @@ interface RequestInterface
     /**
      * @return string
      */
-    public function getApiUrl();
+    public function getMethod(): string;
 
     /**
-     * @return array[]
+     * @return string
      */
-    public function getCurlPostFields();
+    public function getApiUrl(): string;
+
+    /**
+     * @return array[]|null
+     */
+    public function getCurlPostFields(): ?array;
 }
