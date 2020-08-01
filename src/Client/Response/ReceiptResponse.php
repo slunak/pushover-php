@@ -83,7 +83,7 @@ class ReceiptResponse extends Response
     /**
      * @param bool $isAcknowledged
      */
-    public function setIsAcknowledged(bool $isAcknowledged): void
+    private function setIsAcknowledged(bool $isAcknowledged): void
     {
         $this->isAcknowledged = $isAcknowledged;
     }
@@ -99,7 +99,7 @@ class ReceiptResponse extends Response
     /**
      * @param \DateTime $acknowledgedAt
      */
-    public function setAcknowledgedAt(\DateTime $acknowledgedAt): void
+    private function setAcknowledgedAt(\DateTime $acknowledgedAt): void
     {
         $this->acknowledgedAt = $acknowledgedAt;
     }
@@ -115,7 +115,7 @@ class ReceiptResponse extends Response
     /**
      * @param Recipient $acknowledgedBy
      */
-    public function setAcknowledgedBy(Recipient $acknowledgedBy): void
+    private function setAcknowledgedBy(Recipient $acknowledgedBy): void
     {
         $this->acknowledgedBy = $acknowledgedBy;
     }
@@ -131,7 +131,7 @@ class ReceiptResponse extends Response
     /**
      * @param string $acknowledgedByDevice
      */
-    public function setAcknowledgedByDevice(string $acknowledgedByDevice): void
+    private function setAcknowledgedByDevice(string $acknowledgedByDevice): void
     {
         $this->acknowledgedByDevice = $acknowledgedByDevice;
     }
@@ -147,7 +147,7 @@ class ReceiptResponse extends Response
     /**
      * @param \DateTime $lastDeliveredAt
      */
-    public function setLastDeliveredAt(\DateTime $lastDeliveredAt): void
+    private function setLastDeliveredAt(\DateTime $lastDeliveredAt): void
     {
         $this->lastDeliveredAt = $lastDeliveredAt;
     }
@@ -163,7 +163,7 @@ class ReceiptResponse extends Response
     /**
      * @param bool $isExpired
      */
-    public function setIsExpired(bool $isExpired): void
+    private function setIsExpired(bool $isExpired): void
     {
         $this->isExpired = $isExpired;
     }
@@ -179,7 +179,7 @@ class ReceiptResponse extends Response
     /**
      * @param \DateTime $expiresAt
      */
-    public function setExpiresAt(\DateTime $expiresAt): void
+    private function setExpiresAt(\DateTime $expiresAt): void
     {
         $this->expiresAt = $expiresAt;
     }
@@ -195,7 +195,7 @@ class ReceiptResponse extends Response
     /**
      * @param bool $hasCalledBack
      */
-    public function setHasCalledBack(bool $hasCalledBack): void
+    private function setHasCalledBack(bool $hasCalledBack): void
     {
         $this->hasCalledBack = $hasCalledBack;
     }
@@ -211,7 +211,7 @@ class ReceiptResponse extends Response
     /**
      * @param \DateTime $calledBackAt
      */
-    public function setCalledBackAt(\DateTime $calledBackAt): void
+    private function setCalledBackAt(\DateTime $calledBackAt): void
     {
         $this->calledBackAt = $calledBackAt;
     }
