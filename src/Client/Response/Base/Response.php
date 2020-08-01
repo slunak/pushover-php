@@ -79,7 +79,7 @@ class Response
     /**
      * @param bool $isSuccessful
      */
-    public function setIsSuccessful(bool $isSuccessful): void
+    private function setIsSuccessful(bool $isSuccessful): void
     {
         $this->isSuccessful = $isSuccessful;
     }
@@ -95,7 +95,7 @@ class Response
     /**
      * @param int $requestStatus
      */
-    public function setRequestStatus(int $requestStatus): void
+    private function setRequestStatus(int $requestStatus): void
     {
         $this->requestStatus = $requestStatus;
     }
@@ -111,7 +111,7 @@ class Response
     /**
      * @param string $requestToken
      */
-    public function setRequestToken(string $requestToken): void
+    private function setRequestToken(string $requestToken): void
     {
         $this->requestToken = $requestToken;
     }
@@ -127,7 +127,7 @@ class Response
     /**
      * @param array[] $errors
      */
-    public function setErrors(array $errors): void
+    private function setErrors(array $errors): void
     {
         $this->errors = $errors;
     }
@@ -143,7 +143,7 @@ class Response
     /**
      * @param mixed $curlResponse
      */
-    public function setCurlResponse($curlResponse): void
+    private function setCurlResponse($curlResponse): void
     {
         $this->curlResponse = $curlResponse;
     }
