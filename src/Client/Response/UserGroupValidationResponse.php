@@ -19,6 +19,11 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class UserGroupValidationResponse extends Response
 {
     /**
+     * @var bool
+     */
+    private $isGroup;
+
+    /**
      * @var array<string>
      */
     private $devices;
@@ -37,6 +42,22 @@ class UserGroupValidationResponse extends Response
     }
 
     /**
+     * @return bool
+     */
+    public function isGroup(): bool
+    {
+        return $this->isGroup;
+    }
+
+    /**
+     * @param bool $isGroup
+     */
+    private function setIsGroup(bool $isGroup): void
+    {
+        $this->isGroup = $isGroup;
+    }
+
+    /**
      * @return array<string>
      */
     public function getDevices(): array
@@ -47,7 +68,7 @@ class UserGroupValidationResponse extends Response
     /**
      * @param array<string> $devices
      */
-    public function setDevices(array $devices): void
+    private function setDevices(array $devices): void
     {
         $this->devices = $devices;
     }
@@ -63,7 +84,7 @@ class UserGroupValidationResponse extends Response
     /**
      * @param array<string> $licenses
      */
-    public function setLicenses(array $licenses): void
+    private function setLicenses(array $licenses): void
     {
         $this->licenses = $licenses;
     }
@@ -80,6 +101,15 @@ class UserGroupValidationResponse extends Response
         if ($this->getRequestStatus() == 1) {
             $this->setDevices($decodedCurlResponse->devices);
             $this->setLicenses($decodedCurlResponse->licenses);
+
+            if ($decodedCurlResponse->group == 1) {
+                $this->setIsGroup(true);
+            }
+
+            if ($decodedCurlResponse->group == 0) {
+                $this->setIsGroup(false);
+            }
+
         }
     }
 }

@@ -24,15 +24,20 @@ class UserGroupValidationResponseTest extends TestCase
      */
     public function testCanBeCreated(): UserGroupValidationResponse
     {
-        $successfulCurlResponse = '{"status":1,"group":0,"devices":["iphone"],"licenses":["Android","iOS"],"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $unSuccessfulCurlResponse = '{"user":"invalid","errors":["user key is invalid"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $response = new UserGroupValidationResponse($unSuccessfulCurlResponse);
+
+        $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+        $this->assertEquals(array(0 => "user key is invalid"), $response->getErrors());
+
+        $successfulCurlResponse = '{"status":1,"group":0,"devices":["test-device-1", "test-device-2"],"licenses":["Android","iOS"],"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new UserGroupValidationResponse($successfulCurlResponse);
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
-
-        $response->setDevices(array("iphone", "pixel"));
-        $response->setLicenses(array("ios", "android"));
 
         return $response;
     }
@@ -41,31 +46,9 @@ class UserGroupValidationResponseTest extends TestCase
      * @depends testCanBeCreated
      * @param UserGroupValidationResponse $response
      */
-    public function testSetLicenses(UserGroupValidationResponse $response)
-    {
-        $response->setLicenses(array("ios", "android"));
-
-        $this->assertEquals(array("ios", "android"), $response->getLicenses());
-    }
-
-    /**
-     * @depends testCanBeCreated
-     * @param UserGroupValidationResponse $response
-     */
     public function testGetLicenses(UserGroupValidationResponse $response)
     {
-        $this->assertEquals(array("ios", "android"), $response->getLicenses());
-    }
-
-    /**
-     * @depends testCanBeCreated
-     * @param UserGroupValidationResponse $response
-     */
-    public function testSetDevices(UserGroupValidationResponse $response)
-    {
-        $response->setDevices(array("iphone", "pixel"));
-
-        $this->assertEquals(array("iphone", "pixel"), $response->getDevices());
+        $this->assertEquals(array("Android","iOS"), $response->getLicenses());
     }
 
     /**
@@ -74,6 +57,15 @@ class UserGroupValidationResponseTest extends TestCase
      */
     public function testGetDevices(UserGroupValidationResponse $response)
     {
-        $this->assertEquals(array("iphone", "pixel"), $response->getDevices());
+        $this->assertEquals(array("test-device-1", "test-device-2"), $response->getDevices());
+    }
+
+    /**
+     * @depends testCanBeCreated
+     * @param UserGroupValidationResponse $response
+     */
+    public function testGetIsGroup(UserGroupValidationResponse $response)
+    {
+        $this->assertFalse($response->isGroup());
     }
 }
