@@ -45,14 +45,6 @@ class MessageResponse extends Response
     }
 
     /**
-     * @param string $receipt
-     */
-    public function setReceipt(string $receipt): void
-    {
-        $this->receipt = $receipt;
-    }
-
-    /**
      * Processes curl response.
      *
      * @param mixed $curlResponse
@@ -62,7 +54,7 @@ class MessageResponse extends Response
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
         if (isset($decodedCurlResponse->receipt)) {
-            $this->setReceipt($decodedCurlResponse->receipt);
+            $this->receipt = $decodedCurlResponse->receipt;
         }
     }
 }
