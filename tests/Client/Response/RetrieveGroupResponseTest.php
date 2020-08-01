@@ -22,10 +22,20 @@ class RetrieveGroupResponseTest extends TestCase
      */
     public function testCanBeCreated(): RetrieveGroupResponse
     {
-        $curlResponse = '{"name":"Test Group","users":[{"user":"uQiRzpo4DXghDmr9QzzfQu27cmVRsG","device":"iphone","memo":"This is a test memo","disabled":false}],"status":1,"request":"6g890a90-7943-4at2-b739-4aubi545b508"}';
-        $response = new RetrieveGroupResponse($curlResponse);
+        $unSuccessfulCurlResponse = '{"group":"not found","errors":["group not found or you are not authorized to edit it"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $response = new RetrieveGroupResponse($unSuccessfulCurlResponse);
 
         $this->assertInstanceOf(RetrieveGroupResponse::class, $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+        $this->assertEquals(array(0 => "group not found or you are not authorized to edit it"), $response->getErrors());
+
+        $successfulCurlResponse = '{"name":"Test Group","users":[{"user":"aaaa1111AAAA1111bbbb2222BBBB22","device":"test-device-1","memo":"This is a test memo","disabled":false}],"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $response = new RetrieveGroupResponse($successfulCurlResponse);
+
+        $this->assertInstanceOf(RetrieveGroupResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
+        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
 
         return $response;
     }
@@ -48,9 +58,9 @@ class RetrieveGroupResponseTest extends TestCase
         $recipient = $response->getUsers()[0];
 
         $this->assertInstanceOf(Recipient::class, $recipient);
-        $this->assertEquals("uQiRzpo4DXghDmr9QzzfQu27cmVRsG", $recipient->getUserKey());
+        $this->assertEquals("aaaa1111AAAA1111bbbb2222BBBB22", $recipient->getUserKey());
         $this->assertFalse($recipient->isDisabled());
         $this->assertEquals("This is a test memo", $recipient->getMemo());
-        $this->assertEquals(array("iphone"), $recipient->getDevice());
+        $this->assertEquals(array("test-device-1"), $recipient->getDevice());
     }
 }

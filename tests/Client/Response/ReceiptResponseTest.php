@@ -25,13 +25,20 @@ class ReceiptResponseTest extends TestCase
      */
     public function testCanBeCreated(): ReceiptResponse
     {
-        $curlResponse = '{"status":1,"acknowledged":1,"acknowledged_at":1593975206,"acknowledged_by":"uQiRzpo4DXghDmr9QzzfQu27cmVRsG","acknowledged_by_device":"my-device","last_delivered_at":1593975186,"expired":1,"expires_at":1593975485,"called_back":0,"called_back_at":0,"request":"6g890a90-7943-4at2-b739-4aubi545b508"}';
-        $response = new ReceiptResponse($curlResponse);
+        $unSuccessfulCurlResponse = '{"receipt":"not found","errors":["receipt not found; may be invalid or expired"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $response = new ReceiptResponse($unSuccessfulCurlResponse);
 
         $this->assertInstanceOf(ReceiptResponse::class, $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+        $this->assertEquals(array(0 => "receipt not found; may be invalid or expired"), $response->getErrors());
+        
+        $successfulCurlResponse = '{"status":1,"acknowledged":1,"acknowledged_at":1593975206,"acknowledged_by":"aaaa1111AAAA1111bbbb2222BBBB22","acknowledged_by_device":"test-device-1","last_delivered_at":1593975186,"expired":1,"expires_at":1593975485,"called_back":1,"called_back_at":1593975206,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $response = new ReceiptResponse($successfulCurlResponse);
 
-        $response->setHasCalledBack(true);
-        $response->setCalledBackAt(new \DateTime());
+        $this->assertInstanceOf(ReceiptResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
+        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
 
         return $response;
     }
@@ -43,7 +50,7 @@ class ReceiptResponseTest extends TestCase
     public function testGetAcknowledgedBy(ReceiptResponse $response)
     {
         $this->assertInstanceOf(Recipient::class, $response->getAcknowledgedBy());
-        $this->assertEquals("uQiRzpo4DXghDmr9QzzfQu27cmVRsG", $response->getAcknowledgedBy()->getUserKey());
+        $this->assertEquals("aaaa1111AAAA1111bbbb2222BBBB22", $response->getAcknowledgedBy()->getUserKey());
     }
 
     /**
@@ -52,7 +59,7 @@ class ReceiptResponseTest extends TestCase
      */
     public function testGetAcknowledgedByDevice(ReceiptResponse $response)
     {
-        $this->assertEquals("my-device", $response->getAcknowledgedByDevice());
+        $this->assertEquals("test-device-1", $response->getAcknowledgedByDevice());
     }
 
     /**

@@ -24,10 +24,12 @@ class UserGroupValidationResponseTest extends TestCase
      */
     public function testCanBeCreated(): UserGroupValidationResponse
     {
-        $curlResponse = '{"status":1,"group":0,"devices":["iphone"],"licenses":["Android","iOS"],"request":"6g890a90-7943-4at2-b739-4aubi545b508"}';
-        $response = new UserGroupValidationResponse($curlResponse);
+        $successfulCurlResponse = '{"status":1,"group":0,"devices":["iphone"],"licenses":["Android","iOS"],"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $response = new UserGroupValidationResponse($successfulCurlResponse);
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
+        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
 
         $response->setDevices(array("iphone", "pixel"));
         $response->setLicenses(array("ios", "android"));

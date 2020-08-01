@@ -21,10 +21,19 @@ class AddUserToGroupResponseTest extends TestCase
 {
     public function testCenBeCreated()
     {
-        $curlResponse = '{"status":1,"request":"6g890a90-7943-4at2-b739-4aubi545b508"}';
-        $response = new AddUserToGroupResponse($curlResponse);
+        $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $response = new AddUserToGroupResponse($successfulCurlResponse);
 
         $this->assertInstanceOf(AddUserToGroupResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
+        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+
+        $unSuccessfulCurlResponse = '{"user":"invalid","errors":["user is already a member of this group"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
+        $response = new AddUserToGroupResponse($unSuccessfulCurlResponse);
+
+        $this->assertInstanceOf(AddUserToGroupResponse::class, $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+        $this->assertEquals(array(0 => "user is already a member of this group"), $response->getErrors());
     }
 }
