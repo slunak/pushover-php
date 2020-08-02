@@ -26,7 +26,7 @@ class CancelRetryClientTest extends TestCase
      */
     public function testCabBeCreated(): CancelRetryClient
     {
-        $client = new CancelRetryClient("sraw8swp2qh9bp6o4n7bw6o6cic94j"); // using dummy receipt
+        $client = new CancelRetryClient("gggg7777GGGG7777hhhh8888HHHH88"); // using dummy receipt
 
         $this->assertInstanceOf(CancelRetryClient::class, $client);
 
@@ -39,13 +39,13 @@ class CancelRetryClientTest extends TestCase
      */
     public function testBuildCurlPostFields(CancelRetryClient $client)
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
         $receipt = new Receipt($application);
 
         $curlPostFields = $client->buildCurlPostFields($receipt); // using dummy receipt
 
         $this->assertEquals(array(
-            "token" => "zaGDORePK8gMaC0QOYAMyEEuzJnyUi",
+            "token" => "cccc3333CCCC3333dddd4444DDDD44",
         ), $curlPostFields);
     }
 
@@ -56,7 +56,7 @@ class CancelRetryClientTest extends TestCase
     public function testBuildApiUrl(CancelRetryClient $client)
     {
         $this->assertEquals(
-            "https://api.pushover.net/1/receipts/sraw8swp2qh9bp6o4n7bw6o6cic94j/cancel.json",
+            "https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88/cancel.json",
             $client->buildApiUrl()
         );
     }

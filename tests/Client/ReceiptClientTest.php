@@ -13,10 +13,7 @@ namespace Client;
 
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
-use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\ReceiptClient;
-use Serhiy\Pushover\Client\Request\Request;
-use Serhiy\Pushover\Client\Response\ReceiptResponse;
 
 /**
  * @author Serhiy Lunak
@@ -28,8 +25,8 @@ class ReceiptClientTest extends TestCase
      */
     public function testCanBeCreated(): ReceiptClient
     {
-        $application = new Application("azGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $client = new ReceiptClient($application, "sraw8swp2qh9bp6o4n7bw6o6cic94j"); // using dummy receipt
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $client = new ReceiptClient($application, "gggg7777GGGG7777hhhh8888HHHH88"); // using dummy receipt
 
         $this->assertInstanceOf(ReceiptClient::class, $client);
 
@@ -43,25 +40,8 @@ class ReceiptClientTest extends TestCase
     public function testBuildApiUrl(ReceiptClient $client)
     {
         $this->assertEquals(
-            "https://api.pushover.net/1/receipts/sraw8swp2qh9bp6o4n7bw6o6cic94j.json?token=azGDORePK8gMaC0QOYAMyEEuzJnyUi",
+            "https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88.json?token=cccc3333CCCC3333dddd4444DDDD44",
             $client->buildApiUrl()
         );
-    }
-
-    /**
-     * @depends testCanBeCreated
-     * @param ReceiptClient $client
-     */
-    public function testSend(ReceiptClient $client)
-    {
-        $request = new Request($client->buildApiUrl(), Request::GET);
-
-        $curlResponse = Curl::do($request);
-
-        $response = new ReceiptResponse($curlResponse);
-
-        $this->assertInstanceOf(ReceiptResponse::class, $response);
-        $this->assertFalse($response->isSuccessful());
-        $this->assertInstanceOf(Request::class, $request);
     }
 }

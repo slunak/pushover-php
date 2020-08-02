@@ -16,11 +16,8 @@ use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Api\Message\Sound;
-use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\MessageClient;
 use Serhiy\Pushover\Application;
-use Serhiy\Pushover\Client\Request\Request;
-use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -35,32 +32,10 @@ class MessageClientTest extends TestCase
         $this->assertEquals("https://api.pushover.net/1/messages.json", $client->buildApiUrl());
     }
 
-    public function testSend()
-    {
-        $application = new Application("azGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
-        $message = new Message("This is a test message", "This is a title of the message");
-        $notification = new Notification($application, $recipient, $message);
-
-        $client = new MessageClient();
-        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($notification));
-
-        $curlResponse = Curl::do($request);
-
-        $response = new MessageResponse($curlResponse);
-        $response->setRequest($request);
-
-        $this->assertInstanceOf(MessageResponse::class, $response);
-        $this->assertFalse($response->isSuccessful());
-        $this->assertInstanceOf(Request::class, $response->getRequest());
-
-        return $notification;
-    }
-
     public function testBuildCurlPostFields()
     {
-        $application = new Application("azGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
         $message = new Message("This is a test message", "This is a title of the message");
         $message->setUrl("https://www.example.com");
         $message->setUrlTitle("Example.com");
@@ -78,8 +53,8 @@ class MessageClientTest extends TestCase
         $curlPostFields = $client->buildCurlPostFields($notification);
 
         $this->assertIsArray($curlPostFields);
-        $this->assertEquals("azGDORePK8gMaC0QOYAMyEEuzJnyUi", $curlPostFields['token']);
-        $this->assertEquals("uQiRzpo4DXghDmr9QzzfQu27cmVRsG", $curlPostFields['user']);
+        $this->assertEquals("cccc3333CCCC3333dddd4444DDDD44", $curlPostFields['token']);
+        $this->assertEquals("aaaa1111AAAA1111bbbb2222BBBB22", $curlPostFields['user']);
         $this->assertEquals("This is a test message", $curlPostFields['message']);
         $this->assertEquals("ios,android", $curlPostFields['device']);
         $this->assertEquals("This is a title of the message", $curlPostFields['title']);

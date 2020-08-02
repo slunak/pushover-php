@@ -24,8 +24,8 @@ class GroupsClientTest extends TestCase
 {
     public function testCanBeCreated()
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $group = new Group("uoJCttEFQo8uoZ6REZHMGBjX2pmcdJ", $application); // using dummy group key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application); // using dummy group key
 
         $client = new GroupsClient($group, GroupsClient::ACTION_RETRIEVE_GROUP);
 
@@ -34,23 +34,23 @@ class GroupsClientTest extends TestCase
 
     public function testBuildApiUrl()
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $group = new Group("uoJCttEFQo8uoZ6REZHMGBjX2pmcdJ", $application); // using dummy group key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application); // using dummy group key
 
         // testing various "actions" below
 
         $client = new GroupsClient($group, GroupsClient::ACTION_RETRIEVE_GROUP);
-        $this->assertEquals("https://api.pushover.net/1/groups/uoJCttEFQo8uoZ6REZHMGBjX2pmcdJ.json?token=zaGDORePK8gMaC0QOYAMyEEuzJnyUi", $client->buildApiUrl());
+        $this->assertEquals("https://api.pushover.net/1/groups/eeee5555EEEE5555ffff6666FFFF66.json?token=cccc3333CCCC3333dddd4444DDDD44", $client->buildApiUrl());
 
         $client = new GroupsClient($group, GroupsClient::ACTION_ADD_USER);
-        $this->assertEquals("https://api.pushover.net/1/groups/uoJCttEFQo8uoZ6REZHMGBjX2pmcdJ/add_user.json?token=zaGDORePK8gMaC0QOYAMyEEuzJnyUi", $client->buildApiUrl());
+        $this->assertEquals("https://api.pushover.net/1/groups/eeee5555EEEE5555ffff6666FFFF66/add_user.json?token=cccc3333CCCC3333dddd4444DDDD44", $client->buildApiUrl());
     }
 
     public function testBuildCurlPostFields()
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $group = new Group("uoJCttEFQo8uoZ6REZHMGBjX2pmcdJ", $application); // using dummy group key
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application); // using dummy group key
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
 
         // testing various "actions" below
 
@@ -58,8 +58,8 @@ class GroupsClientTest extends TestCase
 
         $this->assertEquals(
             array(
-                'token' => 'zaGDORePK8gMaC0QOYAMyEEuzJnyUi',
-                'user' => 'uQiRzpo4DXghDmr9QzzfQu27cmVRsG',
+                'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+                'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
             ),
             $client->buildCurlPostFields($recipient)
         );
@@ -68,8 +68,8 @@ class GroupsClientTest extends TestCase
 
         $this->assertEquals(
             array(
-                'token' => 'zaGDORePK8gMaC0QOYAMyEEuzJnyUi',
-                'user' => 'uQiRzpo4DXghDmr9QzzfQu27cmVRsG',
+                'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+                'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
             ),
             $client->buildCurlPostFields($recipient)
         );
@@ -78,8 +78,8 @@ class GroupsClientTest extends TestCase
 
         $this->assertEquals(
             array(
-                'token' => 'zaGDORePK8gMaC0QOYAMyEEuzJnyUi',
-                'user' => 'uQiRzpo4DXghDmr9QzzfQu27cmVRsG',
+                'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+                'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
             ),
             $client->buildCurlPostFields($recipient)
         );
@@ -88,8 +88,8 @@ class GroupsClientTest extends TestCase
 
         $this->assertEquals(
             array(
-                'token' => 'zaGDORePK8gMaC0QOYAMyEEuzJnyUi',
-                'user' => 'uQiRzpo4DXghDmr9QzzfQu27cmVRsG',
+                'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+                'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
             ),
             $client->buildCurlPostFields($recipient)
         );

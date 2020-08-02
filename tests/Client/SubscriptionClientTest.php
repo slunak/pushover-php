@@ -18,6 +18,9 @@ use Serhiy\Pushover\Client\SubscriptionClient;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Recipient;
 
+/**
+ * @author Serhiy Lunak
+ */
 class SubscriptionClientTest extends TestCase
 {
     public function testCanBeCreated()
@@ -29,39 +32,39 @@ class SubscriptionClientTest extends TestCase
 
     public function testBuildCurlPostFields()
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
         $subscription = new Subscription($application, "dummy-subscription-aaa111bbb222ccc"); // using dummy subscription code
 
         $client = new SubscriptionClient();
 
         // only required parameters
         $curlPostFields = array(
-            "token" => "zaGDORePK8gMaC0QOYAMyEEuzJnyUi",
+            "token" => "cccc3333CCCC3333dddd4444DDDD44",
             "subscription" => "dummy-subscription-aaa111bbb222ccc",
-            "user" => "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
+            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
         );
 
         $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient));
 
         // add recipient device
-        $recipient->addDevice("android");
+        $recipient->addDevice("test-device-1");
 
         $curlPostFields = array(
-            "token" => "zaGDORePK8gMaC0QOYAMyEEuzJnyUi",
+            "token" => "cccc3333CCCC3333dddd4444DDDD44",
             "subscription" => "dummy-subscription-aaa111bbb222ccc",
-            "user" => "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
-            "device_name" => "android",
+            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
+            "device_name" => "test-device-1",
         );
 
         $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient));
 
         // add sound
         $curlPostFields = array(
-            "token" => "zaGDORePK8gMaC0QOYAMyEEuzJnyUi",
+            "token" => "cccc3333CCCC3333dddd4444DDDD44",
             "subscription" => "dummy-subscription-aaa111bbb222ccc",
-            "user" => "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
-            "device_name" => "android",
+            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
+            "device_name" => "test-device-1",
             "sound" => "pushover",
         );
 

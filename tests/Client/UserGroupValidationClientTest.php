@@ -13,9 +13,6 @@ namespace Client;
 
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
-use Serhiy\Pushover\Client\Curl\Curl;
-use Serhiy\Pushover\Client\Request\Request;
-use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Client\UserGroupValidationClient;
 use Serhiy\Pushover\Recipient;
 
@@ -39,13 +36,13 @@ class UserGroupValidationClientTest extends TestCase
      */
     public function testBuildCurlPostFields(UserGroupValidationClient $client)
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
         $curlPostFields = $client->buildCurlPostFields($application, $recipient);
 
         $this->assertEquals(array(
-            "token" => "zaGDORePK8gMaC0QOYAMyEEuzJnyUi",
-            "user" => "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
+            "token" => "cccc3333CCCC3333dddd4444DDDD44",
+            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
         ), $curlPostFields);
     }
 
@@ -56,20 +53,5 @@ class UserGroupValidationClientTest extends TestCase
     public function testBuildApiUrl(UserGroupValidationClient $client)
     {
         $this->assertEquals("https://api.pushover.net/1/users/validate.json", $client->buildApiUrl());
-    }
-
-    public function testSend()
-    {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
-        $client = new UserGroupValidationClient();
-        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($application, $recipient));
-
-        $curlResponse = Curl::do($request);
-
-        $response = new UserGroupValidationResponse($curlResponse);
-
-        $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
-        $this->assertFalse($response->isSuccessful());
     }
 }

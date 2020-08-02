@@ -29,8 +29,8 @@ class AssignLicenseClientTest extends TestCase
 
     public function testBuildCurlPostFields()
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
         $license = new License($application);
         $email = 'dummy@email.com';
 
@@ -41,8 +41,8 @@ class AssignLicenseClientTest extends TestCase
         $client = new AssignLicenseClient();
 
         $curlPostFields = array(
-            "token" => "zaGDORePK8gMaC0QOYAMyEEuzJnyUi",
-            "user" => "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
+            "token" => "cccc3333CCCC3333dddd4444DDDD44",
+            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
             "email" => "dummy@email.com",
             "os" => "Android",
         );

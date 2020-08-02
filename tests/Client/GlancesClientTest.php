@@ -38,8 +38,8 @@ class GlancesClientTest extends TestCase
     {
         $client = new GlancesClient();
 
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
         $glanceDataFields = new GlanceDataFields();
 
         $glance = new Glance($application, $glanceDataFields);
@@ -47,8 +47,8 @@ class GlancesClientTest extends TestCase
         $glance->getGlanceDataFields()->setTitle("This is test title");
 
         $curlPostFields = array(
-            "token" => "zaGDORePK8gMaC0QOYAMyEEuzJnyUi",
-            "user" => "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
+            "token" => "cccc3333CCCC3333dddd4444DDDD44",
+            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
             "title" => "This is test title",
         );
 
