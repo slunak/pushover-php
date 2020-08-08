@@ -40,8 +40,6 @@ Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pus
 - Subscription API ([Example](Example/SubscriptionExample.php))
   - User Key Migration 
 
-*Note: Project is in constant development; update to newer versions with caution.*
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running.
