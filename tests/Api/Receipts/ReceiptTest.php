@@ -24,7 +24,7 @@ class ReceiptTest extends TestCase
 {
     public function testCanBeCreated()
     {
-        $application = new Application("azGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
 
         $receipt = new Receipt($application);
 
@@ -42,27 +42,31 @@ class ReceiptTest extends TestCase
         $application = $receipt->getApplication();
 
         $this->assertInstanceOf(Application::class, $application);
-        $this->assertEquals("azGDORePK8gMaC0QOYAMyEEuzJnyUi", $application->getToken());
+        $this->assertEquals("cccc3333CCCC3333dddd4444DDDD44", $application->getToken());
     }
 
     /**
-     * @depends testCanBeCreated
-     * @param Receipt $receipt
+     * @group Integration
      */
-    public function testQuery(Receipt $receipt)
+    public function testQuery()
     {
-        $response = $receipt->query("sraw8swp2qh9bp6o4n7bw6o6cic94j"); // using dummy receipt
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $receipt = new Receipt($application);
+
+        $response = $receipt->query("gggg7777GGGG7777hhhh8888HHHH88"); // using dummy receipt
 
         $this->assertInstanceOf(ReceiptResponse::class, $response);
     }
 
     /**
-     * @depends testCanBeCreated
-     * @param Receipt $receipt
+     * @group Integration
      */
-    public function testCancelRetry(Receipt $receipt)
+    public function testCancelRetry()
     {
-        $response = $receipt->cancelRetry("sraw8swp2qh9bp6o4n7bw6o6cic94j"); // using dummy receipt
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $receipt = new Receipt($application);
+
+        $response = $receipt->cancelRetry("gggg7777GGGG7777hhhh8888HHHH88"); // using dummy receipt
 
         $this->assertInstanceOf(CancelRetryResponse::class, $response);
     }

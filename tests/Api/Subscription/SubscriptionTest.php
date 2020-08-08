@@ -14,6 +14,8 @@ namespace Api\Subscription;
 use Serhiy\Pushover\Api\Subscription\Subscription;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Response\SubscriptionResponse;
+use Serhiy\Pushover\Recipient;
 
 /**
  * @author Serhiy Lunak
@@ -25,7 +27,7 @@ class SubscriptionTest extends TestCase
      */
     public function testCanBeCreated(): Subscription
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
         $subscription = new Subscription($application, "dummy-subscription-aaa111bbb222ccc"); // using dummy subscription code
 
         $this->assertInstanceOf(Subscription::class, $subscription);
@@ -49,5 +51,21 @@ class SubscriptionTest extends TestCase
     public function testGetApplication(Subscription $subscription)
     {
         $this->assertInstanceOf(Application::class, $subscription->getApplication());
+    }
+
+    /**
+     * @group Integration
+     */
+    public function testMigrate()
+    {
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $subscription = new Subscription($application, "dummy-subscription-aaa111bbb222ccc");
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+
+        $recipient->addDevice('test-device-1');
+
+        $response = $subscription->migrate($recipient);
+
+        $this->assertInstanceOf(SubscriptionResponse::class, $response);
     }
 }

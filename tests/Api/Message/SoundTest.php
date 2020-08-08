@@ -20,13 +20,6 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  */
 class SoundTest extends TestCase
 {
-    public function testCannotBeCreatedFromInvalidSound()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new Sound('invalid_sound');
-    }
-
     public function testCanBeCreated()
     {
         $this->assertInstanceOf(Sound::class, $sound = new Sound(Sound::PUSHOVER));
@@ -63,5 +56,9 @@ class SoundTest extends TestCase
         $sound->setSound(Sound::ECHO);
 
         $this->assertEquals('echo', $sound->getSound());
+
+        $this->expectException(InvalidArgumentException::class);
+
+        $sound->setSound("invalid_sound");
     }
 }

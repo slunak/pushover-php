@@ -90,7 +90,7 @@ class AttachmentTest extends TestCase
      * @depends testCanBeCreated
      * @param Attachment $attachment
      */
-    public function testSupportedAttachmentTypes(Attachment $attachment)
+    public function testGetSupportedAttachmentTypes(Attachment $attachment)
     {
         $supportedAttachmentsTypes = new \ReflectionClass(Attachment::class);
 
@@ -101,7 +101,7 @@ class AttachmentTest extends TestCase
      * @depends testCanBeCreated
      * @param Attachment $attachment
      */
-    public function testSupportedAttachmentExtensions(Attachment $attachment)
+    public function testGetSupportedAttachmentExtensions(Attachment $attachment)
     {
         $supportedAttachmentExtensions = array(
             'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp'

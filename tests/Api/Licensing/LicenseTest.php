@@ -14,6 +14,7 @@ namespace Api\Licensing;
 use Serhiy\Pushover\Api\Licensing\License;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Response\LicenseResponse;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 use Serhiy\Pushover\Recipient;
 
@@ -24,7 +25,7 @@ class LicenseTest extends TestCase
      */
     public function testCanBeCreated(): License
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
         $license = new License($application);
 
         $this->assertInstanceOf(License::class, $license);
@@ -47,7 +48,7 @@ class LicenseTest extends TestCase
      */
     public function testSetApplication(License $license)
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
         $license->setApplication($application);
 
         $this->assertInstanceOf(Application::class, $license->getApplication());
@@ -68,7 +69,7 @@ class LicenseTest extends TestCase
      */
     public function testSetRecipient(License $license)
     {
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
 
         $license->setRecipient($recipient);
         $this->assertInstanceOf(Recipient::class, $license->getRecipient());
@@ -132,7 +133,7 @@ class LicenseTest extends TestCase
      */
     public function testCanBeAssigned(License $license)
     {
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
         $email = 'dummy@email.com';
 
         $this->assertFalse($license->canBeAssigned());
@@ -164,5 +165,18 @@ class LicenseTest extends TestCase
         );
 
         $this->assertEquals($licenseTypes, $license->getAvailableOsTypes());
+    }
+
+    /**
+     * @group Integration
+     */
+    public function testCheckCredits()
+    {
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $license = new License($application);
+
+        $response = $license->checkCredits();
+
+        $this->assertInstanceOf(LicenseResponse::class, $response);
     }
 }

@@ -33,6 +33,18 @@ class ApplicationTest extends TestCase
         new Application("Lorem ipsum dolor sit amet");
     }
 
+    public function testCannotBeCreatedFromInvalidApiToken(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new Application("this-is-invalid-token");
+    }
+
+    public function testCannotBeCreatedFromShortApiToken(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new Application("token");
+    }
+
     /**
      * @depends testCanBeCreated
      * @param Application $application

@@ -27,8 +27,8 @@ class NotificationTest extends TestCase
 {
     public function testCanBeCreated()
     {
-        $application = new Application("azGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
 
         $message = new Message("This is a test message", "This is a title of the message");
 
@@ -43,7 +43,7 @@ class NotificationTest extends TestCase
      * @depends testCanBeCreated
      * @param Notification $notification
      */
-    public function testNotificationSound(Notification $notification)
+    public function testSetSound(Notification $notification)
     {
         $notification->setSound(new Sound(Sound::PUSHOVER));
 
@@ -54,7 +54,7 @@ class NotificationTest extends TestCase
      * @depends testCanBeCreated
      * @param Notification $notification
      */
-    public function testNoSound(Notification $notification)
+    public function testSetSoundNull(Notification $notification)
     {
         $notification->setSound(null);
 
@@ -65,7 +65,7 @@ class NotificationTest extends TestCase
      * @depends testCanBeCreated
      * @param Notification $notification
      */
-    public function testNotificationAttachment(Notification $notification)
+    public function testSetAttachment(Notification $notification)
     {
         $notification->setAttachment(new Attachment("/path/to/file.jpg", Attachment::MIME_TYPE_JPEG));
 
@@ -77,17 +77,20 @@ class NotificationTest extends TestCase
      * @depends testCanBeCreated
      * @param Notification $notification
      */
-    public function testNoAttachment(Notification $notification)
+    public function testSetAttachmentNull(Notification $notification)
     {
         $notification->setAttachment(null);
 
         $this->assertNull($notification->getAttachment());
     }
 
+    /**
+     * @group Integration
+     */
     public function testPush()
     {
-        $application = new Application("azGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
         $message = new Message("This is a test message", "This is a title of the message");
         $notification = new Notification($application, $recipient, $message);
         $response = $notification->push();

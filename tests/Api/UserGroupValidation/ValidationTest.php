@@ -27,7 +27,7 @@ class ValidationTest extends TestCase
      */
     public function testCanBeCreated(): Validation
     {
-        $application = new Application("zaGDORePK8gMaC0QOYAMyEEuzJnyUi"); // using dummy token
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
         $validation = new Validation($application);
 
         $this->assertInstanceOf(Validation::class, $validation);
@@ -42,16 +42,18 @@ class ValidationTest extends TestCase
     public function testGetApplication(Validation $validation)
     {
         $this->assertInstanceOf(Application::class, $validation->getApplication());
-        $this->assertEquals("zaGDORePK8gMaC0QOYAMyEEuzJnyUi", $validation->getApplication()->getToken());
+        $this->assertEquals("cccc3333CCCC3333dddd4444DDDD44", $validation->getApplication()->getToken());
     }
 
     /**
-     * @depends testCanBeCreated
-     * @param Validation $validation
+     * @group Integration
      */
-    public function testValidateRecipient(Validation $validation)
+    public function testValidate()
     {
-        $recipient = new Recipient("uQiRzpo4DXghDmr9QzzfQu27cmVRsG"); // using dummy user key
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $validation = new Validation($application);
+        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+
         $response = $validation->validate($recipient);
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
