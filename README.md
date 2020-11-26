@@ -58,7 +58,7 @@ plus its curl and json extensions. See below the `require` section of project's 
 ```json
 {
     "require": {
-        "php": "^7.1|^8.0",
+        "php": ">=7.1",
         "ext-curl": "*",
         "ext-json": "*"
     }
