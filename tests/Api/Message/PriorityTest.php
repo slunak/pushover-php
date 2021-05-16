@@ -89,8 +89,8 @@ class PriorityTest extends TestCase
      */
     public function testAvailablePriorities(Priority $priority)
     {
-        $availableSounds = new \ReflectionClass(Priority::class);
+        $availablePriorities = new \ReflectionClass(Priority::class);
 
-        $this->assertEquals($availableSounds->getConstants(), $priority->getAvailablePriorities());
+        $this->assertEquals($availablePriorities->getConstants(), $priority->getAvailablePriorities());
     }
 }
