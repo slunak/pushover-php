@@ -105,7 +105,7 @@ class Priority
      */
     private $callback;
 
-    public function __construct(int $priority, int $retry = null, int $expire = null)
+    public function __construct(int $priority = self::NORMAL, int $retry = null, int $expire = null)
     {
         if (!(self::LOWEST <= $priority && $priority <= self::EMERGENCY)) {
             throw new InvalidArgumentException(sprintf('Message priority must be within range -2 and 2. "%s" was given.', $priority));
@@ -121,6 +121,17 @@ class Priority
             $this->setRetry($retry);
             $this->setExpire($expire);
         }
+    }
+
+    /**
+     * Generates array with all available priorities. Priorities are taken from the constants of this class.
+     *
+     * @return array<string>
+     */
+    public static function getAvailablePriorities(): array
+    {
+        $oClass = new \ReflectionClass(__CLASS__);
+        return $oClass->getConstants();
     }
 
     /**

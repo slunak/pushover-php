@@ -21,6 +21,15 @@ use Serhiy\Pushover\Exception\LogicException;
  */
 class PriorityTest extends TestCase
 {
+    public function testCanBeCreated()
+    {
+        $priority = new Priority();
+
+        $this->assertInstanceOf(Priority::class, $priority);
+
+        return $priority;
+    }
+
     public function testCanBeCreatedWithNormalPriority()
     {
         $priority = new Priority(Priority::NORMAL);
@@ -72,5 +81,16 @@ class PriorityTest extends TestCase
     public function testGetCallback(Priority $priority)
     {
         $this->assertEquals("https://callback.example.com", $priority->getCallback());
+    }
+
+    /**
+     * @depends testCanBeCreated
+     * @param Priority $priority
+     */
+    public function testAvailablePriorities(Priority $priority)
+    {
+        $availableSounds = new \ReflectionClass(Priority::class);
+
+        $this->assertEquals($availableSounds->getConstants(), $priority->getAvailablePriorities());
     }
 }
