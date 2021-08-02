@@ -13,6 +13,7 @@ namespace Api\Message;
 
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Attachment;
+use Serhiy\Pushover\Api\Message\CustomSound;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Sound;
@@ -59,6 +60,28 @@ class NotificationTest extends TestCase
         $notification->setSound(null);
 
         $this->assertNull($notification->getSound());
+    }
+
+    /**
+     * @depends testCanBeCreated
+     * @param Notification $notification
+     */
+    public function testSetCustomSound(Notification $notification)
+    {
+        $notification->setCustomSound(new CustomSound("door_open"));
+
+        $this->assertEquals('door_open', $notification->getCustomSound()->getCustomSound());
+    }
+
+    /**
+     * @depends testCanBeCreated
+     * @param Notification $notification
+     */
+    public function testSetCustomSoundNull(Notification $notification)
+    {
+        $notification->setCustomSound(null);
+
+        $this->assertNull($notification->getCustomSound());
     }
 
     /**

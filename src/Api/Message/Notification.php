@@ -48,6 +48,11 @@ class Notification
     private $sound;
 
     /**
+     * @var CustomSound|null
+     */
+    private $customSound;
+
+    /**
      * @var Attachment|null
      */
     private $attachment;
@@ -121,6 +126,22 @@ class Notification
     public function setSound(?Sound $sound): void
     {
         $this->sound = $sound;
+    }
+
+    /**
+     * @return CustomSound|null
+     */
+    public function getCustomSound(): ?CustomSound
+    {
+        return $this->customSound;
+    }
+
+    /**
+     * @param CustomSound|null $customSound
+     */
+    public function setCustomSound(?CustomSound $customSound): void
+    {
+        $this->customSound = $customSound;
     }
 
     /**

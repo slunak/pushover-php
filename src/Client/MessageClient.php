@@ -92,6 +92,10 @@ class MessageClient extends Client implements ClientInterface
             $curlPostFields['sound'] = $notification->getSound()->getSound();
         }
 
+        if (null !== $notification->getCustomSound()) {
+            $curlPostFields['sound'] = $notification->getCustomSound()->getCustomSound();
+        }
+
         if (null !== $notification->getAttachment()) {
             if (! is_readable($notification->getAttachment()->getFilename())) {
                 throw new LogicException(sprintf('File "%s" does not exist or is not readable.', $notification->getAttachment()->getFilename()));

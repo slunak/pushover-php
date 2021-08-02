@@ -12,6 +12,7 @@
 namespace Serhiy\Pushover\Example;
 
 use Serhiy\Pushover\Api\Message\Attachment;
+use Serhiy\Pushover\Api\Message\CustomSound;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Priority;
@@ -48,8 +49,10 @@ class CompleteNotificationExample
 
         // create notification
         $notification = new Notification($application, $recipient, $message);
-        // set notification sound
+        // set notification built-in sound
         $notification->setSound(new Sound(Sound::PUSHOVER));
+        // or set notification custom sound
+        $notification->setCustomSound(new CustomSound("door_open"));
         // add attachment
         $notification->setAttachment(new Attachment("/path/to/file.jpg", Attachment::MIME_TYPE_JPEG));
 
