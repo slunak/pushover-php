@@ -109,7 +109,6 @@ class UserGroupValidationResponse extends Response
             if ($decodedCurlResponse->group == 0) {
                 $this->setIsGroup(false);
             }
-
         }
     }
 }
