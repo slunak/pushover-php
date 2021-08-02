@@ -7,6 +7,10 @@ please open an issue to discuss the feature you would like to work on.
 
 Check coding standards with [PHP CS Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer).
 
+```
+php-cs-fixer fix src
+```
+
 #### Code Documentation
 
 Document your code with [phpDocumentor](https://github.com/phpDocumentor/phpDocumentor) version 3.
@@ -14,6 +18,10 @@ Document your code with [phpDocumentor](https://github.com/phpDocumentor/phpDocu
 #### Static Analysis
 
 Analyze your code with [PHPStan](https://github.com/phpstan/phpstan) and make sure there are no errors except for `buildCurlPostFields` method.
+
+```
+phpstan analyse src --level 5
+```
 
 #### Test
 
