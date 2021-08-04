@@ -8,7 +8,7 @@
 Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pushover.net/) API.
 
 ### Features
-- Message API
+- Message API ([Example](Example/CompleteNotificationExample.php))
   - Image attachment
   - User's device name(s)
   - Message's title
