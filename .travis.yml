@@ -6,8 +6,7 @@ php:
     - '7.4'
     - '8.0'
     - '8.1'
-    - '8.2'
-    - nightly
+    - '8.2snapshot'
 jobs:
     allow_failures:
         - php: nightly
