@@ -12,6 +12,7 @@ jobs:
         - php: 8.2
           dist: focal
 install:
-  - sudo apt install oniguruma
+  - sudo apt-get update
+  - sudo apt-get install libonig5
   - composer install
 script: ./vendor/bin/phpunit tests
