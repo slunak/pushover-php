@@ -67,7 +67,7 @@ class GlanceDataFields
      */
     public function setTitle(?string $title): GlanceDataFields
     {
-        if (strlen($title) > 100) {
+        if ($title !== null && strlen($title) > 100) {
             throw new InvalidArgumentException(sprintf("Title can be no more than 100 characters long. %s characters long title provided.", strlen($title)));
         }
 
@@ -90,7 +90,7 @@ class GlanceDataFields
      */
     public function setText(?string $text): GlanceDataFields
     {
-        if (strlen($text) > 100) {
+        if ($text !== null && strlen($text) > 100) {
             throw new InvalidArgumentException(sprintf("Text can be no more than 100 characters long. %s characters long text provided.", strlen($text)));
         }
 
@@ -113,7 +113,7 @@ class GlanceDataFields
      */
     public function setSubtext(?string $subtext): GlanceDataFields
     {
-        if (strlen($subtext) > 100) {
+        if ($subtext !== null && strlen($subtext) > 100) {
             throw new InvalidArgumentException(sprintf("Subtext can be no more than 100 characters long. %s characters long subtext provided.", strlen($subtext)));
         }
 
