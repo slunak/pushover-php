@@ -15,4 +15,5 @@ install:
   - sudo apt-get update
   - sudo apt-get install libonig5
   - composer install
+  - php -v
 script: ./vendor/bin/phpunit tests
