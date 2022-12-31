@@ -1,14 +1,6 @@
 language: php
 jobs:
-    allow_failures:
-        - php: 8.2
     include:
-        - php: 7.1
-          dist: xenial
-        - php: 7.2
-          dist: xenial
-        - php: 7.3
-          dist: xenial
         - php: 7.4
           dist: focal
         - php: 8.0
@@ -16,6 +8,10 @@ jobs:
         - php: 8.1
           dist: focal
         - php: 8.2
-          dist: jammy
-install: composer install
+          dist: focal
+install:
+  - sudo apt-get update
+  - sudo apt-get install libonig5
+  - composer install
+  - php -v
 script: ./vendor/bin/phpunit tests
