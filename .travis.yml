@@ -1,7 +1,5 @@
 language: php
 jobs:
-    allow_failures:
-        - php: 8.2
     include:
         - php: 7.4
           dist: focal
