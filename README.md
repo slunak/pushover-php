@@ -47,7 +47,7 @@ These instructions will get you a copy of the project up and running.
 ### Installing
 
 ```
-composer require "serhiy/pushover"
+composer require serhiy/pushover
 ```
 
 ### Requirements
