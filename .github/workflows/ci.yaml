@@ -1,0 +1,80 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+
+env:
+    REQUIRED_PHP_EXTENSIONS: "curl, json"
+
+jobs:
+    composer-validate:
+        name: "Validate composer.json"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "7.4"
+
+        steps:
+            - name: "Checkout code"
+              uses: actions/checkout@v3
+
+            - name: "Install PHP with extensions"
+              uses: "shivammathur/setup-php@v2"
+              with:
+                  coverage: "none"
+                  php-version: "${{ matrix.php-version }}"
+                  extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                  tools: "composer:v2"
+
+            - name: "Validate composer.json"
+              run: "composer validate"
+
+
+    tests:
+        name: "PHP ${{ matrix.php-version }} + ${{ matrix.dependencies }}"
+
+        runs-on: ubuntu-latest
+
+        continue-on-error: ${{ matrix.allowed-to-fail }}
+
+        strategy:
+            matrix:
+                php-version:
+                    - '7.4'
+                    - '8.0'
+                    - '8.1'
+                    - '8.2'
+                dependencies:
+                    - 'lowest'
+                    - 'highest'
+                allowed-to-fail: [false]
+
+        steps:
+            - name: "Checkout code"
+              uses: actions/checkout@v3
+
+            - name: Install PHP with extensions
+              uses: shivammathur/setup-php@v2
+              with:
+                  coverage: "none"
+                  php-version: "${{ matrix.php-version }}"
+                  extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                  tools: "composer:v2"
+
+            - name: Add PHPUnit matcher
+              run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+            - name: "Composer install"
+              uses: "ramsey/composer-install@v1"
+              with:
+                  dependency-versions: "${{ matrix.dependencies }}"
+                  composer-options: "--prefer-dist"
+
+            - name: Run tests
+              run: vendor/bin/phpunit tests -v
