@@ -28,5 +28,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Fix deprecation warning when running tests on PHP 8.1 and 8.2
 
 [Unreleased]: https://github.com/slunak/pushover-php/compare/v1.3.1...HEAD
-[1.3.1]: https://github.com/slunak/pushover-php/compare/v1.3.1...v1.3.0
-[1.3.0]: https://github.com/slunak/pushover-php/compare/v1.3.0...v1.2.0
+[1.3.1]: https://github.com/slunak/pushover-php/compare/v1.3.0...v1.3.1
+[1.3.0]: https://github.com/slunak/pushover-php/compare/v1.2.0...v1.3.0
