@@ -7,6 +7,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.3.1] - 2023-02-06
+
+### Added
+
+- Added change log
+
 ### Changed
 
 - Changed tests pipeline from Travis to Github Actions
