@@ -51,15 +51,16 @@ class Curl
         curl_setopt_array($ch = curl_init(), $curlOptions);
 
         $curlResponse = curl_exec($ch);
-        curl_close($ch);
 
         if (false === $curlResponse) {
-            throw new LogicException('Curl request failed.');
+            throw new LogicException('Curl request failed. Curl error: ' . curl_error($ch));
         }
 
         if (true === $curlResponse) {
             throw new LogicException('Curl should return json encoded string because CURLOPT_RETURNTRANSFER is set, "true" returned instead.');
         }
+
+        curl_close($ch);
 
         return $curlResponse;
     }
