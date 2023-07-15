@@ -84,6 +84,20 @@ class Message
      */
     private $timestamp;
 
+    /**
+     * Normally a message delivered to a device is retained on the device until it is deleted by the user,
+     * or is automatically deleted when the number of messages on the device exceeds the user's configured message limit.
+     * The ttl parameter specifies a Time to Live in seconds, after which the message will be automatically deleted from the devices it was delivered to.
+     * This can be useful for unimportant messages that have a limited usefulness after a short amount of time.
+     *
+     * The ttl parameter is ignored for messages with a priority value of 2.
+     *
+     * The ttl value must be a positive number of seconds, and is counted from the time the message is received by our API.
+     *
+     * @var int|null
+     */
+    private $ttl;
+
 
     public function __construct(string $message, string $title = null)
     {
@@ -222,5 +236,25 @@ class Message
     public function setTimestamp(\DateTime $timestamp): void
     {
         $this->timestamp = $timestamp;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTtl(): ?int
+    {
+        return $this->ttl;
+    }
+
+    /**
+     * @param int|null $ttl
+     */
+    public function setTtl(?int $ttl): void
+    {
+        if ($ttl <= 0) {
+            throw new InvalidArgumentException('The ttl value of ' . $ttl . ' is invalid. The ttl value must be a positive number of seconds.');
+        }
+
+        $this->ttl = $ttl;
     }
 }

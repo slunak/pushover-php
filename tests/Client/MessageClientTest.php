@@ -42,6 +42,7 @@ class MessageClientTest extends TestCase
         $message->setPriority(new Priority(Priority::EMERGENCY, 30, 300));
         $message->getPriority()->setCallback("https://callback.example.com");
         $message->setIsHtml(true);
+        $message->setTtl(60 * 60 * 24);
 
         $recipient->addDevice("ios");
         $recipient->addDevice("android");
@@ -65,6 +66,7 @@ class MessageClientTest extends TestCase
         $this->assertEquals("300", $curlPostFields['expire']);
         $this->assertEquals("https://callback.example.com", $curlPostFields['callback']);
         $this->assertEquals("1", $curlPostFields['html']);
+        $this->assertEquals("86400", $curlPostFields['ttl']);
         $this->assertEquals("pushover", $curlPostFields['sound']);
     }
 }
