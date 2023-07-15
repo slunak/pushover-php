@@ -88,6 +88,10 @@ class MessageClient extends Client implements ClientInterface
             $curlPostFields['html'] = 1;
         }
 
+        if (null !== $notification->getMessage()->getTtl()) {
+            $curlPostFields['ttl'] = $notification->getMessage()->getTtl();
+        }
+
         if (null !== $notification->getSound()) {
             $curlPostFields['sound'] = $notification->getSound()->getSound();
         }

@@ -17,6 +17,7 @@ Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pus
   - Notification priority
   - Notification sound (including custom sound)
   - Message time
+  - Time to live
 - User/Group Validation API ([Example](Example/UserGroupValidationExample.php))
   - Validation by user or group key
   - Validation by user and device

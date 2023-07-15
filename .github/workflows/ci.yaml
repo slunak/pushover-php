@@ -76,4 +76,4 @@ jobs:
                   composer-options: "--prefer-dist"
 
             - name: Run tests
-              run: vendor/bin/phpunit tests -v
+              run: vendor/bin/phpunit tests
