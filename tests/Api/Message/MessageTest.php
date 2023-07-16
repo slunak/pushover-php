@@ -155,9 +155,15 @@ class MessageTest extends TestCase
     {
         $message = new Message("This is a test message");
 
+        $this->assertNull($message->getTtl());
+
         $message->setTtl(3600);
 
         $this->assertEquals(3600, $message->getTtl());
+
+        $message->setTtl(null);
+
+        $this->assertNull($message->getTtl());
     }
 
     public function testSetNegativeTtl()
