@@ -151,16 +151,7 @@ class MessageTest extends TestCase
         $this->assertEquals($datetime->getTimestamp(), $message->getTimestamp());
     }
 
-    public function testGetTtl()
-    {
-        $message = new Message("This is a test message");
-
-        $message->setTtl(3600);
-
-        $this->assertEquals(3600, $message->getTtl());
-    }
-
-    public function testSetTtl()
+    public function testSetAndGetTtl()
     {
         $message = new Message("This is a test message");
 
