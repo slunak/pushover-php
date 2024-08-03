@@ -131,10 +131,6 @@ class Group
 
     /**
      * Create the group. Reflected in the API and in the group editor on our website.
-     *
-     * @param string $name
-     * 
-     * @return CreateGroupResponse
      */
     public function create(string $name): CreateGroupResponse
     {
