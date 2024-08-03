@@ -43,7 +43,8 @@ class CreateGroupResponse extends Response
     /**
      * @return string Group key obtained
      */
-    public function getGroupKey() {
+    public function getGroupKey(): string
+    {
         return $this->groupKey;
     }
 }
