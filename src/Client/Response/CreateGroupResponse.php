@@ -18,7 +18,6 @@ use Serhiy\Pushover\Client\Response\Base\Response;
  */
 class CreateGroupResponse extends Response
 {
-
     /**
      * @var string Obtained Group Key
      */
