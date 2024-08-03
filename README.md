@@ -25,6 +25,7 @@ Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pus
   - Query emergency priority receipt
   - Cancel emergency priority retry
 - Groups API ([Example](Example/GroupsExample.php))
+  - Create the new group
   - Retrieve information about the group
   - Add / Remove users
   - Enable / Disable users
