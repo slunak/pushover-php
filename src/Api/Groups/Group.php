@@ -15,6 +15,7 @@ use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\GroupsClient;
 use Serhiy\Pushover\Client\Request\Request;
+use Serhiy\Pushover\Client\Response\CreateGroupResponse;
 use Serhiy\Pushover\Client\Response\AddUserToGroupResponse;
 use Serhiy\Pushover\Client\Response\DisableUserInGroupResponse;
 use Serhiy\Pushover\Client\Response\EnableUserInGroupResponse;
@@ -56,6 +57,13 @@ class Group
      */
     private $users;
 
+    /**
+     * 
+     * @param string      $key         Group key. (Put str_repeat('0', 30) before creating new group)
+     * @param Application $application
+     * 
+     * @throws InvalidArgumentException
+     */
     public function __construct(string $key, Application $application)
     {
         if (1 != preg_match("/^[a-zA-Z0-9]{30}$/", $key)) {
@@ -121,6 +129,28 @@ class Group
         return $response;
     }
 
+    /**
+     * Create the group. Reflected in the API and in the group editor on our website.
+     *
+     * @param string $name
+     * 
+     * @return CreateGroupResponse
+     */
+    public function create(string $name): CreateGroupResponse
+    {
+        $this->name = $name;
+
+        $client = new GroupsClient($this, GroupsClient::ACTION_CREATE_GROUP);
+        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields());
+
+        $curlResponse = Curl::do($request);
+
+        $response = new CreateGroupResponse($curlResponse);
+        $response->setRequest($request);
+
+        return $response;
+    }
+    
     /**
      * Adds an existing Pushover user to your Delivery Group.
      *

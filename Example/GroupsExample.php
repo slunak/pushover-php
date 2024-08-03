@@ -37,6 +37,10 @@ class GroupsExample
         // instantiate pushover group (can be injected into service using Dependency Injection)
         $group = new Group("replace_with_pushover_group_key", $application);
 
+        // Use any valid key or placeholder ^[a-zA-Z0-9]{30}$ as group key to create new group
+        $createGroupResponse = $group->create('Test');
+        $newGroupKey = $createGroupResponse->getGroupKey();
+        
         // Retrieve information about the group from the API and populate the object with it.
         /** @var RetrieveGroupResponse $retrieveGroupResponse */
         $retrieveGroupResponse = $group->retrieveGroupInformation();
