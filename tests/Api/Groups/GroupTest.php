@@ -70,7 +70,8 @@ class GroupTest extends TestCase
     /**
      * @group Integration
      */
-    public function testCreate() {
+    public function testCreate()
+    {
         $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
         $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application);
 
