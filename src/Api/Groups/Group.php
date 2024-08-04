@@ -58,9 +58,9 @@ class Group
     private $users;
 
     /**
-     * 
+     *
      * @param string      $key         Group key. (Put str_repeat('0', 30) before creating new group)
-     * 
+     *
      * @throws InvalidArgumentException
      */
     public function __construct(string $key, Application $application)
@@ -145,7 +145,7 @@ class Group
 
         return $response;
     }
-    
+
     /**
      * Adds an existing Pushover user to your Delivery Group.
      *
