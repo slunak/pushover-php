@@ -58,7 +58,7 @@ class Group
     private $users;
 
     /**
-     * @param string      $key         Group key. (Put str_repeat('0', 30) before creating new group)
+     * @param string $key Group key. (Put str_repeat('0', 30) before creating new group)
      *
      * @throws InvalidArgumentException
      */
