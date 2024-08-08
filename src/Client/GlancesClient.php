@@ -20,7 +20,7 @@ use Serhiy\Pushover\Exception\LogicException;
  */
 class GlancesClient extends Client implements ClientInterface
 {
-    const API_PATH = "glances.json";
+    public const API_PATH = "glances.json";
 
     /**
      * @inheritDoc

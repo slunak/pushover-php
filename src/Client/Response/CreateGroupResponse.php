@@ -37,9 +37,9 @@ class CreateGroupResponse extends Response
     private function processCurlResponse($curlResponse): void
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
-        $this->groupKey = property_exists($decodedCurlResponse,'group') ? $decodedCurlResponse->group : null;
+        $this->groupKey = property_exists($decodedCurlResponse, 'group') ? $decodedCurlResponse->group : null;
     }
-    
+
     /**
      * @return string Group key obtained
      */

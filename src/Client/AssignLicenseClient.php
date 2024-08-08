@@ -20,7 +20,7 @@ use Serhiy\Pushover\Exception\LogicException;
  */
 class AssignLicenseClient extends Client implements ClientInterface
 {
-    const API_PATH = "licenses/assign.json";
+    public const API_PATH = "licenses/assign.json";
 
     /**
      * @inheritDoc

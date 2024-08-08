@@ -32,7 +32,7 @@ class Priority
      * messages will be considered lowest priority and will not generate any notification.
      * On iOS, the application badge number will be increased.
      */
-    const LOWEST = -2;
+    public const LOWEST = -2;
 
     /**
      * Low priority.
@@ -40,7 +40,7 @@ class Priority
      * but will still generate a popup/scrolling notification depending on the client operating system.
      * Messages delivered during a user's quiet hours are sent as though they had a priority of (-1).
      */
-    const LOW = -1;
+    public const LOW = -1;
 
     /**
      * Normal Priority.
@@ -51,7 +51,7 @@ class Priority
      * If a user has quiet hours set and your message is received during those times,
      * your message will be delivered as though it had a priority of -1.
      */
-    const NORMAL = 0;
+    public const NORMAL = 0;
 
     /**
      * High Priority.
@@ -60,7 +60,7 @@ class Priority
      * High-priority should only be used when necessary and appropriate.
      * High-priority messages are highlighted in red in the device clients.
      */
-    const HIGH = 1;
+    public const HIGH = 1;
 
     /**
      * Emergency Priority.
@@ -73,7 +73,7 @@ class Priority
      * To send an emergency-priority notification, the priority parameter must be set to 2
      * and the "retry" and "expire" parameters must be supplied.
      */
-    const EMERGENCY = 2;
+    public const EMERGENCY = 2;
 
     /**
      * Priority of the message.

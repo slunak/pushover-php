@@ -18,7 +18,7 @@ use Serhiy\Pushover\Recipient;
 
 class UserGroupValidationClient extends Client implements ClientInterface
 {
-    const API_PATH = "users/validate.json";
+    public const API_PATH = "users/validate.json";
 
     /**
      * @inheritDoc

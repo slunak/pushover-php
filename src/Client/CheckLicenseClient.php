@@ -19,7 +19,7 @@ use Serhiy\Pushover\Client\Curl\Curl;
  */
 class CheckLicenseClient extends Client implements ClientInterface
 {
-    const API_PATH = "licenses.json";
+    public const API_PATH = "licenses.json";
 
     /**
      * @var License
