@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
  */
 class SubscriptionClient extends Client implements ClientInterface
 {
-    const API_PATH = "subscriptions/migrate.json";
+    public const API_PATH = "subscriptions/migrate.json";
 
     /**
      * @inheritDoc

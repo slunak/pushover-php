@@ -26,7 +26,7 @@ class MessageClient extends Client implements ClientInterface
     /**
      * The path part of the API URL.
      */
-    const API_PATH = 'messages.json';
+    public const API_PATH = 'messages.json';
 
     public function __construct()
     {

@@ -26,16 +26,16 @@ use Serhiy\Pushover\Recipient;
 class License
 {
     /** License for Android devices */
-    const OS_ANDROID = 'Android';
+    public const OS_ANDROID = 'Android';
 
     /** License for iOS devices */
-    const OS_IOS = 'iOS';
+    public const OS_IOS = 'iOS';
 
     /** License for Desktop devices */
-    const OS_DESKTOP = 'Desktop';
+    public const OS_DESKTOP = 'Desktop';
 
     /** License for any device type */
-    const OS_ANY = null;
+    public const OS_ANY = null;
 
     /**
      * @var Application

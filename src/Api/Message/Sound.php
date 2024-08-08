@@ -19,73 +19,73 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 class Sound
 {
     /** Pushover (default) */
-    const PUSHOVER = 'pushover';
+    public const PUSHOVER = 'pushover';
 
     /** Bike */
-    const BIKE = 'bike';
+    public const BIKE = 'bike';
 
     /** Bugle  */
-    const BUGLE = 'bugle';
+    public const BUGLE = 'bugle';
 
     /** Cash Register */
-    const CASHREGISTER = 'cashregister';
+    public const CASHREGISTER = 'cashregister';
 
     /** Classical */
-    const CLASSICAL = 'classical';
+    public const CLASSICAL = 'classical';
 
     /** Cosmic */
-    const COSMIC = 'cosmic';
+    public const COSMIC = 'cosmic';
 
     /** Falling */
-    const FALLING = 'falling';
+    public const FALLING = 'falling';
 
     /** Gamelan  */
-    const GAMELAN = 'gamelan';
+    public const GAMELAN = 'gamelan';
 
     /** Incoming  */
-    const INCOMING = 'incoming';
+    public const INCOMING = 'incoming';
 
     /** Intermission  */
-    const INTERMISSION = 'intermission';
+    public const INTERMISSION = 'intermission';
 
     /** Magic */
-    const MAGIC = 'magic';
+    public const MAGIC = 'magic';
 
     /** Mechanical  */
-    const MECHANICAL = 'mechanical';
+    public const MECHANICAL = 'mechanical';
 
     /** Piano Bar  */
-    const PIANOBAR = 'pianobar';
+    public const PIANOBAR = 'pianobar';
 
     /** Siren */
-    const SIREN = 'siren';
+    public const SIREN = 'siren';
 
     /** Space Alarm  */
-    const SPACEALARM = 'spacealarm';
+    public const SPACEALARM = 'spacealarm';
 
     /** Tug Boat  */
-    const TUGBOAT = 'tugboat';
+    public const TUGBOAT = 'tugboat';
 
     /** Alien Alarm (long)  */
-    const ALIEN = 'alien';
+    public const ALIEN = 'alien';
 
     /** Climb (long) */
-    const CLIMB = 'climb';
+    public const CLIMB = 'climb';
 
     /** Persistent (long)  */
-    const PERSISTENT = 'persistent';
+    public const PERSISTENT = 'persistent';
 
     /** Pushover Echo (long) */
-    const ECHO = 'echo';
+    public const ECHO = 'echo';
 
     /** Up Down (long) */
-    const UPDOWN = 'updown';
+    public const UPDOWN = 'updown';
 
     /** Vibrate Only */
-    const VIBRATE = 'vibrate';
+    public const VIBRATE = 'vibrate';
 
     /** None (silent) */
-    const NONE = 'none';
+    public const NONE = 'none';
 
     /**
      * Notification Sound

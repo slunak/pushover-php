@@ -24,12 +24,12 @@ class Curl
     /**
      * API base URL.
      */
-    const API_BASE_URL = 'https://api.pushover.net';
+    public const API_BASE_URL = 'https://api.pushover.net';
 
     /**
      * API version.
      */
-    const API_VERSION = '1';
+    public const API_VERSION = '1';
 
     /**
      * Performs curl request.

@@ -23,12 +23,12 @@ class Request implements RequestInterface
     /**
      * HTTP GET method.
      */
-    const GET = "GET";
+    public const GET = "GET";
 
     /**
      * HTTP POST method.
      */
-    const POST = "POST";
+    public const POST = "POST";
 
     /**
      * @var string Either GET or POST.

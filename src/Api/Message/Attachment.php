@@ -27,42 +27,42 @@ class Attachment
     /**
      * Windows OS/2 Bitmap Graphics.
      */
-    const MIME_TYPE_JPEG = 'image/jpeg';
+    public const MIME_TYPE_JPEG = 'image/jpeg';
 
     /**
      * Portable Network Graphics.
      */
-    const MIME_TYPE_PNG = 'image/png';
+    public const MIME_TYPE_PNG = 'image/png';
 
     /**
      * Graphics Interchange Format (GIF).
      */
-    const MIME_TYPE_GIF = 'image/gif';
+    public const MIME_TYPE_GIF = 'image/gif';
 
     /**
      * Windows OS/2 Bitmap Graphics
      */
-    const MIME_TYPE_BMP = 'image/bmp';
+    public const MIME_TYPE_BMP = 'image/bmp';
 
     /**
      * Icon format
      */
-    const MIME_TYPE_ICO = 'image/vnd.microsoft.icon';
+    public const MIME_TYPE_ICO = 'image/vnd.microsoft.icon';
 
     /**
      * Scalable Vector Graphics (SVG)
      */
-    const MIME_TYPE_SVG = 'image/svg+xml';
+    public const MIME_TYPE_SVG = 'image/svg+xml';
 
     /**
      * Tagged Image File Format (TIFF)
      */
-    const MIME_TYPE_TIFF = 'image/tiff';
+    public const MIME_TYPE_TIFF = 'image/tiff';
 
     /**
      * WEBP image
      */
-    const MIME_TYPE_WEBP = 'image/webp';
+    public const MIME_TYPE_WEBP = 'image/webp';
 
     /**
      * MIME type.
@@ -128,7 +128,7 @@ class Attachment
         if (!in_array($mimeType, $this->getSupportedAttachmentTypes())) {
             throw new InvalidArgumentException(sprintf('Attachment type "%s" is not supported.', $mimeType));
         }
-        
+
         $this->mimeType = $mimeType;
     }
 
