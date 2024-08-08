@@ -14,8 +14,8 @@ namespace Api\Groups;
 use Serhiy\Pushover\Api\Groups\Group;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
-use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 use Serhiy\Pushover\Client\Response\CreateGroupResponse;
+use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 
 /**
  * @author Serhiy Lunak

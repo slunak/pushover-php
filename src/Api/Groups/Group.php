@@ -15,8 +15,8 @@ use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\GroupsClient;
 use Serhiy\Pushover\Client\Request\Request;
-use Serhiy\Pushover\Client\Response\CreateGroupResponse;
 use Serhiy\Pushover\Client\Response\AddUserToGroupResponse;
+use Serhiy\Pushover\Client\Response\CreateGroupResponse;
 use Serhiy\Pushover\Client\Response\DisableUserInGroupResponse;
 use Serhiy\Pushover\Client\Response\EnableUserInGroupResponse;
 use Serhiy\Pushover\Client\Response\RemoveUserFromGroupResponse;
@@ -58,7 +58,7 @@ class Group
     private $users;
 
     /**
-     * @param string $key Group key. (Put str_repeat('0', 30) before creating new group)
+     * @param string $key Group key. (Use any valid key or placeholder e.g. str_repeat('0', 30) if you are creating a group)
      *
      * @throws InvalidArgumentException
      */
@@ -128,7 +128,7 @@ class Group
     }
 
     /**
-     * Create the group. Reflected in the API and in the group editor on our website.
+     * Create a group.
      */
     public function create(string $name): CreateGroupResponse
     {
