@@ -16,6 +16,7 @@ use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\GroupsClient;
 use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Client\Response\AddUserToGroupResponse;
+use Serhiy\Pushover\Client\Response\CreateGroupResponse;
 use Serhiy\Pushover\Client\Response\DisableUserInGroupResponse;
 use Serhiy\Pushover\Client\Response\EnableUserInGroupResponse;
 use Serhiy\Pushover\Client\Response\RemoveUserFromGroupResponse;
@@ -56,6 +57,11 @@ class Group
      */
     private $users;
 
+    /**
+     * @param string $key Group key. (Use any valid key or placeholder e.g. str_repeat('0', 30) if you are creating a group)
+     *
+     * @throws InvalidArgumentException
+     */
     public function __construct(string $key, Application $application)
     {
         if (1 != preg_match("/^[a-zA-Z0-9]{30}$/", $key)) {
@@ -117,6 +123,24 @@ class Group
             $this->name = $response->getName();
             $this->users = $response->getUsers();
         }
+
+        return $response;
+    }
+
+    /**
+     * Create a group.
+     */
+    public function create(string $name): CreateGroupResponse
+    {
+        $this->name = $name;
+
+        $client = new GroupsClient($this, GroupsClient::ACTION_CREATE_GROUP);
+        $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields());
+
+        $curlResponse = Curl::do($request);
+
+        $response = new CreateGroupResponse($curlResponse);
+        $response->setRequest($request);
 
         return $response;
     }

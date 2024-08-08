@@ -27,6 +27,7 @@ class GroupsClient extends Client implements ClientInterface
     const ACTION_DISABLE_USER = "disable_user";
     const ACTION_ENABLE_USER = "enable_user";
     const ACTION_RENAME_GROUP = "rename";
+    const ACTION_CREATE_GROUP = "create";
 
     /**
      * @var Group
@@ -53,6 +54,10 @@ class GroupsClient extends Client implements ClientInterface
      */
     public function buildApiUrl()
     {
+        if ($this->action == self::ACTION_CREATE_GROUP) {
+            return Curl::API_BASE_URL."/".Curl::API_VERSION."/groups.json";
+        }
+        
         if ($this->action == self::ACTION_RETRIEVE_GROUP) {
             return Curl::API_BASE_URL."/".Curl::API_VERSION."/groups/".$this->group->getKey().".json?token=".$this->group->getApplication()->getToken();
         }
@@ -89,7 +94,9 @@ class GroupsClient extends Client implements ClientInterface
             }
         }
 
-        if ($this->action == self::ACTION_RENAME_GROUP) {
+        if ($this->action == self::ACTION_RENAME_GROUP ||
+            $this->action == self::ACTION_CREATE_GROUP
+        ) {
             $curlPostFields["name"] = $this->group->getName();
         }
 
