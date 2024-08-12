@@ -44,6 +44,10 @@ class GroupsClientTest extends TestCase
 
         $client = new GroupsClient($group, GroupsClient::ACTION_ADD_USER);
         $this->assertEquals("https://api.pushover.net/1/groups/eeee5555EEEE5555ffff6666FFFF66/add_user.json?token=cccc3333CCCC3333dddd4444DDDD44", $client->buildApiUrl());
+        
+        $client = new GroupsClient($group, GroupsClient::ACTION_LIST_GROUPS);
+        $this->assertEquals("https://api.pushover.net/1/groups.json?token=cccc3333CCCC3333dddd4444DDDD44", $client->buildApiUrl());
+        
     }
 
     public function testBuildCurlPostFields()

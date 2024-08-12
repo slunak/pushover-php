@@ -26,6 +26,7 @@ Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pus
   - Cancel emergency priority retry
 - Groups API ([Example](Example/GroupsExample.php))
   - Create a group
+  - List groups
   - Retrieve information about the group
   - Add / Remove users
   - Enable / Disable users
