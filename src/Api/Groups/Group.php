@@ -17,7 +17,7 @@ use Serhiy\Pushover\Client\GroupsClient;
 use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Client\Response\AddUserToGroupResponse;
 use Serhiy\Pushover\Client\Response\CreateGroupResponse;
-use Serhiy\Pushover\Client\Response\ListGroupResponse;
+use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 use Serhiy\Pushover\Client\Response\DisableUserInGroupResponse;
 use Serhiy\Pushover\Client\Response\EnableUserInGroupResponse;
 use Serhiy\Pushover\Client\Response\RemoveUserFromGroupResponse;
@@ -149,14 +149,14 @@ class Group
     /**
      * List the groups.
      */
-    public function list(): ListGroupResponse
+    public function list(): ListGroupsResponse
     {
         $client = new GroupsClient($this, GroupsClient::ACTION_LIST_GROUPS);
         $request = new Request($client->buildApiUrl(), Request::GET);
 
         $curlResponse = Curl::do($request);
 
-        $response = new ListGroupResponse($curlResponse);
+        $response = new ListGroupsResponse($curlResponse);
         $response->setRequest($request);
 
         return $response;
