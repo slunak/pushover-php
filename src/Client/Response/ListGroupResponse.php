@@ -36,9 +36,12 @@ class ListGroupResponse extends Response
      */
     private function processCurlResponse($curlResponse): void
     {
+        $this->groups = [];
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
-        foreach ($decodedCurlResponse->groups as $grp) {
-            $this->groups[$grp->name] = $grp->group;
+        if (property_exists($decodedCurlResponse, 'groups')) {
+            foreach ($decodedCurlResponse->groups as $grp) {
+                $this->groups[$grp->name] = $grp->group;
+            }
         }
     }
 
