@@ -79,4 +79,18 @@ class GroupTest extends TestCase
 
         $this->assertInstanceOf(CreateGroupResponse::class, $response);
     }    
+    
+    /**
+     * @group Integration
+     */
+    public function testList()
+    {
+        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application);
+
+        $response = $group->list();
+
+        $this->assertInstanceOf(ListGroupResponse::class, $response);
+    }    
+    
 }
