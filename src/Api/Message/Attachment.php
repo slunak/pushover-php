@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -96,6 +96,7 @@ class Attachment
     public static function getSupportedAttachmentTypes(): array
     {
         $oClass = new \ReflectionClass(__CLASS__);
+
         return $oClass->getConstants();
     }
 
@@ -107,46 +108,34 @@ class Attachment
      */
     public static function getSupportedAttachmentExtensions(): array
     {
-        return array(
-            'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp'
-        );
+        return [
+            'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp',
+        ];
     }
 
-    /**
-     * @return string
-     */
     public function getMimeType(): string
     {
         return $this->mimeType;
     }
 
-    /**
-     * @param string $mimeType
-     */
     public function setMimeType(string $mimeType): void
     {
-        if (!in_array($mimeType, $this->getSupportedAttachmentTypes())) {
+        if (!\in_array($mimeType, $this->getSupportedAttachmentTypes(), true)) {
             throw new InvalidArgumentException(sprintf('Attachment type "%s" is not supported.', $mimeType));
         }
 
         $this->mimeType = $mimeType;
     }
 
-    /**
-     * @return string
-     */
     public function getFilename(): string
     {
         return $this->filename;
     }
 
-    /**
-     * @param string $filename
-     */
     public function setFilename(string $filename): void
     {
-        if (!in_array(pathinfo($filename, PATHINFO_EXTENSION), $this->getSupportedAttachmentExtensions())) {
-            throw new InvalidArgumentException(sprintf('Attachment extension "%s" is not supported.', pathinfo($filename, PATHINFO_EXTENSION)));
+        if (!\in_array(pathinfo($filename, \PATHINFO_EXTENSION), $this->getSupportedAttachmentExtensions(), true)) {
+            throw new InvalidArgumentException(sprintf('Attachment extension "%s" is not supported.', pathinfo($filename, \PATHINFO_EXTENSION)));
         }
 
         $this->filename = $filename;

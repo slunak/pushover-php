@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -33,29 +33,28 @@ class MessageClient extends Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildApiUrl(): string
     {
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/".self::API_PATH;
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
     }
 
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @param Notification $notification
      * @return array[]
      */
     public function buildCurlPostFields(Notification $notification): array
     {
-        $curlPostFields = array(
-            "token" => $notification->getApplication()->getToken(),
-            "user" => $notification->getRecipient()->getUserKey(),
-            "message" => $notification->getMessage()->getMessage(),
-            "timestamp" => $notification->getMessage()->getTimestamp(),
-        );
+        $curlPostFields = [
+            'token' => $notification->getApplication()->getToken(),
+            'user' => $notification->getRecipient()->getUserKey(),
+            'message' => $notification->getMessage()->getMessage(),
+            'timestamp' => $notification->getMessage()->getTimestamp(),
+        ];
 
-        if (! empty($notification->getRecipient()->getDevice())) {
+        if (!empty($notification->getRecipient()->getDevice())) {
             $curlPostFields['device'] = $notification->getRecipient()->getDeviceListCommaSeparated();
         }
 
@@ -101,7 +100,7 @@ class MessageClient extends Client implements ClientInterface
         }
 
         if (null !== $notification->getAttachment()) {
-            if (! is_readable($notification->getAttachment()->getFilename())) {
+            if (!is_readable($notification->getAttachment()->getFilename())) {
                 throw new LogicException(sprintf('File "%s" does not exist or is not readable.', $notification->getAttachment()->getFilename()));
             }
 
@@ -111,7 +110,7 @@ class MessageClient extends Client implements ClientInterface
 
             $curlPostFields['attachment'] = curl_file_create(
                 $notification->getAttachment()->getFilename(),
-                $notification->getAttachment()->getMimeType()
+                $notification->getAttachment()->getMimeType(),
             );
         }
 

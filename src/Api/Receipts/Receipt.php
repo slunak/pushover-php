@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -38,18 +38,11 @@ class Receipt
         $this->application = $application;
     }
 
-    /**
-     * @return Application
-     */
     public function getApplication(): Application
     {
         return $this->application;
     }
 
-    /**
-     * @param string $receipt
-     * @return ReceiptResponse
-     */
     public function query(string $receipt): ReceiptResponse
     {
         $client = new ReceiptClient($this->application, $receipt);
@@ -63,10 +56,6 @@ class Receipt
         return $response;
     }
 
-    /**
-     * @param string $receipt
-     * @return CancelRetryResponse
-     */
     public function cancelRetry(string $receipt): CancelRetryResponse
     {
         $client = new CancelRetryClient($receipt);

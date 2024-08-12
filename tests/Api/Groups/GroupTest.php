@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -22,13 +22,10 @@ use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
  */
 class GroupTest extends TestCase
 {
-    /**
-     * @return Group
-     */
     public function testCanBeCreated(): Group
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application); // using dummy group key
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key
 
         $this->assertInstanceOf(Group::class, $group);
 
@@ -37,21 +34,19 @@ class GroupTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Group $group
      */
     public function testGetApplication(Group $group)
     {
         $this->assertInstanceOf(Application::class, $group->getApplication());
-        $this->assertEquals("cccc3333CCCC3333dddd4444DDDD44", $group->getApplication()->getToken());
+        $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $group->getApplication()->getToken());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Group $group
      */
     public function testGetKey(Group $group)
     {
-        $this->assertEquals("eeee5555EEEE5555ffff6666FFFF66", $group->getKey());
+        $this->assertEquals('eeee5555EEEE5555ffff6666FFFF66', $group->getKey());
     }
 
     /**
@@ -59,24 +54,24 @@ class GroupTest extends TestCase
      */
     public function testRetrieveGroupInformation()
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application);
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application);
 
         $response = $group->retrieveGroupInformation();
 
         $this->assertInstanceOf(RetrieveGroupResponse::class, $response);
     }
-    
+
     /**
      * @group Integration
      */
     public function testCreate()
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application);
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application);
 
-        $response = $group->create('unit test '. date('Y-m-d H:i:s'));
+        $response = $group->create('unit test '.date('Y-m-d H:i:s'));
 
         $this->assertInstanceOf(CreateGroupResponse::class, $response);
-    }    
+    }
 }

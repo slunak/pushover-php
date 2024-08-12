@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -36,9 +36,6 @@ class MessageResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
-    /**
-     * @return string
-     */
     public function getReceipt(): string
     {
         return $this->receipt;

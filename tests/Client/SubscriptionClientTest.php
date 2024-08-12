@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -32,41 +32,41 @@ class SubscriptionClientTest extends TestCase
 
     public function testBuildCurlPostFields()
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
-        $subscription = new Subscription($application, "dummy-subscription-aaa111bbb222ccc"); // using dummy subscription code
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
+        $subscription = new Subscription($application, 'dummy-subscription-aaa111bbb222ccc'); // using dummy subscription code
 
         $client = new SubscriptionClient();
 
         // only required parameters
-        $curlPostFields = array(
-            "token" => "cccc3333CCCC3333dddd4444DDDD44",
-            "subscription" => "dummy-subscription-aaa111bbb222ccc",
-            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
-        );
+        $curlPostFields = [
+            'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+            'subscription' => 'dummy-subscription-aaa111bbb222ccc',
+            'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
+        ];
 
         $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient));
 
         // add recipient device
-        $recipient->addDevice("test-device-1");
+        $recipient->addDevice('test-device-1');
 
-        $curlPostFields = array(
-            "token" => "cccc3333CCCC3333dddd4444DDDD44",
-            "subscription" => "dummy-subscription-aaa111bbb222ccc",
-            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
-            "device_name" => "test-device-1",
-        );
+        $curlPostFields = [
+            'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+            'subscription' => 'dummy-subscription-aaa111bbb222ccc',
+            'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
+            'device_name' => 'test-device-1',
+        ];
 
         $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient));
 
         // add sound
-        $curlPostFields = array(
-            "token" => "cccc3333CCCC3333dddd4444DDDD44",
-            "subscription" => "dummy-subscription-aaa111bbb222ccc",
-            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
-            "device_name" => "test-device-1",
-            "sound" => "pushover",
-        );
+        $curlPostFields = [
+            'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+            'subscription' => 'dummy-subscription-aaa111bbb222ccc',
+            'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
+            'device_name' => 'test-device-1',
+            'sound' => 'pushover',
+        ];
 
         $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient, new Sound(Sound::PUSHOVER)));
     }
@@ -75,6 +75,6 @@ class SubscriptionClientTest extends TestCase
     {
         $client = new SubscriptionClient();
 
-        $this->assertEquals("https://api.pushover.net/1/subscriptions/migrate.json", $client->buildApiUrl());
+        $this->assertEquals('https://api.pushover.net/1/subscriptions/migrate.json', $client->buildApiUrl());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -22,35 +22,32 @@ use Serhiy\Pushover\Recipient;
  */
 class SubscriptionClient extends Client implements ClientInterface
 {
-    public const API_PATH = "subscriptions/migrate.json";
+    public const API_PATH = 'subscriptions/migrate.json';
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildApiUrl()
     {
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/".self::API_PATH;
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
     }
 
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @param Subscription $subscription
-     * @param Recipient $recipient
-     * @param Sound|null $sound
      * @return array[]
      */
     public function buildCurlPostFields(Subscription $subscription, Recipient $recipient, Sound $sound = null): array
     {
-        $curlPostFields = array(
-            "token" => $subscription->getApplication()->getToken(),
-            "subscription" => $subscription->getSubscriptionCode(),
-            "user" => $recipient->getUserKey(),
-        );
+        $curlPostFields = [
+            'token' => $subscription->getApplication()->getToken(),
+            'subscription' => $subscription->getSubscriptionCode(),
+            'user' => $recipient->getUserKey(),
+        ];
 
-        if (! empty($recipient->getDevice())) {
-            if (count($recipient->getDevice()) > 1) {
-                throw new LogicException(sprintf('Only one device is supported. "%s" devices provided.', count($recipient->getDevice())));
+        if (!empty($recipient->getDevice())) {
+            if (\count($recipient->getDevice()) > 1) {
+                throw new LogicException(sprintf('Only one device is supported. "%s" devices provided.', \count($recipient->getDevice())));
             }
 
             $curlPostFields['device_name'] = $recipient->getDeviceListCommaSeparated();

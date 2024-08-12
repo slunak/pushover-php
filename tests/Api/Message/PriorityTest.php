@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -62,12 +62,12 @@ class PriorityTest extends TestCase
 
     /**
      * @depends testCanBeCreatedWithEmergencyPriority
-     * @param Priority $priority
+     *
      * @return Priority
      */
     public function testSetCallback(Priority $priority)
     {
-        $priority->setCallback("https://callback.example.com");
+        $priority->setCallback('https://callback.example.com');
 
         $this->assertInstanceOf(Priority::class, $priority);
 
@@ -76,16 +76,14 @@ class PriorityTest extends TestCase
 
     /**
      * @depends testSetCallback
-     * @param Priority $priority
      */
     public function testGetCallback(Priority $priority)
     {
-        $this->assertEquals("https://callback.example.com", $priority->getCallback());
+        $this->assertEquals('https://callback.example.com', $priority->getCallback());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Priority $priority
      */
     public function testAvailablePriorities(Priority $priority)
     {

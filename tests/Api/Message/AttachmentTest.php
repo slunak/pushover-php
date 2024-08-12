@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -44,7 +44,6 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
     public function testGetMimeType(Attachment $attachment)
     {
@@ -53,7 +52,6 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
     public function testGetFilename(Attachment $attachment)
     {
@@ -62,7 +60,6 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
     public function testSetMimeType(Attachment $attachment)
     {
@@ -75,7 +72,6 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
     public function testSetFilename(Attachment $attachment)
     {
@@ -88,7 +84,6 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
     public function testGetSupportedAttachmentTypes(Attachment $attachment)
     {
@@ -99,13 +94,12 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
     public function testGetSupportedAttachmentExtensions(Attachment $attachment)
     {
-        $supportedAttachmentExtensions = array(
-            'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp'
-        );
+        $supportedAttachmentExtensions = [
+            'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp',
+        ];
 
         $this->assertEquals($supportedAttachmentExtensions, $attachment->getSupportedAttachmentExtensions());
     }

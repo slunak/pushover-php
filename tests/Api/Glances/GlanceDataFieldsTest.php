@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -31,51 +31,51 @@ class GlanceDataFieldsTest extends TestCase
     {
         $glanceDataFields = new GlanceDataFields();
 
-        $glanceDataFields->setTitle("This is test title");
-        $this->assertEquals("This is test title", $glanceDataFields->getTitle());
+        $glanceDataFields->setTitle('This is test title');
+        $this->assertEquals('This is test title', $glanceDataFields->getTitle());
 
         $glanceDataFields->setTitle(null);
         $this->assertNull($glanceDataFields->getTitle());
 
-        $glanceDataFields->setTitle("");
-        $this->assertEquals("", $glanceDataFields->getTitle());
+        $glanceDataFields->setTitle('');
+        $this->assertEquals('', $glanceDataFields->getTitle());
 
         $this->expectException(InvalidArgumentException::class);
-        $glanceDataFields->setTitle("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        $glanceDataFields->setTitle('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     }
 
     public function testSetText()
     {
         $glanceDataFields = new GlanceDataFields();
 
-        $glanceDataFields->setText("This is test text");
-        $this->assertEquals("This is test text", $glanceDataFields->getText());
+        $glanceDataFields->setText('This is test text');
+        $this->assertEquals('This is test text', $glanceDataFields->getText());
 
         $glanceDataFields->setText(null);
         $this->assertNull($glanceDataFields->getText());
 
-        $glanceDataFields->setText("");
-        $this->assertEquals("", $glanceDataFields->getText());
+        $glanceDataFields->setText('');
+        $this->assertEquals('', $glanceDataFields->getText());
 
         $this->expectException(InvalidArgumentException::class);
-        $glanceDataFields->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        $glanceDataFields->setText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     }
 
     public function testSetSubtext()
     {
         $glanceDataFields = new GlanceDataFields();
 
-        $glanceDataFields->setSubtext("This is test subtext");
-        $this->assertEquals("This is test subtext", $glanceDataFields->getSubtext());
+        $glanceDataFields->setSubtext('This is test subtext');
+        $this->assertEquals('This is test subtext', $glanceDataFields->getSubtext());
 
         $glanceDataFields->setSubtext(null);
         $this->assertNull($glanceDataFields->getSubtext());
 
-        $glanceDataFields->setSubtext("");
-        $this->assertEquals("", $glanceDataFields->getSubtext());
+        $glanceDataFields->setSubtext('');
+        $this->assertEquals('', $glanceDataFields->getSubtext());
 
         $this->expectException(InvalidArgumentException::class);
-        $glanceDataFields->setSubtext("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        $glanceDataFields->setSubtext('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     }
 
     public function testSetCount()

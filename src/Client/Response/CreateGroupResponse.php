@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -32,19 +32,19 @@ class CreateGroupResponse extends Response
     }
 
     /**
+     * @return string Group key obtained
+     */
+    public function getGroupKey(): string
+    {
+        return $this->groupKey;
+    }
+
+    /**
      * @param mixed $curlResponse
      */
     private function processCurlResponse($curlResponse): void
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
         $this->groupKey = property_exists($decodedCurlResponse, 'group') ? $decodedCurlResponse->group : null;
-    }
-
-    /**
-     * @return string Group key obtained
-     */
-    public function getGroupKey(): string
-    {
-        return $this->groupKey;
     }
 }

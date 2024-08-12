@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -22,14 +22,13 @@ class CustomSoundTest extends TestCase
 {
     public function testCanBeCreated()
     {
-        $this->assertInstanceOf(CustomSound::class, $customSound = new CustomSound("door_open"));
+        $this->assertInstanceOf(CustomSound::class, $customSound = new CustomSound('door_open'));
 
         return $customSound;
     }
 
     /**
      * @depends testCanBeCreated
-     * @param CustomSound $customSound
      */
     public function testGetCustomSound(CustomSound $customSound)
     {
@@ -38,53 +37,49 @@ class CustomSoundTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param CustomSound $customSound
      */
     public function testSetCustomSound(CustomSound $customSound)
     {
-        $customSound->setCustomSound("warning");
+        $customSound->setCustomSound('warning');
 
         $this->assertEquals('warning', $customSound->getCustomSound());
 
-        $customSound->setCustomSound("door_open");
+        $customSound->setCustomSound('door_open');
 
         $this->assertEquals('door_open', $customSound->getCustomSound());
 
-        $customSound->setCustomSound("bell-sound");
+        $customSound->setCustomSound('bell-sound');
 
         $this->assertEquals('bell-sound', $customSound->getCustomSound());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param CustomSound $customSound
      */
     public function testSetExistingCustomSound(CustomSound $customSound)
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $customSound->setCustomSound("echo");
+        $customSound->setCustomSound('echo');
     }
 
     /**
      * @depends testCanBeCreated
-     * @param CustomSound $customSound
      */
     public function testSetInvalidCustomSound(CustomSound $customSound)
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $customSound->setCustomSound("warning+door_open");
+        $customSound->setCustomSound('warning+door_open');
     }
 
     /**
      * @depends testCanBeCreated
-     * @param CustomSound $customSound
      */
     public function testSetLongCustomSound(CustomSound $customSound)
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $customSound->setCustomSound("warning_door_open_warning_door_open");
+        $customSound->setCustomSound('warning_door_open_warning_door_open');
     }
 }
