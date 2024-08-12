@@ -147,7 +147,7 @@ class Group
     }
 
     /**
-     * List the groups.
+     * List groups.
      */
     public function list(): ListGroupsResponse
     {

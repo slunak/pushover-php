@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\CreateGroupResponse;
 use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
-use Serhiy\Pushover\Client\Response\ListGroupResponse;
+use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 
 /**
  * @author Serhiy Lunak
@@ -91,7 +91,7 @@ class GroupTest extends TestCase
 
         $response = $group->list();
 
-        $this->assertInstanceOf(ListGroupResponse::class, $response);
+        $this->assertInstanceOf(ListGroupsResponse::class, $response);
     }    
     
 }
