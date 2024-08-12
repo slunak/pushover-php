@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -86,14 +86,15 @@ class Priority
      * Specifies how often (in seconds) the Pushover servers will send the same notification to the user.
      * Used only and required with Emergency Priority.
      *
-     * @var int|null
+     * @var null|int
      */
     private $retry;
 
     /**
      * Specifies how many seconds your notification will continue to be retried for (every "retry" seconds).
      * Used only and required with Emergency Priority.
-     * @var int|null
+     *
+     * @var null|int
      */
     private $expire;
 
@@ -101,7 +102,7 @@ class Priority
      * (Optional) may be supplied with a publicly-accessible URL that our servers will send a request to when the user has acknowledged your notification.
      * Used only but not required with Emergency Priority.
      *
-     * @var string|null
+     * @var null|string
      */
     private $callback;
 
@@ -131,28 +132,20 @@ class Priority
     public static function getAvailablePriorities(): array
     {
         $oClass = new \ReflectionClass(__CLASS__);
+
         return $oClass->getConstants();
     }
 
-    /**
-     * @return int
-     */
     public function getPriority(): int
     {
         return $this->priority;
     }
 
-    /**
-     * @return int|null
-     */
     public function getRetry(): ?int
     {
         return $this->retry;
     }
 
-    /**
-     * @param int|null $retry
-     */
     public function setRetry(?int $retry): void
     {
         if ($retry < 30) {
@@ -162,17 +155,11 @@ class Priority
         $this->retry = $retry;
     }
 
-    /**
-     * @return int|null
-     */
     public function getExpire(): ?int
     {
         return $this->expire;
     }
 
-    /**
-     * @param int|null $expire
-     */
     public function setExpire(?int $expire): void
     {
         if ($expire > 10800) {
@@ -182,17 +169,11 @@ class Priority
         $this->expire = $expire;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCallback(): ?string
     {
         return $this->callback;
     }
 
-    /**
-     * @param string|null $callback
-     */
     public function setCallback(?string $callback): void
     {
         $this->callback = $callback;

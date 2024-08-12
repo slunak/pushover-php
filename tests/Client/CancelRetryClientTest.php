@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -21,12 +21,9 @@ use Serhiy\Pushover\Client\CancelRetryClient;
  */
 class CancelRetryClientTest extends TestCase
 {
-    /**
-     * @return CancelRetryClient
-     */
     public function testCabBeCreated(): CancelRetryClient
     {
-        $client = new CancelRetryClient("gggg7777GGGG7777hhhh8888HHHH88"); // using dummy receipt
+        $client = new CancelRetryClient('gggg7777GGGG7777hhhh8888HHHH88'); // using dummy receipt
 
         $this->assertInstanceOf(CancelRetryClient::class, $client);
 
@@ -35,29 +32,27 @@ class CancelRetryClientTest extends TestCase
 
     /**
      * @depends testCabBeCreated
-     * @param CancelRetryClient $client
      */
     public function testBuildCurlPostFields(CancelRetryClient $client)
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $receipt = new Receipt($application);
 
         $curlPostFields = $client->buildCurlPostFields($receipt); // using dummy receipt
 
-        $this->assertEquals(array(
-            "token" => "cccc3333CCCC3333dddd4444DDDD44",
-        ), $curlPostFields);
+        $this->assertEquals([
+            'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+        ], $curlPostFields);
     }
 
     /**
      * @depends testCabBeCreated
-     * @param CancelRetryClient $client
      */
     public function testBuildApiUrl(CancelRetryClient $client)
     {
         $this->assertEquals(
-            "https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88/cancel.json",
-            $client->buildApiUrl()
+            'https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88/cancel.json',
+            $client->buildApiUrl(),
         );
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -23,20 +23,20 @@ class Request implements RequestInterface
     /**
      * HTTP GET method.
      */
-    public const GET = "GET";
+    public const GET = 'GET';
 
     /**
      * HTTP POST method.
      */
-    public const POST = "POST";
+    public const POST = 'POST';
 
     /**
-     * @var string Either GET or POST.
+     * @var string either GET or POST
      */
     private $method;
 
     /**
-     * @var string Full API URL.
+     * @var string full API URL
      */
     private $apiUrl;
 
@@ -45,15 +45,14 @@ class Request implements RequestInterface
      *
      * Array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @var array[]|null
+     * @var null|array[]
      */
     private $curlPostFields;
 
     /**
      * Request constructor.
-     * @param string $apiUrl
-     * @param string $method
-     * @param array[]|null $curlPostFields
+     *
+     * @param null|array[] $curlPostFields
      */
     public function __construct(string $apiUrl, string $method, array $curlPostFields = null)
     {
@@ -69,8 +68,6 @@ class Request implements RequestInterface
 
     /**
      * Returns API URL
-     *
-     * @return string
      */
     public function getApiUrl(): string
     {
@@ -78,7 +75,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * @return array[]|null
+     * @return null|array[]
      */
     public function getCurlPostFields(): ?array
     {

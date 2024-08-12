@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -20,13 +20,13 @@ class CheckLicenseClientTest extends TestCase
 {
     public function testBuildApiUrl()
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $license = new License($application);
 
         $client = new CheckLicenseClient($license);
 
         $this->assertInstanceOf(CheckLicenseClient::class, $client);
 
-        $this->assertEquals("https://api.pushover.net/1/licenses.json?token=cccc3333CCCC3333dddd4444DDDD44", $client->buildApiUrl());
+        $this->assertEquals('https://api.pushover.net/1/licenses.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
     }
 }

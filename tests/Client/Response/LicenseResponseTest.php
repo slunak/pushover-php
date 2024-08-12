@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -26,7 +26,7 @@ class LicenseResponseTest extends TestCase
 
         $this->assertInstanceOf(LicenseResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
         $this->assertEquals(5, $response->getCredits());
 
         $unSuccessfulCurlResponse = '{"token":"is out of available license credits","errors":["application is out of available license credits"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
@@ -34,8 +34,8 @@ class LicenseResponseTest extends TestCase
 
         $this->assertInstanceOf(LicenseResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
-        $this->assertEquals(array(0 => "application is out of available license credits"), $response->getErrors());
+        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertEquals([0 => 'application is out of available license credits'], $response->getErrors());
     }
 
     public function testGetCredits()

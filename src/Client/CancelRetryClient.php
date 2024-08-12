@@ -20,7 +20,7 @@ use Serhiy\Pushover\Client\Curl\Curl;
 class CancelRetryClient extends Client implements ClientInterface
 {
     /**
-     * @var string 30 character string.
+     * @var string 30 character string
      */
     private $receipt;
 
@@ -30,23 +30,22 @@ class CancelRetryClient extends Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildApiUrl(): string
     {
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/receipts/".$this->receipt."/cancel.json";
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/receipts/'.$this->receipt.'/cancel.json';
     }
 
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @param Receipt $receipt
      * @return array[]
      */
     public function buildCurlPostFields(Receipt $receipt): array
     {
-        return array(
+        return [
             'token' => $receipt->getApplication()->getToken(),
-        );
+        ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -41,20 +41,9 @@ class UserGroupValidationResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
-    /**
-     * @return bool
-     */
     public function isGroup(): bool
     {
         return $this->isGroup;
-    }
-
-    /**
-     * @param bool $isGroup
-     */
-    private function setIsGroup(bool $isGroup): void
-    {
-        $this->isGroup = $isGroup;
     }
 
     /**
@@ -66,19 +55,24 @@ class UserGroupValidationResponse extends Response
     }
 
     /**
-     * @param array<string> $devices
-     */
-    private function setDevices(array $devices): void
-    {
-        $this->devices = $devices;
-    }
-
-    /**
      * @return array<string>
      */
     public function getLicenses(): array
     {
         return $this->licenses;
+    }
+
+    private function setIsGroup(bool $isGroup): void
+    {
+        $this->isGroup = $isGroup;
+    }
+
+    /**
+     * @param array<string> $devices
+     */
+    private function setDevices(array $devices): void
+    {
+        $this->devices = $devices;
     }
 
     /**

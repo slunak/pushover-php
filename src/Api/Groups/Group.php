@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -39,22 +39,22 @@ use Serhiy\Pushover\Recipient;
 class Group
 {
     /**
-     * @var string Group key.
+     * @var string group key
      */
     private $key;
 
     /**
-     * @var Application Pushover application this group belongs to.
+     * @var Application pushover application this group belongs to
      */
     private $application;
 
     /**
-     * @var string Name of the group.
+     * @var string name of the group
      */
     private $name;
 
     /**
-     * @var Recipient[] Group users.
+     * @var Recipient[] group users
      */
     private $users;
 
@@ -65,7 +65,7 @@ class Group
      */
     public function __construct(string $key, Application $application)
     {
-        if (1 != preg_match("/^[a-zA-Z0-9]{30}$/", $key)) {
+        if (1 != preg_match('/^[a-zA-Z0-9]{30}$/', $key)) {
             throw new InvalidArgumentException(sprintf('Group identifiers are 30 characters long, case-sensitive, and may contain the character set [A-Za-z0-9]. "%s" given."', $key));
         }
 
@@ -73,17 +73,11 @@ class Group
         $this->application = $application;
     }
 
-    /**
-     * @return string
-     */
     public function getKey(): string
     {
         return $this->key;
     }
 
-    /**
-     * @return Application
-     */
     public function getApplication(): Application
     {
         return $this->application;
@@ -97,9 +91,6 @@ class Group
         return $this->users;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -107,8 +98,6 @@ class Group
 
     /**
      * Retrieves information about the group from the API and populates the object with it.
-     *
-     * @return RetrieveGroupResponse
      */
     public function retrieveGroupInformation(): RetrieveGroupResponse
     {
@@ -166,7 +155,6 @@ class Group
     /**
      * Adds an existing Pushover user to your Delivery Group.
      *
-     * @param Recipient $recipient
      * @return AddUserToGroupResponse
      */
     public function addUser(Recipient $recipient)
@@ -184,9 +172,6 @@ class Group
 
     /**
      * Removes user to from Delivery Group.
-     *
-     * @param Recipient $recipient
-     * @return RemoveUserFromGroupResponse
      */
     public function removeUser(Recipient $recipient): RemoveUserFromGroupResponse
     {
@@ -203,9 +188,6 @@ class Group
 
     /**
      * Enables user in Delivery Group.
-     *
-     * @param Recipient $recipient
-     * @return EnableUserInGroupResponse
      */
     public function enableUser(Recipient $recipient): EnableUserInGroupResponse
     {
@@ -222,9 +204,6 @@ class Group
 
     /**
      * Disables user in Delivery Group.
-     *
-     * @param Recipient $recipient
-     * @return DisableUserInGroupResponse
      */
     public function disableUser(Recipient $recipient): DisableUserInGroupResponse
     {
@@ -241,9 +220,6 @@ class Group
 
     /**
      * Renames the group. Reflected in the API and in the group editor on our website.
-     *
-     * @param string $name
-     * @return RenameGroupResponse
      */
     public function rename(string $name): RenameGroupResponse
     {

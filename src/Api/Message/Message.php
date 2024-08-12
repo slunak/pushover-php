@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -34,21 +34,21 @@ class Message
     /**
      * Your message's title, otherwise your app's name is used.
      *
-     * @var string|null
+     * @var null|string
      */
     private $title;
 
     /**
      * A supplementary URL to show with your message.
      *
-     * @var string|null
+     * @var null|string
      */
     private $url;
 
     /**
      * A title for your supplementary URL, otherwise just the URL is shown.
      *
-     * @var string|null
+     * @var null|string
      */
     private $urlTitle;
 
@@ -59,7 +59,7 @@ class Message
      * or 2 to also require confirmation from the user.
      * See {@link https://pushover.net/api#priority} for more information.
      *
-     * @var Priority|null
+     * @var null|Priority
      */
     private $priority;
 
@@ -68,7 +68,7 @@ class Message
      * As of version 2.3 of our device clients, messages can be formatted with HTML tags.
      * See {@link https://pushover.net/api#html} for more information.
      *
-     * @var bool|null
+     * @var null|bool
      */
     private $isHtml = false;
 
@@ -94,10 +94,9 @@ class Message
      *
      * The ttl value must be a positive number of seconds, and is counted from the time the message is received by our API.
      *
-     * @var int|null
+     * @var null|int
      */
     private $ttl;
-
 
     public function __construct(string $message, string $title = null)
     {
@@ -110,149 +109,101 @@ class Message
         $this->timestamp = new \DateTime();
     }
 
-    /**
-     * @return string
-     */
     public function getMessage(): string
     {
         return $this->message;
     }
 
-    /**
-     * @param string $message
-     */
     public function setMessage(string $message): void
     {
-        if (strlen($message) > 1024) {
-            throw new InvalidArgumentException('Message contained ' . strlen($message) . ' characters. Messages are limited to 1024 4-byte UTF-8 characters.');
+        if (\strlen($message) > 1024) {
+            throw new InvalidArgumentException('Message contained '.\strlen($message).' characters. Messages are limited to 1024 4-byte UTF-8 characters.');
         }
 
         $this->message = $message;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
     public function setTitle(string $title): void
     {
-        if (strlen($title) > 250) {
-            throw new InvalidArgumentException('Title contained ' . strlen($title) . ' characters. Titles are limited to 250 characters.');
+        if (\strlen($title) > 250) {
+            throw new InvalidArgumentException('Title contained '.\strlen($title).' characters. Titles are limited to 250 characters.');
         }
 
         $this->title = $title;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUrl(): ?string
     {
         return $this->url;
     }
 
-    /**
-     * @param string $url
-     */
     public function setUrl(string $url): void
     {
-        if (strlen($url) > 512) {
-            throw new InvalidArgumentException('Supplementary URL contained ' . strlen($url) . ' characters. Supplementary URLs are limited to 512 characters.');
+        if (\strlen($url) > 512) {
+            throw new InvalidArgumentException('Supplementary URL contained '.\strlen($url).' characters. Supplementary URLs are limited to 512 characters.');
         }
 
         $this->url = $url;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUrlTitle(): ?string
     {
         return $this->urlTitle;
     }
 
-    /**
-     * @param string $urlTitle
-     */
     public function setUrlTitle(string $urlTitle): void
     {
-        if (strlen($urlTitle) > 100) {
-            throw new InvalidArgumentException('URL title contained ' . strlen($urlTitle) . ' characters. URL titles are limited to 100 characters.');
+        if (\strlen($urlTitle) > 100) {
+            throw new InvalidArgumentException('URL title contained '.\strlen($urlTitle).' characters. URL titles are limited to 100 characters.');
         }
 
         $this->urlTitle = $urlTitle;
     }
 
-    /**
-     * @return Priority|null
-     */
     public function getPriority(): ?Priority
     {
         return $this->priority;
     }
 
-    /**
-     * @param Priority|null $priority
-     */
     public function setPriority(?Priority $priority): void
     {
         $this->priority = $priority;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsHtml(): ?bool
     {
         return $this->isHtml;
     }
 
-    /**
-     * @param bool|null $isHtml
-     */
     public function setIsHtml(?bool $isHtml): void
     {
         $this->isHtml = $isHtml;
     }
 
-    /**
-     * @return int
-     */
     public function getTimestamp(): int
     {
         return $this->timestamp->getTimestamp();
     }
 
-    /**
-     * @param \DateTime $timestamp
-     */
     public function setTimestamp(\DateTime $timestamp): void
     {
         $this->timestamp = $timestamp;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTtl(): ?int
     {
         return $this->ttl;
     }
 
-    /**
-     * @param int|null $ttl
-     */
     public function setTtl(?int $ttl): void
     {
         if ($ttl <= 0 && null !== $ttl) {
-            throw new InvalidArgumentException('The ttl value of ' . $ttl . ' is invalid. The ttl value must be a positive number of seconds.');
+            throw new InvalidArgumentException('The ttl value of '.$ttl.' is invalid. The ttl value must be a positive number of seconds.');
         }
 
         $this->ttl = $ttl;

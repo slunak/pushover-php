@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -18,73 +18,119 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  */
 class Sound
 {
-    /** Pushover (default) */
+    /**
+     * Pushover (default)
+     */
     public const PUSHOVER = 'pushover';
 
-    /** Bike */
+    /**
+     * Bike
+     */
     public const BIKE = 'bike';
 
-    /** Bugle  */
+    /**
+     * Bugle
+     */
     public const BUGLE = 'bugle';
 
-    /** Cash Register */
+    /**
+     * Cash Register
+     */
     public const CASHREGISTER = 'cashregister';
 
-    /** Classical */
+    /**
+     * Classical
+     */
     public const CLASSICAL = 'classical';
 
-    /** Cosmic */
+    /**
+     * Cosmic
+     */
     public const COSMIC = 'cosmic';
 
-    /** Falling */
+    /**
+     * Falling
+     */
     public const FALLING = 'falling';
 
-    /** Gamelan  */
+    /**
+     * Gamelan
+     */
     public const GAMELAN = 'gamelan';
 
-    /** Incoming  */
+    /**
+     * Incoming
+     */
     public const INCOMING = 'incoming';
 
-    /** Intermission  */
+    /**
+     * Intermission
+     */
     public const INTERMISSION = 'intermission';
 
-    /** Magic */
+    /**
+     * Magic
+     */
     public const MAGIC = 'magic';
 
-    /** Mechanical  */
+    /**
+     * Mechanical
+     */
     public const MECHANICAL = 'mechanical';
 
-    /** Piano Bar  */
+    /**
+     * Piano Bar
+     */
     public const PIANOBAR = 'pianobar';
 
-    /** Siren */
+    /**
+     * Siren
+     */
     public const SIREN = 'siren';
 
-    /** Space Alarm  */
+    /**
+     * Space Alarm
+     */
     public const SPACEALARM = 'spacealarm';
 
-    /** Tug Boat  */
+    /**
+     * Tug Boat
+     */
     public const TUGBOAT = 'tugboat';
 
-    /** Alien Alarm (long)  */
+    /**
+     * Alien Alarm (long)
+     */
     public const ALIEN = 'alien';
 
-    /** Climb (long) */
+    /**
+     * Climb (long)
+     */
     public const CLIMB = 'climb';
 
-    /** Persistent (long)  */
+    /**
+     * Persistent (long)
+     */
     public const PERSISTENT = 'persistent';
 
-    /** Pushover Echo (long) */
+    /**
+     * Pushover Echo (long)
+     */
     public const ECHO = 'echo';
 
-    /** Up Down (long) */
+    /**
+     * Up Down (long)
+     */
     public const UPDOWN = 'updown';
 
-    /** Vibrate Only */
+    /**
+     * Vibrate Only
+     */
     public const VIBRATE = 'vibrate';
 
-    /** None (silent) */
+    /**
+     * None (silent)
+     */
     public const NONE = 'none';
 
     /**
@@ -109,23 +155,18 @@ class Sound
     public static function getAvailableSounds(): array
     {
         $oClass = new \ReflectionClass(__CLASS__);
+
         return $oClass->getConstants();
     }
 
-    /**
-     * @return string
-     */
     public function getSound(): string
     {
         return $this->sound;
     }
 
-    /**
-     * @param string $sound
-     */
     public function setSound(string $sound): void
     {
-        if (!in_array($sound, $this->getAvailableSounds())) {
+        if (!\in_array($sound, $this->getAvailableSounds(), true)) {
             throw new InvalidArgumentException(sprintf('Sound "%s" is not available.', $sound));
         }
 
