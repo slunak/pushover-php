@@ -47,7 +47,7 @@ class ListGroupsResponse extends Response
 
     /**
      * List of groups
-     * 
+     *
      * @return array<string, string> group names with keys eg.['name'=>'key',..]
      */
     public function getGroups(): array
