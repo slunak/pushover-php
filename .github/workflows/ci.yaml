@@ -35,6 +35,8 @@ jobs:
             - name: "Validate composer.json"
               run: "composer validate"
 
+            - name: "Normalize composer.json"
+              run: "composer normalize"
 
     tests:
         name: "PHP ${{ matrix.php-version }} + ${{ matrix.dependencies }}"
