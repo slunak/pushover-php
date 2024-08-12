@@ -42,7 +42,9 @@ class GroupsExample
         $newGroupKey = $createGroupResponse->getGroupKey();
         
         // Obtain list of all groups
-        $currentGroups = $group->list();
+        $listGroupsResponse = $group->list();
+        /** @var array $groups  ['name'=>'key','name2'=>'key2'] */
+        $groups = $listGroupsResponse->getGroups();
         
         // Retrieve information about the group from the API and populate the object with it.
         /** @var RetrieveGroupResponse $retrieveGroupResponse */

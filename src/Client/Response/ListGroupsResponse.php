@@ -14,9 +14,9 @@ namespace Serhiy\Pushover\Client\Response;
 use Serhiy\Pushover\Client\Response\Base\Response;
 
 /**
- * @author Serhiy Lunak
+ * @author Vítězslav Dvořák
  */
-class ListGroupResponse extends Response
+class ListGroupsResponse extends Response
 {
     /**
      * @var array
@@ -45,6 +45,11 @@ class ListGroupResponse extends Response
         }
     }
 
+    /**
+     * List of groups
+     * 
+     * @return array<string, string> group names with keys eg.['name'=>'key',..]
+     */
     public function getGroups(): array
     {
         return $this->groups;
