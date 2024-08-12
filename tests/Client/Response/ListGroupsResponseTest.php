@@ -17,7 +17,7 @@ use Serhiy\Pushover\Recipient;
 
 class ListGroupsResponseTest extends TestCase
 {
-        /**
+    /**
      * @return RetrieveGroupResponse
      */
     public function testCanBeCreated(): RetrieveGroupResponse
@@ -26,7 +26,7 @@ class ListGroupsResponseTest extends TestCase
         $response = new ListGroupsResponse($successfulCurlResponse);
 
         $this->assertInstanceOf(ListGroupsResponse::class, $response);
-        $this->assertFalse($response->isSuccessful());
+        $this->assertTrue($response->isSuccessful());
         $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
         return $response;
     }
@@ -35,10 +35,10 @@ class ListGroupsResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      * @param ListGroupsResponse $response
-     */    
+     */
     public function testGetGroups(RetrieveGroupResponse $response)
     {
         $groups = $response->getGroups();
-        $this->assertEquals($groups,['Group1'=>'111111111111111111111111111111','group2'=>'222222222222222222222222222222', 'Group 3'=>'333333333333333333333333333333']);
+        $this->assertEquals($groups, ['Group1'=>'111111111111111111111111111111','group2'=>'222222222222222222222222222222', 'Group 3'=>'333333333333333333333333333333']);
     }
 }
