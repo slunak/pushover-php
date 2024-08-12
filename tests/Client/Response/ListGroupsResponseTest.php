@@ -36,7 +36,7 @@ class ListGroupsResponseTest extends TestCase
      * @depends testCanBeCreated
      * @param ListGroupsResponse $response
      */
-    public function testGetGroups(RetrieveGroupResponse $response)
+    public function testGetGroups(ListGroupsResponse $response)
     {
         $groups = $response->getGroups();
         $this->assertEquals($groups, ['Group1'=>'111111111111111111111111111111','group2'=>'222222222222222222222222222222', 'Group 3'=>'333333333333333333333333333333']);
