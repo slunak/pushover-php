@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\CreateGroupResponse;
 use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
+use Serhiy\Pushover\Client\Response\ListGroupResponse;
 
 /**
  * @author Serhiy Lunak
