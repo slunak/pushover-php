@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\RemoveUserFromGroupResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\RemoveUserFromGroupResponse;
 
 /**
  * @author Serhiy Lunak

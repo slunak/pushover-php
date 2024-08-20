@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 
 /**
  * @author Serhiy Lunak

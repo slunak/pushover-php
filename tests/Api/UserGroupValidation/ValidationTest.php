@@ -11,8 +11,8 @@
 
 namespace Api\UserGroupValidation;
 
-use Serhiy\Pushover\Api\UserGroupValidation\Validation;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\UserGroupValidation\Validation;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Recipient;

@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\GlancesResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\GlancesResponse;
 
 class GlancesResponseTest extends TestCase
 {
