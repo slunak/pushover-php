@@ -33,7 +33,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetApplication(License $license)
+    public function testGetApplication(License $license): void
     {
         $this->assertInstanceOf(Application::class, $license->getApplication());
     }
@@ -41,7 +41,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetApplication(License $license)
+    public function testSetApplication(License $license): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $license->setApplication($application);
@@ -52,7 +52,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetRecipient(License $license)
+    public function testGetRecipient(License $license): void
     {
         $this->assertNull($license->getRecipient());
     }
@@ -60,7 +60,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetRecipient(License $license)
+    public function testSetRecipient(License $license): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
 
@@ -74,7 +74,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetEmail(License $license)
+    public function testGetEmail(License $license): void
     {
         $this->assertNull($license->getEmail());
     }
@@ -82,7 +82,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetEmail(License $license)
+    public function testSetEmail(License $license): void
     {
         $email = 'dummy@email.com';
 
@@ -96,7 +96,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetOs(License $license)
+    public function testGetOs(License $license): void
     {
         $this->assertNull($license->getOs());
     }
@@ -104,7 +104,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetOs(License $license)
+    public function testSetOs(License $license): void
     {
         $license->setOs(License::OS_ANDROID);
         $this->assertEquals(License::OS_ANDROID, $license->getOs());
@@ -119,7 +119,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testCanBeAssigned(License $license)
+    public function testCanBeAssigned(License $license): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
         $email = 'dummy@email.com';
@@ -142,7 +142,7 @@ class LicenseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetAvailableOsTypes(License $license)
+    public function testGetAvailableOsTypes(License $license): void
     {
         $licenseTypes = [
             'OS_ANDROID' => 'Android',
@@ -157,7 +157,7 @@ class LicenseTest extends TestCase
     /**
      * @group Integration
      */
-    public function testCheckCredits()
+    public function testCheckCredits(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $license = new License($application);

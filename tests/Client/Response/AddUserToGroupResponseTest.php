@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  */
 class AddUserToGroupResponseTest extends TestCase
 {
-    public function testCenBeCreated()
+    public function testCenBeCreated(): void
     {
         $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new AddUserToGroupResponse($successfulCurlResponse);

@@ -40,7 +40,7 @@ class RetrieveGroupResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetName(RetrieveGroupResponse $response)
+    public function testGetName(RetrieveGroupResponse $response): void
     {
         $this->assertEquals('Test Group', $response->getName());
     }
@@ -48,7 +48,7 @@ class RetrieveGroupResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetUsers(RetrieveGroupResponse $response)
+    public function testGetUsers(RetrieveGroupResponse $response): void
     {
         $recipient = $response->getUsers()[0];
 

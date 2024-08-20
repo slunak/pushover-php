@@ -20,14 +20,14 @@ use Serhiy\Pushover\Recipient;
 
 class AssignLicenseClientTest extends TestCase
 {
-    public function testBuildApiUrl()
+    public function testBuildApiUrl(): void
     {
         $client = new AssignLicenseClient();
         $this->assertInstanceOf(AssignLicenseClient::class, $client);
         $this->assertEquals('https://api.pushover.net/1/licenses/assign.json', $client->buildApiUrl());
     }
 
-    public function testBuildCurlPostFields()
+    public function testBuildCurlPostFields(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key

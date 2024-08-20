@@ -42,7 +42,7 @@ class UserGroupValidationResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetLicenses(UserGroupValidationResponse $response)
+    public function testGetLicenses(UserGroupValidationResponse $response): void
     {
         $this->assertEquals(['Android', 'iOS'], $response->getLicenses());
     }
@@ -50,7 +50,7 @@ class UserGroupValidationResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetDevices(UserGroupValidationResponse $response)
+    public function testGetDevices(UserGroupValidationResponse $response): void
     {
         $this->assertEquals(['test-device-1', 'test-device-2'], $response->getDevices());
     }
@@ -58,7 +58,7 @@ class UserGroupValidationResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetIsGroup(UserGroupValidationResponse $response)
+    public function testGetIsGroup(UserGroupValidationResponse $response): void
     {
         $this->assertFalse($response->isGroup());
     }

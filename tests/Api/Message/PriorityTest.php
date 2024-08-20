@@ -30,7 +30,7 @@ class PriorityTest extends TestCase
         return $priority;
     }
 
-    public function testCanBeCreatedWithNormalPriority()
+    public function testCanBeCreatedWithNormalPriority(): void
     {
         $priority = new Priority(Priority::NORMAL);
 
@@ -46,14 +46,14 @@ class PriorityTest extends TestCase
         return $priority;
     }
 
-    public function testCannotBeCreatedWithInvalidPriority()
+    public function testCannotBeCreatedWithInvalidPriority(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         new Priority(10);
     }
 
-    public function testEmergencyPriorityRequiresExtraParams()
+    public function testEmergencyPriorityRequiresExtraParams(): void
     {
         $this->expectException(LogicException::class);
 
@@ -77,7 +77,7 @@ class PriorityTest extends TestCase
     /**
      * @depends testSetCallback
      */
-    public function testGetCallback(Priority $priority)
+    public function testGetCallback(Priority $priority): void
     {
         $this->assertEquals('https://callback.example.com', $priority->getCallback());
     }
@@ -85,7 +85,7 @@ class PriorityTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testAvailablePriorities(Priority $priority)
+    public function testAvailablePriorities(Priority $priority): void
     {
         $availablePriorities = new \ReflectionClass(Priority::class);
 

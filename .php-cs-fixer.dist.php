@@ -83,10 +83,10 @@ $ruleSet = Php74::create()->withHeader($header)->withRules(Rules::fromArray([
             'case' => 'none',
         ],
     ],
+    'void_return' => true,
 
     // temp disabled to keep the diff small in the first run
     'declare_strict_types' => false,
-    'void_return' => false,
     'ordered_imports' => false,
     'php_unit_test_case_static_method_calls' => false,
     'strict_comparison' => false,

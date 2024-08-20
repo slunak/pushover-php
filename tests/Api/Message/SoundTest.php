@@ -30,7 +30,7 @@ class SoundTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetSound(Sound $sound)
+    public function testGetSound(Sound $sound): void
     {
         $this->assertEquals('pushover', $sound->getSound());
     }
@@ -38,7 +38,7 @@ class SoundTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testAvailableSounds(Sound $sound)
+    public function testAvailableSounds(Sound $sound): void
     {
         $availableSounds = new \ReflectionClass(Sound::class);
 
@@ -48,7 +48,7 @@ class SoundTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetSound(Sound $sound)
+    public function testSetSound(Sound $sound): void
     {
         $sound->setSound(Sound::ECHO);
 

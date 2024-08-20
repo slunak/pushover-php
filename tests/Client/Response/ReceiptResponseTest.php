@@ -43,7 +43,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetAcknowledgedBy(ReceiptResponse $response)
+    public function testGetAcknowledgedBy(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(Recipient::class, $response->getAcknowledgedBy());
         $this->assertEquals('aaaa1111AAAA1111bbbb2222BBBB22', $response->getAcknowledgedBy()->getUserKey());
@@ -52,7 +52,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetAcknowledgedByDevice(ReceiptResponse $response)
+    public function testGetAcknowledgedByDevice(ReceiptResponse $response): void
     {
         $this->assertEquals('test-device-1', $response->getAcknowledgedByDevice());
     }
@@ -60,7 +60,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetExpiresAt(ReceiptResponse $response)
+    public function testGetExpiresAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getExpiresAt());
     }
@@ -68,7 +68,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetLastDeliveredAt(ReceiptResponse $response)
+    public function testGetLastDeliveredAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getLastDeliveredAt());
     }
@@ -76,7 +76,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testIsAcknowledged(ReceiptResponse $response)
+    public function testIsAcknowledged(ReceiptResponse $response): void
     {
         $this->assertTrue($response->isAcknowledged());
     }
@@ -84,7 +84,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetCalledBackAt(ReceiptResponse $response)
+    public function testGetCalledBackAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getCalledBackAt());
     }
@@ -92,7 +92,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetAcknowledgedAt(ReceiptResponse $response)
+    public function testGetAcknowledgedAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getAcknowledgedAt());
     }
@@ -100,7 +100,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testHasCalledBack(ReceiptResponse $response)
+    public function testHasCalledBack(ReceiptResponse $response): void
     {
         $this->assertTrue($response->hasCalledBack());
     }
@@ -108,7 +108,7 @@ class ReceiptResponseTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testIsExpired(ReceiptResponse $response)
+    public function testIsExpired(ReceiptResponse $response): void
     {
         $this->assertTrue($response->isExpired());
     }

@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class GlancesResponseTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
         $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new GlancesResponse($successfulCurlResponse);

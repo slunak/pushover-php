@@ -19,7 +19,7 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
  */
 class MessageResponseTest extends TestCase
 {
-    public function testCanBeCrated()
+    public function testCanBeCrated(): void
     {
         $successfulCurlResponse = '{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new MessageResponse($successfulCurlResponse);
@@ -38,7 +38,7 @@ class MessageResponseTest extends TestCase
         $this->assertEquals([0 => 'user identifier is not a valid user, group, or subscribed user key'], $response->getErrors());
     }
 
-    public function testGetReceipt()
+    public function testGetReceipt(): void
     {
         $successfulCurlResponse = '{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new MessageResponse($successfulCurlResponse);
