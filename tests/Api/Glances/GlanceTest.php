@@ -40,7 +40,7 @@ class GlanceTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetGlanceDataFields(Glance $glance)
+    public function testGetGlanceDataFields(Glance $glance): void
     {
         $this->assertInstanceOf(GlanceDataFields::class, $glance->getGlanceDataFields());
     }
@@ -48,7 +48,7 @@ class GlanceTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetApplication(Glance $glance)
+    public function testGetApplication(Glance $glance): void
     {
         $this->assertInstanceOf(Application::class, $glance->getApplication());
     }
@@ -56,7 +56,7 @@ class GlanceTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetRecipient(Glance $glance)
+    public function testGetRecipient(Glance $glance): void
     {
         $this->assertInstanceOf(Recipient::class, $glance->getRecipient());
     }
@@ -64,7 +64,7 @@ class GlanceTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetApplication(Glance $glance)
+    public function testSetApplication(Glance $glance): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $glance->setApplication($application);
@@ -75,7 +75,7 @@ class GlanceTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetGlanceDataFields(Glance $glance)
+    public function testSetGlanceDataFields(Glance $glance): void
     {
         $glanceDataFields = new GlanceDataFields();
         $glance->setGlanceDataFields($glanceDataFields);
@@ -86,7 +86,7 @@ class GlanceTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetRecipient(Glance $glance)
+    public function testSetRecipient(Glance $glance): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
         $glance->setRecipient($recipient);
@@ -97,7 +97,7 @@ class GlanceTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testHasAtLeastOneField(Glance $glance)
+    public function testHasAtLeastOneField(Glance $glance): void
     {
         $this->assertFalse($glance->hasAtLeastOneField());
 
@@ -109,7 +109,7 @@ class GlanceTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testHasRecipient(Glance $glance)
+    public function testHasRecipient(Glance $glance): void
     {
         $this->assertTrue($glance->hasRecipient());
     }
@@ -117,7 +117,7 @@ class GlanceTest extends TestCase
     /**
      * @group Integration
      */
-    public function testPush()
+    public function testPush(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key

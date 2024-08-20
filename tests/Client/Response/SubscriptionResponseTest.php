@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  */
 class SubscriptionResponseTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
         $successfulCurlResponse = '{"subscribed_user_key":"aaaa1111AAAA1111bbbb2222BBBB22","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new SubscriptionResponse($successfulCurlResponse);
@@ -37,7 +37,7 @@ class SubscriptionResponseTest extends TestCase
         $this->assertEquals([0 => 'subscription code is invalid'], $response->getErrors());
     }
 
-    public function testGetSubscribedUserKey()
+    public function testGetSubscribedUserKey(): void
     {
         $curlResponse = '{"subscribed_user_key":"aaaa1111AAAA1111bbbb2222BBBB22","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
 

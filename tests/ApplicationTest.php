@@ -24,7 +24,7 @@ class ApplicationTest extends TestCase
         return $application;
     }
 
-    public function testCannotBeCreated()
+    public function testCannotBeCreated(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Application('Lorem ipsum dolor sit amet');
@@ -45,7 +45,7 @@ class ApplicationTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetToken(Application $application)
+    public function testGetToken(Application $application): void
     {
         $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $application->getToken());
     }

@@ -31,7 +31,7 @@ class RecipientTest extends TestCase
         return $recipient;
     }
 
-    public function testCannotBeCreated()
+    public function testCannotBeCreated(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Recipient('Lorem ipsum dolor sit amet');
@@ -40,7 +40,7 @@ class RecipientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetUserKey(Recipient $recipient)
+    public function testGetUserKey(Recipient $recipient): void
     {
         $this->assertEquals('aaaa1111AAAA1111bbbb2222BBBB22', $recipient->getUserKey());
     }
@@ -48,7 +48,7 @@ class RecipientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetDevice(Recipient $recipient)
+    public function testGetDevice(Recipient $recipient): void
     {
         $this->assertEquals(
             [
@@ -62,7 +62,7 @@ class RecipientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetDeviceListCommaSeparated(Recipient $recipient)
+    public function testGetDeviceListCommaSeparated(Recipient $recipient): void
     {
         $this->assertEquals('test-device-1,test-device-2', $recipient->getDeviceListCommaSeparated());
     }
@@ -70,7 +70,7 @@ class RecipientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testIsDisabled(Recipient $recipient)
+    public function testIsDisabled(Recipient $recipient): void
     {
         $this->assertFalse($recipient->isDisabled());
     }
@@ -78,7 +78,7 @@ class RecipientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetMemo(Recipient $recipient)
+    public function testGetMemo(Recipient $recipient): void
     {
         $this->assertEquals('This is test memo', $recipient->getMemo());
     }
@@ -86,7 +86,7 @@ class RecipientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetIsDisabled(Recipient $recipient)
+    public function testSetIsDisabled(Recipient $recipient): void
     {
         $recipient->setIsDisabled(true);
         $this->assertTrue($recipient->isDisabled());
@@ -95,7 +95,7 @@ class RecipientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testSetMemo(Recipient $recipient)
+    public function testSetMemo(Recipient $recipient): void
     {
         $this->expectException(InvalidArgumentException::class);
         $recipient->setMemo('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
@@ -104,7 +104,7 @@ class RecipientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testAddDevice(Recipient $recipient)
+    public function testAddDevice(Recipient $recipient): void
     {
         $this->expectException(InvalidArgumentException::class);
         $recipient->addDevice('Lorem-ipsum-dolor-sit-amet');

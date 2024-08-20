@@ -36,7 +36,7 @@ class GroupTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetApplication(Group $group)
+    public function testGetApplication(Group $group): void
     {
         $this->assertInstanceOf(Application::class, $group->getApplication());
         $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $group->getApplication()->getToken());
@@ -45,7 +45,7 @@ class GroupTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetKey(Group $group)
+    public function testGetKey(Group $group): void
     {
         $this->assertEquals('eeee5555EEEE5555ffff6666FFFF66', $group->getKey());
     }
@@ -53,7 +53,7 @@ class GroupTest extends TestCase
     /**
      * @group Integration
      */
-    public function testRetrieveGroupInformation()
+    public function testRetrieveGroupInformation(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application);
@@ -66,7 +66,7 @@ class GroupTest extends TestCase
     /**
      * @group Integration
      */
-    public function testCreate()
+    public function testCreate(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application);

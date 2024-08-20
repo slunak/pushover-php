@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 class CheckLicenseClientTest extends TestCase
 {
-    public function testBuildApiUrl()
+    public function testBuildApiUrl(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $license = new License($application);

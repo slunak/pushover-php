@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
  */
 class GroupsClientTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key
@@ -32,7 +32,7 @@ class GroupsClientTest extends TestCase
         $this->assertInstanceOf(GroupsClient::class, $client);
     }
 
-    public function testBuildApiUrl()
+    public function testBuildApiUrl(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key
@@ -50,7 +50,7 @@ class GroupsClientTest extends TestCase
         
     }
 
-    public function testBuildCurlPostFields()
+    public function testBuildCurlPostFields(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key

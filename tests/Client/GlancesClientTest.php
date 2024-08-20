@@ -20,21 +20,21 @@ use Serhiy\Pushover\Recipient;
 
 class GlancesClientTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
         $client = new GlancesClient();
 
         $this->assertInstanceOf(GlancesClient::class, $client);
     }
 
-    public function testBuildApiUrl()
+    public function testBuildApiUrl(): void
     {
         $client = new GlancesClient();
 
         $this->assertEquals('https://api.pushover.net/1/glances.json', $client->buildApiUrl());
     }
 
-    public function testBuildCurlPostFields()
+    public function testBuildCurlPostFields(): void
     {
         $client = new GlancesClient();
 

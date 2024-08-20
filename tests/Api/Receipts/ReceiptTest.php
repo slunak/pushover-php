@@ -36,7 +36,7 @@ class ReceiptTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetApplication(Receipt $receipt)
+    public function testGetApplication(Receipt $receipt): void
     {
         $application = $receipt->getApplication();
 
@@ -47,7 +47,7 @@ class ReceiptTest extends TestCase
     /**
      * @group Integration
      */
-    public function testQuery()
+    public function testQuery(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $receipt = new Receipt($application);
@@ -60,7 +60,7 @@ class ReceiptTest extends TestCase
     /**
      * @group Integration
      */
-    public function testCancelRetry()
+    public function testCancelRetry(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $receipt = new Receipt($application);

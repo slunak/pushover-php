@@ -34,7 +34,7 @@ class RequestTest extends TestCase
     /**
      * @depends testCanBeCrated
      */
-    public function testGetMethod(Request $request)
+    public function testGetMethod(Request $request): void
     {
         $this->assertEquals(Request::POST, $request->getMethod());
     }
@@ -42,7 +42,7 @@ class RequestTest extends TestCase
     /**
      * @depends testCanBeCrated
      */
-    public function testGetApiUrl(Request $request)
+    public function testGetApiUrl(Request $request): void
     {
         $this->assertEquals('https://test.com/api', $request->getApiUrl());
     }
@@ -50,7 +50,7 @@ class RequestTest extends TestCase
     /**
      * @depends testCanBeCrated
      */
-    public function testGetCurlPostFields(Request $request)
+    public function testGetCurlPostFields(Request $request): void
     {
         $this->assertIsArray($request->getCurlPostFields());
     }

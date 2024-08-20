@@ -33,7 +33,7 @@ class ReceiptClientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testBuildApiUrl(ReceiptClient $client)
+    public function testBuildApiUrl(ReceiptClient $client): void
     {
         $this->assertEquals(
             'https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88.json?token=cccc3333CCCC3333dddd4444DDDD44',
