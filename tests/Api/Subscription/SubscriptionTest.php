@@ -11,8 +11,8 @@
 
 namespace Api\Subscription;
 
-use Serhiy\Pushover\Api\Subscription\Subscription;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\Subscription\Subscription;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\SubscriptionResponse;
 use Serhiy\Pushover\Recipient;

@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\RenameGroupResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\RenameGroupResponse;
 
 /**
  * @author Serhiy Lunak

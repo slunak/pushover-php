@@ -11,11 +11,11 @@
 
 namespace Serhiy\Pushover\Api\UserGroupValidation;
 
+use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Client\UserGroupValidationClient;
-use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
 /**

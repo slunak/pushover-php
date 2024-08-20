@@ -11,11 +11,11 @@
 
 namespace Client;
 
+use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Sound;
 use Serhiy\Pushover\Api\Subscription\Subscription;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\SubscriptionClient;
-use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Recipient;
 
 /**

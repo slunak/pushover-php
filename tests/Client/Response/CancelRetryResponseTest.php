@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 
 /**
  * @author Serhiy Lunak

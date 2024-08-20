@@ -11,10 +11,10 @@
 
 namespace Serhiy\Pushover\Api\Receipts;
 
+use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\CancelRetryClient;
 use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\ReceiptClient;
-use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 use Serhiy\Pushover\Client\Response\ReceiptResponse;

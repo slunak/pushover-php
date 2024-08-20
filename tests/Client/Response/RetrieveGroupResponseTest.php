@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 use Serhiy\Pushover\Recipient;
 
 class RetrieveGroupResponseTest extends TestCase

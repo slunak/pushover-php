@@ -11,8 +11,8 @@
 
 namespace Serhiy\Pushover\Client;
 
-use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Curl\Curl;
 
 class ReceiptClient extends Client implements ClientInterface
 {

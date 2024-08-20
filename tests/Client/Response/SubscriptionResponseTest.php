@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\SubscriptionResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\SubscriptionResponse;
 
 /**
  * @author Serhiy Lunak

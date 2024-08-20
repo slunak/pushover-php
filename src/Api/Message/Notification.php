@@ -11,11 +11,11 @@
 
 namespace Serhiy\Pushover\Api\Message;
 
+use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\MessageClient;
 use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Client\Response\MessageResponse;
-use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
 /**

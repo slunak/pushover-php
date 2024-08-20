@@ -11,8 +11,8 @@
 
 namespace Api\Glances;
 
-use Serhiy\Pushover\Api\Glances\GlanceDataFields;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\Glances\GlanceDataFields;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**

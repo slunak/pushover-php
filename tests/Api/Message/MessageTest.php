@@ -11,8 +11,8 @@
 
 namespace Api\Message;
 
-use Serhiy\Pushover\Api\Message\Message;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
