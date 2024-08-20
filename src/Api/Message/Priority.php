@@ -108,13 +108,13 @@ class Priority
 
     public function __construct(int $priority = self::NORMAL, int $retry = null, int $expire = null)
     {
-        if (!(self::LOWEST <= $priority && $priority <= self::EMERGENCY)) {
+        if (!(self::LOWEST <= $priority && self::EMERGENCY >= $priority)) {
             throw new InvalidArgumentException(sprintf('Message priority must be within range -2 and 2. "%s" was given.', $priority));
         }
 
         $this->priority = $priority;
 
-        if ($priority == self::EMERGENCY) {
+        if (self::EMERGENCY == $priority) {
             if (null === $retry || null === $expire) {
                 throw new LogicException('To send an emergency-priority notification, the retry and expire parameters must be supplied. Either of them was not supplied.');
             }
@@ -148,7 +148,7 @@ class Priority
 
     public function setRetry(?int $retry): void
     {
-        if ($retry < 30) {
+        if (30 > $retry) {
             throw new InvalidArgumentException(sprintf('Retry parameter must have a value of at least 30 seconds between retries. "%s" was given.', $retry));
         }
 
@@ -162,7 +162,7 @@ class Priority
 
     public function setExpire(?int $expire): void
     {
-        if ($expire > 10800) {
+        if (10800 < $expire) {
             throw new InvalidArgumentException(sprintf('Expire parameter must have a maximum value of at most 10800 seconds (3 hours). "%s" was given.', $expire));
         }
 

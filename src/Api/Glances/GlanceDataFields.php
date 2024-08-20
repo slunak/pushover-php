@@ -60,7 +60,7 @@ class GlanceDataFields
 
     public function setTitle(?string $title): self
     {
-        if ($title !== null && \strlen($title) > 100) {
+        if (null !== $title && \strlen($title) > 100) {
             throw new InvalidArgumentException(sprintf('Title can be no more than 100 characters long. %s characters long title provided.', \strlen($title)));
         }
 
@@ -76,7 +76,7 @@ class GlanceDataFields
 
     public function setText(?string $text): self
     {
-        if ($text !== null && \strlen($text) > 100) {
+        if (null !== $text && \strlen($text) > 100) {
             throw new InvalidArgumentException(sprintf('Text can be no more than 100 characters long. %s characters long text provided.', \strlen($text)));
         }
 
@@ -92,7 +92,7 @@ class GlanceDataFields
 
     public function setSubtext(?string $subtext): self
     {
-        if ($subtext !== null && \strlen($subtext) > 100) {
+        if (null !== $subtext && \strlen($subtext) > 100) {
             throw new InvalidArgumentException(sprintf('Subtext can be no more than 100 characters long. %s characters long subtext provided.', \strlen($subtext)));
         }
 
@@ -120,7 +120,7 @@ class GlanceDataFields
 
     public function setPercent(?int $percent): self
     {
-        if (!($percent >= 0 && $percent <= 100)) {
+        if (!(0 <= $percent && 100 >= $percent)) {
             throw new InvalidArgumentException(sprintf('Percent should be an integer 0 through 100, inclusive. %s provided.', $percent));
         }
 

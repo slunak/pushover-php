@@ -202,7 +202,7 @@ class Message
 
     public function setTtl(?int $ttl): void
     {
-        if ($ttl <= 0 && null !== $ttl) {
+        if (0 >= $ttl && null !== $ttl) {
             throw new InvalidArgumentException('The ttl value of '.$ttl.' is invalid. The ttl value must be a positive number of seconds.');
         }
 

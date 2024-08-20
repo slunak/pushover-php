@@ -124,12 +124,12 @@ class Response
         $this->setRequestStatus($decodedCurlResponse->status);
         $this->setRequestToken($decodedCurlResponse->request);
 
-        if ($this->getRequestStatus() == 1) {
+        if (1 == $this->getRequestStatus()) {
             $this->setIsSuccessful(true);
             $this->setRequestToken($decodedCurlResponse->request);
         }
 
-        if ($this->getRequestStatus() == 0) {
+        if (0 == $this->getRequestStatus()) {
             $this->setErrors($decodedCurlResponse->errors);
             $this->setIsSuccessful(false);
         }

@@ -54,11 +54,11 @@ class GroupsClient extends Client implements ClientInterface
      */
     public function buildApiUrl()
     {
-        if ($this->action == self::ACTION_CREATE_GROUP) {
+        if (self::ACTION_CREATE_GROUP == $this->action) {
             return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json';
         }
 
-        if ($this->action == self::ACTION_RETRIEVE_GROUP) {
+        if (self::ACTION_RETRIEVE_GROUP == $this->action) {
             return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups/'.$this->group->getKey().'.json?token='.$this->group->getApplication()->getToken();
         }
 
@@ -72,15 +72,15 @@ class GroupsClient extends Client implements ClientInterface
         ];
 
         if (
-            $this->action == self::ACTION_ADD_USER
-            || $this->action == self::ACTION_REMOVE_USER
-            || $this->action == self::ACTION_DISABLE_USER
-            || $this->action == self::ACTION_ENABLE_USER
+            self::ACTION_ADD_USER == $this->action
+            || self::ACTION_REMOVE_USER == $this->action
+            || self::ACTION_DISABLE_USER == $this->action
+            || self::ACTION_ENABLE_USER == $this->action
         ) {
             $curlPostFields['user'] = $recipient->getUserKey();
         }
 
-        if ($this->action == self::ACTION_ADD_USER) {
+        if (self::ACTION_ADD_USER == $this->action) {
             if (!empty($recipient->getDevice())) {
                 $curlPostFields['device'] = $recipient->getDevice()[0];
             }
@@ -90,8 +90,8 @@ class GroupsClient extends Client implements ClientInterface
             }
         }
 
-        if ($this->action == self::ACTION_RENAME_GROUP
-            || $this->action == self::ACTION_CREATE_GROUP
+        if (self::ACTION_RENAME_GROUP == $this->action
+            || self::ACTION_CREATE_GROUP == $this->action
         ) {
             $curlPostFields['name'] = $this->group->getName();
         }

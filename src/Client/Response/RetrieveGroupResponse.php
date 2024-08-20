@@ -59,7 +59,7 @@ class RetrieveGroupResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
+        if (1 == $this->getRequestStatus()) {
             $this->name = $decodedCurlResponse->name;
             $this->users = $this->setUsers($decodedCurlResponse->users);
         }

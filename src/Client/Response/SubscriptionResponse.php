@@ -43,7 +43,7 @@ class SubscriptionResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
+        if (1 == $this->getRequestStatus()) {
             $this->subscribed_user_key = $decodedCurlResponse->subscribed_user_key;
         }
     }
