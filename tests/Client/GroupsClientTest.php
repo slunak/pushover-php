@@ -11,10 +11,10 @@
 
 namespace Client;
 
+use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Groups\Group;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\GroupsClient;
-use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Recipient;
 
 /**

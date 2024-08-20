@@ -11,10 +11,10 @@
 
 namespace Client;
 
+use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Licensing\License;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\AssignLicenseClient;
-use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Exception\LogicException;
 use Serhiy\Pushover\Recipient;
 

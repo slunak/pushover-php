@@ -11,11 +11,11 @@
 
 namespace Client;
 
+use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Glances\Glance;
 use Serhiy\Pushover\Api\Glances\GlanceDataFields;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\GlancesClient;
-use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Recipient;
 
 class GlancesClientTest extends TestCase

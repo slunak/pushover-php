@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-use Serhiy\Pushover\Recipient;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
+use Serhiy\Pushover\Recipient;
 
 /**
  * @author Serhiy Lunak

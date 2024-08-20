@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\DisableUserInGroupResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\DisableUserInGroupResponse;
 
 /**
  * @author Serhiy Lunak

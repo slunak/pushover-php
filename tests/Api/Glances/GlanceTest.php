@@ -11,8 +11,8 @@
 
 namespace Api\Glances;
 
-use Serhiy\Pushover\Api\Glances\Glance;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\Glances\Glance;
 use Serhiy\Pushover\Api\Glances\GlanceDataFields;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\GlancesResponse;

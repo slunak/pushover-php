@@ -11,10 +11,10 @@
 
 namespace Client;
 
+use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Licensing\License;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\CheckLicenseClient;
-use PHPUnit\Framework\TestCase;
 
 class CheckLicenseClientTest extends TestCase
 {

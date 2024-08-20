@@ -11,8 +11,8 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\LicenseResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\LicenseResponse;
 
 /**
  * @author Serhiy Lunak

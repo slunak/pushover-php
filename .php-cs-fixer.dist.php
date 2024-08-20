@@ -84,10 +84,10 @@ $ruleSet = Php74::create()->withHeader($header)->withRules(Rules::fromArray([
         ],
     ],
     'void_return' => true,
+    'ordered_imports' => true,
 
     // temp disabled to keep the diff small in the first run
     'declare_strict_types' => false,
-    'ordered_imports' => false,
     'php_unit_test_case_static_method_calls' => false,
     'strict_comparison' => false,
     'yoda_style' => false,

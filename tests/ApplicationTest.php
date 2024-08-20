@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-use Serhiy\Pushover\Application;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 class ApplicationTest extends TestCase

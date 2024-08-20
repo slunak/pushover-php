@@ -11,8 +11,8 @@
 
 namespace Api\Licensing;
 
-use Serhiy\Pushover\Api\Licensing\License;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\Licensing\License;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\LicenseResponse;
 use Serhiy\Pushover\Exception\InvalidArgumentException;

@@ -11,8 +11,8 @@
 
 namespace Client;
 
-use Serhiy\Pushover\Api\Receipts\Receipt;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\Receipts\Receipt;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\CancelRetryClient;
 
