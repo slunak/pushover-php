@@ -20,49 +20,49 @@ use Serhiy\Pushover\Recipient;
 class ReceiptResponse extends Response
 {
     /**
-     * @var bool true or False whether the user has acknowledged the notification
+     * True or False whether the user has acknowledged the notification
      */
-    private $isAcknowledged = false;
+    private bool $isAcknowledged = false;
 
     /**
-     * @var null|\DateTime timestamp of when the user acknowledged, or null
+     * Timestamp of when the user acknowledged, or null
      */
-    private $acknowledgedAt;
+    private ?\DateTime $acknowledgedAt;
 
     /**
-     * @var Recipient user that first acknowledged the notification
+     * User that first acknowledged the notification
      */
-    private $acknowledgedBy;
+    private Recipient $acknowledgedBy;
 
     /**
-     * @var string the device name of the user that first acknowledged the notification
+     * The device name of the user that first acknowledged the notification
      */
-    private $acknowledgedByDevice;
+    private string $acknowledgedByDevice;
 
     /**
-     * @var null|\DateTime timestamp of when the notification was last retried, or null
+     * Timestamp of when the notification was last retried, or null
      */
-    private $lastDeliveredAt;
+    private ?\DateTime $lastDeliveredAt;
 
     /**
-     * @var bool true or False whether the expiration date has passed
+     * True or False whether the expiration date has passed
      */
-    private $isExpired;
+    private bool $isExpired;
 
     /**
-     * @var \DateTime timestamp of when the notification will stop being retried
+     * Timestamp of when the notification will stop being retried
      */
-    private $expiresAt;
+    private \DateTime $expiresAt;
 
     /**
-     * @var bool true or False whether our server has called back to your callback URL if any
+     * True or False whether our server has called back to your callback URL if any
      */
-    private $hasCalledBack = false;
+    private bool $hasCalledBack = false;
 
     /**
-     * @var null|\DateTime timestamp of when our server called back, or null
+     * Timestamp of when our server called back, or null
      */
-    private $calledBackAt;
+    private ?\DateTime $calledBackAt;
 
     /**
      * @param mixed $curlResponse

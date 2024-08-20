@@ -19,9 +19,9 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class LicenseResponse extends Response
 {
     /**
-     * @var int number of license credits remaining
+     * Number of license credits remaining
      */
-    private $credits;
+    private int $credits;
 
     /**
      * @param mixed $curlResponse

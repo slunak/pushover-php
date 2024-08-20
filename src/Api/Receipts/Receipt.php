@@ -28,10 +28,7 @@ use Serhiy\Pushover\Client\Response\ReceiptResponse;
  */
 class Receipt
 {
-    /**
-     * @var Application
-     */
-    private $application;
+    private Application $application;
 
     public function __construct(Application $application)
     {

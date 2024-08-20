@@ -84,12 +84,11 @@ $ruleSet = Php74::create()->withHeader($header)->withRules(Rules::fromArray([
         ],
     ],
     'yoda_style' => false,
+    'php_unit_test_case_static_method_calls' => false,
 
     // temp disabled to keep the diff small in the first run
     'declare_strict_types' => false,
-    'php_unit_test_case_static_method_calls' => false,
     'strict_comparison' => false,
-    'phpdoc_to_property_type' => false,
     'phpdoc_summary' => false,
     'nullable_type_declaration_for_default_null_value' => false,
 ]));

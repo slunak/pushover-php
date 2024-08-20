@@ -31,27 +31,23 @@ class Request implements RequestInterface
     public const POST = 'POST';
 
     /**
-     * @var string either GET or POST
+     * Either GET or POST
      */
-    private $method;
+    private string $method;
 
     /**
-     * @var string full API URL
+     * Full API URL
      */
-    private $apiUrl;
+    private string $apiUrl;
 
     /**
      * CURLOPT_POSTFIELDS.
      *
      * Array for CURLOPT_POSTFIELDS curl argument.
-     *
-     * @var null|array[]
      */
-    private $curlPostFields;
+    private ?array $curlPostFields;
 
     /**
-     * Request constructor.
-     *
      * @param null|array[] $curlPostFields
      */
     public function __construct(string $apiUrl, string $method, array $curlPostFields = null)

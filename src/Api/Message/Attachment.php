@@ -69,18 +69,14 @@ class Attachment
      * A media type (also known as a Multipurpose Internet Mail Extensions or MIME type) is a standard
      * that indicates the nature and format of a document, file, or assortment of bytes.
      * In case of Pushover attachment only image MIME type is accepted.
-     *
-     * @var string
      */
-    private $mimeType;
+    private string $mimeType;
 
     /**
      * Path to the file.
      * Path and filename of the image file to be sent with notification.
-     *
-     * @var string
      */
-    private $filename;
+    private string $filename;
 
     public function __construct(string $filename, string $mimeType)
     {

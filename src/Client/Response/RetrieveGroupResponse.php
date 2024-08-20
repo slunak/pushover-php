@@ -20,14 +20,14 @@ use Serhiy\Pushover\Recipient;
 class RetrieveGroupResponse extends Response
 {
     /**
-     * @var string name of the group
+     * Name of the group
      */
-    private $name;
+    private string $name;
 
     /**
-     * @var Recipient[] array of group users of Recipient object
+     * @var Recipient[] Group users
      */
-    private $users;
+    private array $users;
 
     /**
      * @param mixed $curlResponse

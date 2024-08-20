@@ -16,15 +16,8 @@ use Serhiy\Pushover\Client\Curl\Curl;
 
 class ReceiptClient extends Client implements ClientInterface
 {
-    /**
-     * @var Application
-     */
-    private $application;
-
-    /**
-     * @var string
-     */
-    private $receipt;
+    private Application $application;
+    private string $receipt;
 
     public function __construct(Application $application, string $receipt)
     {

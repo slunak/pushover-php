@@ -20,11 +20,7 @@ use Serhiy\Pushover\Client\Curl\Curl;
 class CheckLicenseClient extends Client implements ClientInterface
 {
     public const API_PATH = 'licenses.json';
-
-    /**
-     * @var License
-     */
-    private $license;
+    private License $license;
 
     public function __construct(License $license)
     {
