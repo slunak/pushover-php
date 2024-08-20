@@ -44,26 +44,22 @@ class License
      * License for any device type
      */
     public const OS_ANY = null;
+    private Application $application;
 
     /**
-     * @var Application
+     * (required unless email supplied) - the user's Pushover user key
      */
-    private $application;
+    private ?Recipient $recipient;
 
     /**
-     * @var null|recipient (required unless email supplied) - the user's Pushover user key
+     * (required unless user supplied) - the user's e-mail address
      */
-    private $recipient;
+    private ?string $email;
 
     /**
-     * @var null|string (required unless user supplied) - the user's e-mail address
+     * Can be left blank, or one of Android, iOS, or Desktop
      */
-    private $email;
-
-    /**
-     * @var null|string can be left blank, or one of Android, iOS, or Desktop
-     */
-    private $os;
+    private ?string $os;
 
     public function __construct(Application $application)
     {

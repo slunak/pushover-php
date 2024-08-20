@@ -26,10 +26,7 @@ use Serhiy\Pushover\Recipient;
  */
 class Validation
 {
-    /**
-     * @var Application
-     */
-    private $application;
+    private Application $application;
 
     public function __construct(Application $application)
     {

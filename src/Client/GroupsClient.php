@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -30,15 +30,12 @@ class GroupsClient extends Client implements ClientInterface
     public const ACTION_CREATE_GROUP = 'create';
     public const ACTION_LIST_GROUPS = 'list';
 
-    /**
-     * @var Group
-     */
-    private $group;
+    private Group $group;
 
     /**
-     * @var string action that client performs
+     * Action that client performs
      */
-    private $action;
+    private string $action;
 
     public function __construct(Group $group, string $action)
     {

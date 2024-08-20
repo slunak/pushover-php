@@ -26,31 +26,23 @@ class Message
 {
     /**
      * (required) - your message.
-     *
-     * @var string
      */
-    private $message;
+    private string $message;
 
     /**
      * Your message's title, otherwise your app's name is used.
-     *
-     * @var null|string
      */
-    private $title;
+    private ?string $title;
 
     /**
      * A supplementary URL to show with your message.
-     *
-     * @var null|string
      */
-    private $url;
+    private ?string $url;
 
     /**
      * A title for your supplementary URL, otherwise just the URL is shown.
-     *
-     * @var null|string
      */
-    private $urlTitle;
+    private ?string $urlTitle;
 
     /**
      * Message Priority.
@@ -58,19 +50,15 @@ class Message
      * 1 to display as high-priority and bypass the user's quiet hours,
      * or 2 to also require confirmation from the user.
      * See {@link https://pushover.net/api#priority} for more information.
-     *
-     * @var null|Priority
      */
-    private $priority;
+    private ?Priority $priority;
 
     /**
      * HTML Message.
      * As of version 2.3 of our device clients, messages can be formatted with HTML tags.
      * See {@link https://pushover.net/api#html} for more information.
-     *
-     * @var null|bool
      */
-    private $isHtml = false;
+    private ?bool $isHtml = false;
 
     /**
      * Message Time.
@@ -79,10 +67,8 @@ class Message
      * In some cases, such as when messages have been queued on a remote server before reaching the Pushover servers,
      * or delivered to Pushover out of order, this default timestamping may cause a confusing order of messages when viewed on the user's device.
      * For these scenarios, your app may send messages to the API with the timestamp parameter set to the Unix timestamp of the original message.
-     *
-     * @var \DateTime
      */
-    private $timestamp;
+    private \DateTime $timestamp;
 
     /**
      * Normally a message delivered to a device is retained on the device until it is deleted by the user,
@@ -93,10 +79,8 @@ class Message
      * The ttl parameter is ignored for messages with a priority value of 2.
      *
      * The ttl value must be a positive number of seconds, and is counted from the time the message is received by our API.
-     *
-     * @var null|int
      */
-    private $ttl;
+    private ?int $ttl;
 
     public function __construct(string $message, string $title = null)
     {

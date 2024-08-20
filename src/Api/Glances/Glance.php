@@ -32,19 +32,15 @@ use Serhiy\Pushover\Recipient;
 class Glance
 {
     /**
-     * @var Application pushover application
+     * Pushover application
      */
-    private $application;
+    private Application $application;
 
     /**
-     * @var Recipient pushover user
+     * Pushover user
      */
-    private $recipient;
-
-    /**
-     * @var GlanceDataFields glance Data Fields
-     */
-    private $glanceDataFields;
+    private Recipient $recipient;
+    private GlanceDataFields $glanceDataFields;
 
     public function __construct(Application $application, GlanceDataFields $glanceDataFields)
     {

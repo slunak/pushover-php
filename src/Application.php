@@ -26,10 +26,8 @@ class Application
     /**
      * API Token.
      * (required) - your application's API token
-     *
-     * @var string
      */
-    private $token;
+    private string $token;
 
     public function __construct(string $token)
     {

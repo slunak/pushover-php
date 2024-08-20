@@ -137,10 +137,8 @@ class Sound
      * Notification Sound
      * Users can choose from 22 different default sounds to play when receiving notifications, rather than our standard Pushover tone.
      * Applications can override a user's default tone choice on a per-notification basis.
-     *
-     * @var string
      */
-    private $sound;
+    private string $sound;
 
     public function __construct(string $sound)
     {

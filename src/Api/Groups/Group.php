@@ -39,24 +39,24 @@ use Serhiy\Pushover\Recipient;
 class Group
 {
     /**
-     * @var string group key
+     * Group key
      */
-    private $key;
+    private string $key;
 
     /**
-     * @var Application pushover application this group belongs to
+     * Pushover application this group belongs to
      */
-    private $application;
+    private Application $application;
 
     /**
-     * @var string name of the group
+     * Name of the group
      */
-    private $name;
+    private string $name;
 
     /**
      * @var Recipient[] group users
      */
-    private $users;
+    private array $users;
 
     /**
      * @param string $key Group key. (Use any valid key or placeholder e.g. str_repeat('0', 30) if you are creating a group)
