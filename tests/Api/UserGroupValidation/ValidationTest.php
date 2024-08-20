@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -22,12 +22,9 @@ use Serhiy\Pushover\Recipient;
  */
 class ValidationTest extends TestCase
 {
-    /**
-     * @return Validation
-     */
     public function testCanBeCreated(): Validation
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $validation = new Validation($application);
 
         $this->assertInstanceOf(Validation::class, $validation);
@@ -37,12 +34,11 @@ class ValidationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Validation $validation
      */
     public function testGetApplication(Validation $validation)
     {
         $this->assertInstanceOf(Application::class, $validation->getApplication());
-        $this->assertEquals("cccc3333CCCC3333dddd4444DDDD44", $validation->getApplication()->getToken());
+        $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $validation->getApplication()->getToken());
     }
 
     /**
@@ -50,9 +46,9 @@ class ValidationTest extends TestCase
      */
     public function testValidate()
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $validation = new Validation($application);
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
 
         $response = $validation->validate($recipient);
 

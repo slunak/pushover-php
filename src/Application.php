@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -33,16 +33,13 @@ class Application
 
     public function __construct(string $token)
     {
-        if (1 != preg_match("/^[a-zA-Z0-9]{30}$/", $token)) {
-            throw new InvalidArgumentException(sprintf('Application tokens are case-sensitive, 30 characters long, and may contain the character set [A-Za-z0-9]. "%s" given with "%s" characters."', $token, strlen($token)));
+        if (1 != preg_match('/^[a-zA-Z0-9]{30}$/', $token)) {
+            throw new InvalidArgumentException(sprintf('Application tokens are case-sensitive, 30 characters long, and may contain the character set [A-Za-z0-9]. "%s" given with "%s" characters."', $token, \strlen($token)));
         }
 
         $this->token = $token;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;

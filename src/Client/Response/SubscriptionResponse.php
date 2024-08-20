@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -19,7 +19,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class SubscriptionResponse extends Response
 {
     /**
-     * @var string Applications that formerly collected Pushover user keys are encouraged to migrate to subscription keys.
+     * @var string applications that formerly collected Pushover user keys are encouraged to migrate to subscription keys
      */
     private $subscribed_user_key;
 
@@ -31,9 +31,6 @@ class SubscriptionResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
-    /**
-     * @return string
-     */
     public function getSubscribedUserKey(): string
     {
         return $this->subscribed_user_key;

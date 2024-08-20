@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -25,27 +25,27 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 class GlanceDataFields
 {
     /**
-     * @var string|null (100 characters) - a description of the data being shown, such as "Widgets Sold".
+     * @var null|string (100 characters) - a description of the data being shown, such as "Widgets Sold"
      */
     private $title;
 
     /**
-     * @var string|null (100 characters) - the main line of data, used on most screens.
+     * @var null|string (100 characters) - the main line of data, used on most screens
      */
     private $text;
 
     /**
-     * @var string|null (100 characters) - a second line of data.
+     * @var null|string (100 characters) - a second line of data
      */
     private $subtext;
 
     /**
-     * @var int|null (integer, may be negative) - shown on smaller screens; useful for simple counts.
+     * @var null|int (integer, may be negative) - shown on smaller screens; useful for simple counts
      */
     private $count;
 
     /**
-     * @var int|null (integer 0 through 100, inclusive) - shown on some screens as a progress bar/circle.
+     * @var null|int (integer 0 through 100, inclusive) - shown on some screens as a progress bar/circle
      */
     private $percent;
 
@@ -53,22 +53,15 @@ class GlanceDataFields
     {
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string|null $title
-     * @return GlanceDataFields
-     */
-    public function setTitle(?string $title): GlanceDataFields
+    public function setTitle(?string $title): self
     {
-        if ($title !== null && strlen($title) > 100) {
-            throw new InvalidArgumentException(sprintf("Title can be no more than 100 characters long. %s characters long title provided.", strlen($title)));
+        if ($title !== null && \strlen($title) > 100) {
+            throw new InvalidArgumentException(sprintf('Title can be no more than 100 characters long. %s characters long title provided.', \strlen($title)));
         }
 
         $this->title = $title;
@@ -76,22 +69,15 @@ class GlanceDataFields
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getText(): ?string
     {
         return $this->text;
     }
 
-    /**
-     * @param string|null $text
-     * @return GlanceDataFields
-     */
-    public function setText(?string $text): GlanceDataFields
+    public function setText(?string $text): self
     {
-        if ($text !== null && strlen($text) > 100) {
-            throw new InvalidArgumentException(sprintf("Text can be no more than 100 characters long. %s characters long text provided.", strlen($text)));
+        if ($text !== null && \strlen($text) > 100) {
+            throw new InvalidArgumentException(sprintf('Text can be no more than 100 characters long. %s characters long text provided.', \strlen($text)));
         }
 
         $this->text = $text;
@@ -99,22 +85,15 @@ class GlanceDataFields
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSubtext(): ?string
     {
         return $this->subtext;
     }
 
-    /**
-     * @param string|null $subtext
-     * @return GlanceDataFields
-     */
-    public function setSubtext(?string $subtext): GlanceDataFields
+    public function setSubtext(?string $subtext): self
     {
-        if ($subtext !== null && strlen($subtext) > 100) {
-            throw new InvalidArgumentException(sprintf("Subtext can be no more than 100 characters long. %s characters long subtext provided.", strlen($subtext)));
+        if ($subtext !== null && \strlen($subtext) > 100) {
+            throw new InvalidArgumentException(sprintf('Subtext can be no more than 100 characters long. %s characters long subtext provided.', \strlen($subtext)));
         }
 
         $this->subtext = $subtext;
@@ -122,41 +101,27 @@ class GlanceDataFields
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
-    /**
-     * @param int|null $count
-     * @return GlanceDataFields
-     */
-    public function setCount(?int $count): GlanceDataFields
+    public function setCount(?int $count): self
     {
         $this->count = $count;
 
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPercent(): ?int
     {
         return $this->percent;
     }
 
-    /**
-     * @param int|null $percent
-     * @return GlanceDataFields
-     */
-    public function setPercent(?int $percent): GlanceDataFields
+    public function setPercent(?int $percent): self
     {
-        if (! ($percent >= 0 && $percent <= 100)) {
-            throw new InvalidArgumentException(sprintf("Percent should be an integer 0 through 100, inclusive. %s provided.", $percent));
+        if (!($percent >= 0 && $percent <= 100)) {
+            throw new InvalidArgumentException(sprintf('Percent should be an integer 0 through 100, inclusive. %s provided.', $percent));
         }
 
         $this->percent = $percent;

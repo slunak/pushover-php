@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -19,7 +19,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class LicenseResponse extends Response
 {
     /**
-     * @var int Number of license credits remaining.
+     * @var int number of license credits remaining
      */
     private $credits;
 
@@ -29,6 +29,11 @@ class LicenseResponse extends Response
     public function __construct($curlResponse)
     {
         $this->processCurlResponse($curlResponse);
+    }
+
+    public function getCredits(): int
+    {
+        return $this->credits;
     }
 
     /**
@@ -43,13 +48,5 @@ class LicenseResponse extends Response
         if ($this->getRequestStatus() == 1) {
             $this->credits = $decodedCurlResponse->credits;
         }
-    }
-
-    /**
-     * @return int
-     */
-    public function getCredits(): int
-    {
-        return $this->credits;
     }
 }

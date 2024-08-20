@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -36,9 +36,6 @@ class Validation
         $this->application = $application;
     }
 
-    /**
-     * @return Application
-     */
     public function getApplication(): Application
     {
         return $this->application;
@@ -46,9 +43,6 @@ class Validation
 
     /**
      * Validates recipient and its device, and returns Response object.
-     *
-     * @param Recipient $recipient
-     * @return UserGroupValidationResponse
      */
     public function validate(Recipient $recipient): UserGroupValidationResponse
     {

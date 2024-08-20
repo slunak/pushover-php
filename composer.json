@@ -1,28 +1,41 @@
 {
     "name": "serhiy/pushover",
     "description": "Light, simple and fast, yet comprehensive wrapper for the Pushover API.",
+    "license": "MIT",
     "type": "library",
-    "keywords": ["pushover", "pushover.net", "wrapper", "client"],
+    "keywords": [
+        "pushover",
+        "pushover.net",
+        "wrapper",
+        "client"
+    ],
+    "authors": [
+        {
+            "name": "Serhiy Lunak",
+            "email": "serhiy.lunak@gmail.com",
+            "role": "Developer"
+        }
+    ],
     "homepage": "https://github.com/slunak/pushover-php",
     "require": {
         "php": ">=7.4",
         "ext-curl": "*",
         "ext-json": "*"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Serhiy Lunak",
-            "email": "serhiy.lunak@gmail.com",
-            "role":  "Developer"
-        }
-    ],
+    "require-dev": {
+        "ergebnis/php-cs-fixer-config": "^6.34",
+        "friendsofphp/php-cs-fixer": "^3.61",
+        "phpunit/phpunit": "*",
+        "ergebnis/composer-normalize": "^2.43"
+    },
     "autoload": {
         "psr-4": {
             "Serhiy\\Pushover\\": "src/"
         }
     },
-    "require-dev": {
-        "phpunit/phpunit": "*"
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
     }
 }

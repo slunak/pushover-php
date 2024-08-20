@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -28,10 +28,10 @@ class NotificationTest extends TestCase
 {
     public function testCanBeCreated()
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
 
-        $message = new Message("This is a test message", "This is a title of the message");
+        $message = new Message('This is a test message', 'This is a title of the message');
 
         $notification = new Notification($application, $recipient, $message);
 
@@ -42,7 +42,6 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
     public function testSetSound(Notification $notification)
     {
@@ -53,7 +52,6 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
     public function testSetSoundNull(Notification $notification)
     {
@@ -64,18 +62,16 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
     public function testSetCustomSound(Notification $notification)
     {
-        $notification->setCustomSound(new CustomSound("door_open"));
+        $notification->setCustomSound(new CustomSound('door_open'));
 
         $this->assertEquals('door_open', $notification->getCustomSound()->getCustomSound());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
     public function testSetCustomSoundNull(Notification $notification)
     {
@@ -86,11 +82,10 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
     public function testSetAttachment(Notification $notification)
     {
-        $notification->setAttachment(new Attachment("/path/to/file.jpg", Attachment::MIME_TYPE_JPEG));
+        $notification->setAttachment(new Attachment('/path/to/file.jpg', Attachment::MIME_TYPE_JPEG));
 
         $this->assertEquals('/path/to/file.jpg', $notification->getAttachment()->getFilename());
         $this->assertEquals('image/jpeg', $notification->getAttachment()->getMimeType());
@@ -98,7 +93,6 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
     public function testSetAttachmentNull(Notification $notification)
     {
@@ -112,9 +106,9 @@ class NotificationTest extends TestCase
      */
     public function testPush()
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
-        $message = new Message("This is a test message", "This is a title of the message");
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
+        $message = new Message('This is a test message', 'This is a title of the message');
         $notification = new Notification($application, $recipient, $message);
         $response = $notification->push();
 

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -32,17 +32,17 @@ use Serhiy\Pushover\Recipient;
 class Glance
 {
     /**
-     * @var Application Pushover application.
+     * @var Application pushover application
      */
     private $application;
 
     /**
-     * @var Recipient Pushover user.
+     * @var Recipient pushover user
      */
     private $recipient;
 
     /**
-     * @var GlanceDataFields Glance Data Fields.
+     * @var GlanceDataFields glance Data Fields
      */
     private $glanceDataFields;
 
@@ -52,63 +52,42 @@ class Glance
         $this->glanceDataFields = $glanceDataFields;
     }
 
-    /**
-     * @return Application
-     */
     public function getApplication(): Application
     {
         return $this->application;
     }
 
-    /**
-     * @param Application $application
-     */
     public function setApplication(Application $application): void
     {
         $this->application = $application;
     }
 
-    /**
-     * @return Recipient
-     */
     public function getRecipient(): Recipient
     {
         return $this->recipient;
     }
 
-    /**
-     * @param Recipient $recipient
-     */
     public function setRecipient(Recipient $recipient): void
     {
         $this->recipient = $recipient;
     }
 
-    /**
-     * @return GlanceDataFields
-     */
     public function getGlanceDataFields(): GlanceDataFields
     {
         return $this->glanceDataFields;
     }
 
-    /**
-     * @param GlanceDataFields $glanceDataFields
-     */
     public function setGlanceDataFields(GlanceDataFields $glanceDataFields): void
     {
         $this->glanceDataFields = $glanceDataFields;
     }
 
-    /**
-     * @return bool
-     */
     public function hasAtLeastOneField(): bool
     {
-        if (null === $this->getGlanceDataFields()->getTitle() &&
-            null === $this->getGlanceDataFields()->getSubtext() &&
-            null === $this->getGlanceDataFields()->getCount() &&
-            null === $this->getGlanceDataFields()->getPercent()
+        if (null === $this->getGlanceDataFields()->getTitle()
+            && null === $this->getGlanceDataFields()->getSubtext()
+            && null === $this->getGlanceDataFields()->getCount()
+            && null === $this->getGlanceDataFields()->getPercent()
         ) {
             return false;
         }
@@ -116,9 +95,6 @@ class Glance
         return true;
     }
 
-    /**
-     * @return bool
-     */
     public function hasRecipient(): bool
     {
         if (null === $this->recipient) {

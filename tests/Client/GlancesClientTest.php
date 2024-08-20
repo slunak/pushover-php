@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -31,26 +31,26 @@ class GlancesClientTest extends TestCase
     {
         $client = new GlancesClient();
 
-        $this->assertEquals("https://api.pushover.net/1/glances.json", $client->buildApiUrl());
+        $this->assertEquals('https://api.pushover.net/1/glances.json', $client->buildApiUrl());
     }
 
     public function testBuildCurlPostFields()
     {
         $client = new GlancesClient();
 
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
         $glanceDataFields = new GlanceDataFields();
 
         $glance = new Glance($application, $glanceDataFields);
         $glance->setRecipient($recipient);
-        $glance->getGlanceDataFields()->setTitle("This is test title");
+        $glance->getGlanceDataFields()->setTitle('This is test title');
 
-        $curlPostFields = array(
-            "token" => "cccc3333CCCC3333dddd4444DDDD44",
-            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
-            "title" => "This is test title",
-        );
+        $curlPostFields = [
+            'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+            'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
+            'title' => 'This is test title',
+        ];
 
         $this->assertEquals($curlPostFields, $client->buildCurlPostFields($glance));
     }

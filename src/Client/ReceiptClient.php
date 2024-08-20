@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -20,6 +20,7 @@ class ReceiptClient extends Client implements ClientInterface
      * @var Application
      */
     private $application;
+
     /**
      * @var string
      */
@@ -32,10 +33,10 @@ class ReceiptClient extends Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildApiUrl(): string
     {
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/receipts/".$this->receipt.".json?token=".$this->application->getToken();
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/receipts/'.$this->receipt.'.json?token='.$this->application->getToken();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -28,6 +28,7 @@ class Subscription
      * @var Application
      */
     private $application;
+
     /**
      * @var string
      */
@@ -39,27 +40,16 @@ class Subscription
         $this->subscriptionCode = $subscriptionCode;
     }
 
-    /**
-     * @return Application
-     */
     public function getApplication(): Application
     {
         return $this->application;
     }
 
-    /**
-     * @return string
-     */
     public function getSubscriptionCode(): string
     {
         return $this->subscriptionCode;
     }
 
-    /**
-     * @param Recipient $recipient
-     * @param Sound|null $sound
-     * @return SubscriptionResponse
-     */
     public function migrate(Recipient $recipient, Sound $sound = null): SubscriptionResponse
     {
         $client = new SubscriptionClient();

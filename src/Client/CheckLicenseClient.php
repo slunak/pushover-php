@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -19,7 +19,7 @@ use Serhiy\Pushover\Client\Curl\Curl;
  */
 class CheckLicenseClient extends Client implements ClientInterface
 {
-    public const API_PATH = "licenses.json";
+    public const API_PATH = 'licenses.json';
 
     /**
      * @var License
@@ -33,6 +33,6 @@ class CheckLicenseClient extends Client implements ClientInterface
 
     public function buildApiUrl()
     {
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/".self::API_PATH."?token=".$this->license->getApplication()->getToken();
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH.'?token='.$this->license->getApplication()->getToken();
     }
 }
