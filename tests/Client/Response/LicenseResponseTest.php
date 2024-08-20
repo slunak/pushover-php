@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  */
 class LicenseResponseTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
         $successfulCurlResponse = '{"credits":5,"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new LicenseResponse($successfulCurlResponse);
@@ -38,7 +38,7 @@ class LicenseResponseTest extends TestCase
         $this->assertEquals([0 => 'application is out of available license credits'], $response->getErrors());
     }
 
-    public function testGetCredits()
+    public function testGetCredits(): void
     {
         $curlResponse = '{"credits":5,"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new LicenseResponse($curlResponse);

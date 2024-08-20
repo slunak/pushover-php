@@ -20,14 +20,14 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  */
 class GlanceDataFieldsTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
         $this->assertInstanceOf(GlanceDataFields::class, $glanceDataFields);
     }
 
-    public function testSetTitle()
+    public function testSetTitle(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
@@ -44,7 +44,7 @@ class GlanceDataFieldsTest extends TestCase
         $glanceDataFields->setTitle('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     }
 
-    public function testSetText()
+    public function testSetText(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
@@ -61,7 +61,7 @@ class GlanceDataFieldsTest extends TestCase
         $glanceDataFields->setText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     }
 
-    public function testSetSubtext()
+    public function testSetSubtext(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
@@ -78,7 +78,7 @@ class GlanceDataFieldsTest extends TestCase
         $glanceDataFields->setSubtext('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     }
 
-    public function testSetCount()
+    public function testSetCount(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
@@ -92,7 +92,7 @@ class GlanceDataFieldsTest extends TestCase
         $this->assertEquals(1000, $glanceDataFields->getCount());
     }
 
-    public function testSetPercent()
+    public function testSetPercent(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
@@ -106,35 +106,35 @@ class GlanceDataFieldsTest extends TestCase
         $glanceDataFields->setPercent(101);
     }
 
-    public function testGetTitle()
+    public function testGetTitle(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
         $this->assertNull($glanceDataFields->getTitle());
     }
 
-    public function testGetText()
+    public function testGetText(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
         $this->assertNull($glanceDataFields->getText());
     }
 
-    public function testGetSubtext()
+    public function testGetSubtext(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
         $this->assertNull($glanceDataFields->getSubtext());
     }
 
-    public function testGetCount()
+    public function testGetCount(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
         $this->assertNull($glanceDataFields->getCount());
     }
 
-    public function testGetPercent()
+    public function testGetPercent(): void
     {
         $glanceDataFields = new GlanceDataFields();
 

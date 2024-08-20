@@ -35,7 +35,7 @@ class ValidationTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetApplication(Validation $validation)
+    public function testGetApplication(Validation $validation): void
     {
         $this->assertInstanceOf(Application::class, $validation->getApplication());
         $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $validation->getApplication()->getToken());
@@ -44,7 +44,7 @@ class ValidationTest extends TestCase
     /**
      * @group Integration
      */
-    public function testValidate()
+    public function testValidate(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $validation = new Validation($application);

@@ -33,7 +33,7 @@ class UserGroupValidationClientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testBuildCurlPostFields(UserGroupValidationClient $client)
+    public function testBuildCurlPostFields(UserGroupValidationClient $client): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
@@ -48,7 +48,7 @@ class UserGroupValidationClientTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testBuildApiUrl(UserGroupValidationClient $client)
+    public function testBuildApiUrl(UserGroupValidationClient $client): void
     {
         $this->assertEquals('https://api.pushover.net/1/users/validate.json', $client->buildApiUrl());
     }

@@ -33,7 +33,7 @@ class CancelRetryClientTest extends TestCase
     /**
      * @depends testCabBeCreated
      */
-    public function testBuildCurlPostFields(CancelRetryClient $client)
+    public function testBuildCurlPostFields(CancelRetryClient $client): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $receipt = new Receipt($application);
@@ -48,7 +48,7 @@ class CancelRetryClientTest extends TestCase
     /**
      * @depends testCabBeCreated
      */
-    public function testBuildApiUrl(CancelRetryClient $client)
+    public function testBuildApiUrl(CancelRetryClient $client): void
     {
         $this->assertEquals(
             'https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88/cancel.json',

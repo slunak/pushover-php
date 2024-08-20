@@ -35,7 +35,7 @@ class SubscriptionTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetSubscriptionCode(Subscription $subscription)
+    public function testGetSubscriptionCode(Subscription $subscription): void
     {
         $this->assertEquals('dummy-subscription-aaa111bbb222ccc', $subscription->getSubscriptionCode());
     }
@@ -43,7 +43,7 @@ class SubscriptionTest extends TestCase
     /**
      * @depends testCanBeCreated
      */
-    public function testGetApplication(Subscription $subscription)
+    public function testGetApplication(Subscription $subscription): void
     {
         $this->assertInstanceOf(Application::class, $subscription->getApplication());
     }
@@ -51,7 +51,7 @@ class SubscriptionTest extends TestCase
     /**
      * @group Integration
      */
-    public function testMigrate()
+    public function testMigrate(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $subscription = new Subscription($application, 'dummy-subscription-aaa111bbb222ccc');

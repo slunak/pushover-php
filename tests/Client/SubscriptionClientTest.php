@@ -23,14 +23,14 @@ use Serhiy\Pushover\Recipient;
  */
 class SubscriptionClientTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
         $client = new SubscriptionClient();
 
         $this->assertInstanceOf(SubscriptionClient::class, $client);
     }
 
-    public function testBuildCurlPostFields()
+    public function testBuildCurlPostFields(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
@@ -71,7 +71,7 @@ class SubscriptionClientTest extends TestCase
         $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient, new Sound(Sound::PUSHOVER)));
     }
 
-    public function testBuildApiUrl()
+    public function testBuildApiUrl(): void
     {
         $client = new SubscriptionClient();
 
