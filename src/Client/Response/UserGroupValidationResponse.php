@@ -18,20 +18,17 @@ use Serhiy\Pushover\Client\Response\Base\Response;
  */
 class UserGroupValidationResponse extends Response
 {
-    /**
-     * @var bool
-     */
-    private $isGroup;
+    private bool $isGroup;
 
     /**
      * @var array<string>
      */
-    private $devices;
+    private array $devices;
 
     /**
      * @var array<string>
      */
-    private $licenses;
+    private array $licenses;
 
     /**
      * @param mixed $curlResponse

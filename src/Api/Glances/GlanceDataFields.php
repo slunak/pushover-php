@@ -25,32 +25,37 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 class GlanceDataFields
 {
     /**
-     * @var null|string (100 characters) - a description of the data being shown, such as "Widgets Sold"
+     * (100 characters) - a description of the data being shown, such as "Widgets Sold"
      */
-    private $title;
+    private ?string $title;
 
     /**
-     * @var null|string (100 characters) - the main line of data, used on most screens
+     *  (100 characters) - the main line of data, used on most screens
      */
-    private $text;
+    private ?string $text;
 
     /**
-     * @var null|string (100 characters) - a second line of data
+     *  (100 characters) - a second line of data
      */
-    private $subtext;
+    private ?string $subtext;
 
     /**
-     * @var null|int (integer, may be negative) - shown on smaller screens; useful for simple counts
+     *  (integer, may be negative) - shown on smaller screens; useful for simple counts
      */
-    private $count;
+    private ?int $count;
 
     /**
-     * @var null|int (integer 0 through 100, inclusive) - shown on some screens as a progress bar/circle
+     *  (integer 0 through 100, inclusive) - shown on some screens as a progress bar/circle
      */
-    private $percent;
+    private ?int $percent;
 
     public function __construct()
     {
+        $this->title = null;
+        $this->text = null;
+        $this->subtext = null;
+        $this->count = null;
+        $this->percent = null;
     }
 
     public function getTitle(): ?string

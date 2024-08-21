@@ -24,10 +24,8 @@ class CustomSound
      * without having to copy sound files to each device. Can only contain letters, numbers, underscores, and dashes,
      * and is limited to 20 characters, such as "warning", "door_open", or "long_siren2". It cannot match the name
      * of any built-in sound and will be specified as the sound parameter through our API when requesting this sound.
-     *
-     * @var string
      */
-    private $customSound;
+    private string $customSound;
 
     public function __construct(string $customSound)
     {

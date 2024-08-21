@@ -28,16 +28,12 @@ class GroupsClient extends Client implements ClientInterface
     public const ACTION_ENABLE_USER = 'enable_user';
     public const ACTION_RENAME_GROUP = 'rename';
     public const ACTION_CREATE_GROUP = 'create';
+    private Group $group;
 
     /**
-     * @var Group
+     * Action that client performs
      */
-    private $group;
-
-    /**
-     * @var string action that client performs
-     */
-    private $action;
+    private string $action;
 
     public function __construct(Group $group, string $action)
     {

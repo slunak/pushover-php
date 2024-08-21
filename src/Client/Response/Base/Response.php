@@ -26,24 +26,18 @@ class Response
 {
     /**
      * True if request was successful, false otherwise. Reflects $requestStatus property.
-     *
-     * @var bool
      */
-    private $isSuccessful;
+    private bool $isSuccessful;
 
     /**
      * Either 1 if successful or something other than 1 if unsuccessful. Reflects $isSuccessful property.
-     *
-     * @var int
      */
-    private $requestStatus;
+    private int $requestStatus;
 
     /**
      * Randomly-generated unique token that we have associated with your request.
-     *
-     * @var string
      */
-    private $requestToken;
+    private string $requestToken;
 
     /**
      * Original curl response in json format.
@@ -58,14 +52,12 @@ class Response
      *
      * @var array[]
      */
-    private $errors = [];
+    private array $errors = [];
 
     /**
      * Object that contains original request.
-     *
-     * @var Request
      */
-    private $request;
+    private Request $request;
 
     public function isSuccessful(): bool
     {

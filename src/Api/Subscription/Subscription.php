@@ -24,15 +24,8 @@ use Serhiy\Pushover\Recipient;
  */
 class Subscription
 {
-    /**
-     * @var Application
-     */
-    private $application;
-
-    /**
-     * @var string
-     */
-    private $subscriptionCode;
+    private Application $application;
+    private string $subscriptionCode;
 
     public function __construct(Application $application, string $subscriptionCode)
     {

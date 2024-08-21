@@ -28,10 +28,8 @@ class Recipient
      * User/group key.
      * (required) - the user/group key (not e-mail address) of your user (or you),
      * viewable when logged into our dashboard (often referred to as USER_KEY in our documentation and code examples).
-     *
-     * @var string
      */
-    private $userKey;
+    private string $userKey;
 
     /**
      * Device name.
@@ -40,24 +38,20 @@ class Recipient
      *
      * @var array<string>
      */
-    private $device;
+    private array $device;
 
     /**
      * Used only when sending messages to a Group. If user is disabled in a group, they won't receive messages.
      * However if sent to the user directly, they will receive messages.
-     *
-     * @var bool
      */
-    private $isDisabled = false;
+    private bool $isDisabled = false;
 
     /**
      * Used when managing users in a Group.
      * A free-text memo used to associate data with the user such as their name or e-mail address,
      * viewable through the API and the groups editor on our website (limited to 200 characters)
-     *
-     * @var null|string
      */
-    private $memo;
+    private ?string $memo;
 
     public function __construct(string $userKey)
     {
@@ -68,6 +62,8 @@ class Recipient
         $this->userKey = $userKey;
 
         $this->device = [];
+
+        $this->memo = null;
     }
 
     public function getUserKey(): string

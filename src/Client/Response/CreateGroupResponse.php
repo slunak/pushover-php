@@ -19,9 +19,9 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class CreateGroupResponse extends Response
 {
     /**
-     * @var string Obtained Group Key
+     * Obtained Group Key
      */
-    private $groupKey;
+    private string $groupKey;
 
     /**
      * @param mixed $curlResponse
@@ -45,6 +45,9 @@ class CreateGroupResponse extends Response
     private function processCurlResponse($curlResponse): void
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
-        $this->groupKey = property_exists($decodedCurlResponse, 'group') ? $decodedCurlResponse->group : null;
+
+        if ($this->getRequestStatus() == 1) {
+            $this->groupKey = $decodedCurlResponse->group;
+        }
     }
 }

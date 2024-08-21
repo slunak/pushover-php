@@ -20,9 +20,9 @@ use Serhiy\Pushover\Client\Curl\Curl;
 class CancelRetryClient extends Client implements ClientInterface
 {
     /**
-     * @var string 30 character string
+     * 30 character string
      */
-    private $receipt;
+    private string $receipt;
 
     public function __construct(string $receipt)
     {
