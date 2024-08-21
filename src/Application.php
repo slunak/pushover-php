@@ -27,7 +27,7 @@ class Application
 {
     /**
      * API Token.
-     * (required) - your application's API token
+     * (required) - your application's API token.
      */
     private string $token;
 

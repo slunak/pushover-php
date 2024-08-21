@@ -28,38 +28,38 @@ use Serhiy\Pushover\Recipient;
 class License
 {
     /**
-     * License for Android devices
+     * License for Android devices.
      */
     public const OS_ANDROID = 'Android';
 
     /**
-     * License for iOS devices
+     * License for iOS devices.
      */
     public const OS_IOS = 'iOS';
 
     /**
-     * License for Desktop devices
+     * License for Desktop devices.
      */
     public const OS_DESKTOP = 'Desktop';
 
     /**
-     * License for any device type
+     * License for any device type.
      */
     public const OS_ANY = null;
     private Application $application;
 
     /**
-     * (required unless email supplied) - the user's Pushover user key
+     * (required unless email supplied) - the user's Pushover user key.
      */
     private ?Recipient $recipient;
 
     /**
-     * (required unless user supplied) - the user's e-mail address
+     * (required unless user supplied) - the user's e-mail address.
      */
     private ?string $email;
 
     /**
-     * Can be left blank, or one of Android, iOS, or Desktop
+     * Can be left blank, or one of Android, iOS, or Desktop.
      */
     private ?string $os;
 

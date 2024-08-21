@@ -21,7 +21,7 @@ namespace Serhiy\Pushover\Client;
 interface ClientInterface
 {
     /**
-     * Builds and returns full API URL
+     * Builds and returns full API URL.
      *
      * @return string
      */

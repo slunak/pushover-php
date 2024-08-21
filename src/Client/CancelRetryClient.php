@@ -22,7 +22,7 @@ use Serhiy\Pushover\Client\Curl\Curl;
 class CancelRetryClient extends Client implements ClientInterface
 {
     /**
-     * 30 character string
+     * 30 character string.
      */
     private string $receipt;
 

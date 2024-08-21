@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
 class RetrieveGroupResponse extends Response
 {
     /**
-     * Name of the group
+     * Name of the group.
      */
     private string $name;
 
