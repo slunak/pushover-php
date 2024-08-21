@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class LicenseResponse extends Response
 {
     /**
-     * Number of license credits remaining
+     * Number of license credits remaining.
      */
     private int $credits;
 

@@ -41,17 +41,17 @@ use Serhiy\Pushover\Recipient;
 class Group
 {
     /**
-     * Group key
+     * Group key.
      */
     private string $key;
 
     /**
-     * Pushover application this group belongs to
+     * Pushover application this group belongs to.
      */
     private Application $application;
 
     /**
-     * Name of the group
+     * Name of the group.
      */
     private string $name;
 

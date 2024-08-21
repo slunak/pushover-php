@@ -35,7 +35,7 @@ class GroupsClient extends Client implements ClientInterface
     private Group $group;
 
     /**
-     * Action that client performs
+     * Action that client performs.
      */
     private string $action;
 

@@ -27,27 +27,27 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 class GlanceDataFields
 {
     /**
-     * (100 characters) - a description of the data being shown, such as "Widgets Sold"
+     * (100 characters) - a description of the data being shown, such as "Widgets Sold".
      */
     private ?string $title;
 
     /**
-     *  (100 characters) - the main line of data, used on most screens
+     *  (100 characters) - the main line of data, used on most screens.
      */
     private ?string $text;
 
     /**
-     *  (100 characters) - a second line of data
+     *  (100 characters) - a second line of data.
      */
     private ?string $subtext;
 
     /**
-     *  (integer, may be negative) - shown on smaller screens; useful for simple counts
+     *  (integer, may be negative) - shown on smaller screens; useful for simple counts.
      */
     private ?int $count;
 
     /**
-     *  (integer 0 through 100, inclusive) - shown on some screens as a progress bar/circle
+     *  (integer 0 through 100, inclusive) - shown on some screens as a progress bar/circle.
      */
     private ?int $percent;
 

@@ -22,47 +22,47 @@ use Serhiy\Pushover\Recipient;
 class ReceiptResponse extends Response
 {
     /**
-     * True or False whether the user has acknowledged the notification
+     * True or False whether the user has acknowledged the notification.
      */
     private bool $isAcknowledged = false;
 
     /**
-     * Timestamp of when the user acknowledged, or null
+     * Timestamp of when the user acknowledged, or null.
      */
     private ?\DateTime $acknowledgedAt;
 
     /**
-     * User that first acknowledged the notification
+     * User that first acknowledged the notification.
      */
     private Recipient $acknowledgedBy;
 
     /**
-     * The device name of the user that first acknowledged the notification
+     * The device name of the user that first acknowledged the notification.
      */
     private string $acknowledgedByDevice;
 
     /**
-     * Timestamp of when the notification was last retried, or null
+     * Timestamp of when the notification was last retried, or null.
      */
     private ?\DateTime $lastDeliveredAt;
 
     /**
-     * True or False whether the expiration date has passed
+     * True or False whether the expiration date has passed.
      */
     private bool $isExpired;
 
     /**
-     * Timestamp of when the notification will stop being retried
+     * Timestamp of when the notification will stop being retried.
      */
     private \DateTime $expiresAt;
 
     /**
-     * True or False whether our server has called back to your callback URL if any
+     * True or False whether our server has called back to your callback URL if any.
      */
     private bool $hasCalledBack = false;
 
     /**
-     * Timestamp of when our server called back, or null
+     * Timestamp of when our server called back, or null.
      */
     private ?\DateTime $calledBackAt;
 
