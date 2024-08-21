@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class SubscriptionResponse extends Response
 {
     /**
-     * Applications that formerly collected Pushover user keys are encouraged to migrate to subscription keys
+     * Applications that formerly collected Pushover user keys are encouraged to migrate to subscription keys.
      */
     private string $subscribed_user_key;
 

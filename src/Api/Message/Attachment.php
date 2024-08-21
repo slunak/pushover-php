@@ -42,27 +42,27 @@ class Attachment
     public const MIME_TYPE_GIF = 'image/gif';
 
     /**
-     * Windows OS/2 Bitmap Graphics
+     * Windows OS/2 Bitmap Graphics.
      */
     public const MIME_TYPE_BMP = 'image/bmp';
 
     /**
-     * Icon format
+     * Icon format.
      */
     public const MIME_TYPE_ICO = 'image/vnd.microsoft.icon';
 
     /**
-     * Scalable Vector Graphics (SVG)
+     * Scalable Vector Graphics (SVG).
      */
     public const MIME_TYPE_SVG = 'image/svg+xml';
 
     /**
-     * Tagged Image File Format (TIFF)
+     * Tagged Image File Format (TIFF).
      */
     public const MIME_TYPE_TIFF = 'image/tiff';
 
     /**
-     * WEBP image
+     * WEBP image.
      */
     public const MIME_TYPE_WEBP = 'image/webp';
 

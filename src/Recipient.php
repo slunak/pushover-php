@@ -51,7 +51,7 @@ class Recipient
     /**
      * Used when managing users in a Group.
      * A free-text memo used to associate data with the user such as their name or e-mail address,
-     * viewable through the API and the groups editor on our website (limited to 200 characters)
+     * viewable through the API and the groups editor on our website (limited to 200 characters).
      */
     private ?string $memo;
 

@@ -33,12 +33,12 @@ class Request implements RequestInterface
     public const POST = 'POST';
 
     /**
-     * Either GET or POST
+     * Either GET or POST.
      */
     private string $method;
 
     /**
-     * Full API URL
+     * Full API URL.
      */
     private string $apiUrl;
 
@@ -65,7 +65,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Returns API URL
+     * Returns API URL.
      */
     public function getApiUrl(): string
     {
