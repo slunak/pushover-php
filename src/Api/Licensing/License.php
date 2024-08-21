@@ -64,6 +64,9 @@ class License
     public function __construct(Application $application)
     {
         $this->application = $application;
+        $this->recipient = null;
+        $this->email = null;
+        $this->os = null;
     }
 
     public function getApplication(): Application

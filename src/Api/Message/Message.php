@@ -91,6 +91,11 @@ class Message
         }
 
         $this->timestamp = new \DateTime();
+
+        $this->ttl = null;
+        $this->priority = null;
+        $this->url = null;
+        $this->urlTitle = null;
     }
 
     public function getMessage(): string

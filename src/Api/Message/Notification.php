@@ -39,6 +39,10 @@ class Notification
         $this->application = $application;
         $this->recipient = $recipient;
         $this->message = $message;
+
+        $this->sound = null;
+        $this->customSound = null;
+        $this->attachment = null;
     }
 
     public function getApplication(): Application
