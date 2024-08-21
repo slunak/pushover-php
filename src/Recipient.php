@@ -62,6 +62,8 @@ class Recipient
         $this->userKey = $userKey;
 
         $this->device = [];
+
+        $this->memo = null;
     }
 
     public function getUserKey(): string

@@ -51,6 +51,11 @@ class GlanceDataFields
 
     public function __construct()
     {
+        $this->title = null;
+        $this->text = null;
+        $this->subtext = null;
+        $this->count = null;
+        $this->percent = null;
     }
 
     public function getTitle(): ?string
