@@ -108,7 +108,7 @@ class Priority
 
         $this->priority = $priority;
 
-        if ($priority == self::EMERGENCY) {
+        if ($priority === self::EMERGENCY) {
             if (null === $retry || null === $expire) {
                 throw new LogicException('To send an emergency-priority notification, the retry and expire parameters must be supplied. Either of them was not supplied.');
             }

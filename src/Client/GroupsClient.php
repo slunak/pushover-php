@@ -52,11 +52,11 @@ class GroupsClient extends Client implements ClientInterface
      */
     public function buildApiUrl()
     {
-        if ($this->action == self::ACTION_CREATE_GROUP) {
+        if ($this->action === self::ACTION_CREATE_GROUP) {
             return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json';
         }
 
-        if ($this->action == self::ACTION_RETRIEVE_GROUP) {
+        if ($this->action === self::ACTION_RETRIEVE_GROUP) {
             return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups/'.$this->group->getKey().'.json?token='.$this->group->getApplication()->getToken();
         }
 
@@ -70,26 +70,26 @@ class GroupsClient extends Client implements ClientInterface
         ];
 
         if (
-            $this->action == self::ACTION_ADD_USER
-            || $this->action == self::ACTION_REMOVE_USER
-            || $this->action == self::ACTION_DISABLE_USER
-            || $this->action == self::ACTION_ENABLE_USER
+            $this->action === self::ACTION_ADD_USER
+            || $this->action === self::ACTION_REMOVE_USER
+            || $this->action === self::ACTION_DISABLE_USER
+            || $this->action === self::ACTION_ENABLE_USER
         ) {
             $curlPostFields['user'] = $recipient->getUserKey();
         }
 
-        if ($this->action == self::ACTION_ADD_USER) {
+        if ($this->action === self::ACTION_ADD_USER) {
             if (!empty($recipient->getDevice())) {
                 $curlPostFields['device'] = $recipient->getDevice()[0];
             }
 
-            if (null != $recipient->getMemo()) {
+            if (null !== $recipient->getMemo()) {
                 $curlPostFields['memo'] = $recipient->getMemo();
             }
         }
 
-        if ($this->action == self::ACTION_RENAME_GROUP
-            || $this->action == self::ACTION_CREATE_GROUP
+        if ($this->action === self::ACTION_RENAME_GROUP
+            || $this->action === self::ACTION_CREATE_GROUP
         ) {
             $curlPostFields['name'] = $this->group->getName();
         }

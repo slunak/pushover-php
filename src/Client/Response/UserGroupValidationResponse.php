@@ -91,15 +91,15 @@ class UserGroupValidationResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
+        if ($this->getRequestStatus() === 1) {
             $this->setDevices($decodedCurlResponse->devices);
             $this->setLicenses($decodedCurlResponse->licenses);
 
-            if ($decodedCurlResponse->group == 1) {
+            if ($decodedCurlResponse->group === 1) {
                 $this->setIsGroup(true);
             }
 
-            if ($decodedCurlResponse->group == 0) {
+            if ($decodedCurlResponse->group === 0) {
                 $this->setIsGroup(false);
             }
         }

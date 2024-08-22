@@ -57,7 +57,7 @@ class Recipient
 
     public function __construct(string $userKey)
     {
-        if (1 != preg_match('/^[a-zA-Z0-9]{30}$/', $userKey)) {
+        if (1 !== preg_match('/^[a-zA-Z0-9]{30}$/', $userKey)) {
             throw new InvalidArgumentException(sprintf('User and group identifiers are 30 characters long, case-sensitive, and may contain the character set [A-Za-z0-9]. "%s" given with "%s" characters.', $userKey, \strlen($userKey)));
         }
 
@@ -88,7 +88,7 @@ class Recipient
      */
     public function addDevice($device): void
     {
-        if (1 != preg_match('/^[a-zA-Z0-9_-]{1,25}$/', $device)) {
+        if (1 !== preg_match('/^[a-zA-Z0-9_-]{1,25}$/', $device)) {
             throw new InvalidArgumentException(sprintf('Device names are optional, may be up to 25 characters long, and will contain the character set [A-Za-z0-9_-]. "%s" given with "%s" characters."', $device, \strlen($device)));
         }
 
