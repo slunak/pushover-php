@@ -69,7 +69,7 @@ class GroupsClient extends Client implements ClientInterface
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups/'.$this->group->getKey().'/'.$this->action.'.json?token='.$this->group->getApplication()->getToken();
     }
 
-    public function buildCurlPostFields(Recipient $recipient = null): array
+    public function buildCurlPostFields(?Recipient $recipient = null): array
     {
         $curlPostFields = [
             'token' => $this->group->getApplication()->getToken(),
