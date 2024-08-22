@@ -66,7 +66,7 @@ class Group
      */
     public function __construct(string $key, Application $application)
     {
-        if (1 != preg_match('/^[a-zA-Z0-9]{30}$/', $key)) {
+        if (1 !== preg_match('/^[a-zA-Z0-9]{30}$/', $key)) {
             throw new InvalidArgumentException(sprintf('Group identifiers are 30 characters long, case-sensitive, and may contain the character set [A-Za-z0-9]. "%s" given."', $key));
         }
 
