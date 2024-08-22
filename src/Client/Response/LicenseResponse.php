@@ -47,7 +47,7 @@ class LicenseResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
+        if ($this->getRequestStatus() === 1) {
             $this->credits = $decodedCurlResponse->credits;
         }
     }

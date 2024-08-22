@@ -48,7 +48,7 @@ class CreateGroupResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
+        if ($this->getRequestStatus() === 1) {
             $this->groupKey = $decodedCurlResponse->group;
         }
     }

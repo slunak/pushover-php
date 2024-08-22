@@ -173,8 +173,8 @@ class ReceiptResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
-            if ($decodedCurlResponse->acknowledged == 1) {
+        if ($this->getRequestStatus() === 1) {
+            if ($decodedCurlResponse->acknowledged === 1) {
                 $this->setIsAcknowledged(true);
                 $this->setAcknowledgedAt(new \DateTime('@'.$decodedCurlResponse->acknowledged_at));
 
@@ -186,7 +186,7 @@ class ReceiptResponse extends Response
 
             $this->setLastDeliveredAt(new \DateTime('@'.$decodedCurlResponse->last_delivered_at));
 
-            if ($decodedCurlResponse->expired == 1) {
+            if ($decodedCurlResponse->expired === 1) {
                 $this->setIsExpired(true);
             } else {
                 $this->setIsExpired(false);
@@ -194,7 +194,7 @@ class ReceiptResponse extends Response
 
             $this->setExpiresAt(new \DateTime('@'.$decodedCurlResponse->expires_at));
 
-            if ($decodedCurlResponse->called_back == 1) {
+            if ($decodedCurlResponse->called_back === 1) {
                 $this->setHasCalledBack(true);
                 $this->setCalledBackAt(new \DateTime('@'.$decodedCurlResponse->called_back_at));
             }

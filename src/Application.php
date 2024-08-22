@@ -33,7 +33,7 @@ class Application
 
     public function __construct(string $token)
     {
-        if (1 != preg_match('/^[a-zA-Z0-9]{30}$/', $token)) {
+        if (1 !== preg_match('/^[a-zA-Z0-9]{30}$/', $token)) {
             throw new InvalidArgumentException(sprintf('Application tokens are case-sensitive, 30 characters long, and may contain the character set [A-Za-z0-9]. "%s" given with "%s" characters."', $token, \strlen($token)));
         }
 
