@@ -85,9 +85,6 @@ $ruleSet = Php74::create()->withHeader($header)->withRules(Rules::fromArray([
     ],
     'yoda_style' => false,
     'php_unit_test_case_static_method_calls' => false,
-
-    // temp disabled to keep the diff small in the first run
-    'nullable_type_declaration_for_default_null_value' => false,
 ]));
 
 $config = Factory::fromRuleSet($ruleSet);

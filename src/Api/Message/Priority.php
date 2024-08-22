@@ -100,7 +100,7 @@ class Priority
      */
     private ?string $callback;
 
-    public function __construct(int $priority = self::NORMAL, int $retry = null, int $expire = null)
+    public function __construct(int $priority = self::NORMAL, ?int $retry = null, ?int $expire = null)
     {
         if (!(self::LOWEST <= $priority && $priority <= self::EMERGENCY)) {
             throw new InvalidArgumentException(sprintf('Message priority must be within range -2 and 2. "%s" was given.', $priority));

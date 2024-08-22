@@ -52,7 +52,7 @@ class Request implements RequestInterface
     /**
      * @param null|array[] $curlPostFields
      */
-    public function __construct(string $apiUrl, string $method, array $curlPostFields = null)
+    public function __construct(string $apiUrl, string $method, ?array $curlPostFields = null)
     {
         $this->apiUrl = $apiUrl;
         $this->method = $method;
