@@ -84,7 +84,7 @@ class Message
      */
     private ?int $ttl;
 
-    public function __construct(string $message, string $title = null)
+    public function __construct(string $message, ?string $title = null)
     {
         $this->setMessage($message);
 

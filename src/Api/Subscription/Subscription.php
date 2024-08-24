@@ -45,7 +45,7 @@ class Subscription
         return $this->subscriptionCode;
     }
 
-    public function migrate(Recipient $recipient, Sound $sound = null): SubscriptionResponse
+    public function migrate(Recipient $recipient, ?Sound $sound = null): SubscriptionResponse
     {
         $client = new SubscriptionClient();
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($this, $recipient, $sound));

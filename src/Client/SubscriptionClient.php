@@ -39,7 +39,7 @@ class SubscriptionClient extends Client implements ClientInterface
      *
      * @return array[]
      */
-    public function buildCurlPostFields(Subscription $subscription, Recipient $recipient, Sound $sound = null): array
+    public function buildCurlPostFields(Subscription $subscription, Recipient $recipient, ?Sound $sound = null): array
     {
         $curlPostFields = [
             'token' => $subscription->getApplication()->getToken(),
