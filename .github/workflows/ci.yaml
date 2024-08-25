@@ -10,6 +10,51 @@ env:
     REQUIRED_PHP_EXTENSIONS: "curl, json"
 
 jobs:
+    coding-standards:
+        name: "Coding Standards"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            - name: "Checkout code"
+              uses: actions/checkout@v3
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@v2"
+                with:
+                    coverage: "none"
+                    php-version: "${{ matrix.php-version }}"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@3.0.0"
+                with:
+                    composer-options: "--no-scripts"
+
+            -
+                name: "Create cache directory for friendsofphp/php-cs-fixer"
+                run: "mkdir -p .build/php-cs-fixer"
+
+            -
+                name: "Cache cache directory for friendsofphp/php-cs-fixer"
+                uses: "actions/cache@v4"
+                with:
+                    path: ".build/php-cs-fixer"
+                    key: "php-${{ matrix.php-version }}-php-cs-fixer-${{ github.sha }}"
+                    restore-keys: "php-${{ matrix.php-version }}-php-cs-fixer-"
+
+            -
+                name: "Run friendsofphp/php-cs-fixer"
+                run: "vendor/bin/php-cs-fixer fix --diff --verbose"
+
     composer-validate:
         name: "Validate composer.json"
 
