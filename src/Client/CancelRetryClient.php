@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Pushover package.
  *
@@ -20,9 +22,9 @@ use Serhiy\Pushover\Client\Curl\Curl;
 class CancelRetryClient extends Client implements ClientInterface
 {
     /**
-     * @var string 30 character string.
+     * 30 character string.
      */
-    private $receipt;
+    private string $receipt;
 
     public function __construct(string $receipt)
     {
@@ -30,23 +32,22 @@ class CancelRetryClient extends Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildApiUrl(): string
     {
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/receipts/".$this->receipt."/cancel.json";
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/receipts/'.$this->receipt.'/cancel.json';
     }
 
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @param Receipt $receipt
      * @return array[]
      */
     public function buildCurlPostFields(Receipt $receipt): array
     {
-        return array(
+        return [
             'token' => $receipt->getApplication()->getToken(),
-        );
+        ];
     }
 }

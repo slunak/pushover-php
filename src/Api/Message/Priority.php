@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -77,35 +79,28 @@ class Priority
 
     /**
      * Priority of the message.
-     *
-     * @var int
      */
-    private $priority;
+    private int $priority;
 
     /**
      * Specifies how often (in seconds) the Pushover servers will send the same notification to the user.
      * Used only and required with Emergency Priority.
-     *
-     * @var int|null
      */
-    private $retry;
+    private ?int $retry;
 
     /**
      * Specifies how many seconds your notification will continue to be retried for (every "retry" seconds).
      * Used only and required with Emergency Priority.
-     * @var int|null
      */
-    private $expire;
+    private ?int $expire;
 
     /**
      * (Optional) may be supplied with a publicly-accessible URL that our servers will send a request to when the user has acknowledged your notification.
      * Used only but not required with Emergency Priority.
-     *
-     * @var string|null
      */
-    private $callback;
+    private ?string $callback;
 
-    public function __construct(int $priority = self::NORMAL, int $retry = null, int $expire = null)
+    public function __construct(int $priority = self::NORMAL, ?int $retry = null, ?int $expire = null)
     {
         if (!(self::LOWEST <= $priority && $priority <= self::EMERGENCY)) {
             throw new InvalidArgumentException(sprintf('Message priority must be within range -2 and 2. "%s" was given.', $priority));
@@ -113,7 +108,7 @@ class Priority
 
         $this->priority = $priority;
 
-        if ($priority == self::EMERGENCY) {
+        if ($priority === self::EMERGENCY) {
             if (null === $retry || null === $expire) {
                 throw new LogicException('To send an emergency-priority notification, the retry and expire parameters must be supplied. Either of them was not supplied.');
             }
@@ -131,28 +126,20 @@ class Priority
     public static function getAvailablePriorities(): array
     {
         $oClass = new \ReflectionClass(__CLASS__);
+
         return $oClass->getConstants();
     }
 
-    /**
-     * @return int
-     */
     public function getPriority(): int
     {
         return $this->priority;
     }
 
-    /**
-     * @return int|null
-     */
     public function getRetry(): ?int
     {
         return $this->retry;
     }
 
-    /**
-     * @param int|null $retry
-     */
     public function setRetry(?int $retry): void
     {
         if ($retry < 30) {
@@ -162,17 +149,11 @@ class Priority
         $this->retry = $retry;
     }
 
-    /**
-     * @return int|null
-     */
     public function getExpire(): ?int
     {
         return $this->expire;
     }
 
-    /**
-     * @param int|null $expire
-     */
     public function setExpire(?int $expire): void
     {
         if ($expire > 10800) {
@@ -182,17 +163,11 @@ class Priority
         $this->expire = $expire;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCallback(): ?string
     {
         return $this->callback;
     }
 
-    /**
-     * @param string|null $callback
-     */
     public function setCallback(?string $callback): void
     {
         $this->callback = $callback;

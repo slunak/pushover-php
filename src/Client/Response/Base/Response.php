@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -26,24 +28,18 @@ class Response
 {
     /**
      * True if request was successful, false otherwise. Reflects $requestStatus property.
-     *
-     * @var bool
      */
-    private $isSuccessful;
+    private bool $isSuccessful;
 
     /**
      * Either 1 if successful or something other than 1 if unsuccessful. Reflects $isSuccessful property.
-     *
-     * @var int
      */
-    private $requestStatus;
+    private int $requestStatus;
 
     /**
      * Randomly-generated unique token that we have associated with your request.
-     *
-     * @var string
      */
-    private $requestToken;
+    private string $requestToken;
 
     /**
      * Original curl response in json format.
@@ -58,62 +54,26 @@ class Response
      *
      * @var array[]
      */
-    private $errors = array();
+    private array $errors = [];
 
     /**
      * Object that contains original request.
-     *
-     * @var Request
      */
-    private $request;
+    private Request $request;
 
-
-    /**
-     * @return bool
-     */
     public function isSuccessful(): bool
     {
         return $this->isSuccessful;
     }
 
-    /**
-     * @param bool $isSuccessful
-     */
-    private function setIsSuccessful(bool $isSuccessful): void
-    {
-        $this->isSuccessful = $isSuccessful;
-    }
-
-    /**
-     * @return int
-     */
     public function getRequestStatus(): int
     {
         return $this->requestStatus;
     }
 
-    /**
-     * @param int $requestStatus
-     */
-    private function setRequestStatus(int $requestStatus): void
-    {
-        $this->requestStatus = $requestStatus;
-    }
-
-    /**
-     * @return string
-     */
     public function getRequestToken(): string
     {
         return $this->requestToken;
-    }
-
-    /**
-     * @param string $requestToken
-     */
-    private function setRequestToken(string $requestToken): void
-    {
-        $this->requestToken = $requestToken;
     }
 
     /**
@@ -125,14 +85,6 @@ class Response
     }
 
     /**
-     * @param array[] $errors
-     */
-    private function setErrors(array $errors): void
-    {
-        $this->errors = $errors;
-    }
-
-    /**
      * @return mixed
      */
     public function getCurlResponse()
@@ -140,25 +92,11 @@ class Response
         return $this->curlResponse;
     }
 
-    /**
-     * @param mixed $curlResponse
-     */
-    private function setCurlResponse($curlResponse): void
-    {
-        $this->curlResponse = $curlResponse;
-    }
-
-    /**
-     * @return Request
-     */
     public function getRequest(): Request
     {
         return $this->request;
     }
 
-    /**
-     * @param Request $request
-     */
     public function setRequest(Request $request): void
     {
         $this->request = $request;
@@ -168,6 +106,7 @@ class Response
      * Processes initial curl response, common to all response objects.
      *
      * @param mixed $curlResponse
+     *
      * @return mixed
      */
     protected function processInitialCurlResponse($curlResponse)
@@ -179,16 +118,47 @@ class Response
         $this->setRequestStatus($decodedCurlResponse->status);
         $this->setRequestToken($decodedCurlResponse->request);
 
-        if ($this->getRequestStatus() == 1) {
+        if ($this->getRequestStatus() === 1) {
             $this->setIsSuccessful(true);
             $this->setRequestToken($decodedCurlResponse->request);
         }
 
-        if ($this->getRequestStatus() == 0) {
+        if ($this->getRequestStatus() === 0) {
             $this->setErrors($decodedCurlResponse->errors);
             $this->setIsSuccessful(false);
         }
 
         return $decodedCurlResponse;
+    }
+
+    private function setIsSuccessful(bool $isSuccessful): void
+    {
+        $this->isSuccessful = $isSuccessful;
+    }
+
+    private function setRequestStatus(int $requestStatus): void
+    {
+        $this->requestStatus = $requestStatus;
+    }
+
+    private function setRequestToken(string $requestToken): void
+    {
+        $this->requestToken = $requestToken;
+    }
+
+    /**
+     * @param array[] $errors
+     */
+    private function setErrors(array $errors): void
+    {
+        $this->errors = $errors;
+    }
+
+    /**
+     * @param mixed $curlResponse
+     */
+    private function setCurlResponse($curlResponse): void
+    {
+        $this->curlResponse = $curlResponse;
     }
 }

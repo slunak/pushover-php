@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -11,10 +13,10 @@
 
 namespace Serhiy\Pushover\Api\Receipts;
 
+use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\CancelRetryClient;
 use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\ReceiptClient;
-use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 use Serhiy\Pushover\Client\Response\ReceiptResponse;
@@ -28,28 +30,18 @@ use Serhiy\Pushover\Client\Response\ReceiptResponse;
  */
 class Receipt
 {
-    /**
-     * @var Application
-     */
-    private $application;
+    private Application $application;
 
     public function __construct(Application $application)
     {
         $this->application = $application;
     }
 
-    /**
-     * @return Application
-     */
     public function getApplication(): Application
     {
         return $this->application;
     }
 
-    /**
-     * @param string $receipt
-     * @return ReceiptResponse
-     */
     public function query(string $receipt): ReceiptResponse
     {
         $client = new ReceiptClient($this->application, $receipt);
@@ -63,10 +55,6 @@ class Receipt
         return $response;
     }
 
-    /**
-     * @param string $receipt
-     * @return CancelRetryResponse
-     */
     public function cancelRetry(string $receipt): CancelRetryResponse
     {
         $client = new CancelRetryClient($receipt);

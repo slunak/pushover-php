@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -28,10 +30,10 @@ class NotificationTest extends TestCase
 {
     public function testCanBeCreated()
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
 
-        $message = new Message("This is a test message", "This is a title of the message");
+        $message = new Message('This is a test message', 'This is a title of the message');
 
         $notification = new Notification($application, $recipient, $message);
 
@@ -42,9 +44,8 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
-    public function testSetSound(Notification $notification)
+    public function testSetSound(Notification $notification): void
     {
         $notification->setSound(new Sound(Sound::PUSHOVER));
 
@@ -53,9 +54,8 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
-    public function testSetSoundNull(Notification $notification)
+    public function testSetSoundNull(Notification $notification): void
     {
         $notification->setSound(null);
 
@@ -64,20 +64,18 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
-    public function testSetCustomSound(Notification $notification)
+    public function testSetCustomSound(Notification $notification): void
     {
-        $notification->setCustomSound(new CustomSound("door_open"));
+        $notification->setCustomSound(new CustomSound('door_open'));
 
         $this->assertEquals('door_open', $notification->getCustomSound()->getCustomSound());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
-    public function testSetCustomSoundNull(Notification $notification)
+    public function testSetCustomSoundNull(Notification $notification): void
     {
         $notification->setCustomSound(null);
 
@@ -86,11 +84,10 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
-    public function testSetAttachment(Notification $notification)
+    public function testSetAttachment(Notification $notification): void
     {
-        $notification->setAttachment(new Attachment("/path/to/file.jpg", Attachment::MIME_TYPE_JPEG));
+        $notification->setAttachment(new Attachment('/path/to/file.jpg', Attachment::MIME_TYPE_JPEG));
 
         $this->assertEquals('/path/to/file.jpg', $notification->getAttachment()->getFilename());
         $this->assertEquals('image/jpeg', $notification->getAttachment()->getMimeType());
@@ -98,9 +95,8 @@ class NotificationTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Notification $notification
      */
-    public function testSetAttachmentNull(Notification $notification)
+    public function testSetAttachmentNull(Notification $notification): void
     {
         $notification->setAttachment(null);
 
@@ -110,11 +106,11 @@ class NotificationTest extends TestCase
     /**
      * @group Integration
      */
-    public function testPush()
+    public function testPush(): void
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
-        $message = new Message("This is a test message", "This is a title of the message");
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
+        $message = new Message('This is a test message', 'This is a title of the message');
         $notification = new Notification($application, $recipient, $message);
         $response = $notification->push();
 

@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -11,26 +13,26 @@
 
 namespace Client;
 
+use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Licensing\License;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\AssignLicenseClient;
-use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Exception\LogicException;
 use Serhiy\Pushover\Recipient;
 
 class AssignLicenseClientTest extends TestCase
 {
-    public function testBuildApiUrl()
+    public function testBuildApiUrl(): void
     {
         $client = new AssignLicenseClient();
         $this->assertInstanceOf(AssignLicenseClient::class, $client);
-        $this->assertEquals("https://api.pushover.net/1/licenses/assign.json", $client->buildApiUrl());
+        $this->assertEquals('https://api.pushover.net/1/licenses/assign.json', $client->buildApiUrl());
     }
 
-    public function testBuildCurlPostFields()
+    public function testBuildCurlPostFields(): void
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
         $license = new License($application);
         $email = 'dummy@email.com';
 
@@ -40,12 +42,12 @@ class AssignLicenseClientTest extends TestCase
 
         $client = new AssignLicenseClient();
 
-        $curlPostFields = array(
-            "token" => "cccc3333CCCC3333dddd4444DDDD44",
-            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
-            "email" => "dummy@email.com",
-            "os" => "Android",
-        );
+        $curlPostFields = [
+            'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+            'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
+            'email' => 'dummy@email.com',
+            'os' => 'Android',
+        ];
 
         $this->assertEquals($curlPostFields, $client->buildCurlPostFields($license));
 

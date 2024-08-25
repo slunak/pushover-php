@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -29,18 +31,16 @@ class SoundTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Sound $sound
      */
-    public function testGetSound(Sound $sound)
+    public function testGetSound(Sound $sound): void
     {
         $this->assertEquals('pushover', $sound->getSound());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Sound $sound
      */
-    public function testAvailableSounds(Sound $sound)
+    public function testAvailableSounds(Sound $sound): void
     {
         $availableSounds = new \ReflectionClass(Sound::class);
 
@@ -49,9 +49,8 @@ class SoundTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Sound $sound
      */
-    public function testSetSound(Sound $sound)
+    public function testSetSound(Sound $sound): void
     {
         $sound->setSound(Sound::ECHO);
 
@@ -59,6 +58,6 @@ class SoundTest extends TestCase
 
         $this->expectException(InvalidArgumentException::class);
 
-        $sound->setSound("invalid_sound");
+        $sound->setSound('invalid_sound');
     }
 }

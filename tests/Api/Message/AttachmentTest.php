@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -28,14 +30,14 @@ class AttachmentTest extends TestCase
         return $attachment;
     }
 
-    public function testCannotBeCreatedWithInvalidMimeType()
+    public function testCannotBeCreatedWithInvalidMimeType(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         new Attachment('/images/test.jpeg', 'image/invalid');
     }
 
-    public function testCannotBeCreatedWithInvalidExtension()
+    public function testCannotBeCreatedWithInvalidExtension(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -44,27 +46,24 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
-    public function testGetMimeType(Attachment $attachment)
+    public function testGetMimeType(Attachment $attachment): void
     {
         $this->assertEquals(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
-    public function testGetFilename(Attachment $attachment)
+    public function testGetFilename(Attachment $attachment): void
     {
         $this->assertEquals('/images/test.jpeg', $attachment->getFilename());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
-    public function testSetMimeType(Attachment $attachment)
+    public function testSetMimeType(Attachment $attachment): void
     {
         $attachment->setMimeType(Attachment::MIME_TYPE_JPEG);
         $this->assertEquals(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
@@ -75,9 +74,8 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
-    public function testSetFilename(Attachment $attachment)
+    public function testSetFilename(Attachment $attachment): void
     {
         $attachment->setMimeType(Attachment::MIME_TYPE_JPEG);
         $this->assertEquals(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
@@ -88,9 +86,8 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
-    public function testGetSupportedAttachmentTypes(Attachment $attachment)
+    public function testGetSupportedAttachmentTypes(Attachment $attachment): void
     {
         $supportedAttachmentsTypes = new \ReflectionClass(Attachment::class);
 
@@ -99,13 +96,12 @@ class AttachmentTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Attachment $attachment
      */
-    public function testGetSupportedAttachmentExtensions(Attachment $attachment)
+    public function testGetSupportedAttachmentExtensions(Attachment $attachment): void
     {
-        $supportedAttachmentExtensions = array(
-            'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp'
-        );
+        $supportedAttachmentExtensions = [
+            'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp',
+        ];
 
         $this->assertEquals($supportedAttachmentExtensions, $attachment->getSupportedAttachmentExtensions());
     }

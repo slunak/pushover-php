@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -30,7 +32,7 @@ class PriorityTest extends TestCase
         return $priority;
     }
 
-    public function testCanBeCreatedWithNormalPriority()
+    public function testCanBeCreatedWithNormalPriority(): void
     {
         $priority = new Priority(Priority::NORMAL);
 
@@ -46,14 +48,14 @@ class PriorityTest extends TestCase
         return $priority;
     }
 
-    public function testCannotBeCreatedWithInvalidPriority()
+    public function testCannotBeCreatedWithInvalidPriority(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         new Priority(10);
     }
 
-    public function testEmergencyPriorityRequiresExtraParams()
+    public function testEmergencyPriorityRequiresExtraParams(): void
     {
         $this->expectException(LogicException::class);
 
@@ -62,12 +64,12 @@ class PriorityTest extends TestCase
 
     /**
      * @depends testCanBeCreatedWithEmergencyPriority
-     * @param Priority $priority
+     *
      * @return Priority
      */
     public function testSetCallback(Priority $priority)
     {
-        $priority->setCallback("https://callback.example.com");
+        $priority->setCallback('https://callback.example.com');
 
         $this->assertInstanceOf(Priority::class, $priority);
 
@@ -76,18 +78,16 @@ class PriorityTest extends TestCase
 
     /**
      * @depends testSetCallback
-     * @param Priority $priority
      */
-    public function testGetCallback(Priority $priority)
+    public function testGetCallback(Priority $priority): void
     {
-        $this->assertEquals("https://callback.example.com", $priority->getCallback());
+        $this->assertEquals('https://callback.example.com', $priority->getCallback());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Priority $priority
      */
-    public function testAvailablePriorities(Priority $priority)
+    public function testAvailablePriorities(Priority $priority): void
     {
         $availablePriorities = new \ReflectionClass(Priority::class);
 

@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -20,13 +22,10 @@ use Serhiy\Pushover\Client\ReceiptClient;
  */
 class ReceiptClientTest extends TestCase
 {
-    /**
-     * @return ReceiptClient
-     */
     public function testCanBeCreated(): ReceiptClient
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $client = new ReceiptClient($application, "gggg7777GGGG7777hhhh8888HHHH88"); // using dummy receipt
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $client = new ReceiptClient($application, 'gggg7777GGGG7777hhhh8888HHHH88'); // using dummy receipt
 
         $this->assertInstanceOf(ReceiptClient::class, $client);
 
@@ -35,13 +34,12 @@ class ReceiptClientTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param ReceiptClient $client
      */
-    public function testBuildApiUrl(ReceiptClient $client)
+    public function testBuildApiUrl(ReceiptClient $client): void
     {
         $this->assertEquals(
-            "https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88.json?token=cccc3333CCCC3333dddd4444DDDD44",
-            $client->buildApiUrl()
+            'https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88.json?token=cccc3333CCCC3333dddd4444DDDD44',
+            $client->buildApiUrl(),
         );
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -32,26 +34,24 @@ class UserGroupValidationClientTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param UserGroupValidationClient $client
      */
-    public function testBuildCurlPostFields(UserGroupValidationClient $client)
+    public function testBuildCurlPostFields(UserGroupValidationClient $client): void
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
         $curlPostFields = $client->buildCurlPostFields($application, $recipient);
 
-        $this->assertEquals(array(
-            "token" => "cccc3333CCCC3333dddd4444DDDD44",
-            "user" => "aaaa1111AAAA1111bbbb2222BBBB22",
-        ), $curlPostFields);
+        $this->assertEquals([
+            'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+            'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
+        ], $curlPostFields);
     }
 
     /**
      * @depends testCanBeCreated
-     * @param UserGroupValidationClient $client
      */
-    public function testBuildApiUrl(UserGroupValidationClient $client)
+    public function testBuildApiUrl(UserGroupValidationClient $client): void
     {
-        $this->assertEquals("https://api.pushover.net/1/users/validate.json", $client->buildApiUrl());
+        $this->assertEquals('https://api.pushover.net/1/users/validate.json', $client->buildApiUrl());
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -24,14 +26,8 @@ use Serhiy\Pushover\Recipient;
  */
 class Subscription
 {
-    /**
-     * @var Application
-     */
-    private $application;
-    /**
-     * @var string
-     */
-    private $subscriptionCode;
+    private Application $application;
+    private string $subscriptionCode;
 
     public function __construct(Application $application, string $subscriptionCode)
     {
@@ -39,28 +35,17 @@ class Subscription
         $this->subscriptionCode = $subscriptionCode;
     }
 
-    /**
-     * @return Application
-     */
     public function getApplication(): Application
     {
         return $this->application;
     }
 
-    /**
-     * @return string
-     */
     public function getSubscriptionCode(): string
     {
         return $this->subscriptionCode;
     }
 
-    /**
-     * @param Recipient $recipient
-     * @param Sound|null $sound
-     * @return SubscriptionResponse
-     */
-    public function migrate(Recipient $recipient, Sound $sound = null): SubscriptionResponse
+    public function migrate(Recipient $recipient, ?Sound $sound = null): SubscriptionResponse
     {
         $client = new SubscriptionClient();
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($this, $recipient, $sound));

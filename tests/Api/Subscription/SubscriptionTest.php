@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -11,8 +13,8 @@
 
 namespace Api\Subscription;
 
-use Serhiy\Pushover\Api\Subscription\Subscription;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\Subscription\Subscription;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\SubscriptionResponse;
 use Serhiy\Pushover\Recipient;
@@ -22,13 +24,10 @@ use Serhiy\Pushover\Recipient;
  */
 class SubscriptionTest extends TestCase
 {
-    /**
-     * @return Subscription
-     */
     public function testCanBeCreated(): Subscription
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $subscription = new Subscription($application, "dummy-subscription-aaa111bbb222ccc"); // using dummy subscription code
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $subscription = new Subscription($application, 'dummy-subscription-aaa111bbb222ccc'); // using dummy subscription code
 
         $this->assertInstanceOf(Subscription::class, $subscription);
 
@@ -37,18 +36,16 @@ class SubscriptionTest extends TestCase
 
     /**
      * @depends testCanBeCreated
-     * @param Subscription $subscription
      */
-    public function testGetSubscriptionCode(Subscription $subscription)
+    public function testGetSubscriptionCode(Subscription $subscription): void
     {
-        $this->assertEquals("dummy-subscription-aaa111bbb222ccc", $subscription->getSubscriptionCode());
+        $this->assertEquals('dummy-subscription-aaa111bbb222ccc', $subscription->getSubscriptionCode());
     }
 
     /**
      * @depends testCanBeCreated
-     * @param Subscription $subscription
      */
-    public function testGetApplication(Subscription $subscription)
+    public function testGetApplication(Subscription $subscription): void
     {
         $this->assertInstanceOf(Application::class, $subscription->getApplication());
     }
@@ -56,11 +53,11 @@ class SubscriptionTest extends TestCase
     /**
      * @group Integration
      */
-    public function testMigrate()
+    public function testMigrate(): void
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $subscription = new Subscription($application, "dummy-subscription-aaa111bbb222ccc");
-        $recipient = new Recipient("aaaa1111AAAA1111bbbb2222BBBB22"); // using dummy user key
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $subscription = new Subscription($application, 'dummy-subscription-aaa111bbb222ccc');
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
 
         $recipient->addDevice('test-device-1');
 

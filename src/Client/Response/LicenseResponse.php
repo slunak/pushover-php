@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -19,9 +21,9 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class LicenseResponse extends Response
 {
     /**
-     * @var int Number of license credits remaining.
+     * Number of license credits remaining.
      */
-    private $credits;
+    private int $credits;
 
     /**
      * @param mixed $curlResponse
@@ -29,6 +31,11 @@ class LicenseResponse extends Response
     public function __construct($curlResponse)
     {
         $this->processCurlResponse($curlResponse);
+    }
+
+    public function getCredits(): int
+    {
+        return $this->credits;
     }
 
     /**
@@ -40,16 +47,8 @@ class LicenseResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
+        if ($this->getRequestStatus() === 1) {
             $this->credits = $decodedCurlResponse->credits;
         }
-    }
-
-    /**
-     * @return int
-     */
-    public function getCredits(): int
-    {
-        return $this->credits;
     }
 }

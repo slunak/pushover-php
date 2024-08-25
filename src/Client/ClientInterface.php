@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -19,7 +21,7 @@ namespace Serhiy\Pushover\Client;
 interface ClientInterface
 {
     /**
-     * Builds and returns full API URL
+     * Builds and returns full API URL.
      *
      * @return string
      */

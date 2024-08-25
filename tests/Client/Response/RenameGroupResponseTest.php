@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -11,29 +13,29 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\RenameGroupResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\RenameGroupResponse;
 
 /**
  * @author Serhiy Lunak
  */
 class RenameGroupResponseTest extends TestCase
 {
-    public function testCenBeCreated()
+    public function testCenBeCreated(): void
     {
         $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new RenameGroupResponse($successfulCurlResponse);
 
         $this->assertInstanceOf(RenameGroupResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
 
         $unSuccessfulCurlResponse = '{"group":"not found","errors":["group not found or you are not authorized to edit it"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new RenameGroupResponse($unSuccessfulCurlResponse);
 
         $this->assertInstanceOf(RenameGroupResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
-        $this->assertEquals(array(0 => "group not found or you are not authorized to edit it"), $response->getErrors());
+        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertEquals([0 => 'group not found or you are not authorized to edit it'], $response->getErrors());
     }
 }

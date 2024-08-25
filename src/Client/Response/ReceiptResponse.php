@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -20,49 +22,49 @@ use Serhiy\Pushover\Recipient;
 class ReceiptResponse extends Response
 {
     /**
-     * @var bool True or False whether the user has acknowledged the notification.
+     * True or False whether the user has acknowledged the notification.
      */
-    private $isAcknowledged = false;
+    private bool $isAcknowledged = false;
 
     /**
-     * @var \DateTime|null Timestamp of when the user acknowledged, or null.
+     * Timestamp of when the user acknowledged, or null.
      */
-    private $acknowledgedAt;
+    private ?\DateTime $acknowledgedAt;
 
     /**
-     * @var Recipient User that first acknowledged the notification.
+     * User that first acknowledged the notification.
      */
-    private $acknowledgedBy;
+    private Recipient $acknowledgedBy;
 
     /**
-     * @var string The device name of the user that first acknowledged the notification.
+     * The device name of the user that first acknowledged the notification.
      */
-    private $acknowledgedByDevice;
+    private string $acknowledgedByDevice;
 
     /**
-     * @var \DateTime|null Timestamp of when the notification was last retried, or null.
+     * Timestamp of when the notification was last retried, or null.
      */
-    private $lastDeliveredAt;
+    private ?\DateTime $lastDeliveredAt;
 
     /**
-     * @var bool True or False whether the expiration date has passed.
+     * True or False whether the expiration date has passed.
      */
-    private $isExpired;
+    private bool $isExpired;
 
     /**
-     * @var \DateTime Timestamp of when the notification will stop being retried.
+     * Timestamp of when the notification will stop being retried.
      */
-    private $expiresAt;
+    private \DateTime $expiresAt;
 
     /**
-     * @var bool True or False whether our server has called back to your callback URL if any.
+     * True or False whether our server has called back to your callback URL if any.
      */
-    private $hasCalledBack = false;
+    private bool $hasCalledBack = false;
 
     /**
-     * @var \DateTime|null Timestamp of when our server called back, or null.
+     * Timestamp of when our server called back, or null.
      */
-    private $calledBackAt;
+    private ?\DateTime $calledBackAt;
 
     /**
      * @param mixed $curlResponse
@@ -72,145 +74,91 @@ class ReceiptResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
-    /**
-     * @return bool
-     */
     public function isAcknowledged(): bool
     {
         return $this->isAcknowledged;
     }
 
-    /**
-     * @param bool $isAcknowledged
-     */
-    private function setIsAcknowledged(bool $isAcknowledged): void
-    {
-        $this->isAcknowledged = $isAcknowledged;
-    }
-
-    /**
-     * @return \DateTime|null
-     */
     public function getAcknowledgedAt(): ?\DateTime
     {
         return $this->acknowledgedAt;
     }
 
-    /**
-     * @param \DateTime $acknowledgedAt
-     */
-    private function setAcknowledgedAt(\DateTime $acknowledgedAt): void
-    {
-        $this->acknowledgedAt = $acknowledgedAt;
-    }
-
-    /**
-     * @return Recipient
-     */
     public function getAcknowledgedBy(): Recipient
     {
         return $this->acknowledgedBy;
     }
 
-    /**
-     * @param Recipient $acknowledgedBy
-     */
-    private function setAcknowledgedBy(Recipient $acknowledgedBy): void
-    {
-        $this->acknowledgedBy = $acknowledgedBy;
-    }
-
-    /**
-     * @return string
-     */
     public function getAcknowledgedByDevice(): string
     {
         return $this->acknowledgedByDevice;
     }
 
-    /**
-     * @param string $acknowledgedByDevice
-     */
-    private function setAcknowledgedByDevice(string $acknowledgedByDevice): void
-    {
-        $this->acknowledgedByDevice = $acknowledgedByDevice;
-    }
-
-    /**
-     * @return \DateTime|null
-     */
     public function getLastDeliveredAt(): ?\DateTime
     {
         return $this->lastDeliveredAt;
     }
 
-    /**
-     * @param \DateTime $lastDeliveredAt
-     */
-    private function setLastDeliveredAt(\DateTime $lastDeliveredAt): void
-    {
-        $this->lastDeliveredAt = $lastDeliveredAt;
-    }
-
-    /**
-     * @return bool
-     */
     public function isExpired(): bool
     {
         return $this->isExpired;
     }
 
-    /**
-     * @param bool $isExpired
-     */
-    private function setIsExpired(bool $isExpired): void
-    {
-        $this->isExpired = $isExpired;
-    }
-
-    /**
-     * @return \DateTime
-     */
     public function getExpiresAt(): \DateTime
     {
         return $this->expiresAt;
     }
 
-    /**
-     * @param \DateTime $expiresAt
-     */
-    private function setExpiresAt(\DateTime $expiresAt): void
-    {
-        $this->expiresAt = $expiresAt;
-    }
-
-    /**
-     * @return bool
-     */
     public function hasCalledBack(): bool
     {
         return $this->hasCalledBack;
     }
 
-    /**
-     * @param bool $hasCalledBack
-     */
-    private function setHasCalledBack(bool $hasCalledBack): void
-    {
-        $this->hasCalledBack = $hasCalledBack;
-    }
-
-    /**
-     * @return \DateTime|null
-     */
     public function getCalledBackAt(): ?\DateTime
     {
         return $this->calledBackAt;
     }
 
-    /**
-     * @param \DateTime $calledBackAt
-     */
+    private function setIsAcknowledged(bool $isAcknowledged): void
+    {
+        $this->isAcknowledged = $isAcknowledged;
+    }
+
+    private function setAcknowledgedAt(\DateTime $acknowledgedAt): void
+    {
+        $this->acknowledgedAt = $acknowledgedAt;
+    }
+
+    private function setAcknowledgedBy(Recipient $acknowledgedBy): void
+    {
+        $this->acknowledgedBy = $acknowledgedBy;
+    }
+
+    private function setAcknowledgedByDevice(string $acknowledgedByDevice): void
+    {
+        $this->acknowledgedByDevice = $acknowledgedByDevice;
+    }
+
+    private function setLastDeliveredAt(\DateTime $lastDeliveredAt): void
+    {
+        $this->lastDeliveredAt = $lastDeliveredAt;
+    }
+
+    private function setIsExpired(bool $isExpired): void
+    {
+        $this->isExpired = $isExpired;
+    }
+
+    private function setExpiresAt(\DateTime $expiresAt): void
+    {
+        $this->expiresAt = $expiresAt;
+    }
+
+    private function setHasCalledBack(bool $hasCalledBack): void
+    {
+        $this->hasCalledBack = $hasCalledBack;
+    }
+
     private function setCalledBackAt(\DateTime $calledBackAt): void
     {
         $this->calledBackAt = $calledBackAt;
@@ -225,8 +173,8 @@ class ReceiptResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
-            if ($decodedCurlResponse->acknowledged == 1) {
+        if ($this->getRequestStatus() === 1) {
+            if ($decodedCurlResponse->acknowledged === 1) {
                 $this->setIsAcknowledged(true);
                 $this->setAcknowledgedAt(new \DateTime('@'.$decodedCurlResponse->acknowledged_at));
 
@@ -238,7 +186,7 @@ class ReceiptResponse extends Response
 
             $this->setLastDeliveredAt(new \DateTime('@'.$decodedCurlResponse->last_delivered_at));
 
-            if ($decodedCurlResponse->expired == 1) {
+            if ($decodedCurlResponse->expired === 1) {
                 $this->setIsExpired(true);
             } else {
                 $this->setIsExpired(false);
@@ -246,7 +194,7 @@ class ReceiptResponse extends Response
 
             $this->setExpiresAt(new \DateTime('@'.$decodedCurlResponse->expires_at));
 
-            if ($decodedCurlResponse->called_back == 1) {
+            if ($decodedCurlResponse->called_back === 1) {
                 $this->setHasCalledBack(true);
                 $this->setCalledBackAt(new \DateTime('@'.$decodedCurlResponse->called_back_at));
             }

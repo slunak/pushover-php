@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -11,11 +13,11 @@
 
 namespace Serhiy\Pushover\Api\UserGroupValidation;
 
+use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Client\UserGroupValidationClient;
-use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
 /**
@@ -26,19 +28,13 @@ use Serhiy\Pushover\Recipient;
  */
 class Validation
 {
-    /**
-     * @var Application
-     */
-    private $application;
+    private Application $application;
 
     public function __construct(Application $application)
     {
         $this->application = $application;
     }
 
-    /**
-     * @return Application
-     */
     public function getApplication(): Application
     {
         return $this->application;
@@ -46,9 +42,6 @@ class Validation
 
     /**
      * Validates recipient and its device, and returns Response object.
-     *
-     * @param Recipient $recipient
-     * @return UserGroupValidationResponse
      */
     public function validate(Recipient $recipient): UserGroupValidationResponse
     {

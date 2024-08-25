@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -31,19 +33,14 @@ class GroupsClient extends Client implements ClientInterface
     public const ACTION_LIST_GROUPS = "list";
 
     /**
-     * @var Group
+     * Action that client performs.
      */
-    private $group;
-
-    /**
-     * @var string Action that client performs.
-     */
-    private $action;
+    private string $action;
 
     public function __construct(Group $group, string $action)
     {
         if (!$this->isActionValid($action)) {
-            throw new InvalidArgumentException("Action argument provided to construct method is invalid.");
+            throw new InvalidArgumentException('Action argument provided to construct method is invalid.');
         }
 
         $this->group = $group;
@@ -51,12 +48,12 @@ class GroupsClient extends Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildApiUrl()
     {
-        if ($this->action == self::ACTION_CREATE_GROUP) {
-            return Curl::API_BASE_URL."/".Curl::API_VERSION."/groups.json";
+        if ($this->action === self::ACTION_CREATE_GROUP) {
+            return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json';
         }
 
         if ($this->action == self::ACTION_LIST_GROUPS) {
@@ -67,42 +64,38 @@ class GroupsClient extends Client implements ClientInterface
             return Curl::API_BASE_URL."/".Curl::API_VERSION."/groups/".$this->group->getKey().".json?token=".$this->group->getApplication()->getToken();
         }
 
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/groups/".$this->group->getKey()."/".$this->action.".json?token=".$this->group->getApplication()->getToken();
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups/'.$this->group->getKey().'/'.$this->action.'.json?token='.$this->group->getApplication()->getToken();
     }
 
-    /**
-     * @param Recipient|null $recipient
-     * @return array
-     */
-    public function buildCurlPostFields(Recipient $recipient = null): array
+    public function buildCurlPostFields(?Recipient $recipient = null): array
     {
-        $curlPostFields = array(
-            "token" => $this->group->getApplication()->getToken(),
-        );
+        $curlPostFields = [
+            'token' => $this->group->getApplication()->getToken(),
+        ];
 
         if (
-            $this->action == self::ACTION_ADD_USER ||
-            $this->action == self::ACTION_REMOVE_USER ||
-            $this->action == self::ACTION_DISABLE_USER ||
-            $this->action == self::ACTION_ENABLE_USER
+            $this->action === self::ACTION_ADD_USER
+            || $this->action === self::ACTION_REMOVE_USER
+            || $this->action === self::ACTION_DISABLE_USER
+            || $this->action === self::ACTION_ENABLE_USER
         ) {
-            $curlPostFields["user"] = $recipient->getUserKey();
+            $curlPostFields['user'] = $recipient->getUserKey();
         }
 
-        if ($this->action == self::ACTION_ADD_USER) {
+        if ($this->action === self::ACTION_ADD_USER) {
             if (!empty($recipient->getDevice())) {
-                $curlPostFields["device"] = $recipient->getDevice()[0];
+                $curlPostFields['device'] = $recipient->getDevice()[0];
             }
 
-            if (null != $recipient->getMemo()) {
-                $curlPostFields["memo"] = $recipient->getMemo();
+            if (null !== $recipient->getMemo()) {
+                $curlPostFields['memo'] = $recipient->getMemo();
             }
         }
 
-        if ($this->action == self::ACTION_RENAME_GROUP ||
-            $this->action == self::ACTION_CREATE_GROUP
+        if ($this->action === self::ACTION_RENAME_GROUP
+            || $this->action === self::ACTION_CREATE_GROUP
         ) {
-            $curlPostFields["name"] = $this->group->getName();
+            $curlPostFields['name'] = $this->group->getName();
         }
 
         return $curlPostFields;
@@ -110,15 +103,12 @@ class GroupsClient extends Client implements ClientInterface
 
     /**
      * Checks if action that was provided into construct is valid.
-     *
-     * @param string $action
-     * @return bool
      */
     private function isActionValid(string $action): bool
     {
         $oClass = new \ReflectionClass(__CLASS__);
 
-        if (in_array($action, $oClass->getConstants())) {
+        if (\in_array($action, $oClass->getConstants(), true)) {
             return true;
         }
 

@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -18,18 +20,12 @@ namespace Serhiy\Pushover\Client\Request;
  */
 interface RequestInterface
 {
-    /**
-     * @return string
-     */
     public function getMethod(): string;
 
-    /**
-     * @return string
-     */
     public function getApiUrl(): string;
 
     /**
-     * @return array[]|null
+     * @return null|array[]
      */
     public function getCurlPostFields(): ?array;
 }

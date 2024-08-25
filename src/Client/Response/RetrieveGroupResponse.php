@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -20,14 +22,14 @@ use Serhiy\Pushover\Recipient;
 class RetrieveGroupResponse extends Response
 {
     /**
-     * @var string Name of the group.
+     * Name of the group.
      */
-    private $name;
+    private string $name;
 
     /**
-     * @var Recipient[] Array of group users of Recipient object.
+     * @var Recipient[] Group users
      */
-    private $users;
+    private array $users;
 
     /**
      * @param mixed $curlResponse
@@ -37,9 +39,6 @@ class RetrieveGroupResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -62,19 +61,18 @@ class RetrieveGroupResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
+        if ($this->getRequestStatus() === 1) {
             $this->name = $decodedCurlResponse->name;
             $this->users = $this->setUsers($decodedCurlResponse->users);
         }
     }
 
     /**
-     * @param array $users
      * @return Recipient[]
      */
     private function setUsers(array $users): array
     {
-        $recipients = array();
+        $recipients = [];
 
         foreach ($users as $user) {
             $recipient = new Recipient($user->user);
@@ -91,7 +89,7 @@ class RetrieveGroupResponse extends Response
                 $recipient->setIsDisabled(true);
             }
 
-            array_push($recipients, $recipient);
+            $recipients[] = $recipient;
         }
 
         return $recipients;

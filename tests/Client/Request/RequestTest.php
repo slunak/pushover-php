@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -24,7 +26,7 @@ class RequestTest extends TestCase
      */
     public function testCanBeCrated()
     {
-        $request = new Request("https://test.com/api", Request::POST, array());
+        $request = new Request('https://test.com/api', Request::POST, []);
 
         $this->assertInstanceOf(Request::class, $request);
 
@@ -33,27 +35,24 @@ class RequestTest extends TestCase
 
     /**
      * @depends testCanBeCrated
-     * @param Request $request
      */
-    public function testGetMethod(Request $request)
+    public function testGetMethod(Request $request): void
     {
         $this->assertEquals(Request::POST, $request->getMethod());
     }
 
     /**
      * @depends testCanBeCrated
-     * @param Request $request
      */
-    public function testGetApiUrl(Request $request)
+    public function testGetApiUrl(Request $request): void
     {
-        $this->assertEquals("https://test.com/api", $request->getApiUrl());
+        $this->assertEquals('https://test.com/api', $request->getApiUrl());
     }
 
     /**
      * @depends testCanBeCrated
-     * @param Request $request
      */
-    public function testGetCurlPostFields(Request $request)
+    public function testGetCurlPostFields(Request $request): void
     {
         $this->assertIsArray($request->getCurlPostFields());
     }

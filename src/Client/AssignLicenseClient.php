@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -20,31 +22,30 @@ use Serhiy\Pushover\Exception\LogicException;
  */
 class AssignLicenseClient extends Client implements ClientInterface
 {
-    public const API_PATH = "licenses/assign.json";
+    public const API_PATH = 'licenses/assign.json';
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildApiUrl()
     {
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/".self::API_PATH;
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
     }
 
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @param License $license
      * @return array[]
      */
     public function buildCurlPostFields(License $license): array
     {
         if (!$license->canBeAssigned()) {
-            throw new LogicException(sprintf('License cannot be assigned because neither recipient nor email is set.'));
+            throw new LogicException('License cannot be assigned because neither recipient nor email is set.');
         }
 
-        $curlPostFields = array(
-            "token" => $license->getApplication()->getToken(),
-        );
+        $curlPostFields = [
+            'token' => $license->getApplication()->getToken(),
+        ];
 
         if (null !== $license->getRecipient()) {
             $curlPostFields['user'] = $license->getRecipient()->getUserKey();

@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -34,18 +36,17 @@ class Curl
     /**
      * Performs curl request.
      *
-     * @param Request $request
      * @return mixed
      */
     public static function do(Request $request)
     {
-        $curlOptions = array(
-            CURLOPT_URL => $request->getApiUrl(),
-            CURLOPT_RETURNTRANSFER => true,
-        );
+        $curlOptions = [
+            \CURLOPT_URL => $request->getApiUrl(),
+            \CURLOPT_RETURNTRANSFER => true,
+        ];
 
         if (null !== $request->getCurlPostFields()) {
-            $curlOptions[CURLOPT_POSTFIELDS] = $request->getCurlPostFields();
+            $curlOptions[\CURLOPT_POSTFIELDS] = $request->getCurlPostFields();
         }
 
         curl_setopt_array($ch = curl_init(), $curlOptions);
@@ -53,7 +54,7 @@ class Curl
         $curlResponse = curl_exec($ch);
 
         if (false === $curlResponse) {
-            throw new LogicException('Curl request failed. Curl error: ' . curl_error($ch));
+            throw new LogicException('Curl request failed. Curl error: '.curl_error($ch));
         }
 
         if (true === $curlResponse) {

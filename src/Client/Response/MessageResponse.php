@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -23,10 +25,8 @@ class MessageResponse extends Response
      * When your application sends an emergency-priority notification, our API will respond with a receipt value
      * that can be used to get information about whether the notification has been acknowledged.
      * See {@link https://pushover.net/api/receipts} for more information.
-     *
-     * @var string
      */
-    private $receipt;
+    private string $receipt;
 
     /**
      * @param mixed $curlResponse
@@ -36,9 +36,6 @@ class MessageResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
-    /**
-     * @return string
-     */
     public function getReceipt(): string
     {
         return $this->receipt;

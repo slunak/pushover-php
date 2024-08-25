@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -18,20 +20,17 @@ use Serhiy\Pushover\Client\Response\Base\Response;
  */
 class UserGroupValidationResponse extends Response
 {
-    /**
-     * @var bool
-     */
-    private $isGroup;
+    private bool $isGroup;
 
     /**
      * @var array<string>
      */
-    private $devices;
+    private array $devices;
 
     /**
      * @var array<string>
      */
-    private $licenses;
+    private array $licenses;
 
     /**
      * @param mixed $curlResponse
@@ -41,20 +40,9 @@ class UserGroupValidationResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
-    /**
-     * @return bool
-     */
     public function isGroup(): bool
     {
         return $this->isGroup;
-    }
-
-    /**
-     * @param bool $isGroup
-     */
-    private function setIsGroup(bool $isGroup): void
-    {
-        $this->isGroup = $isGroup;
     }
 
     /**
@@ -66,19 +54,24 @@ class UserGroupValidationResponse extends Response
     }
 
     /**
-     * @param array<string> $devices
-     */
-    private function setDevices(array $devices): void
-    {
-        $this->devices = $devices;
-    }
-
-    /**
      * @return array<string>
      */
     public function getLicenses(): array
     {
         return $this->licenses;
+    }
+
+    private function setIsGroup(bool $isGroup): void
+    {
+        $this->isGroup = $isGroup;
+    }
+
+    /**
+     * @param array<string> $devices
+     */
+    private function setDevices(array $devices): void
+    {
+        $this->devices = $devices;
     }
 
     /**
@@ -98,15 +91,15 @@ class UserGroupValidationResponse extends Response
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
-        if ($this->getRequestStatus() == 1) {
+        if ($this->getRequestStatus() === 1) {
             $this->setDevices($decodedCurlResponse->devices);
             $this->setLicenses($decodedCurlResponse->licenses);
 
-            if ($decodedCurlResponse->group == 1) {
+            if ($decodedCurlResponse->group === 1) {
                 $this->setIsGroup(true);
             }
 
-            if ($decodedCurlResponse->group == 0) {
+            if ($decodedCurlResponse->group === 0) {
                 $this->setIsGroup(false);
             }
         }

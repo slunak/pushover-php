@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -23,39 +25,34 @@ class Request implements RequestInterface
     /**
      * HTTP GET method.
      */
-    public const GET = "GET";
+    public const GET = 'GET';
 
     /**
      * HTTP POST method.
      */
-    public const POST = "POST";
+    public const POST = 'POST';
 
     /**
-     * @var string Either GET or POST.
+     * Either GET or POST.
      */
-    private $method;
+    private string $method;
 
     /**
-     * @var string Full API URL.
+     * Full API URL.
      */
-    private $apiUrl;
+    private string $apiUrl;
 
     /**
      * CURLOPT_POSTFIELDS.
      *
      * Array for CURLOPT_POSTFIELDS curl argument.
-     *
-     * @var array[]|null
      */
-    private $curlPostFields;
+    private ?array $curlPostFields;
 
     /**
-     * Request constructor.
-     * @param string $apiUrl
-     * @param string $method
-     * @param array[]|null $curlPostFields
+     * @param null|array[] $curlPostFields
      */
-    public function __construct(string $apiUrl, string $method, array $curlPostFields = null)
+    public function __construct(string $apiUrl, string $method, ?array $curlPostFields = null)
     {
         $this->apiUrl = $apiUrl;
         $this->method = $method;
@@ -68,9 +65,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * Returns API URL
-     *
-     * @return string
+     * Returns API URL.
      */
     public function getApiUrl(): string
     {
@@ -78,7 +73,7 @@ class Request implements RequestInterface
     }
 
     /**
-     * @return array[]|null
+     * @return null|array[]
      */
     public function getCurlPostFields(): ?array
     {

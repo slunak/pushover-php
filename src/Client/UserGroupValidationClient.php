@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -11,40 +13,38 @@
 
 namespace Serhiy\Pushover\Client;
 
-use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Application;
+use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Exception\LogicException;
 use Serhiy\Pushover\Recipient;
 
 class UserGroupValidationClient extends Client implements ClientInterface
 {
-    public const API_PATH = "users/validate.json";
+    public const API_PATH = 'users/validate.json';
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildApiUrl()
     {
-        return Curl::API_BASE_URL."/".Curl::API_VERSION."/".self::API_PATH;
+        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
     }
 
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @param Application $application
-     * @param Recipient $recipient
      * @return array[]
      */
     public function buildCurlPostFields(Application $application, Recipient $recipient): array
     {
-        $curlPostFields = array(
-            "token" => $application->getToken(),
-            "user" => $recipient->getUserKey(),
-        );
+        $curlPostFields = [
+            'token' => $application->getToken(),
+            'user' => $recipient->getUserKey(),
+        ];
 
-        if (! empty($recipient->getDevice())) {
-            if (count($recipient->getDevice()) > 1) {
-                throw new LogicException(sprintf('Api can validate only 1 device at a time. "%s" devices provided.', count($recipient->getDevice())));
+        if (!empty($recipient->getDevice())) {
+            if (\count($recipient->getDevice()) > 1) {
+                throw new LogicException(sprintf('Api can validate only 1 device at a time. "%s" devices provided.', \count($recipient->getDevice())));
             }
 
             $curlPostFields['device'] = $recipient->getDeviceListCommaSeparated();

@@ -1,5 +1,8 @@
 <?php
-/*
+
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -10,140 +13,146 @@
 
 namespace Api\Message;
 
-use Serhiy\Pushover\Api\Message\Message;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 class MessageTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
-        $message = new Message("This is a test message", "This is a title of the message");
+        $message = new Message('This is a test message', 'This is a title of the message');
 
         $this->assertInstanceOf(Message::class, $message);
     }
 
-    public function testSetMessage()
+    public function testSetMessage(): void
     {
-        $message = new Message("This is a test message");
-        $message->setMessage("This is a test message");
+        $message = new Message('This is a test message');
+        $message->setMessage('This is a test message');
 
         $this->expectException(InvalidArgumentException::class);
 
         $message->setMessage(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <<<'EOD'
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+EOD
         );
     }
 
-    public function testGetMessage()
+    public function testGetMessage(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
 
-        $this->assertEquals("This is a test message", $message->getMessage());
+        $this->assertEquals('This is a test message', $message->getMessage());
     }
 
-    public function testSetTitle()
+    public function testSetTitle(): void
     {
-        $message = new Message("This is a test message");
-        $message->setTitle("This is a title of the message");
+        $message = new Message('This is a test message');
+        $message->setTitle('This is a title of the message');
 
         $this->expectException(InvalidArgumentException::class);
 
         $message->setTitle(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            <<<'EOD'
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+EOD
         );
     }
 
-    public function testGetTitle()
+    public function testGetTitle(): void
     {
-        $message = new Message("This is a test message", "This is a title of the message");
+        $message = new Message('This is a test message', 'This is a title of the message');
 
-        $this->assertEquals("This is a title of the message", $message->getTitle());
+        $this->assertEquals('This is a title of the message', $message->getTitle());
     }
 
-    public function testSetUrl()
+    public function testSetUrl(): void
     {
-        $message = new Message("This is a test message");
-        $message->setUrl("https://www.example.com");
+        $message = new Message('This is a test message');
+        $message->setUrl('https://www.example.com');
 
         $this->expectException(InvalidArgumentException::class);
 
         $message->setUrl(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <<<'EOD'
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+EOD
         );
     }
 
-    public function testGetUrl()
+    public function testGetUrl(): void
     {
-        $message = new Message("This is a test message");
-        $message->setUrl("https://www.example.com");
+        $message = new Message('This is a test message');
+        $message->setUrl('https://www.example.com');
 
-        $this->assertEquals("https://www.example.com", $message->getUrl());
+        $this->assertEquals('https://www.example.com', $message->getUrl());
     }
 
-    public function testSetUrlTitle()
+    public function testSetUrlTitle(): void
     {
-        $message = new Message("This is a test message");
-        $message->setUrlTitle("Example URL");
+        $message = new Message('This is a test message');
+        $message->setUrlTitle('Example URL');
 
         $this->expectException(InvalidArgumentException::class);
 
         $message->setUrlTitle(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         );
     }
 
-    public function testGetUrlTitle()
+    public function testGetUrlTitle(): void
     {
-        $message = new Message("This is a test message");
-        $message->setUrlTitle("Example URL");
+        $message = new Message('This is a test message');
+        $message->setUrlTitle('Example URL');
 
-        $this->assertEquals("Example URL", $message->getUrlTitle());
+        $this->assertEquals('Example URL', $message->getUrlTitle());
     }
 
-    public function testSetPriority()
+    public function testSetPriority(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
         $message->setPriority(null);
 
         $this->assertNull($message->getPriority());
     }
 
-    public function testGetPriority()
+    public function testGetPriority(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
         $message->setPriority(new Priority(Priority::NORMAL));
 
         $this->assertInstanceOf(Priority::class, $message->getPriority());
     }
 
-    public function testSetIsHtml()
+    public function testSetIsHtml(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
         $message->setIsHtml(null);
 
         $this->assertNull($message->getIsHtml());
     }
 
-    public function testGetIsHtml()
+    public function testGetIsHtml(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
         $message->setIsHtml(true);
 
         $this->assertTrue($message->getIsHtml());
     }
 
-    public function testGetTimestamp()
+    public function testGetTimestamp(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
 
         $datetime = new \DateTime();
         $message->setTimestamp($datetime);
@@ -151,9 +160,9 @@ class MessageTest extends TestCase
         $this->assertEquals($datetime->getTimestamp(), $message->getTimestamp());
     }
 
-    public function testSetAndGetTtl()
+    public function testSetAndGetTtl(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
 
         $this->assertNull($message->getTtl());
 
@@ -166,18 +175,18 @@ class MessageTest extends TestCase
         $this->assertNull($message->getTtl());
     }
 
-    public function testSetNegativeTtl()
+    public function testSetNegativeTtl(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
 
         $this->expectException(InvalidArgumentException::class);
 
         $message->setTtl(-1);
     }
 
-    public function testSetZeroTtl()
+    public function testSetZeroTtl(): void
     {
-        $message = new Message("This is a test message");
+        $message = new Message('This is a test message');
 
         $this->expectException(InvalidArgumentException::class);
 

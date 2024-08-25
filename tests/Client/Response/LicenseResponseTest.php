@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -11,22 +13,22 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\LicenseResponse;
 use PHPUnit\Framework\TestCase;
+use Serhiy\Pushover\Client\Response\LicenseResponse;
 
 /**
  * @author Serhiy Lunak
  */
 class LicenseResponseTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): void
     {
         $successfulCurlResponse = '{"credits":5,"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new LicenseResponse($successfulCurlResponse);
 
         $this->assertInstanceOf(LicenseResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
         $this->assertEquals(5, $response->getCredits());
 
         $unSuccessfulCurlResponse = '{"token":"is out of available license credits","errors":["application is out of available license credits"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
@@ -34,11 +36,11 @@ class LicenseResponseTest extends TestCase
 
         $this->assertInstanceOf(LicenseResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
-        $this->assertEquals(array(0 => "application is out of available license credits"), $response->getErrors());
+        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertEquals([0 => 'application is out of available license credits'], $response->getErrors());
     }
 
-    public function testGetCredits()
+    public function testGetCredits(): void
     {
         $curlResponse = '{"credits":5,"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new LicenseResponse($curlResponse);
