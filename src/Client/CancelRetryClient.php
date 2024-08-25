@@ -31,9 +31,6 @@ class CancelRetryClient extends Client implements ClientInterface
         $this->receipt = $receipt;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function buildApiUrl(): string
     {
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/receipts/'.$this->receipt.'/cancel.json';
@@ -42,7 +39,7 @@ class CancelRetryClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array[]
+     * @return array<string, string>
      */
     public function buildCurlPostFields(Receipt $receipt): array
     {

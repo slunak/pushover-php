@@ -14,8 +14,6 @@ declare(strict_types=1);
 namespace Serhiy\Pushover\Client;
 
 /**
- * Client Interface.
- *
  * @author Serhiy Lunak
  */
 interface ClientInterface

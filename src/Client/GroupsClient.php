@@ -47,10 +47,7 @@ class GroupsClient extends Client implements ClientInterface
         $this->action = $action;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function buildApiUrl()
+    public function buildApiUrl(): string
     {
         if ($this->action === self::ACTION_CREATE_GROUP) {
             return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json';
