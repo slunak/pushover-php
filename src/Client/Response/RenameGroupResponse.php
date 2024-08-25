@@ -33,6 +33,6 @@ class RenameGroupResponse extends Response
      */
     private function processCurlResponse($curlResponse): void
     {
-        $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
+        $this->processInitialCurlResponse($curlResponse);
     }
 }

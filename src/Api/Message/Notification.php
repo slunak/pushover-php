@@ -21,8 +21,6 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Notification.
- *
  * Notification consists of Application, Recipient and Message.
  *
  * @author Serhiy Lunak

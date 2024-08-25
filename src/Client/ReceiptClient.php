@@ -27,9 +27,6 @@ class ReceiptClient extends Client implements ClientInterface
         $this->receipt = $receipt;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function buildApiUrl(): string
     {
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/receipts/'.$this->receipt.'.json?token='.$this->application->getToken();

@@ -42,8 +42,6 @@ class MessageResponse extends Response
     }
 
     /**
-     * Processes curl response.
-     *
      * @param mixed $curlResponse
      */
     private function processCurlResponse($curlResponse): void

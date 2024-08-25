@@ -104,10 +104,8 @@ class Glance
 
     /**
      * Push glance.
-     *
-     * @return GlancesResponse
      */
-    public function push()
+    public function push(): GlancesResponse
     {
         $client = new GlancesClient();
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($this));
