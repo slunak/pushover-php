@@ -24,9 +24,6 @@ class AssignLicenseClient extends Client implements ClientInterface
 {
     public const API_PATH = 'licenses/assign.json';
 
-    /**
-     * {@inheritDoc}
-     */
     public function buildApiUrl(): string
     {
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
