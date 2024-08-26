@@ -18,7 +18,7 @@ use Serhiy\Pushover\Recipient;
 class ListGroupsResponseTest extends TestCase
 {
     /**
-     * @return RetrieveGroupResponse
+     * prepare ListGroupsResponse Test
      */
     public function testCanBeCreated(): ListGroupsResponse
     {
