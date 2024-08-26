@@ -5,14 +5,14 @@ help: ## Displays this list of targets with descriptions
 
 .PHONY: cs
 cs: vendor ## Normalizes composer.json with ergebnis/composer-normalize and fixes code style issues with friendsofphp/php-cs-fixer
-	symfony composer normalize
+	composer normalize
 	mkdir -p .build/php-cs-fixer
-	symfony php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --diff --verbose
+	php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --diff --verbose
 
 .PHONY: static-code-analysis
 static-code-analysis: vendor ## Runs a static code analysis with phpstan/phpstan
-	symfony php vendor/bin/phpstan analyse --configuration=phpstan-default.neon.dist --memory-limit=-1
+	php vendor/bin/phpstan analyse --configuration=phpstan-default.neon.dist --memory-limit=-1
 
 .PHONY: static-code-analysis-baseline
 static-code-analysis-baseline: vendor ## Generates a baseline for static code analysis with phpstan/phpstan
-	symfony php vendor/bin/phpstan analyze --configuration=phpstan-default.neon.dist --generate-baseline=phpstan-default-baseline.neon --memory-limit=-1
+	php vendor/bin/phpstan analyze --configuration=phpstan-default.neon.dist --generate-baseline=phpstan-default-baseline.neon --memory-limit=-1
