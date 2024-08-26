@@ -73,7 +73,7 @@ class Group
     }
 
     /**
-     * @return string
+     * Get key for current group 
      */
     public function getKey(): string
     {
@@ -89,6 +89,8 @@ class Group
     }
 
     /**
+     * Users assigned to group
+     * 
      * @return Recipient[]
      */
     public function getUsers(): array
@@ -97,7 +99,7 @@ class Group
     }
 
     /**
-     * @return string
+     * group Name
      */
     public function getName(): string
     {
@@ -106,8 +108,6 @@ class Group
 
     /**
      * Retrieves information about the group from the API and populates the object with it.
-     *
-     * @return RetrieveGroupResponse
      */
     public function retrieveGroupInformation(): RetrieveGroupResponse
     {
@@ -147,9 +147,6 @@ class Group
 
     /**
      * Adds an existing Pushover user to your Delivery Group.
-     *
-     * @param Recipient $recipient
-     * @return AddUserToGroupResponse
      */
     public function addUser(Recipient $recipient)
     {
@@ -166,9 +163,6 @@ class Group
 
     /**
      * Removes user to from Delivery Group.
-     *
-     * @param Recipient $recipient
-     * @return RemoveUserFromGroupResponse
      */
     public function removeUser(Recipient $recipient): RemoveUserFromGroupResponse
     {
@@ -185,9 +179,6 @@ class Group
 
     /**
      * Enables user in Delivery Group.
-     *
-     * @param Recipient $recipient
-     * @return EnableUserInGroupResponse
      */
     public function enableUser(Recipient $recipient): EnableUserInGroupResponse
     {
@@ -204,9 +195,6 @@ class Group
 
     /**
      * Disables user in Delivery Group.
-     *
-     * @param Recipient $recipient
-     * @return DisableUserInGroupResponse
      */
     public function disableUser(Recipient $recipient): DisableUserInGroupResponse
     {
@@ -223,9 +211,6 @@ class Group
 
     /**
      * Renames the group. Reflected in the API and in the group editor on our website.
-     *
-     * @param string $name
-     * @return RenameGroupResponse
      */
     public function rename(string $name): RenameGroupResponse
     {
