@@ -39,11 +39,6 @@ class GroupsClient extends Client implements ClientInterface
      */
     private string $action;
 
-    /**
-     * @var Group
-     */
-    private $group;
-    
     public function __construct(Group $group, string $action)
     {
         if (!$this->isActionValid($action)) {
@@ -54,10 +49,7 @@ class GroupsClient extends Client implements ClientInterface
         $this->action = $action;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function buildApiUrl()
+    public function buildApiUrl(): string
     {
         if ($this->action === self::ACTION_CREATE_GROUP) {
             return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json';

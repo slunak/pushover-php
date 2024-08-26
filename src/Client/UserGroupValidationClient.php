@@ -22,10 +22,7 @@ class UserGroupValidationClient extends Client implements ClientInterface
 {
     public const API_PATH = 'users/validate.json';
 
-    /**
-     * {@inheritDoc}
-     */
-    public function buildApiUrl()
+    public function buildApiUrl(): string
     {
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
     }
@@ -33,7 +30,7 @@ class UserGroupValidationClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array[]
+     * @return array<string, string>
      */
     public function buildCurlPostFields(Application $application, Recipient $recipient): array
     {

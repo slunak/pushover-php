@@ -14,8 +14,6 @@ declare(strict_types=1);
 namespace Serhiy\Pushover\Client\Request;
 
 /**
- * Request Interface.
- *
  * @author Serhiy Lunak
  */
 interface RequestInterface

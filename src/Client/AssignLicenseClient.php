@@ -27,7 +27,7 @@ class AssignLicenseClient extends Client implements ClientInterface
     /**
      * {@inheritDoc}
      */
-    public function buildApiUrl()
+    public function buildApiUrl(): string
     {
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
     }
@@ -35,7 +35,7 @@ class AssignLicenseClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array[]
+     * @return array<string, string>
      */
     public function buildCurlPostFields(License $license): array
     {
@@ -47,16 +47,22 @@ class AssignLicenseClient extends Client implements ClientInterface
             'token' => $license->getApplication()->getToken(),
         ];
 
-        if (null !== $license->getRecipient()) {
-            $curlPostFields['user'] = $license->getRecipient()->getUserKey();
+        $recipient = $license->getRecipient();
+
+        if (null !== $recipient) {
+            $curlPostFields['user'] = $recipient->getUserKey();
         }
 
-        if (null !== $license->getEmail()) {
-            $curlPostFields['email'] = $license->getEmail();
+        $email = $license->getEmail();
+
+        if (null !== $email) {
+            $curlPostFields['email'] = $email;
         }
 
-        if (null !== $license->getOs()) {
-            $curlPostFields['os'] = $license->getOs();
+        $os = $license->getOs();
+
+        if (null !== $os) {
+            $curlPostFields['os'] = $os;
         }
 
         return $curlPostFields;
