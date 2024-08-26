@@ -31,10 +31,13 @@ use Serhiy\Pushover\Recipient;
 /**
  * Pushover Delivery Group.
  *
- * Delivery Groups allow broadcasting the same Pushover message to a number of different users at once with just a single group token,
- * used in place of a user token (or in place of specifying multiple user keys in every request). For situations where subscriptions are not appropriate,
- * or where automated manipulation of group members is required, such as changing an on-call notification group,
- * or syncing with an external directory system, our Groups API is available.
+ * Delivery Groups allow broadcasting the same Pushover message to a number of 
+ * different users at once with just a single group token, used in place of a 
+ * user token (or in place of specifying multiple user keys in every request). 
+ * For situations where subscriptions are not appropriate, or where automated 
+ * manipulation of group members is required, such as changing an on-call 
+ * notification group, or syncing with an external directory system, our Groups
+ * API is available.
  *
  * @author Serhiy Lunak
  */
