@@ -37,6 +37,11 @@ class GroupsClient extends Client implements ClientInterface
      */
     private string $action;
 
+    /**
+     * @var Group
+     */
+    private $group;
+    
     public function __construct(Group $group, string $action)
     {
         if (!$this->isActionValid($action)) {
