@@ -52,7 +52,7 @@ class Response
     /**
      * Array detailing which parameters were invalid.
      *
-     * @var array[]
+     * @var array<int, string>
      */
     private array $errors = [];
 
@@ -77,7 +77,7 @@ class Response
     }
 
     /**
-     * @return array[]
+     * @return array<int, string>
      */
     public function getErrors(): array
     {
@@ -147,7 +147,7 @@ class Response
     }
 
     /**
-     * @param array[] $errors
+     * @param array<int, string> $errors
      */
     private function setErrors(array $errors): void
     {
