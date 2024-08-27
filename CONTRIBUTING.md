@@ -3,7 +3,7 @@
 Contributions are very welcome. If you would like to add functionality, before starting your work,
 please open an issue to discuss the feature you would like to work on.
 
-All development tools cann be executed via `make` commands.
+All development tools can be executed via `make` commands.
 All those commands ensure, you use the correct PHP version and the dependencies.
 To achieve this, the commands use the [Symfony CLI](https://github.com/symfony-cli/symfony-cli), so please make sure you have it installed.
 
