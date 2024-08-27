@@ -1,6 +1,2 @@
 parameters:
 	ignoreErrors:
-		-
-			message: "#^Strict comparison using \\=\\=\\= between null and Serhiy\\\\Pushover\\\\Recipient will always evaluate to false\\.$#"
-			count: 1
-			path: src/Api/Glances/Glance.php
