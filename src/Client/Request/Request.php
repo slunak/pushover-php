@@ -14,8 +14,6 @@ declare(strict_types=1);
 namespace Serhiy\Pushover\Client\Request;
 
 /**
- * Request object.
- *
  * Holds curl and other request data.
  *
  * @author Serhiy Lunak
@@ -50,7 +48,7 @@ class Request implements RequestInterface
     private ?array $curlPostFields;
 
     /**
-     * @param null|array[] $curlPostFields
+     * @param null|array<string, string> $curlPostFields
      */
     public function __construct(string $apiUrl, string $method, ?array $curlPostFields = null)
     {
@@ -64,16 +62,13 @@ class Request implements RequestInterface
         return $this->method;
     }
 
-    /**
-     * Returns API URL.
-     */
     public function getApiUrl(): string
     {
         return $this->apiUrl;
     }
 
     /**
-     * @return null|array[]
+     * @return null|array<string, string>
      */
     public function getCurlPostFields(): ?array
     {

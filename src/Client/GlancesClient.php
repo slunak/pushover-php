@@ -32,7 +32,7 @@ class GlancesClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array<string, int|string>
+     * @return array<string, string>
      */
     public function buildCurlPostFields(Glance $glance)
     {
@@ -78,13 +78,13 @@ class GlancesClient extends Client implements ClientInterface
         $count = $glance->getGlanceDataFields()->getCount();
 
         if (null !== $count) {
-            $curlPostFields['count'] = $count;
+            $curlPostFields['count'] = (string) $count;
         }
 
         $percent = $glance->getGlanceDataFields()->getPercent();
 
         if (null !== $percent) {
-            $curlPostFields['percent'] = $percent;
+            $curlPostFields['percent'] = (string) $percent;
         }
 
         return $curlPostFields;
