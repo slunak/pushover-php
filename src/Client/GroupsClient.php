@@ -30,12 +30,13 @@ class GroupsClient extends Client implements ClientInterface
     public const ACTION_ENABLE_USER = 'enable_user';
     public const ACTION_RENAME_GROUP = 'rename';
     public const ACTION_CREATE_GROUP = 'create';
-    private Group $group;
+    public const ACTION_LIST_GROUPS = 'list';
 
     /**
      * Action that client performs.
      */
     private string $action;
+    private Group $group;
 
     public function __construct(Group $group, string $action)
     {
@@ -51,6 +52,10 @@ class GroupsClient extends Client implements ClientInterface
     {
         if ($this->action === self::ACTION_CREATE_GROUP) {
             return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json';
+        }
+
+        if ($this->action === self::ACTION_LIST_GROUPS) {
+            return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json?token='.$this->group->getApplication()->getToken();
         }
 
         if ($this->action === self::ACTION_RETRIEVE_GROUP) {
