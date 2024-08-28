@@ -17,6 +17,8 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 use Serhiy\Pushover\Recipient;
 
 /**
+ * @phpstan-type GroupUser object{user: string, device: null|string, memo: string, disabled: bool}
+ *
  * @author Serhiy Lunak
  */
 class RetrieveGroupResponse extends Response
@@ -31,10 +33,7 @@ class RetrieveGroupResponse extends Response
      */
     private array $users;
 
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }
@@ -52,11 +51,11 @@ class RetrieveGroupResponse extends Response
         return $this->users;
     }
 
-    /**
-     * @param mixed $curlResponse
-     */
-    private function processCurlResponse($curlResponse): void
+    private function processCurlResponse(string $curlResponse): void
     {
+        /**
+         * @var object{status: int, request: string, name: string, users: list<GroupUser>} $decodedCurlResponse
+         */
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
         if ($this->getRequestStatus() === 1) {
@@ -66,6 +65,8 @@ class RetrieveGroupResponse extends Response
     }
 
     /**
+     * @param list<GroupUser> $users
+     *
      * @return Recipient[]
      */
     private function setUsers(array $users): array

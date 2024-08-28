@@ -28,7 +28,7 @@ use Serhiy\Pushover\Recipient;
  */
 class NotificationTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): Notification
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key

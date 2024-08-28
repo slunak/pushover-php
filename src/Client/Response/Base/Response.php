@@ -50,7 +50,7 @@ class Response
     /**
      * Array detailing which parameters were invalid.
      *
-     * @var array[]
+     * @var array<int, string>
      */
     private array $errors = [];
 
@@ -75,17 +75,14 @@ class Response
     }
 
     /**
-     * @return array[]
+     * @return string[]
      */
     public function getErrors(): array
     {
         return $this->errors;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCurlResponse()
+    public function getCurlResponse(): string
     {
         return $this->curlResponse;
     }
@@ -102,15 +99,12 @@ class Response
 
     /**
      * Processes initial curl response, common to all response objects.
-     *
-     * @param mixed $curlResponse
-     *
-     * @return mixed
      */
-    protected function processInitialCurlResponse($curlResponse)
+    protected function processInitialCurlResponse(string $curlResponse): object
     {
         $this->setCurlResponse($curlResponse);
 
+        /** @var object{status: int, request: string, errors: string[]} $decodedCurlResponse */
         $decodedCurlResponse = json_decode($curlResponse);
 
         $this->setRequestStatus($decodedCurlResponse->status);
@@ -145,17 +139,14 @@ class Response
     }
 
     /**
-     * @param array[] $errors
+     * @param string[] $errors
      */
     private function setErrors(array $errors): void
     {
         $this->errors = $errors;
     }
 
-    /**
-     * @param mixed $curlResponse
-     */
-    private function setCurlResponse($curlResponse): void
+    private function setCurlResponse(string $curlResponse): void
     {
         $this->curlResponse = $curlResponse;
     }

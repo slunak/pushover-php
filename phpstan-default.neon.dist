@@ -3,7 +3,7 @@ includes:
 
 parameters:
     inferPrivatePropertyTypeFromConstructor: true
-    level: 5
+    level: 6
     paths:
         - src
         - tests
