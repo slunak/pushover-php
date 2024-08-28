@@ -159,10 +159,8 @@ class Group
     
     /**
      * Adds an existing Pushover user to your Delivery Group.
-     *
-     * @return AddUserToGroupResponse
      */
-    public function addUser(Recipient $recipient)
+    public function addUser(Recipient $recipient): AddUserToGroupResponse
     {
         $client = new GroupsClient($this, GroupsClient::ACTION_ADD_USER);
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($recipient));
