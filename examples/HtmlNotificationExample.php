@@ -24,7 +24,7 @@ use Serhiy\Pushover\Recipient;
  *
  * @author Serhiy Lunak
  */
-class HtmlNotificationExample
+final class HtmlNotificationExample
 {
     public function sendHtmlNotification(): void
     {

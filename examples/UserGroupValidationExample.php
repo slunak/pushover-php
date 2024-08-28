@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
  *
  * @author Serhiy Lunak
  */
-class UserGroupValidationExample
+final class UserGroupValidationExample
 {
     public function userGroupValidationExample(): void
     {

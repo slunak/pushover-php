@@ -21,7 +21,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak
  */
-class LicensingExample
+final class LicensingExample
 {
     public function licensingExample(): void
     {

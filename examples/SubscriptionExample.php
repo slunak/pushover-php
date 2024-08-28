@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak
  */
-class SubscriptionExample
+final class SubscriptionExample
 {
     public function subscriptionExample(): void
     {

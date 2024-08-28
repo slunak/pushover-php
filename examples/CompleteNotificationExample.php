@@ -28,7 +28,7 @@ use Serhiy\Pushover\Recipient;
  *
  * @author Serhiy Lunak
  */
-class CompleteNotificationExample
+final class CompleteNotificationExample
 {
     public function completeNotification(): void
     {

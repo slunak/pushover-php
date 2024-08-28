@@ -25,7 +25,7 @@ use Serhiy\Pushover\Recipient;
  *
  * @author Serhiy Lunak
  */
-class ResponseExample
+final class ResponseExample
 {
     public function responseExample(): void
     {
