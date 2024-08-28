@@ -45,7 +45,7 @@ class Response
      * Original curl response in json format.
      * Original, unmodified response from curl request.
      */
-    private mixed $curlResponse;
+    private string $curlResponse;
 
     /**
      * Array detailing which parameters were invalid.
