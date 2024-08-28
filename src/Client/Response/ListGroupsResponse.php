@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -18,10 +20,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
  */
 class ListGroupsResponse extends Response
 {
-    /**
-     * @var array
-     */
-    public $groups = [];
+    public array $groups = [];
 
     /**
      * @param mixed $curlResponse
@@ -32,26 +31,27 @@ class ListGroupsResponse extends Response
     }
 
     /**
-     * @param mixed $curlResponse
-     */
-    private function processCurlResponse($curlResponse): void
-    {
-        $this->groups = [];
-        $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
-        if (property_exists($decodedCurlResponse, 'groups')) {
-            foreach ($decodedCurlResponse->groups as $grp) {
-                $this->groups[$grp->name] = $grp->group;
-            }
-        }
-    }
-
-    /**
-     * List of groups
+     * List of groups.
      *
      * @return array<string, string> group names with keys eg.['name'=>'key',..]
      */
     public function getGroups(): array
     {
         return $this->groups;
+    }
+
+    /**
+     * @param mixed $curlResponse
+     */
+    private function processCurlResponse($curlResponse): void
+    {
+        $this->groups = [];
+        $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
+
+        if (property_exists($decodedCurlResponse, 'groups')) {
+            foreach ($decodedCurlResponse->groups as $grp) {
+                $this->groups[$grp->name] = $grp->group;
+            }
+        }
     }
 }

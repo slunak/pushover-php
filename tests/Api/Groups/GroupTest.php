@@ -17,8 +17,8 @@ use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Groups\Group;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\CreateGroupResponse;
-use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 use Serhiy\Pushover\Client\Response\ListGroupsResponse;
+use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 
 /**
  * @author Serhiy Lunak
@@ -76,19 +76,18 @@ class GroupTest extends TestCase
         $response = $group->create('unit test '.date('Y-m-d H:i:s'));
 
         $this->assertInstanceOf(CreateGroupResponse::class, $response);
-    }    
-    
+    }
+
     /**
      * @group Integration
      */
-    public function testList()
+    public function testList(): void
     {
-        $application = new Application("cccc3333CCCC3333dddd4444DDDD44"); // using dummy token
-        $group = new Group("eeee5555EEEE5555ffff6666FFFF66", $application);
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application);
 
         $response = $group->list();
 
         $this->assertInstanceOf(ListGroupsResponse::class, $response);
-    }    
-    
+    }
 }

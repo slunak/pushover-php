@@ -19,9 +19,9 @@ use Serhiy\Pushover\Client\GroupsClient;
 use Serhiy\Pushover\Client\Request\Request;
 use Serhiy\Pushover\Client\Response\AddUserToGroupResponse;
 use Serhiy\Pushover\Client\Response\CreateGroupResponse;
-use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 use Serhiy\Pushover\Client\Response\DisableUserInGroupResponse;
 use Serhiy\Pushover\Client\Response\EnableUserInGroupResponse;
+use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 use Serhiy\Pushover\Client\Response\RemoveUserFromGroupResponse;
 use Serhiy\Pushover\Client\Response\RenameGroupResponse;
 use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
@@ -31,11 +31,11 @@ use Serhiy\Pushover\Recipient;
 /**
  * Pushover Delivery Group.
  *
- * Delivery Groups allow broadcasting the same Pushover message to a number of 
- * different users at once with just a single group token, used in place of a 
- * user token (or in place of specifying multiple user keys in every request). 
- * For situations where subscriptions are not appropriate, or where automated 
- * manipulation of group members is required, such as changing an on-call 
+ * Delivery Groups allow broadcasting the same Pushover message to a number of
+ * different users at once with just a single group token, used in place of a
+ * user token (or in place of specifying multiple user keys in every request).
+ * For situations where subscriptions are not appropriate, or where automated
+ * manipulation of group members is required, such as changing an on-call
  * notification group, or syncing with an external directory system, our Groups
  * API is available.
  *
@@ -155,8 +155,7 @@ class Group
 
         return $response;
     }
-    
-    
+
     /**
      * Adds an existing Pushover user to your Delivery Group.
      */

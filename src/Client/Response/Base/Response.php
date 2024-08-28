@@ -44,10 +44,8 @@ class Response
     /**
      * Original curl response in json format.
      * Original, unmodified response from curl request.
-     *
-     * @var mixed
      */
-    private $curlResponse;
+    private mixed $curlResponse;
 
     /**
      * Array detailing which parameters were invalid.

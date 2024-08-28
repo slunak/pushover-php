@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -11,14 +13,13 @@
 
 namespace Client\Response;
 
-use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 use PHPUnit\Framework\TestCase;
-use Serhiy\Pushover\Recipient;
+use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 
 class ListGroupsResponseTest extends TestCase
 {
     /**
-     * prepare ListGroupsResponse Test
+     * prepare ListGroupsResponse Test.
      */
     public function testCanBeCreated(): ListGroupsResponse
     {
@@ -27,18 +28,17 @@ class ListGroupsResponseTest extends TestCase
 
         $this->assertInstanceOf(ListGroupsResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals("aaaaaaaa-1111-bbbb-2222-cccccccccccc", $response->getRequestToken());
+        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+
         return $response;
     }
 
-    
     /**
      * @depends testCanBeCreated
-     * @param ListGroupsResponse $response
      */
-    public function testGetGroups(ListGroupsResponse $response)
+    public function testGetGroups(ListGroupsResponse $response): void
     {
         $groups = $response->getGroups();
-        $this->assertEquals($groups, ['Group1'=>'111111111111111111111111111111','group2'=>'222222222222222222222222222222', 'Group 3'=>'333333333333333333333333333333']);
+        $this->assertEquals($groups, ['Group1' => '111111111111111111111111111111', 'group2' => '222222222222222222222222222222', 'Group 3' => '333333333333333333333333333333']);
     }
 }

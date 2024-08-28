@@ -23,25 +23,22 @@ use Serhiy\Pushover\Recipient;
  */
 class GroupsClient extends Client implements ClientInterface
 {
-    public const ACTION_RETRIEVE_GROUP = "retrieve_group";
-    public const ACTION_ADD_USER = "add_user";
-    public const ACTION_REMOVE_USER = "delete_user";
-    public const ACTION_DISABLE_USER = "disable_user";
-    public const ACTION_ENABLE_USER = "enable_user";
-    public const ACTION_RENAME_GROUP = "rename";
-    public const ACTION_CREATE_GROUP = "create";
-    public const ACTION_LIST_GROUPS = "list";
+    public const ACTION_RETRIEVE_GROUP = 'retrieve_group';
+    public const ACTION_ADD_USER = 'add_user';
+    public const ACTION_REMOVE_USER = 'delete_user';
+    public const ACTION_DISABLE_USER = 'disable_user';
+    public const ACTION_ENABLE_USER = 'enable_user';
+    public const ACTION_RENAME_GROUP = 'rename';
+    public const ACTION_CREATE_GROUP = 'create';
+    public const ACTION_LIST_GROUPS = 'list';
 
     /**
      * Action that client performs.
      */
     private string $action;
 
-    /**
-     * @var Group
-     */
-    private $group;
-    
+    private Group $group;
+
     public function __construct(Group $group, string $action)
     {
         if (!$this->isActionValid($action)) {
@@ -61,12 +58,12 @@ class GroupsClient extends Client implements ClientInterface
             return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json';
         }
 
-        if ($this->action == self::ACTION_LIST_GROUPS) {
-            return Curl::API_BASE_URL."/".Curl::API_VERSION."/groups.json?token=".$this->group->getApplication()->getToken();
+        if ($this->action === self::ACTION_LIST_GROUPS) {
+            return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json?token='.$this->group->getApplication()->getToken();
         }
-        
-        if ($this->action == self::ACTION_RETRIEVE_GROUP) {
-            return Curl::API_BASE_URL."/".Curl::API_VERSION."/groups/".$this->group->getKey().".json?token=".$this->group->getApplication()->getToken();
+
+        if ($this->action === self::ACTION_RETRIEVE_GROUP) {
+            return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups/'.$this->group->getKey().'.json?token='.$this->group->getApplication()->getToken();
         }
 
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups/'.$this->group->getKey().'/'.$this->action.'.json?token='.$this->group->getApplication()->getToken();
