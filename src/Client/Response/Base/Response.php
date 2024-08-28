@@ -29,10 +29,10 @@ class Response
     /**
      * True if request was successful, false otherwise. Reflects $requestStatus property.
      */
-    private bool $isSuccessful;
+    private bool $successful;
 
     /**
-     * Either 1 if successful or something other than 1 if unsuccessful. Reflects $isSuccessful property.
+     * Either 1 if successful or something other than 1 if unsuccessful. Reflects $successful property.
      */
     private int $requestStatus;
 
@@ -61,7 +61,7 @@ class Response
 
     public function isSuccessful(): bool
     {
-        return $this->isSuccessful;
+        return $this->successful;
     }
 
     public function getRequestStatus(): int
@@ -102,50 +102,22 @@ class Response
      */
     protected function processInitialCurlResponse(string $curlResponse): object
     {
-        $this->setCurlResponse($curlResponse);
+        $this->curlResponse = $curlResponse;
 
         /** @var object{status: int, request: string, errors: string[]} $decodedCurlResponse */
         $decodedCurlResponse = json_decode($curlResponse);
 
-        $this->setRequestStatus($decodedCurlResponse->status);
-        $this->setRequestToken($decodedCurlResponse->request);
+        $this->requestStatus = $decodedCurlResponse->status;
+        $this->requestToken = $decodedCurlResponse->request;
 
         if ($this->getRequestStatus() === 1) {
-            $this->setIsSuccessful(true);
-            $this->setRequestToken($decodedCurlResponse->request);
+            $this->successful = true;
+            $this->requestToken = $decodedCurlResponse->request;
         } else {
-            $this->setErrors($decodedCurlResponse->errors);
-            $this->setIsSuccessful(false);
+            $this->errors = $decodedCurlResponse->errors;
+            $this->successful = false;
         }
 
         return $decodedCurlResponse;
-    }
-
-    private function setIsSuccessful(bool $isSuccessful): void
-    {
-        $this->isSuccessful = $isSuccessful;
-    }
-
-    private function setRequestStatus(int $requestStatus): void
-    {
-        $this->requestStatus = $requestStatus;
-    }
-
-    private function setRequestToken(string $requestToken): void
-    {
-        $this->requestToken = $requestToken;
-    }
-
-    /**
-     * @param string[] $errors
-     */
-    private function setErrors(array $errors): void
-    {
-        $this->errors = $errors;
-    }
-
-    private function setCurlResponse(string $curlResponse): void
-    {
-        $this->curlResponse = $curlResponse;
     }
 }
