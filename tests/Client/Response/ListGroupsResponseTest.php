@@ -16,7 +16,7 @@ namespace Client\Response;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 
-class ListGroupsResponseTest extends TestCase
+final class ListGroupsResponseTest extends TestCase
 {
     public function testCanBeCreated(): ListGroupsResponse
     {
