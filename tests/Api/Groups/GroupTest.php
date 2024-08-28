@@ -49,7 +49,7 @@ class GroupTest extends TestCase
      */
     public function testGetKey(Group $group): void
     {
-        $this->assertEquals('eeee5555EEEE5555ffff6666FFFF66', $group->getKey());
+        $this->assertSame('eeee5555EEEE5555ffff6666FFFF66', $group->getKey());
     }
 
     /**

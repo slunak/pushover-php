@@ -49,7 +49,7 @@ class NotificationTest extends TestCase
     {
         $notification->setSound(new Sound(Sound::PUSHOVER));
 
-        $this->assertEquals('pushover', $notification->getSound()->getSound());
+        $this->assertSame('pushover', $notification->getSound()->getSound());
     }
 
     /**
@@ -69,7 +69,7 @@ class NotificationTest extends TestCase
     {
         $notification->setCustomSound(new CustomSound('door_open'));
 
-        $this->assertEquals('door_open', $notification->getCustomSound()->getCustomSound());
+        $this->assertSame('door_open', $notification->getCustomSound()->getCustomSound());
     }
 
     /**
@@ -89,8 +89,8 @@ class NotificationTest extends TestCase
     {
         $notification->setAttachment(new Attachment('/path/to/file.jpg', Attachment::MIME_TYPE_JPEG));
 
-        $this->assertEquals('/path/to/file.jpg', $notification->getAttachment()->getFilename());
-        $this->assertEquals('image/jpeg', $notification->getAttachment()->getMimeType());
+        $this->assertSame('/path/to/file.jpg', $notification->getAttachment()->getFilename());
+        $this->assertSame('image/jpeg', $notification->getAttachment()->getMimeType());
     }
 
     /**
