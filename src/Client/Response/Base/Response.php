@@ -32,7 +32,7 @@ class Response
     private bool $successful;
 
     /**
-     * Either 1 if successful or something other than 1 if unsuccessful. Reflects $isSuccessful property.
+     * Either 1 if successful or something other than 1 if unsuccessful. Reflects $successful property.
      */
     private int $requestStatus;
 
