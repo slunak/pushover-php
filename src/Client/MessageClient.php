@@ -30,13 +30,6 @@ class MessageClient extends Client implements ClientInterface
      */
     public const API_PATH = 'messages.json';
 
-    public function __construct()
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function buildApiUrl(): string
     {
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
@@ -45,7 +38,7 @@ class MessageClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array[]
+     * @return array<string, null|\CURLFile|int|string>
      */
     public function buildCurlPostFields(Notification $notification): array
     {

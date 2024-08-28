@@ -29,7 +29,7 @@ class CheckLicenseClient extends Client implements ClientInterface
         $this->license = $license;
     }
 
-    public function buildApiUrl()
+    public function buildApiUrl(): string
     {
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH.'?token='.$this->license->getApplication()->getToken();
     }

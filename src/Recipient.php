@@ -62,9 +62,7 @@ class Recipient
         }
 
         $this->userKey = $userKey;
-
         $this->device = [];
-
         $this->memo = null;
     }
 
@@ -83,10 +81,8 @@ class Recipient
 
     /**
      * Adds device to the device list / array.
-     *
-     * @param string $device
      */
-    public function addDevice($device): void
+    public function addDevice(string $device): void
     {
         if (1 !== preg_match('/^[a-zA-Z0-9_-]{1,25}$/', $device)) {
             throw new InvalidArgumentException(sprintf('Device names are optional, may be up to 25 characters long, and will contain the character set [A-Za-z0-9_-]. "%s" given with "%s" characters."', $device, \strlen($device)));

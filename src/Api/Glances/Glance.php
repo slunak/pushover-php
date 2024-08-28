@@ -41,7 +41,7 @@ class Glance
     /**
      * Pushover user.
      */
-    private Recipient $recipient;
+    private ?Recipient $recipient = null;
     private GlanceDataFields $glanceDataFields;
 
     public function __construct(Application $application, GlanceDataFields $glanceDataFields)
@@ -82,10 +82,12 @@ class Glance
 
     public function hasAtLeastOneField(): bool
     {
-        if (null === $this->getGlanceDataFields()->getTitle()
-            && null === $this->getGlanceDataFields()->getSubtext()
-            && null === $this->getGlanceDataFields()->getCount()
-            && null === $this->getGlanceDataFields()->getPercent()
+        $glanceDataFields = $this->getGlanceDataFields();
+
+        if (null === $glanceDataFields->getTitle()
+            && null === $glanceDataFields->getSubtext()
+            && null === $glanceDataFields->getCount()
+            && null === $glanceDataFields->getPercent()
         ) {
             return false;
         }
@@ -102,12 +104,7 @@ class Glance
         return true;
     }
 
-    /**
-     * Push glance.
-     *
-     * @return GlancesResponse
-     */
-    public function push()
+    public function push(): GlancesResponse
     {
         $client = new GlancesClient();
         $request = new Request($client->buildApiUrl(), Request::POST, $client->buildCurlPostFields($this));

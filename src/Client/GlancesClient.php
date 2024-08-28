@@ -24,10 +24,7 @@ class GlancesClient extends Client implements ClientInterface
 {
     public const API_PATH = 'glances.json';
 
-    /**
-     * {@inheritDoc}
-     */
-    public function buildApiUrl()
+    public function buildApiUrl(): string
     {
         return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
     }
@@ -35,7 +32,7 @@ class GlancesClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array[]
+     * @return array<string, string>
      */
     public function buildCurlPostFields(Glance $glance)
     {
@@ -60,24 +57,34 @@ class GlancesClient extends Client implements ClientInterface
             $curlPostFields['device'] = $glance->getRecipient()->getDeviceListCommaSeparated();
         }
 
-        if (null !== $glance->getGlanceDataFields()->getTitle()) {
-            $curlPostFields['title'] = $glance->getGlanceDataFields()->getTitle();
+        $title = $glance->getGlanceDataFields()->getTitle();
+
+        if (null !== $title) {
+            $curlPostFields['title'] = $title;
         }
 
-        if (null !== $glance->getGlanceDataFields()->getText()) {
-            $curlPostFields['text'] = $glance->getGlanceDataFields()->getText();
+        $text = $glance->getGlanceDataFields()->getText();
+
+        if (null !== $text) {
+            $curlPostFields['text'] = $text;
         }
 
-        if (null !== $glance->getGlanceDataFields()->getSubtext()) {
-            $curlPostFields['subtext'] = $glance->getGlanceDataFields()->getSubtext();
+        $subtext = $glance->getGlanceDataFields()->getSubtext();
+
+        if (null !== $subtext) {
+            $curlPostFields['subtext'] = $subtext;
         }
 
-        if (null !== $glance->getGlanceDataFields()->getCount()) {
-            $curlPostFields['count'] = $glance->getGlanceDataFields()->getCount();
+        $count = $glance->getGlanceDataFields()->getCount();
+
+        if (null !== $count) {
+            $curlPostFields['count'] = (string) $count;
         }
 
-        if (null !== $glance->getGlanceDataFields()->getPercent()) {
-            $curlPostFields['percent'] = $glance->getGlanceDataFields()->getPercent();
+        $percent = $glance->getGlanceDataFields()->getPercent();
+
+        if (null !== $percent) {
+            $curlPostFields['percent'] = (string) $percent;
         }
 
         return $curlPostFields;

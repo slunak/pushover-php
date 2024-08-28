@@ -4,4 +4,3 @@ composer.lock
 .php-cs-fixer.dist.php
 .idea/
 .build
-.php-version
