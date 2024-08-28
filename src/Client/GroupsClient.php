@@ -30,7 +30,7 @@ class GroupsClient extends Client implements ClientInterface
     public const ACTION_ENABLE_USER = 'enable_user';
     public const ACTION_RENAME_GROUP = 'rename';
     public const ACTION_CREATE_GROUP = 'create';
-    public const ACTION_LIST_GROUPS = 'list';
+    private const ACTION_LIST_GROUPS = 'list';
 
     /**
      * Action that client performs.
