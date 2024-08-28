@@ -34,7 +34,7 @@ class SoundTest extends TestCase
      */
     public function testGetSound(Sound $sound): void
     {
-        $this->assertEquals('pushover', $sound->getSound());
+        $this->assertSame('pushover', $sound->getSound());
     }
 
     /**
@@ -54,7 +54,7 @@ class SoundTest extends TestCase
     {
         $sound->setSound(Sound::ECHO);
 
-        $this->assertEquals('echo', $sound->getSound());
+        $this->assertSame('echo', $sound->getSound());
 
         $this->expectException(InvalidArgumentException::class);
 

@@ -21,10 +21,7 @@ use Serhiy\Pushover\Client\Request\Request;
  */
 class RequestTest extends TestCase
 {
-    /**
-     * @return Request
-     */
-    public function testCanBeCrated()
+    public function testCanBeCrated(): Request
     {
         $request = new Request('https://test.com/api', Request::POST, []);
 

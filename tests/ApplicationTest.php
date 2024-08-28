@@ -49,6 +49,6 @@ class ApplicationTest extends TestCase
      */
     public function testGetToken(Application $application): void
     {
-        $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $application->getToken());
+        $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $application->getToken());
     }
 }

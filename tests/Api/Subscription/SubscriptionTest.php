@@ -39,7 +39,7 @@ class SubscriptionTest extends TestCase
      */
     public function testGetSubscriptionCode(Subscription $subscription): void
     {
-        $this->assertEquals('dummy-subscription-aaa111bbb222ccc', $subscription->getSubscriptionCode());
+        $this->assertSame('dummy-subscription-aaa111bbb222ccc', $subscription->getSubscriptionCode());
     }
 
     /**

@@ -49,7 +49,7 @@ EOD
     {
         $message = new Message('This is a test message');
 
-        $this->assertEquals('This is a test message', $message->getMessage());
+        $this->assertSame('This is a test message', $message->getMessage());
     }
 
     public function testSetTitle(): void
@@ -71,7 +71,7 @@ EOD
     {
         $message = new Message('This is a test message', 'This is a title of the message');
 
-        $this->assertEquals('This is a title of the message', $message->getTitle());
+        $this->assertSame('This is a title of the message', $message->getTitle());
     }
 
     public function testSetUrl(): void
@@ -115,7 +115,7 @@ EOD
         $message = new Message('This is a test message');
         $message->setUrlTitle('Example URL');
 
-        $this->assertEquals('Example URL', $message->getUrlTitle());
+        $this->assertSame('Example URL', $message->getUrlTitle());
     }
 
     public function testSetPriority(): void
@@ -168,7 +168,7 @@ EOD
 
         $message->setTtl(3600);
 
-        $this->assertEquals(3600, $message->getTtl());
+        $this->assertSame(3600, $message->getTtl());
 
         $message->setTtl(null);
 
