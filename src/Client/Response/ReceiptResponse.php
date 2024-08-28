@@ -66,10 +66,7 @@ class ReceiptResponse extends Response
      */
     private ?\DateTime $calledBackAt;
 
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }

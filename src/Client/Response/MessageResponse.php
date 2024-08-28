@@ -28,10 +28,7 @@ class MessageResponse extends Response
      */
     private string $receipt;
 
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }

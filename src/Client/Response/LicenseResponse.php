@@ -25,10 +25,7 @@ class LicenseResponse extends Response
      */
     private int $credits;
 
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }

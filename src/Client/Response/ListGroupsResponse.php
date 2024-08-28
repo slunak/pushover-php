@@ -25,10 +25,7 @@ final class ListGroupsResponse extends Response
      */
     public array $groups = [];
 
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }

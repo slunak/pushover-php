@@ -20,10 +20,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
  */
 class DisableUserInGroupResponse extends Response
 {
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }

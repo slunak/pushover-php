@@ -32,10 +32,7 @@ class UserGroupValidationResponse extends Response
      */
     private array $licenses;
 
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }
