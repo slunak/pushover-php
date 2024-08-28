@@ -24,7 +24,6 @@ use Serhiy\Pushover\Exception\LogicException;
 class Curl
 {
     public const API_BASE_URL = 'https://api.pushover.net';
-
     public const API_VERSION = '1';
 
     /**

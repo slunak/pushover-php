@@ -20,7 +20,9 @@ use Serhiy\Pushover\Client\Response\Base\Response;
  */
 final class ListGroupsResponse extends Response
 {
-    /** @var array<string, string> */
+    /**
+     * @var array<string, string>
+     */
     public array $groups = [];
 
     /**

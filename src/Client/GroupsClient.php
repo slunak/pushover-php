@@ -36,7 +36,6 @@ class GroupsClient extends Client implements ClientInterface
      * Action that client performs.
      */
     private string $action;
-
     private Group $group;
 
     public function __construct(Group $group, string $action)
