@@ -18,7 +18,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 /**
  * @author Vítězslav Dvořák
  */
-class ListGroupsResponse extends Response
+final class ListGroupsResponse extends Response
 {
     public array $groups = [];
 
