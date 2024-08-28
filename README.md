@@ -8,7 +8,7 @@
 Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pushover.net/) API.
 
 ### Features
-- Message API ([Example](Example/CompleteNotificationExample.php))
+- Message API ([Example](examples/CompleteNotificationExample.php))
   - Image attachment
   - User's device name(s)
   - Message's title
@@ -18,29 +18,29 @@ Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pus
   - Notification sound (including custom sound)
   - Message time
   - Time to live
-- User/Group Validation API ([Example](Example/UserGroupValidationExample.php))
+- User/Group Validation API ([Example](examples/UserGroupValidationExample.php))
   - Validation by user or group key
   - Validation by user and device
-- Receipt API ([Example](Example/ReceiptExample.php))
+- Receipt API ([Example](examples/ReceiptExample.php))
   - Query emergency priority receipt
   - Cancel emergency priority retry
-- Groups API ([Example](Example/GroupsExample.php))
+- Groups API ([Example](examples/GroupsExample.php))
   - Create a group
   - List groups
   - Retrieve information about the group
   - Add / Remove users
   - Enable / Disable users
   - Rename the group
-- Glances API ([Example](Example/GlancesExample.php))
+- Glances API ([Example](examples/GlancesExample.php))
   - Title
   - Text
   - Subtext
   - Count
   - Percent
-- Licensing API ([Example](Example/LicensingExample.php))
+- Licensing API ([Example](examples/LicensingExample.php))
   - Check remaining credits
   - Assign license (not tested)
-- Subscription API ([Example](Example/SubscriptionExample.php))
+- Subscription API ([Example](examples/SubscriptionExample.php))
   - User Key Migration 
 
 ## Getting Started
@@ -109,7 +109,7 @@ $response = $notification->push();
 
 ## Working with response
 
-*Note: For complete example refer to [ResponseExample.php](Example/ResponseExample.php)*
+*Note: For complete example refer to [ResponseExample.php](examples/ResponseExample.php)*
 
 Client returns Response object. Checking if the message was accepted is easy:
 
