@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -22,21 +24,20 @@ use Serhiy\Pushover\Recipient;
  */
 class GlancesExample
 {
-    public function glancesExample()
+    public function glancesExample(): void
     {
         // instantiate pushover application and recipient (can be injected into service using Dependency Injection)
-        $application = new Application("replace_with_pushover_application_api_token");
-        $recipient = new Recipient("replace_with_pushover_user_key");
+        $application = new Application('replace_with_pushover_application_api_token');
+        $recipient = new Recipient('replace_with_pushover_user_key');
 
         // create glance data fields
         $glanceDataFields = new GlanceDataFields();
         $glanceDataFields
-            ->setTitle("Title")
-            ->setText("Text")
-            ->setSubtext("Subtext")
+            ->setTitle('Title')
+            ->setText('Text')
+            ->setSubtext('Subtext')
             ->setCount(1)
-            ->setPercent(99)
-        ;
+            ->setPercent(99);
 
         // instantiate glance
         $glance = new Glance($application, $glanceDataFields);
@@ -49,7 +50,8 @@ class GlancesExample
         $response = $glance->push();
 
         // or loop over recipients
-        $recipients = array(); // array of Recipient objects
+        $recipients = []; // array of Recipient objects
+
         foreach ($recipients as $recipient) {
             $glance->setRecipient($recipient);
             $response = $glance->push();

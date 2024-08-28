@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -22,21 +24,21 @@ use Serhiy\Pushover\Recipient;
  */
 class SubscriptionExample
 {
-    public function subscriptionExample()
+    public function subscriptionExample(): void
     {
         // instantiate pushover application and recipient (can be injected into service using Dependency Injection)
-        $application = new Application("replace_with_pushover_application_api_token");
-        $recipient = new Recipient("replace_with_pushover_user_key");
+        $application = new Application('replace_with_pushover_application_api_token');
+        $recipient = new Recipient('replace_with_pushover_user_key');
 
         // create subscription (can be injected into service using Dependency Injection)
-        $subscription = new Subscription($application, "replace_with_subscription_user_code");
+        $subscription = new Subscription($application, 'replace_with_subscription_user_code');
 
         // migrate from Pushover user keys to subscription keys
         /** @var SubscriptionResponse $response */
         $response = $subscription->migrate($recipient);
 
         // migrate and specify optional user's device name that the subscription should be limited to
-        $recipient->addDevice("android");
+        $recipient->addDevice('android');
         /** @var SubscriptionResponse $response */
         $response = $subscription->migrate($recipient);
 
@@ -45,7 +47,8 @@ class SubscriptionExample
         $response = $subscription->migrate($recipient, new Sound(Sound::PUSHOVER));
 
         // or loop over recipients or emails
-        $recipients = array(); // array of Recipient objects
+        $recipients = []; // array of Recipient objects
+
         foreach ($recipients as $recipient) {
             $response = $subscription->migrate($recipient);
         }

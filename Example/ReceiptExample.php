@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -12,7 +14,6 @@
 namespace Serhiy\Pushover\Example;
 
 use Serhiy\Pushover\Api\Receipts\Receipt;
-
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 use Serhiy\Pushover\Client\Response\ReceiptResponse;
@@ -23,15 +24,15 @@ use Serhiy\Pushover\Recipient;
  */
 class ReceiptExample
 {
-    public function queryEmergencyNotificationReceiptExample()
+    public function queryEmergencyNotificationReceiptExample(): void
     {
         // instantiate pushover application and receipt (can be injected into service using Dependency Injection)
-        $application = new Application("replace_with_pushover_application_api_token");
+        $application = new Application('replace_with_pushover_application_api_token');
         $receipt = new Receipt($application);
 
         // query emergency notification receipt
         /** @var ReceiptResponse $response */
-        $response = $receipt->query("replace_with_receipt");
+        $response = $receipt->query('replace_with_receipt');
 
         // work with response
         if ($response->isSuccessful()) {
@@ -64,15 +65,15 @@ class ReceiptExample
         }
     }
 
-    public function cancelEmergencyNotificationRetryExample()
+    public function cancelEmergencyNotificationRetryExample(): void
     {
         // instantiate pushover application and receipt (can be injected into service using Dependency Injection)
-        $application = new Application("replace_with_pushover_application_api_token");
+        $application = new Application('replace_with_pushover_application_api_token');
         $receipt = new Receipt($application);
 
         // cancel emergency notification retry
         /** @var CancelRetryResponse $response */
-        $response = $receipt->cancelRetry("replace_with_receipt");
+        $response = $receipt->cancelRetry('replace_with_receipt');
 
         // work with response
         if ($response->isSuccessful()) {
