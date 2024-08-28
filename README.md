@@ -70,7 +70,7 @@ plus its curl and json extensions. See below the `require` section of project's 
 
 ## Pushing Messages
 
-*Note: For more code examples, see [Example](Example) folder in the root of the project. You may also generate and see code documentation.*
+*Note: For more code examples, see [Example](examples) folder in the root of the project. You may also generate and see code documentation.*
 
 Instantiate pushover application and recipient of the notification:
 
