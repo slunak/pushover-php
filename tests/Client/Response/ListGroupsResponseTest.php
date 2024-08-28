@@ -25,7 +25,7 @@ final class ListGroupsResponseTest extends TestCase
 
         $this->assertInstanceOf(ListGroupsResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
 
         return $response;
     }
