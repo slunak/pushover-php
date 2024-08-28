@@ -45,7 +45,6 @@ final class ListGroupsResponse extends Response
      */
     private function processCurlResponse($curlResponse): void
     {
-        $this->groups = [];
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
         if (property_exists($decodedCurlResponse, 'groups')) {
