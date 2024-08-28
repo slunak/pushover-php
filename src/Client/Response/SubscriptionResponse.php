@@ -25,10 +25,7 @@ class SubscriptionResponse extends Response
      */
     private string $subscribed_user_key;
 
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }

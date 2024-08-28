@@ -20,10 +20,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
  */
 class CancelRetryResponse extends Response
 {
-    /**
-     * @param mixed $curlResponse
-     */
-    public function __construct($curlResponse)
+    public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }
