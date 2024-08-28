@@ -29,10 +29,8 @@ class Curl
 
     /**
      * Performs curl request.
-     *
-     * @return false|string
      */
-    public static function do(Request $request)
+    public static function do(Request $request): string
     {
         $curlOptions = [
             \CURLOPT_URL => $request->getApiUrl(),
