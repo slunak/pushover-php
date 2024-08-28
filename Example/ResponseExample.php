@@ -83,7 +83,7 @@ class ResponseExample
          * Errors array.
          * In case of errors, API will return array detailing which parameters were invalid.
          *
-         * @var array
+         * @var string[]
          */
         $response->getErrors();
 
@@ -91,7 +91,7 @@ class ResponseExample
          * Original curl response.
          * Original, unmodified response from curl request.
          *
-         * @var mixed
+         * @var string
          */
         $response->getCurlResponse();
 
