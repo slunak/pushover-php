@@ -26,7 +26,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * Complete Notification Example.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class CompleteNotificationExample
 {

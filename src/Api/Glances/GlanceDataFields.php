@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * For example, each watch face on the Apple Watch uses a different sized complication,
  * with different size specifications and types of data. Some are text strings, some are just numbers.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class GlanceDataFields
 {

@@ -20,7 +20,7 @@ use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 use Serhiy\Pushover\Client\Response\ReceiptResponse;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class ReceiptTest extends TestCase
 {

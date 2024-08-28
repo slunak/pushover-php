@@ -21,7 +21,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * you'll first need to register it to get an API token.
  * See {@link https://pushover.net/api#registration} for more information.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Application
 {

@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * Notification consists of Application, Recipient and Message.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Notification
 {

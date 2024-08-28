@@ -26,7 +26,7 @@ use Serhiy\Pushover\Client\Response\ReceiptResponse;
  * This receipt can be used to periodically poll our receipts API to get the status of your notification,
  * up to 1 week after your notification has been received.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Receipt
 {

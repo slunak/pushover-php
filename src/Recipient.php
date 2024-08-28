@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * Instead of a user key, a user may supply a group key. When sending notifications to a group key,
  * all active users listed in the group will have the notification delivered to them and the response will look the same.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Recipient
 {

@@ -18,7 +18,7 @@ use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class AttachmentTest extends TestCase
 {

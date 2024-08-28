@@ -19,7 +19,7 @@ use Serhiy\Pushover\Exception\LogicException;
 /**
  * Contains API related constants and performs curl request.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Curl
 {

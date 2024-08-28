@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * If the title is not specified, the application's name will be shown by default.
  * See {@link https://pushover.net/api#messages} for more information.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Message
 {

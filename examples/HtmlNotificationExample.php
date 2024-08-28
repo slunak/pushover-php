@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * HTML Notification Example.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class HtmlNotificationExample
 {

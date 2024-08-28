@@ -16,7 +16,7 @@ namespace Serhiy\Pushover\Exception;
 /**
  * Base ExceptionInterface for the Pushover component.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 interface ExceptionInterface extends \Throwable
 {

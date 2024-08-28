@@ -17,7 +17,7 @@ use Serhiy\Pushover\Api\Licensing\License;
 use Serhiy\Pushover\Client\Curl\Curl;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class CheckLicenseClient extends Client implements ClientInterface
 {

@@ -16,7 +16,7 @@ namespace Serhiy\Pushover\Client\Response;
 use Serhiy\Pushover\Client\Response\Base\Response;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class CreateGroupResponse extends Response
 {

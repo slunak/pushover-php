@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class CancelRetryResponseTest extends TestCase
 {

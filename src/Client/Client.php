@@ -16,7 +16,7 @@ namespace Serhiy\Pushover\Client;
 /**
  * Base class for the API client.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Client
 {

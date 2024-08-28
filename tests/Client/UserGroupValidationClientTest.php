@@ -19,7 +19,7 @@ use Serhiy\Pushover\Client\UserGroupValidationClient;
 use Serhiy\Pushover\Recipient;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class UserGroupValidationClientTest extends TestCase
 {

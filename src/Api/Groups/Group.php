@@ -39,7 +39,7 @@ use Serhiy\Pushover\Recipient;
  * notification group, or syncing with an external directory system, our Groups
  * API is available.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Group
 {

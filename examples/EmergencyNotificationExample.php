@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * Emergency Notification Example.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class EmergencyNotificationExample
 {

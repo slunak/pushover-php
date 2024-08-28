@@ -17,7 +17,7 @@ use Serhiy\Pushover\Api\Receipts\Receipt;
 use Serhiy\Pushover\Client\Curl\Curl;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class CancelRetryClient extends Client implements ClientInterface
 {

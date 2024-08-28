@@ -16,7 +16,7 @@ namespace Serhiy\Pushover\Exception;
 /**
  * Base InvalidArgumentException for the Pushover component.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {

@@ -19,7 +19,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @phpstan-type GroupUser object{user: string, device: null|string, memo: string, disabled: bool}
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class RetrieveGroupResponse extends Response
 {

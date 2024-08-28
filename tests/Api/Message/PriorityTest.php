@@ -19,7 +19,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 use Serhiy\Pushover\Exception\LogicException;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class PriorityTest extends TestCase
 {
