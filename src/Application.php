@@ -16,9 +16,7 @@ namespace Serhiy\Pushover;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**
- * Pushover Application.
- * To get started pushing notifications from your application, plugin, web service, server, or anything else,
- * you'll first need to register it to get an API token.
+ * To get started pushing notifications from your application, you'll first need to register it to get an API token.
  * See {@link https://pushover.net/api#registration} for more information.
  *
  * @author Serhiy Lunak

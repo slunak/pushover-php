@@ -37,7 +37,7 @@ class Response
     private int $requestStatus;
 
     /**
-     * Randomly-generated unique token that we have associated with your request.
+     * Randomly generated unique token that we have associated with your request.
      */
     private string $requestToken;
 
@@ -55,7 +55,7 @@ class Response
     private array $errors = [];
 
     /**
-     * Object that contains original request.
+     * The original request.
      */
     private Request $request;
 

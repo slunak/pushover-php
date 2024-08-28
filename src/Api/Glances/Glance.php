@@ -33,14 +33,7 @@ use Serhiy\Pushover\Recipient;
  */
 class Glance
 {
-    /**
-     * Pushover application.
-     */
     private Application $application;
-
-    /**
-     * Pushover user.
-     */
     private ?Recipient $recipient = null;
     private GlanceDataFields $glanceDataFields;
 
