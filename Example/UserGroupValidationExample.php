@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -23,14 +25,14 @@ use Serhiy\Pushover\Recipient;
  */
 class UserGroupValidationExample
 {
-    public function userGroupValidationExample()
+    public function userGroupValidationExample(): void
     {
         // instantiate pushover application and recipient to verify (can be injected into service using Dependency Injection)
-        $application = new Application("replace_with_pushover_application_api_token");
-        $recipient = new Recipient("replace_with_pushover_user_key");
+        $application = new Application('replace_with_pushover_application_api_token');
+        $recipient = new Recipient('replace_with_pushover_user_key');
 
         // if required, specify devices to verify
-        $recipient->addDevice("android");
+        $recipient->addDevice('android');
 
         // create new validation
         $validation = new Validation($application);
@@ -40,7 +42,8 @@ class UserGroupValidationExample
         $response = $validation->validate($recipient);
 
         // or loop over recipients
-        $recipients = array(); // array of Recipient objects
+        $recipients = []; // array of Recipient objects
+
         foreach ($recipients as $recipient) {
             $validation->validate($recipient);
         }

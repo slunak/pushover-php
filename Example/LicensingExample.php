@@ -1,6 +1,8 @@
 <?php
 
-/*
+declare(strict_types=1);
+
+/**
  * This file is part of the Pushover package.
  *
  * (c) Serhiy Lunak <https://github.com/slunak>
@@ -21,11 +23,11 @@ use Serhiy\Pushover\Recipient;
  */
 class LicensingExample
 {
-    public function licensingExample()
+    public function licensingExample(): void
     {
         // instantiate pushover application and recipient (can be injected into service using Dependency Injection)
-        $application = new Application("replace_with_pushover_application_api_token");
-        $recipient = new Recipient("replace_with_pushover_user_key");
+        $application = new Application('replace_with_pushover_application_api_token');
+        $recipient = new Recipient('replace_with_pushover_user_key');
 
         // create license
         $license = new License($application);
@@ -50,7 +52,8 @@ class LicensingExample
         $response = $license->assign();
 
         // or loop over recipients or emails
-        $recipients = array(); // array of Recipient objects
+        $recipients = []; // array of Recipient objects
+
         foreach ($recipients as $recipient) {
             $license->setRecipient($recipient);
             $response = $license->assign();
