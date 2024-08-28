@@ -25,7 +25,7 @@ use Serhiy\Pushover\Recipient;
  */
 class SubscriptionClientTest extends TestCase
 {
-    public function testCanBeCreated(): void
+    public function testCanBeConstructed(): void
     {
         $client = new SubscriptionClient();
 

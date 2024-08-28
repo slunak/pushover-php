@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  */
 class SoundTest extends TestCase
 {
-    public function testCanBeCreated(): Sound
+    public function testCanBeConstructed(): Sound
     {
         $this->assertInstanceOf(Sound::class, $sound = new Sound(Sound::PUSHOVER));
 
@@ -30,7 +30,7 @@ class SoundTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetSound(Sound $sound): void
     {
@@ -38,7 +38,7 @@ class SoundTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testAvailableSounds(Sound $sound): void
     {
@@ -48,7 +48,7 @@ class SoundTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetSound(Sound $sound): void
     {

@@ -24,7 +24,7 @@ use Serhiy\Pushover\Recipient;
  */
 class GroupsClientTest extends TestCase
 {
-    public function testCanBeCreated(): void
+    public function testCanBeConstructed(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key

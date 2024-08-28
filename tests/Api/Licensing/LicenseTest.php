@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
 
 class LicenseTest extends TestCase
 {
-    public function testCanBeCreated(): License
+    public function testCanBeConstructed(): License
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $license = new License($application);
@@ -33,7 +33,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetApplication(License $license): void
     {
@@ -41,7 +41,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetApplication(License $license): void
     {
@@ -52,7 +52,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetRecipient(License $license): void
     {
@@ -60,7 +60,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetRecipient(License $license): void
     {
@@ -74,7 +74,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetEmail(License $license): void
     {
@@ -82,7 +82,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetEmail(License $license): void
     {
@@ -96,7 +96,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetOs(License $license): void
     {
@@ -104,7 +104,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetOs(License $license): void
     {
@@ -119,7 +119,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testCanBeAssigned(License $license): void
     {
@@ -142,7 +142,7 @@ class LicenseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetAvailableOsTypes(License $license): void
     {

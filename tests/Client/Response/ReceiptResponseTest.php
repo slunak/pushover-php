@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
  */
 class ReceiptResponseTest extends TestCase
 {
-    public function testCanBeCreated(): ReceiptResponse
+    public function testCanBeConstructed(): ReceiptResponse
     {
         $unSuccessfulCurlResponse = '{"receipt":"not found","errors":["receipt not found; may be invalid or expired"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new ReceiptResponse($unSuccessfulCurlResponse);
@@ -43,7 +43,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetAcknowledgedBy(ReceiptResponse $response): void
     {
@@ -52,7 +52,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetAcknowledgedByDevice(ReceiptResponse $response): void
     {
@@ -60,7 +60,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetExpiresAt(ReceiptResponse $response): void
     {
@@ -68,7 +68,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetLastDeliveredAt(ReceiptResponse $response): void
     {
@@ -76,7 +76,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testIsAcknowledged(ReceiptResponse $response): void
     {
@@ -84,7 +84,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetCalledBackAt(ReceiptResponse $response): void
     {
@@ -92,7 +92,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetAcknowledgedAt(ReceiptResponse $response): void
     {
@@ -100,7 +100,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testHasCalledBack(ReceiptResponse $response): void
     {
@@ -108,7 +108,7 @@ class ReceiptResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testIsExpired(ReceiptResponse $response): void
     {

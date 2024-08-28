@@ -24,7 +24,7 @@ use Serhiy\Pushover\Client\Response\ReceiptResponse;
  */
 class ReceiptTest extends TestCase
 {
-    public function testCanBeCreated(): Receipt
+    public function testCanBeConstructed(): Receipt
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
 
@@ -36,7 +36,7 @@ class ReceiptTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetApplication(Receipt $receipt): void
     {

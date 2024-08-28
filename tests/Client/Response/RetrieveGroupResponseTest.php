@@ -19,7 +19,7 @@ use Serhiy\Pushover\Recipient;
 
 class RetrieveGroupResponseTest extends TestCase
 {
-    public function testCanBeCreated(): RetrieveGroupResponse
+    public function testCanBeConstructed(): RetrieveGroupResponse
     {
         $unSuccessfulCurlResponse = '{"group":"not found","errors":["group not found or you are not authorized to edit it"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new RetrieveGroupResponse($unSuccessfulCurlResponse);
@@ -40,7 +40,7 @@ class RetrieveGroupResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetName(RetrieveGroupResponse $response): void
     {
@@ -48,7 +48,7 @@ class RetrieveGroupResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetUsers(RetrieveGroupResponse $response): void
     {

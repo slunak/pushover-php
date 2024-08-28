@@ -25,7 +25,7 @@ use Serhiy\Pushover\Recipient;
  */
 class GlanceTest extends TestCase
 {
-    public function testCanBeCreated(): Glance
+    public function testCanBeConstructed(): Glance
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
@@ -40,7 +40,7 @@ class GlanceTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetGlanceDataFields(Glance $glance): void
     {
@@ -48,7 +48,7 @@ class GlanceTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetApplication(Glance $glance): void
     {
@@ -56,7 +56,7 @@ class GlanceTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetRecipient(Glance $glance): void
     {
@@ -64,7 +64,7 @@ class GlanceTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetApplication(Glance $glance): void
     {
@@ -75,7 +75,7 @@ class GlanceTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetGlanceDataFields(Glance $glance): void
     {
@@ -86,7 +86,7 @@ class GlanceTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetRecipient(Glance $glance): void
     {
@@ -97,7 +97,7 @@ class GlanceTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testHasAtLeastOneField(Glance $glance): void
     {
@@ -109,7 +109,7 @@ class GlanceTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testHasRecipient(Glance $glance): void
     {

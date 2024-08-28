@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  */
 class GlanceDataFieldsTest extends TestCase
 {
-    public function testCanBeCreated(): void
+    public function testCanBeConstructed(): void
     {
         $glanceDataFields = new GlanceDataFields();
 

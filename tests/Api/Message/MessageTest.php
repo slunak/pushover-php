@@ -20,7 +20,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 class MessageTest extends TestCase
 {
-    public function testCanBeCreated(): void
+    public function testCanBeConstructed(): void
     {
         $message = new Message('This is a test message', 'This is a title of the message');
 

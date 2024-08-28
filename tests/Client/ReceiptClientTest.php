@@ -22,7 +22,7 @@ use Serhiy\Pushover\Client\ReceiptClient;
  */
 class ReceiptClientTest extends TestCase
 {
-    public function testCanBeCreated(): ReceiptClient
+    public function testCanBeConstructed(): ReceiptClient
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $client = new ReceiptClient($application, 'gggg7777GGGG7777hhhh8888HHHH88'); // using dummy receipt
@@ -33,7 +33,7 @@ class ReceiptClientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testBuildApiUrl(ReceiptClient $client): void
     {

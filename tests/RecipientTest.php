@@ -20,7 +20,7 @@ use Serhiy\Pushover\Recipient;
  */
 class RecipientTest extends TestCase
 {
-    public function testCanBeCreated(): Recipient
+    public function testCanBeConstructed(): Recipient
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
         $recipient->setIsDisabled(false);
@@ -33,14 +33,14 @@ class RecipientTest extends TestCase
         return $recipient;
     }
 
-    public function testCannotBeCreated(): void
+    public function testCannotBeConstructed(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Recipient('Lorem ipsum dolor sit amet');
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetUserKey(Recipient $recipient): void
     {
@@ -48,7 +48,7 @@ class RecipientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetDevice(Recipient $recipient): void
     {
@@ -62,7 +62,7 @@ class RecipientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetDeviceListCommaSeparated(Recipient $recipient): void
     {
@@ -70,7 +70,7 @@ class RecipientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testIsDisabled(Recipient $recipient): void
     {
@@ -78,7 +78,7 @@ class RecipientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetMemo(Recipient $recipient): void
     {
@@ -86,7 +86,7 @@ class RecipientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetIsDisabled(Recipient $recipient): void
     {
@@ -95,7 +95,7 @@ class RecipientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetMemo(Recipient $recipient): void
     {
@@ -104,7 +104,7 @@ class RecipientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testAddDevice(Recipient $recipient): void
     {
