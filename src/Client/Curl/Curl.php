@@ -23,20 +23,14 @@ use Serhiy\Pushover\Exception\LogicException;
  */
 class Curl
 {
-    /**
-     * API base URL.
-     */
     public const API_BASE_URL = 'https://api.pushover.net';
 
-    /**
-     * API version.
-     */
     public const API_VERSION = '1';
 
     /**
      * Performs curl request.
      *
-     * @return mixed
+     * @return false|string
      */
     public static function do(Request $request)
     {
