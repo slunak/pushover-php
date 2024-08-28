@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  */
 class CustomSoundTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): CustomSound
     {
         $this->assertInstanceOf(CustomSound::class, $customSound = new CustomSound('door_open'));
 

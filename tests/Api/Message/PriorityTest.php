@@ -23,7 +23,7 @@ use Serhiy\Pushover\Exception\LogicException;
  */
 class PriorityTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): Priority
     {
         $priority = new Priority();
 
@@ -39,7 +39,7 @@ class PriorityTest extends TestCase
         $this->assertInstanceOf(Priority::class, $priority);
     }
 
-    public function testCanBeCreatedWithEmergencyPriority()
+    public function testCanBeCreatedWithEmergencyPriority(): Priority
     {
         $priority = new Priority(Priority::EMERGENCY, 30, 600);
 
@@ -64,10 +64,8 @@ class PriorityTest extends TestCase
 
     /**
      * @depends testCanBeCreatedWithEmergencyPriority
-     *
-     * @return Priority
      */
-    public function testSetCallback(Priority $priority)
+    public function testSetCallback(Priority $priority): Priority
     {
         $priority->setCallback('https://callback.example.com');
 
@@ -81,7 +79,7 @@ class PriorityTest extends TestCase
      */
     public function testGetCallback(Priority $priority): void
     {
-        $this->assertEquals('https://callback.example.com', $priority->getCallback());
+        $this->assertSame('https://callback.example.com', $priority->getCallback());
     }
 
     /**

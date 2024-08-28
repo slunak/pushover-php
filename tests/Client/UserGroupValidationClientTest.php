@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
  */
 class UserGroupValidationClientTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): UserGroupValidationClient
     {
         $client = new UserGroupValidationClient();
 
@@ -41,7 +41,7 @@ class UserGroupValidationClientTest extends TestCase
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
         $curlPostFields = $client->buildCurlPostFields($application, $recipient);
 
-        $this->assertEquals([
+        $this->assertSame([
             'token' => 'cccc3333CCCC3333dddd4444DDDD44',
             'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
         ], $curlPostFields);
@@ -52,6 +52,6 @@ class UserGroupValidationClientTest extends TestCase
      */
     public function testBuildApiUrl(UserGroupValidationClient $client): void
     {
-        $this->assertEquals('https://api.pushover.net/1/users/validate.json', $client->buildApiUrl());
+        $this->assertSame('https://api.pushover.net/1/users/validate.json', $client->buildApiUrl());
     }
 }

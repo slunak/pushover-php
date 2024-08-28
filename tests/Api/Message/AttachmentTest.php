@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  */
 class AttachmentTest extends TestCase
 {
-    public function testCanBeCreated()
+    public function testCanBeCreated(): Attachment
     {
         $attachment = new Attachment('/images/test.jpeg', Attachment::MIME_TYPE_JPEG);
         $this->assertInstanceOf(Attachment::class, $attachment);

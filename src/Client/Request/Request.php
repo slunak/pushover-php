@@ -41,9 +41,9 @@ class Request implements RequestInterface
     private string $apiUrl;
 
     /**
-     * CURLOPT_POSTFIELDS.
-     *
      * Array for CURLOPT_POSTFIELDS curl argument.
+     *
+     * @var null|array<string, string>
      */
     private ?array $curlPostFields;
 
