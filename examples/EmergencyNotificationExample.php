@@ -25,7 +25,7 @@ use Serhiy\Pushover\Recipient;
  *
  * @author Serhiy Lunak
  */
-class EmergencyNotificationExample
+final class EmergencyNotificationExample
 {
     public function sendEmergencyNotification(): void
     {

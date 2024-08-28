@@ -24,7 +24,7 @@ use Serhiy\Pushover\Recipient;
  *
  * @author Serhiy Lunak
  */
-class SimpleNotificationExample
+final class SimpleNotificationExample
 {
     public function sendSimpleNotification(): void
     {

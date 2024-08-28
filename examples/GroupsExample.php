@@ -28,7 +28,7 @@ use Serhiy\Pushover\Recipient;
  *
  * @author Serhiy Lunak
  */
-class GroupsExample
+final class GroupsExample
 {
     public function groupsExample(): void
     {
