@@ -25,7 +25,7 @@ use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
  */
 class GroupTest extends TestCase
 {
-    public function testCanBeCreated(): Group
+    public function testCanBeConstructed(): Group
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key
@@ -36,7 +36,7 @@ class GroupTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetApplication(Group $group): void
     {
@@ -45,7 +45,7 @@ class GroupTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetKey(Group $group): void
     {

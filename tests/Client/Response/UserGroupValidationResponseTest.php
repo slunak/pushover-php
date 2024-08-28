@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
  */
 class UserGroupValidationResponseTest extends TestCase
 {
-    public function testCanBeCreated(): UserGroupValidationResponse
+    public function testCanBeConstructed(): UserGroupValidationResponse
     {
         $unSuccessfulCurlResponse = '{"user":"invalid","errors":["user key is invalid"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new UserGroupValidationResponse($unSuccessfulCurlResponse);
@@ -42,7 +42,7 @@ class UserGroupValidationResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetLicenses(UserGroupValidationResponse $response): void
     {
@@ -50,7 +50,7 @@ class UserGroupValidationResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetDevices(UserGroupValidationResponse $response): void
     {
@@ -58,7 +58,7 @@ class UserGroupValidationResponseTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetIsGroup(UserGroupValidationResponse $response): void
     {

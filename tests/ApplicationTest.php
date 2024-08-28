@@ -17,7 +17,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 class ApplicationTest extends TestCase
 {
-    public function testCanBeCreated(): Application
+    public function testCanBeConstructed(): Application
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44');
 
@@ -26,26 +26,26 @@ class ApplicationTest extends TestCase
         return $application;
     }
 
-    public function testCannotBeCreated(): void
+    public function testCannotBeConstructed(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Application('Lorem ipsum dolor sit amet');
     }
 
-    public function testCannotBeCreatedFromInvalidApiToken(): void
+    public function testCannotBeConstructedFromInvalidApiToken(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Application('this-is-invalid-token');
     }
 
-    public function testCannotBeCreatedFromShortApiToken(): void
+    public function testCannotBeConstructedFromShortApiToken(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Application('token');
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetToken(Application $application): void
     {

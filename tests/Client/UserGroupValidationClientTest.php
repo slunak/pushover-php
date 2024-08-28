@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
  */
 class UserGroupValidationClientTest extends TestCase
 {
-    public function testCanBeCreated(): UserGroupValidationClient
+    public function testCanBeConstructed(): UserGroupValidationClient
     {
         $client = new UserGroupValidationClient();
 
@@ -33,7 +33,7 @@ class UserGroupValidationClientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testBuildCurlPostFields(UserGroupValidationClient $client): void
     {
@@ -48,7 +48,7 @@ class UserGroupValidationClientTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testBuildApiUrl(UserGroupValidationClient $client): void
     {

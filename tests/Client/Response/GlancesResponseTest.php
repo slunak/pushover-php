@@ -18,7 +18,7 @@ use Serhiy\Pushover\Client\Response\GlancesResponse;
 
 class GlancesResponseTest extends TestCase
 {
-    public function testCanBeCreated(): void
+    public function testCanBeConstructed(): void
     {
         $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new GlancesResponse($successfulCurlResponse);

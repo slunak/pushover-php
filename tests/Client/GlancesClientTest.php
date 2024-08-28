@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
 
 class GlancesClientTest extends TestCase
 {
-    public function testCanBeCreated(): void
+    public function testCanBeConstructed(): void
     {
         $client = new GlancesClient();
 

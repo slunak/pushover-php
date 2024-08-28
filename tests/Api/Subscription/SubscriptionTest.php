@@ -24,7 +24,7 @@ use Serhiy\Pushover\Recipient;
  */
 class SubscriptionTest extends TestCase
 {
-    public function testCanBeCreated(): Subscription
+    public function testCanBeConstructed(): Subscription
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $subscription = new Subscription($application, 'dummy-subscription-aaa111bbb222ccc'); // using dummy subscription code
@@ -35,7 +35,7 @@ class SubscriptionTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetSubscriptionCode(Subscription $subscription): void
     {
@@ -43,7 +43,7 @@ class SubscriptionTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetApplication(Subscription $subscription): void
     {

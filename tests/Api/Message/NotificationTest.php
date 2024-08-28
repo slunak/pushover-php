@@ -28,7 +28,7 @@ use Serhiy\Pushover\Recipient;
  */
 class NotificationTest extends TestCase
 {
-    public function testCanBeCreated(): Notification
+    public function testCanBeConstructed(): Notification
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
@@ -43,7 +43,7 @@ class NotificationTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetSound(Notification $notification): void
     {
@@ -53,7 +53,7 @@ class NotificationTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetSoundNull(Notification $notification): void
     {
@@ -63,7 +63,7 @@ class NotificationTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetCustomSound(Notification $notification): void
     {
@@ -73,7 +73,7 @@ class NotificationTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetCustomSoundNull(Notification $notification): void
     {
@@ -83,7 +83,7 @@ class NotificationTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetAttachment(Notification $notification): void
     {
@@ -94,7 +94,7 @@ class NotificationTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetAttachmentNull(Notification $notification): void
     {

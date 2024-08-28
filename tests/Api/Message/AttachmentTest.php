@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  */
 class AttachmentTest extends TestCase
 {
-    public function testCanBeCreated(): Attachment
+    public function testCanBeConstructed(): Attachment
     {
         $attachment = new Attachment('/images/test.jpeg', Attachment::MIME_TYPE_JPEG);
         $this->assertInstanceOf(Attachment::class, $attachment);
@@ -30,14 +30,14 @@ class AttachmentTest extends TestCase
         return $attachment;
     }
 
-    public function testCannotBeCreatedWithInvalidMimeType(): void
+    public function testCannotBeConstructedWithInvalidMimeType(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         new Attachment('/images/test.jpeg', 'image/invalid');
     }
 
-    public function testCannotBeCreatedWithInvalidExtension(): void
+    public function testCannotBeConstructedWithInvalidExtension(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -45,7 +45,7 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetMimeType(Attachment $attachment): void
     {
@@ -53,7 +53,7 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetFilename(Attachment $attachment): void
     {
@@ -61,7 +61,7 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetMimeType(Attachment $attachment): void
     {
@@ -73,7 +73,7 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testSetFilename(Attachment $attachment): void
     {
@@ -85,7 +85,7 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetSupportedAttachmentTypes(Attachment $attachment): void
     {
@@ -95,7 +95,7 @@ class AttachmentTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetSupportedAttachmentExtensions(Attachment $attachment): void
     {

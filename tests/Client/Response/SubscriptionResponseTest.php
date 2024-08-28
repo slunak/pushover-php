@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\SubscriptionResponse;
  */
 class SubscriptionResponseTest extends TestCase
 {
-    public function testCanBeCreated(): void
+    public function testCanBeConstructed(): void
     {
         $successfulCurlResponse = '{"subscribed_user_key":"aaaa1111AAAA1111bbbb2222BBBB22","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new SubscriptionResponse($successfulCurlResponse);

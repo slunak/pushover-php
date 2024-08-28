@@ -23,7 +23,7 @@ use Serhiy\Pushover\Exception\LogicException;
  */
 class PriorityTest extends TestCase
 {
-    public function testCanBeCreated(): Priority
+    public function testCanBeConstructed(): Priority
     {
         $priority = new Priority();
 
@@ -32,14 +32,14 @@ class PriorityTest extends TestCase
         return $priority;
     }
 
-    public function testCanBeCreatedWithNormalPriority(): void
+    public function testCanBeConstructedWithNormalPriority(): void
     {
         $priority = new Priority(Priority::NORMAL);
 
         $this->assertInstanceOf(Priority::class, $priority);
     }
 
-    public function testCanBeCreatedWithEmergencyPriority(): Priority
+    public function testCanBeConstructedWithEmergencyPriority(): Priority
     {
         $priority = new Priority(Priority::EMERGENCY, 30, 600);
 
@@ -48,7 +48,7 @@ class PriorityTest extends TestCase
         return $priority;
     }
 
-    public function testCannotBeCreatedWithInvalidPriority(): void
+    public function testCannotBeConstructedWithInvalidPriority(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -63,7 +63,7 @@ class PriorityTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreatedWithEmergencyPriority
+     * @depends testCanBeConstructedWithEmergencyPriority
      */
     public function testSetCallback(Priority $priority): Priority
     {
@@ -83,7 +83,7 @@ class PriorityTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testAvailablePriorities(Priority $priority): void
     {

@@ -24,7 +24,7 @@ use Serhiy\Pushover\Recipient;
  */
 class ValidationTest extends TestCase
 {
-    public function testCanBeCreated(): Validation
+    public function testCanBeConstructed(): Validation
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $validation = new Validation($application);
@@ -35,7 +35,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @depends testCanBeCreated
+     * @depends testCanBeConstructed
      */
     public function testGetApplication(Validation $validation): void
     {

@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\LicenseResponse;
  */
 class LicenseResponseTest extends TestCase
 {
-    public function testCanBeCreated(): void
+    public function testCanBeConstructed(): void
     {
         $successfulCurlResponse = '{"credits":5,"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new LicenseResponse($successfulCurlResponse);
