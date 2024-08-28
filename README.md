@@ -78,8 +78,8 @@ Instantiate pushover application and recipient of the notification:
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Recipient;
 
-$application = new Application("replace_with_pushover_application_api_token");
-$recipient = new Recipient("replace_with_pushover_user_key");
+$application = new Application('replace_with_pushover_application_api_token');
+$recipient = new Recipient('replace_with_pushover_user_key');
 ```
 
 Or use Dependency Injection to inject them into the services of your app.
@@ -89,7 +89,7 @@ Compose a message:
 ```php
 use Serhiy\Pushover\Api\Message\Message;
 
-$message = new Message("This is a test message", "This is a title of the message");
+$message = new Message('This is a test message', 'This is a title of the message');
 ```
 
 Create notification:
