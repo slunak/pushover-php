@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Added support for listing groups #29
 - Added PHP CS Fixer to CI
 - Added PHPStan to CI
+- Added Rector to CI
 - Lots of code refactoring and improvements
 
 ### Fixed
