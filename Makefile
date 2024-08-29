@@ -25,7 +25,7 @@ static-code-analysis-baseline: check-symfony vendor ## Generates a baseline for 
 tests: check-symfony vendor
 	symfony php vendor/bin/phpunit tests
 
-.PHONY: vendorr
+.PHONY: vendor
 vendor: composer.json composer.lock ## Installs composer dependencies
 	symfony composer install
 
