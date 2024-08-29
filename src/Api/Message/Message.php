@@ -34,7 +34,7 @@ class Message
     /**
      * Your message's title, otherwise your app's name is used.
      */
-    private ?string $title;
+    private ?string $title = null;
 
     /**
      * A supplementary URL to show with your message.

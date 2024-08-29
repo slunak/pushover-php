@@ -107,7 +107,7 @@ class GroupsClient extends Client implements ClientInterface
      */
     private function isActionValid(string $action): bool
     {
-        $oClass = new \ReflectionClass(__CLASS__);
+        $oClass = new \ReflectionClass(self::class);
 
         if (\in_array($action, $oClass->getConstants(), true)) {
             return true;
