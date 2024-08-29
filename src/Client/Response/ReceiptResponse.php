@@ -29,7 +29,7 @@ class ReceiptResponse extends Response
     /**
      * Timestamp of when the user acknowledged, or null.
      */
-    private ?\DateTime $acknowledgedAt;
+    private ?\DateTime $acknowledgedAt = null;
 
     /**
      * User that first acknowledged the notification.
@@ -44,7 +44,7 @@ class ReceiptResponse extends Response
     /**
      * Timestamp of when the notification was last retried, or null.
      */
-    private ?\DateTime $lastDeliveredAt;
+    private ?\DateTime $lastDeliveredAt = null;
 
     /**
      * True or False whether the expiration date has passed.
@@ -64,7 +64,7 @@ class ReceiptResponse extends Response
     /**
      * Timestamp of when our server called back, or null.
      */
-    private ?\DateTime $calledBackAt;
+    private ?\DateTime $calledBackAt = null;
 
     public function __construct(string $curlResponse)
     {
