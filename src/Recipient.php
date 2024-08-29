@@ -113,7 +113,7 @@ class Recipient
 
     public function setMemo(?string $memo): void
     {
-        if (is_string($memo) && $length = \strlen($memo) > 200) {
+        if (\is_string($memo) && $length = \strlen($memo) > 200) {
             throw new InvalidArgumentException('Memo contained '.$length.' characters. Memos are limited to 200 characters.');
         }
 
