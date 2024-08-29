@@ -27,7 +27,8 @@
         "ergebnis/php-cs-fixer-config": "^6.34",
         "friendsofphp/php-cs-fixer": "^3.61",
         "phpstan/phpstan": "^1.11",
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "rector/rector": "^1.2"
     },
     "autoload": {
         "psr-4": {
