@@ -24,7 +24,7 @@ use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Work with groups example.
+ * Working with groups.
  *
  * @author Serhiy Lunak
  */

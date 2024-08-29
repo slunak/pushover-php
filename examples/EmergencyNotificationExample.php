@@ -21,8 +21,6 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Emergency Notification Example.
- *
  * @author Serhiy Lunak
  */
 final class EmergencyNotificationExample

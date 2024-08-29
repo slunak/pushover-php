@@ -19,8 +19,6 @@ use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Validation Example.
- *
  * @author Serhiy Lunak
  */
 final class UserGroupValidationExample

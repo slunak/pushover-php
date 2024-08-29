@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Response Object Example.
+ * Response object example.
  *
  * @author Serhiy Lunak
  */

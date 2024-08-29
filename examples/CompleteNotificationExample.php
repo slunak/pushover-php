@@ -24,8 +24,6 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Complete Notification Example.
- *
  * @author Serhiy Lunak
  */
 final class CompleteNotificationExample

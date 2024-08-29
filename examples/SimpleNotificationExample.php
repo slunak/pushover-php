@@ -20,8 +20,6 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Simple Notification Example.
- *
  * @author Serhiy Lunak
  */
 final class SimpleNotificationExample
