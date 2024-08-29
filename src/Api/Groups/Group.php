@@ -44,16 +44,6 @@ use Serhiy\Pushover\Recipient;
 class Group
 {
     /**
-     * Group key.
-     */
-    private string $key;
-
-    /**
-     * Pushover application this group belongs to.
-     */
-    private Application $application;
-
-    /**
      * Name of the group.
      */
     private string $name;
@@ -68,14 +58,13 @@ class Group
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(string $key, Application $application)
-    {
+    public function __construct(
+        private readonly string $key,
+        private readonly Application $application,
+    ) {
         if (1 !== preg_match('/^[a-zA-Z0-9]{30}$/', $key)) {
             throw new InvalidArgumentException(sprintf('Group identifiers are 30 characters long, case-sensitive, and may contain the character set [A-Za-z0-9]. "%s" given."', $key));
         }
-
-        $this->key = $key;
-        $this->application = $application;
     }
 
     public function getKey(): string

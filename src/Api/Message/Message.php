@@ -16,8 +16,6 @@ namespace Serhiy\Pushover\Api\Message;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**
- * Pushover Message.
- *
  * Messages must contain a message parameter that contains the message body and an optional title parameter.
  * If the title is not specified, the application's name will be shown by default.
  * See {@link https://pushover.net/api#messages} for more information.
@@ -39,12 +37,12 @@ class Message
     /**
      * A supplementary URL to show with your message.
      */
-    private ?string $url;
+    private ?string $url = null;
 
     /**
      * A title for your supplementary URL, otherwise just the URL is shown.
      */
-    private ?string $urlTitle;
+    private ?string $urlTitle = null;
 
     /**
      * Message Priority.
@@ -53,7 +51,7 @@ class Message
      * or 2 to also require confirmation from the user.
      * See {@link https://pushover.net/api#priority} for more information.
      */
-    private ?Priority $priority;
+    private ?Priority $priority = null;
 
     /**
      * HTML Message.
@@ -82,7 +80,7 @@ class Message
      *
      * The ttl value must be a positive number of seconds, and is counted from the time the message is received by our API.
      */
-    private ?int $ttl;
+    private ?int $ttl = null;
 
     public function __construct(string $message, ?string $title = null)
     {
@@ -93,11 +91,6 @@ class Message
         }
 
         $this->timestamp = new \DateTime();
-
-        $this->ttl = null;
-        $this->priority = null;
-        $this->url = null;
-        $this->urlTitle = null;
     }
 
     public function getMessage(): string

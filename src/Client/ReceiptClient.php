@@ -18,13 +18,10 @@ use Serhiy\Pushover\Client\Curl\Curl;
 
 class ReceiptClient extends Client implements ClientInterface
 {
-    private Application $application;
-    private string $receipt;
-
-    public function __construct(Application $application, string $receipt)
-    {
-        $this->application = $application;
-        $this->receipt = $receipt;
+    public function __construct(
+        private readonly Application $application,
+        private readonly string $receipt,
+    ) {
     }
 
     public function buildApiUrl(): string
