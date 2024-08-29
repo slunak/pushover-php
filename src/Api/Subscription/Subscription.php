@@ -24,15 +24,12 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak
  */
-class Subscription
+readonly class Subscription
 {
-    private Application $application;
-    private string $subscriptionCode;
-
-    public function __construct(Application $application, string $subscriptionCode)
-    {
-        $this->application = $application;
-        $this->subscriptionCode = $subscriptionCode;
+    public function __construct(
+        private readonly Application $application,
+        private readonly string $subscriptionCode,
+    ) {
     }
 
     public function getApplication(): Application

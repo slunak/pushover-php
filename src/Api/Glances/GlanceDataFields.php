@@ -16,7 +16,6 @@ namespace Serhiy\Pushover\Api\Glances;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**
- * Glance Data Fields.
  * Currently the following fields are available for updating. Each field is shown differently on different screens,
  * so you may need to experiment with them to find out which field works for you given your screen and type of data.
  * For example, each watch face on the Apple Watch uses a different sized complication,
