@@ -33,19 +33,15 @@ class GroupsClient extends Client implements ClientInterface
     public const ACTION_LIST_GROUPS = 'list';
 
     /**
-     * Action that client performs.
+     * @param string $action Action that client performs
      */
-    private string $action;
-    private Group $group;
-
-    public function __construct(Group $group, string $action)
-    {
+    public function __construct(
+        private readonly Group $group,
+        private readonly string $action,
+    ) {
         if (!$this->isActionValid($action)) {
             throw new InvalidArgumentException('Action argument provided to construct method is invalid.');
         }
-
-        $this->group = $group;
-        $this->action = $action;
     }
 
     public function buildApiUrl(): string

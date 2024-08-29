@@ -34,7 +34,7 @@ class GlancesClient extends Client implements ClientInterface
      *
      * @return array<string, string>
      */
-    public function buildCurlPostFields(Glance $glance)
+    public function buildCurlPostFields(Glance $glance): array
     {
         if (!$glance->hasRecipient()) {
             throw new LogicException('Glance recipient is not set.');

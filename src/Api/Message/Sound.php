@@ -136,14 +136,12 @@ class Sound
     public const NONE = 'none';
 
     /**
-     * Notification Sound
-     * Users can choose from 22 different default sounds to play when receiving notifications, rather than our standard Pushover tone.
-     * Applications can override a user's default tone choice on a per-notification basis.
+     * @param string $sound Users can choose from 22 different default sounds to play when receiving notifications, rather than our standard Pushover tone.
+     *                      Applications can override a user's default tone choice on a per-notification basis.
      */
-    private string $sound;
-
-    public function __construct(string $sound)
-    {
+    public function __construct(
+        private string $sound,
+    ) {
         $this->setSound($sound);
     }
 

@@ -24,18 +24,14 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 class Application
 {
     /**
-     * API Token.
-     * (required) - your application's API token.
+     * @param string $token API Token (required) - your application's API token
      */
-    private string $token;
-
-    public function __construct(string $token)
-    {
+    public function __construct(
+        private readonly string $token,
+    ) {
         if (1 !== preg_match('/^[a-zA-Z0-9]{30}$/', $token)) {
             throw new InvalidArgumentException(sprintf('Application tokens are case-sensitive, 30 characters long, and may contain the character set [A-Za-z0-9]. "%s" given with "%s" characters."', $token, \strlen($token)));
         }
-
-        $this->token = $token;
     }
 
     public function getToken(): string
