@@ -15,6 +15,12 @@ Check coding standards with [PHP CS Fixer](https://github.com/FriendsOfPHP/PHP-C
 make cs
 ```
 
+also fix common issues with [Rector](https://github.com/rector/rector)
+
+```
+make refactoring
+```
+
 #### Code Documentation
 
 Document your code with [phpDocumentor](https://github.com/phpDocumentor/phpDocumentor) version 3.
