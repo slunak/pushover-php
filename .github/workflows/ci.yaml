@@ -153,6 +153,7 @@ jobs:
                 with:
                     coverage: "none"
                     php-version: "${{ matrix.php-version }}"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
                     tools: "composer:v2"
 
             -
@@ -162,3 +163,36 @@ jobs:
             -
                 name: "Run a static code analysis with phpstan/phpstan and default configuration"
                 run: "vendor/bin/phpstan analyse --configuration=phpstan-default.neon.dist --no-progress"
+
+    refactoring:
+        name: "Refactoring"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            -   name: "Checkout"
+                uses: "actions/checkout@v4"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@v2"
+                with:
+                    coverage: "none"
+                    php-version: "${{ matrix.php-version }}"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@3.0.0"
+                with:
+                    composer-options: "--no-scripts"
+
+            -
+                name: "Run rector/rector"
+                run: "vendor/bin/rector process --config rector.php"
