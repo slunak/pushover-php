@@ -28,11 +28,9 @@ use Serhiy\Pushover\Recipient;
  */
 class Validation
 {
-    private Application $application;
-
-    public function __construct(Application $application)
-    {
-        $this->application = $application;
+    public function __construct(
+        private readonly Application $application,
+    ) {
     }
 
     public function getApplication(): Application

@@ -20,11 +20,9 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * HTML Notification Example.
- *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class HtmlNotificationExample
+final class HtmlNotificationExample
 {
     public function sendHtmlNotification(): void
     {

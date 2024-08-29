@@ -27,22 +27,15 @@ use Serhiy\Pushover\Recipient;
  */
 class Notification
 {
-    private Application $application;
-    private Recipient $recipient;
-    private Message $message;
-    private ?Sound $sound;
-    private ?CustomSound $customSound;
-    private ?Attachment $attachment;
+    private ?Sound $sound = null;
+    private ?CustomSound $customSound = null;
+    private ?Attachment $attachment = null;
 
-    public function __construct(Application $application, Recipient $recipient, Message $message)
-    {
-        $this->application = $application;
-        $this->recipient = $recipient;
-        $this->message = $message;
-
-        $this->sound = null;
-        $this->customSound = null;
-        $this->attachment = null;
+    public function __construct(
+        private Application $application,
+        private Recipient $recipient,
+        private Message $message,
+    ) {
     }
 
     public function getApplication(): Application

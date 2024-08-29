@@ -17,7 +17,6 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 use Serhiy\Pushover\Exception\LogicException;
 
 /**
- * Message Priority.
  * By default, messages have normal priority (a priority of 0).
  * Messages may be sent with a different priority that affects how the message is presented to the user.
  * Please use your best judgement when sending messages to other users and specifying a message priority.
@@ -78,35 +77,26 @@ class Priority
     public const EMERGENCY = 2;
 
     /**
-     * Priority of the message.
-     */
-    private int $priority;
-
-    /**
-     * Specifies how often (in seconds) the Pushover servers will send the same notification to the user.
-     * Used only and required with Emergency Priority.
-     */
-    private ?int $retry;
-
-    /**
-     * Specifies how many seconds your notification will continue to be retried for (every "retry" seconds).
-     * Used only and required with Emergency Priority.
-     */
-    private ?int $expire;
-
-    /**
      * (Optional) may be supplied with a publicly-accessible URL that our servers will send a request to when the user has acknowledged your notification.
      * Used only but not required with Emergency Priority.
      */
-    private ?string $callback;
+    private ?string $callback = null;
 
-    public function __construct(int $priority = self::NORMAL, ?int $retry = null, ?int $expire = null)
-    {
+    /**
+     * @param int      $priority priority of the message
+     * @param null|int $retry    Specifies how often (in seconds) the Pushover servers will send the same notification to the user.
+     *                           Used only and required with Emergency Priority.
+     * @param null|int $expire   Specifies how many seconds your notification will continue to be retried for (every "retry" seconds).
+     *                           Used only and required with Emergency Priority.
+     */
+    public function __construct(
+        private readonly int $priority = self::NORMAL,
+        private ?int $retry = null,
+        private ?int $expire = null,
+    ) {
         if (!(self::LOWEST <= $priority && $priority <= self::EMERGENCY)) {
             throw new InvalidArgumentException(sprintf('Message priority must be within range -2 and 2. "%s" was given.', $priority));
         }
-
-        $this->priority = $priority;
 
         if ($priority === self::EMERGENCY) {
             if (null === $retry || null === $expire) {
@@ -125,7 +115,7 @@ class Priority
      */
     public static function getAvailablePriorities(): array
     {
-        $oClass = new \ReflectionClass(__CLASS__);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }

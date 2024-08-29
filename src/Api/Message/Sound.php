@@ -136,14 +136,13 @@ class Sound
     public const NONE = 'none';
 
     /**
-     * Notification Sound
-     * Users can choose from 22 different default sounds to play when receiving notifications, rather than our standard Pushover tone.
-     * Applications can override a user's default tone choice on a per-notification basis.
+     * @param string $sound Users can choose from 22 different default sounds to play when receiving notifications,
+     *                      rather than our standard Pushover tone.
+     *                      Applications can override a user's default tone choice on a per-notification basis.
      */
-    private string $sound;
-
-    public function __construct(string $sound)
-    {
+    public function __construct(
+        private string $sound,
+    ) {
         $this->setSound($sound);
     }
 
@@ -154,7 +153,7 @@ class Sound
      */
     public static function getAvailableSounds(): array
     {
-        $oClass = new \ReflectionClass(__CLASS__);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }
@@ -166,7 +165,7 @@ class Sound
 
     public function setSound(string $sound): void
     {
-        if (!\in_array($sound, $this->getAvailableSounds(), true)) {
+        if (!\in_array($sound, static::getAvailableSounds(), true)) {
             throw new InvalidArgumentException(sprintf('Sound "%s" is not available.', $sound));
         }
 

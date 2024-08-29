@@ -24,11 +24,9 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Complete Notification Example.
- *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class CompleteNotificationExample
+final class CompleteNotificationExample
 {
     public function completeNotification(): void
     {

@@ -44,7 +44,7 @@ class RecipientTest extends TestCase
      */
     public function testGetUserKey(Recipient $recipient): void
     {
-        $this->assertEquals('aaaa1111AAAA1111bbbb2222BBBB22', $recipient->getUserKey());
+        $this->assertSame('aaaa1111AAAA1111bbbb2222BBBB22', $recipient->getUserKey());
     }
 
     /**
@@ -52,7 +52,7 @@ class RecipientTest extends TestCase
      */
     public function testGetDevice(Recipient $recipient): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'test-device-1',
                 'test-device-2',
@@ -66,7 +66,7 @@ class RecipientTest extends TestCase
      */
     public function testGetDeviceListCommaSeparated(Recipient $recipient): void
     {
-        $this->assertEquals('test-device-1,test-device-2', $recipient->getDeviceListCommaSeparated());
+        $this->assertSame('test-device-1,test-device-2', $recipient->getDeviceListCommaSeparated());
     }
 
     /**
@@ -82,7 +82,7 @@ class RecipientTest extends TestCase
      */
     public function testGetMemo(Recipient $recipient): void
     {
-        $this->assertEquals('This is test memo', $recipient->getMemo());
+        $this->assertSame('This is test memo', $recipient->getMemo());
     }
 
     /**

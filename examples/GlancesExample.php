@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class GlancesExample
+final class GlancesExample
 {
     public function glancesExample(): void
     {

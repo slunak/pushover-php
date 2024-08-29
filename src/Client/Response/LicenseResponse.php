@@ -35,10 +35,7 @@ class LicenseResponse extends Response
         return $this->credits;
     }
 
-    /**
-     * @param mixed $curlResponse
-     */
-    private function processCurlResponse($curlResponse): void
+    private function processCurlResponse(string $curlResponse): void
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 

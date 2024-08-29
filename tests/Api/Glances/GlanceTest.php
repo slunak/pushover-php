@@ -124,8 +124,7 @@ class GlanceTest extends TestCase
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
 
-        $glanceDataFields = new GlanceDataFields();
-        $glanceDataFields
+        $glanceDataFields = (new GlanceDataFields())
             ->setTitle('Title')
             ->setText('Text Test')
             ->setSubtext('Subtext Test')

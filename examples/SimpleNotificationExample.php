@@ -20,11 +20,9 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Simple Notification Example.
- *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class SimpleNotificationExample
+final class SimpleNotificationExample
 {
     public function sendSimpleNotification(): void
     {

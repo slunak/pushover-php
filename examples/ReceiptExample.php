@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class ReceiptExample
+final class ReceiptExample
 {
     public function queryEmergencyNotificationReceiptExample(): void
     {

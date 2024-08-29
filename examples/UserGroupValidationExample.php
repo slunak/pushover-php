@@ -19,11 +19,9 @@ use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Validation Example.
- *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class UserGroupValidationExample
+final class UserGroupValidationExample
 {
     public function userGroupValidationExample(): void
     {

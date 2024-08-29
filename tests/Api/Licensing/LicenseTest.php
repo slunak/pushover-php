@@ -89,7 +89,7 @@ class LicenseTest extends TestCase
         $email = 'dummy@email.com';
 
         $license->setEmail($email);
-        $this->assertEquals($email, $license->getEmail());
+        $this->assertSame($email, $license->getEmail());
 
         $license->setEmail(null);
         $this->assertNull($license->getEmail());
@@ -109,7 +109,7 @@ class LicenseTest extends TestCase
     public function testSetOs(License $license): void
     {
         $license->setOs(License::OS_ANDROID);
-        $this->assertEquals(License::OS_ANDROID, $license->getOs());
+        $this->assertSame(License::OS_ANDROID, $license->getOs());
 
         $license->setOs(License::OS_ANY);
         $this->assertNull($license->getOs());

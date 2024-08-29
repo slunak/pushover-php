@@ -34,7 +34,7 @@ class CustomSoundTest extends TestCase
      */
     public function testGetCustomSound(CustomSound $customSound): void
     {
-        $this->assertEquals('door_open', $customSound->getCustomSound());
+        $this->assertSame('door_open', $customSound->getCustomSound());
     }
 
     /**
@@ -44,15 +44,15 @@ class CustomSoundTest extends TestCase
     {
         $customSound->setCustomSound('warning');
 
-        $this->assertEquals('warning', $customSound->getCustomSound());
+        $this->assertSame('warning', $customSound->getCustomSound());
 
         $customSound->setCustomSound('door_open');
 
-        $this->assertEquals('door_open', $customSound->getCustomSound());
+        $this->assertSame('door_open', $customSound->getCustomSound());
 
         $customSound->setCustomSound('bell-sound');
 
-        $this->assertEquals('bell-sound', $customSound->getCustomSound());
+        $this->assertSame('bell-sound', $customSound->getCustomSound());
     }
 
     /**

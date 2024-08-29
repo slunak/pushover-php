@@ -49,7 +49,7 @@ class AttachmentTest extends TestCase
      */
     public function testGetMimeType(Attachment $attachment): void
     {
-        $this->assertEquals(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
+        $this->assertSame(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
     }
 
     /**
@@ -57,7 +57,7 @@ class AttachmentTest extends TestCase
      */
     public function testGetFilename(Attachment $attachment): void
     {
-        $this->assertEquals('/images/test.jpeg', $attachment->getFilename());
+        $this->assertSame('/images/test.jpeg', $attachment->getFilename());
     }
 
     /**
@@ -66,7 +66,7 @@ class AttachmentTest extends TestCase
     public function testSetMimeType(Attachment $attachment): void
     {
         $attachment->setMimeType(Attachment::MIME_TYPE_JPEG);
-        $this->assertEquals(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
+        $this->assertSame(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
 
         $this->expectException(InvalidArgumentException::class);
         $attachment->setMimeType('image/invalid');
@@ -78,7 +78,7 @@ class AttachmentTest extends TestCase
     public function testSetFilename(Attachment $attachment): void
     {
         $attachment->setMimeType(Attachment::MIME_TYPE_JPEG);
-        $this->assertEquals(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
+        $this->assertSame(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
 
         $this->expectException(InvalidArgumentException::class);
         $attachment->setMimeType('image/invalid');

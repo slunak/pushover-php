@@ -93,7 +93,7 @@ class Attachment
      */
     public static function getSupportedAttachmentTypes(): array
     {
-        $oClass = new \ReflectionClass(__CLASS__);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }
@@ -118,7 +118,7 @@ class Attachment
 
     public function setMimeType(string $mimeType): void
     {
-        if (!\in_array($mimeType, $this->getSupportedAttachmentTypes(), true)) {
+        if (!\in_array($mimeType, static::getSupportedAttachmentTypes(), true)) {
             throw new InvalidArgumentException(sprintf('Attachment type "%s" is not supported.', $mimeType));
         }
 
@@ -132,7 +132,7 @@ class Attachment
 
     public function setFilename(string $filename): void
     {
-        if (!\in_array(pathinfo($filename, \PATHINFO_EXTENSION), $this->getSupportedAttachmentExtensions(), true)) {
+        if (!\in_array(pathinfo($filename, \PATHINFO_EXTENSION), static::getSupportedAttachmentExtensions(), true)) {
             throw new InvalidArgumentException(sprintf('Attachment extension "%s" is not supported.', pathinfo($filename, \PATHINFO_EXTENSION)));
         }
 

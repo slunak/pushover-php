@@ -40,7 +40,7 @@ class ValidationTest extends TestCase
     public function testGetApplication(Validation $validation): void
     {
         $this->assertInstanceOf(Application::class, $validation->getApplication());
-        $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $validation->getApplication()->getToken());
+        $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $validation->getApplication()->getToken());
     }
 
     /**

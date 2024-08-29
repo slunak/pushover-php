@@ -27,24 +27,17 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 class Recipient
 {
     /**
-     * User/group key.
-     * (required) - the user/group key (not e-mail address) of your user (or you),
-     * viewable when logged into our dashboard (often referred to as USER_KEY in our documentation and code examples).
-     */
-    private string $userKey;
-
-    /**
      * Device name.
      * Your user's device name to send the message directly to that device,
      * rather than all of the user's devices (multiple devices may be separated by a comma).
      *
      * @var array<string>
      */
-    private array $device;
+    private array $device = [];
 
     /**
      * Used only when sending messages to a Group. If user is disabled in a group, they won't receive messages.
-     * However if sent to the user directly, they will receive messages.
+     * However, if sent to the user directly, they will receive messages.
      */
     private bool $isDisabled = false;
 
@@ -53,17 +46,19 @@ class Recipient
      * A free-text memo used to associate data with the user such as their name or e-mail address,
      * viewable through the API and the groups editor on our website (limited to 200 characters).
      */
-    private ?string $memo;
+    private ?string $memo = null;
 
-    public function __construct(string $userKey)
-    {
+    /**
+     * @param string $userKey User/group key.
+     *                        (required) - the user/group key (not e-mail address) of your user (or you),
+     *                        viewable when logged into our dashboard (often referred to as USER_KEY in our documentation and code examples).
+     */
+    public function __construct(
+        private readonly string $userKey,
+    ) {
         if (1 !== preg_match('/^[a-zA-Z0-9]{30}$/', $userKey)) {
             throw new InvalidArgumentException(sprintf('User and group identifiers are 30 characters long, case-sensitive, and may contain the character set [A-Za-z0-9]. "%s" given with "%s" characters.', $userKey, \strlen($userKey)));
         }
-
-        $this->userKey = $userKey;
-        $this->device = [];
-        $this->memo = null;
     }
 
     public function getUserKey(): string
@@ -118,8 +113,8 @@ class Recipient
 
     public function setMemo(?string $memo): void
     {
-        if (\strlen($memo) > 200) {
-            throw new InvalidArgumentException('Memo contained '.\strlen($memo).' characters. Memos are limited to 200 characters.');
+        if (\is_string($memo) && $length = \strlen($memo) > 200) {
+            throw new InvalidArgumentException('Memo contained '.$length.' characters. Memos are limited to 200 characters.');
         }
 
         $this->memo = $memo;

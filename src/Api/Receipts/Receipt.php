@@ -30,11 +30,9 @@ use Serhiy\Pushover\Client\Response\ReceiptResponse;
  */
 class Receipt
 {
-    private Application $application;
-
-    public function __construct(Application $application)
-    {
-        $this->application = $application;
+    public function __construct(
+        private readonly Application $application,
+    ) {
     }
 
     public function getApplication(): Application

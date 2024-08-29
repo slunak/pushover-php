@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\Base\Response;
 class CreateGroupResponse extends Response
 {
     /**
-     * Obtained Group Key.
+     * Obtained group key.
      */
     private string $groupKey;
 
@@ -31,17 +31,14 @@ class CreateGroupResponse extends Response
     }
 
     /**
-     * @return string Group key obtained
+     * @return string Obtained group key
      */
     public function getGroupKey(): string
     {
         return $this->groupKey;
     }
 
-    /**
-     * @param mixed $curlResponse
-     */
-    private function processCurlResponse($curlResponse): void
+    private function processCurlResponse(string $curlResponse): void
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 

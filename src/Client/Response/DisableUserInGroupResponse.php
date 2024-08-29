@@ -25,10 +25,7 @@ class DisableUserInGroupResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
-    /**
-     * @param mixed $curlResponse
-     */
-    private function processCurlResponse($curlResponse): void
+    private function processCurlResponse(string $curlResponse): void
     {
         $this->processInitialCurlResponse($curlResponse);
     }

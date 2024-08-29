@@ -22,13 +22,11 @@ use Serhiy\Pushover\Client\Curl\Curl;
 class CancelRetryClient extends Client implements ClientInterface
 {
     /**
-     * 30 character string.
+     * @param string $receipt 30 character string
      */
-    private string $receipt;
-
-    public function __construct(string $receipt)
-    {
-        $this->receipt = $receipt;
+    public function __construct(
+        private readonly string $receipt,
+    ) {
     }
 
     public function buildApiUrl(): string

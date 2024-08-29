@@ -21,11 +21,11 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Response Object Example.
+ * Response object example.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class ResponseExample
+final class ResponseExample
 {
     public function responseExample(): void
     {

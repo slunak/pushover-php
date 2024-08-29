@@ -46,29 +46,25 @@ class License
      * License for any device type.
      */
     public const OS_ANY = null;
-    private Application $application;
 
     /**
      * (required unless email supplied) - the user's Pushover user key.
      */
-    private ?Recipient $recipient;
+    private ?Recipient $recipient = null;
 
     /**
      * (required unless user supplied) - the user's e-mail address.
      */
-    private ?string $email;
+    private ?string $email = null;
 
     /**
      * Can be left blank, or one of Android, iOS, or Desktop.
      */
-    private ?string $os;
+    private ?string $os = null;
 
-    public function __construct(Application $application)
-    {
-        $this->application = $application;
-        $this->recipient = null;
-        $this->email = null;
-        $this->os = null;
+    public function __construct(
+        private Application $application,
+    ) {
     }
 
     public function getApplication(): Application
@@ -108,7 +104,7 @@ class License
 
     public function setOs(?string $os): void
     {
-        if (!\in_array($os, $this->getAvailableOsTypes(), true)) {
+        if (!\in_array($os, static::getAvailableOsTypes(), true)) {
             throw new InvalidArgumentException(sprintf('OS type "%s" is not available.', $os));
         }
 
@@ -138,7 +134,7 @@ class License
      */
     public static function getAvailableOsTypes(): array
     {
-        $oClass = new \ReflectionClass(__CLASS__);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }

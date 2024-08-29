@@ -21,11 +21,9 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * Emergency Notification Example.
- *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class EmergencyNotificationExample
+final class EmergencyNotificationExample
 {
     public function sendEmergencyNotification(): void
     {
