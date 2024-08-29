@@ -28,3 +28,8 @@ tests: check-symfony vendor
 .PHONY: vendor
 vendor: composer.json composer.lock ## Installs composer dependencies
 	symfony composer install
+
+.PHONY: refactoring
+refactoring: check-symfony vendor ## Refactor the code using rector/rector
+	symfony php bin/console cache:warmup
+	symfony php vendor/bin/rector process --config rector.php
