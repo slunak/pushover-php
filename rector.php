@@ -10,5 +10,5 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-    ->withPhpSets(false, false, false, false, true)
+    ->withPhp74Sets()
     ->withTypeCoverageLevel(0);

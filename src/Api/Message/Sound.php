@@ -154,7 +154,7 @@ class Sound
      */
     public static function getAvailableSounds(): array
     {
-        $oClass = new \ReflectionClass(__CLASS__);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }
@@ -166,7 +166,7 @@ class Sound
 
     public function setSound(string $sound): void
     {
-        if (!\in_array($sound, $this->getAvailableSounds(), true)) {
+        if (!\in_array($sound, static::getAvailableSounds(), true)) {
             throw new InvalidArgumentException(sprintf('Sound "%s" is not available.', $sound));
         }
 

@@ -108,7 +108,7 @@ class License
 
     public function setOs(?string $os): void
     {
-        if (!\in_array($os, $this->getAvailableOsTypes(), true)) {
+        if (!\in_array($os, static::getAvailableOsTypes(), true)) {
             throw new InvalidArgumentException(sprintf('OS type "%s" is not available.', $os));
         }
 
@@ -138,7 +138,7 @@ class License
      */
     public static function getAvailableOsTypes(): array
     {
-        $oClass = new \ReflectionClass(__CLASS__);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }

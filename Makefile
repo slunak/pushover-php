@@ -25,11 +25,10 @@ static-code-analysis-baseline: check-symfony vendor ## Generates a baseline for 
 tests: check-symfony vendor
 	symfony php vendor/bin/phpunit tests
 
-.PHONY: vendor
+.PHONY: vendorr
 vendor: composer.json composer.lock ## Installs composer dependencies
 	symfony composer install
 
 .PHONY: refactoring
 refactoring: check-symfony vendor ## Refactor the code using rector/rector
-	symfony php bin/console cache:warmup
 	symfony php vendor/bin/rector process --config rector.php

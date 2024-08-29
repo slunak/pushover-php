@@ -86,19 +86,19 @@ class Priority
      * Specifies how often (in seconds) the Pushover servers will send the same notification to the user.
      * Used only and required with Emergency Priority.
      */
-    private ?int $retry;
+    private ?int $retry = null;
 
     /**
      * Specifies how many seconds your notification will continue to be retried for (every "retry" seconds).
      * Used only and required with Emergency Priority.
      */
-    private ?int $expire;
+    private ?int $expire = null;
 
     /**
      * (Optional) may be supplied with a publicly-accessible URL that our servers will send a request to when the user has acknowledged your notification.
      * Used only but not required with Emergency Priority.
      */
-    private ?string $callback;
+    private ?string $callback = null;
 
     public function __construct(int $priority = self::NORMAL, ?int $retry = null, ?int $expire = null)
     {
@@ -125,7 +125,7 @@ class Priority
      */
     public static function getAvailablePriorities(): array
     {
-        $oClass = new \ReflectionClass(__CLASS__);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }
