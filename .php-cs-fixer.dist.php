@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 use Ergebnis\PhpCsFixer\Config\Factory;
 use Ergebnis\PhpCsFixer\Config\Rules;
-use Ergebnis\PhpCsFixer\Config\RuleSet\Php74;
+use Ergebnis\PhpCsFixer\Config\RuleSet\Php82;
 
 $header = <<<'HEADER'
 This file is part of the Pushover package.
@@ -24,7 +24,7 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 HEADER;
 
-$ruleSet = Php74::create()->withHeader($header)->withRules(Rules::fromArray([
+$ruleSet = Php82::create()->withHeader($header)->withRules(Rules::fromArray([
     'blank_line_before_statement' => [
         'statements' => [
             'break',
