@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Removed
+
+- Drop PHP 7.4 support
+- Drop PHP 8.0 support
+- Drop PHP 8.1 support
+
 ## [1.6.0]
 
 ### Added
