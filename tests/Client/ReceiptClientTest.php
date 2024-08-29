@@ -18,7 +18,7 @@ use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\ReceiptClient;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class ReceiptClientTest extends TestCase
 {

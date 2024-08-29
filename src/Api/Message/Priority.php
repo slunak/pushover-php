@@ -23,7 +23,7 @@ use Serhiy\Pushover\Exception\LogicException;
  * Specifying a message priority does not affect queueing or routing priority and only affects how device clients display them.
  * See {@link https://pushover.net/api#priority} for more information.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Priority
 {

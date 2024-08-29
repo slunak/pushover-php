@@ -18,7 +18,7 @@ use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Exception\LogicException;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class GlancesClient extends Client implements ClientInterface
 {

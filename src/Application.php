@@ -19,7 +19,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * To get started pushing notifications from your application, you'll first need to register it to get an API token.
  * See {@link https://pushover.net/api#registration} for more information.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Application
 {

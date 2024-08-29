@@ -20,7 +20,7 @@ use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class ValidationTest extends TestCase
 {

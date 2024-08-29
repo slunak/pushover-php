@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class GroupTest extends TestCase
 {

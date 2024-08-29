@@ -26,7 +26,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * Working with groups.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 final class GroupsExample
 {

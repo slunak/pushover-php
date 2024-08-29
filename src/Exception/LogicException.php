@@ -16,7 +16,7 @@ namespace Serhiy\Pushover\Exception;
 /**
  * Base LogicException for the Pushover component.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class LogicException extends \LogicException implements ExceptionInterface
 {

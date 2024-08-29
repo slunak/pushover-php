@@ -24,7 +24,7 @@ use Serhiy\Pushover\Recipient;
  * As an optional step in collecting user keys for users of your application, you may validate those keys to ensure that
  * a user has copied them properly,that the account is valid, and that there is at least one active device on the account.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Validation
 {

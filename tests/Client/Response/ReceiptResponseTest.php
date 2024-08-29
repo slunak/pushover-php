@@ -18,7 +18,7 @@ use Serhiy\Pushover\Client\Response\ReceiptResponse;
 use Serhiy\Pushover\Recipient;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class ReceiptResponseTest extends TestCase
 {

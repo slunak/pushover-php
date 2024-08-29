@@ -21,7 +21,7 @@ use Serhiy\Pushover\Exception\LogicException;
 /**
  * Pushover HTTP Client for Message Component.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class MessageClient extends Client implements ClientInterface
 {

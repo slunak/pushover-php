@@ -19,7 +19,7 @@ use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\CancelRetryClient;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class CancelRetryClientTest extends TestCase
 {

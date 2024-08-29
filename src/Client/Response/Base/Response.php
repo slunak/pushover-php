@@ -22,7 +22,7 @@ use Serhiy\Pushover\Client\Request\Request;
  * with a JSON object containing a status code of 1. If any input was invalid, you will receive an HTTP 4xx status,
  * with a JSON object containing a status code of something other than 1, and an errors array detailing which parameters were invalid.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Response
 {

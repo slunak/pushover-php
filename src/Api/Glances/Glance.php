@@ -29,7 +29,7 @@ use Serhiy\Pushover\Recipient;
  * These pieces of data should be low-priority since they often cannot get updated in real-time or very frequently,
  * and they must be concise because they are often viewed on small screens such as a watch face.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class Glance
 {

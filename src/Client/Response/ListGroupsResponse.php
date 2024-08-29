@@ -16,7 +16,7 @@ namespace Serhiy\Pushover\Client\Response;
 use Serhiy\Pushover\Client\Response\Base\Response;
 
 /**
- * @author Vítězslav Dvořák
+ * @author Vítězslav Dvořák <vitex@vitexsoftware.com>
  */
 final class ListGroupsResponse extends Response
 {

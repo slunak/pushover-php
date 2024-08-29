@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * Response object example.
  *
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 final class ResponseExample
 {

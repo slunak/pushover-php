@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\EnableUserInGroupResponse;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class EnableUserInGroupResponseTest extends TestCase
 {

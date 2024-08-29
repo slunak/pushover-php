@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\SubscriptionClient;
 use Serhiy\Pushover\Recipient;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class SubscriptionClientTest extends TestCase
 {

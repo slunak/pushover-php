@@ -20,7 +20,7 @@ use Serhiy\Pushover\Exception\LogicException;
 use Serhiy\Pushover\Recipient;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class SubscriptionClient extends Client implements ClientInterface
 {

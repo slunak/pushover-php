@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\RenameGroupResponse;
 
 /**
- * @author Serhiy Lunak
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
 class RenameGroupResponseTest extends TestCase
 {
