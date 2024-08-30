@@ -12,6 +12,7 @@ declare(strict_types=1);
  */
 
 use Rector\Config\RectorConfig;
+use Rector\PHPUnit\Set\PHPUnitSetList;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -21,6 +22,6 @@ return RectorConfig::configure()
     ])
     ->withPhpSets(php82: true)
     ->withSets([
-        \Rector\PHPUnit\Set\PHPUnitSetList::PHPUNIT_110,
+        PHPUnitSetList::PHPUNIT_110,
     ])
     ->withTypeCoverageLevel(0);
