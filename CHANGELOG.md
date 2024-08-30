@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Drop PHP 8.0 support
 - Drop PHP 8.1 support
 
+### Deprecated
+
+- Made nearly all classes final via `@final` annotation 
+
 ## [1.6.0]
 
 ### Added
