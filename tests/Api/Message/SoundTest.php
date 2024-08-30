@@ -29,17 +29,13 @@ class SoundTest extends TestCase
         return $sound;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetSound(Sound $sound): void
     {
         $this->assertSame('pushover', $sound->getSound());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testAvailableSounds(Sound $sound): void
     {
         $availableSounds = new \ReflectionClass(Sound::class);
@@ -47,9 +43,7 @@ class SoundTest extends TestCase
         $this->assertEquals($availableSounds->getConstants(), $sound->getAvailableSounds());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetSound(Sound $sound): void
     {
         $sound->setSound(Sound::ECHO);

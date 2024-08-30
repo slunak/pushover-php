@@ -29,17 +29,13 @@ class CustomSoundTest extends TestCase
         return $customSound;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetCustomSound(CustomSound $customSound): void
     {
         $this->assertSame('door_open', $customSound->getCustomSound());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetCustomSound(CustomSound $customSound): void
     {
         $customSound->setCustomSound('warning');
@@ -55,9 +51,7 @@ class CustomSoundTest extends TestCase
         $this->assertSame('bell-sound', $customSound->getCustomSound());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetExistingCustomSound(CustomSound $customSound): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -65,9 +59,7 @@ class CustomSoundTest extends TestCase
         $customSound->setCustomSound('echo');
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetInvalidCustomSound(CustomSound $customSound): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -75,9 +67,7 @@ class CustomSoundTest extends TestCase
         $customSound->setCustomSound('warning+door_open');
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetLongCustomSound(CustomSound $customSound): void
     {
         $this->expectException(InvalidArgumentException::class);

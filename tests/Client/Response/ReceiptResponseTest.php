@@ -42,74 +42,56 @@ class ReceiptResponseTest extends TestCase
         return $response;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetAcknowledgedBy(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(Recipient::class, $response->getAcknowledgedBy());
         $this->assertEquals('aaaa1111AAAA1111bbbb2222BBBB22', $response->getAcknowledgedBy()->getUserKey());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetAcknowledgedByDevice(ReceiptResponse $response): void
     {
         $this->assertEquals('test-device-1', $response->getAcknowledgedByDevice());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetExpiresAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getExpiresAt());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetLastDeliveredAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getLastDeliveredAt());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testIsAcknowledged(ReceiptResponse $response): void
     {
         $this->assertTrue($response->isAcknowledged());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetCalledBackAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getCalledBackAt());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetAcknowledgedAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getAcknowledgedAt());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testHasCalledBack(ReceiptResponse $response): void
     {
         $this->assertTrue($response->hasCalledBack());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testIsExpired(ReceiptResponse $response): void
     {
         $this->assertTrue($response->isExpired());

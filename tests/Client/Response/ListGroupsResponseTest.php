@@ -30,9 +30,7 @@ final class ListGroupsResponseTest extends TestCase
         return $response;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetGroups(ListGroupsResponse $response): void
     {
         $groups = $response->getGroups();

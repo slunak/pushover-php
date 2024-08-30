@@ -20,4 +20,7 @@ return RectorConfig::configure()
         __DIR__.'/tests',
     ])
     ->withPhpSets(php82: true)
+    ->withSets([
+        \Rector\PHPUnit\Set\PHPUnitSetList::PHPUNIT_110,
+    ])
     ->withTypeCoverageLevel(0);

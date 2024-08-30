@@ -39,17 +39,13 @@ class RetrieveGroupResponseTest extends TestCase
         return $response;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetName(RetrieveGroupResponse $response): void
     {
         $this->assertEquals('Test Group', $response->getName());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetUsers(RetrieveGroupResponse $response): void
     {
         $recipient = $response->getUsers()[0];

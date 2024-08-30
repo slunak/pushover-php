@@ -32,9 +32,7 @@ class ReceiptClientTest extends TestCase
         return $client;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testBuildApiUrl(ReceiptClient $client): void
     {
         $this->assertEquals(

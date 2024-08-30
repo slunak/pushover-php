@@ -34,18 +34,14 @@ class ValidationTest extends TestCase
         return $validation;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetApplication(Validation $validation): void
     {
         $this->assertInstanceOf(Application::class, $validation->getApplication());
         $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $validation->getApplication()->getToken());
     }
 
-    /**
-     * @group Integration
-     */
+    #[\PHPUnit\Framework\Attributes\Group('Integration')]
     public function testValidate(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token

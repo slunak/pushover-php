@@ -34,25 +34,19 @@ class SubscriptionTest extends TestCase
         return $subscription;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetSubscriptionCode(Subscription $subscription): void
     {
         $this->assertSame('dummy-subscription-aaa111bbb222ccc', $subscription->getSubscriptionCode());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetApplication(Subscription $subscription): void
     {
         $this->assertInstanceOf(Application::class, $subscription->getApplication());
     }
 
-    /**
-     * @group Integration
-     */
+    #[\PHPUnit\Framework\Attributes\Group('Integration')]
     public function testMigrate(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token

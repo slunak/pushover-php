@@ -35,18 +35,14 @@ class GroupTest extends TestCase
         return $group;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetApplication(Group $group): void
     {
         $this->assertInstanceOf(Application::class, $group->getApplication());
         $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $group->getApplication()->getToken());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetKey(Group $group): void
     {
         $this->assertSame('eeee5555EEEE5555ffff6666FFFF66', $group->getKey());

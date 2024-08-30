@@ -62,9 +62,7 @@ class PriorityTest extends TestCase
         new Priority(Priority::EMERGENCY);
     }
 
-    /**
-     * @depends testCanBeConstructedWithEmergencyPriority
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructedWithEmergencyPriority')]
     public function testSetCallback(Priority $priority): Priority
     {
         $priority->setCallback('https://callback.example.com');
@@ -74,17 +72,13 @@ class PriorityTest extends TestCase
         return $priority;
     }
 
-    /**
-     * @depends testSetCallback
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testSetCallback')]
     public function testGetCallback(Priority $priority): void
     {
         $this->assertSame('https://callback.example.com', $priority->getCallback());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testAvailablePriorities(Priority $priority): void
     {
         $availablePriorities = new \ReflectionClass(Priority::class);

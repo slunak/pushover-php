@@ -35,9 +35,7 @@ class ReceiptTest extends TestCase
         return $receipt;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetApplication(Receipt $receipt): void
     {
         $application = $receipt->getApplication();
@@ -46,9 +44,7 @@ class ReceiptTest extends TestCase
         $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $application->getToken());
     }
 
-    /**
-     * @group Integration
-     */
+    #[\PHPUnit\Framework\Attributes\Group('Integration')]
     public function testQuery(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -59,9 +55,7 @@ class ReceiptTest extends TestCase
         $this->assertInstanceOf(ReceiptResponse::class, $response);
     }
 
-    /**
-     * @group Integration
-     */
+    #[\PHPUnit\Framework\Attributes\Group('Integration')]
     public function testCancelRetry(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token

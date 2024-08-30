@@ -44,9 +44,7 @@ class ApplicationTest extends TestCase
         new Application('token');
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetToken(Application $application): void
     {
         $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $application->getToken());

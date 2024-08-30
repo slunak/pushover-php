@@ -32,9 +32,7 @@ class CancelRetryClientTest extends TestCase
         return $client;
     }
 
-    /**
-     * @depends testCabBeCreated
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCabBeCreated')]
     public function testBuildCurlPostFields(CancelRetryClient $client): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -47,9 +45,7 @@ class CancelRetryClientTest extends TestCase
         ], $curlPostFields);
     }
 
-    /**
-     * @depends testCabBeCreated
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCabBeCreated')]
     public function testBuildApiUrl(CancelRetryClient $client): void
     {
         $this->assertEquals(

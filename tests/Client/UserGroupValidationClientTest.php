@@ -32,9 +32,7 @@ class UserGroupValidationClientTest extends TestCase
         return $client;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testBuildCurlPostFields(UserGroupValidationClient $client): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -47,9 +45,7 @@ class UserGroupValidationClientTest extends TestCase
         ], $curlPostFields);
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testBuildApiUrl(UserGroupValidationClient $client): void
     {
         $this->assertSame('https://api.pushover.net/1/users/validate.json', $client->buildApiUrl());

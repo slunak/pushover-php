@@ -30,25 +30,19 @@ class RequestTest extends TestCase
         return $request;
     }
 
-    /**
-     * @depends testCanBeCrated
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeCrated')]
     public function testGetMethod(Request $request): void
     {
         $this->assertEquals(Request::POST, $request->getMethod());
     }
 
-    /**
-     * @depends testCanBeCrated
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeCrated')]
     public function testGetApiUrl(Request $request): void
     {
         $this->assertEquals('https://test.com/api', $request->getApiUrl());
     }
 
-    /**
-     * @depends testCanBeCrated
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeCrated')]
     public function testGetCurlPostFields(Request $request): void
     {
         $this->assertIsArray($request->getCurlPostFields());

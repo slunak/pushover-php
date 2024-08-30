@@ -32,17 +32,13 @@ class LicenseTest extends TestCase
         return $license;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetApplication(License $license): void
     {
         $this->assertInstanceOf(Application::class, $license->getApplication());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetApplication(License $license): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -51,17 +47,13 @@ class LicenseTest extends TestCase
         $this->assertInstanceOf(Application::class, $license->getApplication());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetRecipient(License $license): void
     {
         $this->assertNull($license->getRecipient());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetRecipient(License $license): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
@@ -73,17 +65,13 @@ class LicenseTest extends TestCase
         $this->assertNull($license->getRecipient());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetEmail(License $license): void
     {
         $this->assertNull($license->getEmail());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetEmail(License $license): void
     {
         $email = 'dummy@email.com';
@@ -95,17 +83,13 @@ class LicenseTest extends TestCase
         $this->assertNull($license->getEmail());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetOs(License $license): void
     {
         $this->assertNull($license->getOs());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetOs(License $license): void
     {
         $license->setOs(License::OS_ANDROID);
@@ -118,9 +102,7 @@ class LicenseTest extends TestCase
         $license->setOs('Wrong_OS');
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testCanBeAssigned(License $license): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
@@ -141,9 +123,7 @@ class LicenseTest extends TestCase
         $this->assertFalse($license->canBeAssigned());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetAvailableOsTypes(License $license): void
     {
         $licenseTypes = [
@@ -156,9 +136,7 @@ class LicenseTest extends TestCase
         $this->assertEquals($licenseTypes, $license->getAvailableOsTypes());
     }
 
-    /**
-     * @group Integration
-     */
+    #[\PHPUnit\Framework\Attributes\Group('Integration')]
     public function testCheckCredits(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token

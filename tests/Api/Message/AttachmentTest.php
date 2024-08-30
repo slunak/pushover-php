@@ -44,25 +44,19 @@ class AttachmentTest extends TestCase
         new Attachment('/images/test.invalid', Attachment::MIME_TYPE_JPEG);
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetMimeType(Attachment $attachment): void
     {
         $this->assertSame(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetFilename(Attachment $attachment): void
     {
         $this->assertSame('/images/test.jpeg', $attachment->getFilename());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetMimeType(Attachment $attachment): void
     {
         $attachment->setMimeType(Attachment::MIME_TYPE_JPEG);
@@ -72,9 +66,7 @@ class AttachmentTest extends TestCase
         $attachment->setMimeType('image/invalid');
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testSetFilename(Attachment $attachment): void
     {
         $attachment->setMimeType(Attachment::MIME_TYPE_JPEG);
@@ -84,9 +76,7 @@ class AttachmentTest extends TestCase
         $attachment->setMimeType('image/invalid');
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetSupportedAttachmentTypes(Attachment $attachment): void
     {
         $supportedAttachmentsTypes = new \ReflectionClass(Attachment::class);
@@ -94,9 +84,7 @@ class AttachmentTest extends TestCase
         $this->assertEquals($supportedAttachmentsTypes->getConstants(), $attachment->getSupportedAttachmentTypes());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
     public function testGetSupportedAttachmentExtensions(Attachment $attachment): void
     {
         $supportedAttachmentExtensions = [
