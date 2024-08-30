@@ -23,8 +23,6 @@ use Serhiy\Pushover\Client\Request\Request;
  * with a JSON object containing a status code of something other than 1, and an errors array detailing which parameters were invalid.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
- *
- * @final since 1.7.0, real final in 2.0
  */
 class Response
 {
