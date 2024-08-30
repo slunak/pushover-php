@@ -34,21 +34,34 @@ class GroupsClientTest extends TestCase
         $this->assertInstanceOf(GroupsClient::class, $client);
     }
 
-    public function testBuildApiUrl(): void
+    /**
+     * @dataProvider buildApiUrlProvider
+     */
+    public function testBuildApiUrl(string $expected, string $action): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key
 
-        // testing various "actions" below
+        $client = new GroupsClient($group, $action);
+        $this->assertSame($expected, $client->buildApiUrl());
+    }
 
-        $client = new GroupsClient($group, GroupsClient::ACTION_RETRIEVE_GROUP);
-        $this->assertEquals('https://api.pushover.net/1/groups/eeee5555EEEE5555ffff6666FFFF66.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
+    public static function buildApiUrlProvider(): iterable
+    {
+        yield [
+            'https://api.pushover.net/1/groups/eeee5555EEEE5555ffff6666FFFF66.json?token=cccc3333CCCC3333dddd4444DDDD44',
+            GroupsClient::ACTION_RETRIEVE_GROUP,
+        ];
 
-        $client = new GroupsClient($group, GroupsClient::ACTION_ADD_USER);
-        $this->assertEquals('https://api.pushover.net/1/groups/eeee5555EEEE5555ffff6666FFFF66/add_user.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
+        yield [
+            'https://api.pushover.net/1/groups/eeee5555EEEE5555ffff6666FFFF66/add_user.json?token=cccc3333CCCC3333dddd4444DDDD44',
+            GroupsClient::ACTION_ADD_USER,
+        ];
 
-        $client = new GroupsClient($group, GroupsClient::ACTION_LIST_GROUPS);
-        $this->assertSame('https://api.pushover.net/1/groups.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
+        yield [
+            'https://api.pushover.net/1/groups.json?token=cccc3333CCCC3333dddd4444DDDD44',
+            GroupsClient::ACTION_LIST_GROUPS,
+        ];
     }
 
     /**
