@@ -46,6 +46,9 @@ class GroupsClientTest extends TestCase
         $this->assertSame($expected, $client->buildApiUrl());
     }
 
+    /**
+     * @return iterable<array{string, string}>
+     */
     public static function buildApiUrlProvider(): iterable
     {
         yield [
