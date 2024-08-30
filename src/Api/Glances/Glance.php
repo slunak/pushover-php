@@ -30,6 +30,8 @@ use Serhiy\Pushover\Recipient;
  * and they must be concise because they are often viewed on small screens such as a watch face.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class Glance
 {

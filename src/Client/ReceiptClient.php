@@ -16,6 +16,11 @@ namespace Serhiy\Pushover\Client;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Curl\Curl;
 
+/**
+ * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
+ */
 class ReceiptClient extends Client implements ClientInterface
 {
     public function __construct(

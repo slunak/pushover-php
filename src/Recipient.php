@@ -23,6 +23,8 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * all active users listed in the group will have the notification delivered to them and the response will look the same.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class Recipient
 {

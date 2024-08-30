@@ -22,6 +22,8 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * with different size specifications and types of data. Some are text strings, some are just numbers.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class GlanceDataFields
 {

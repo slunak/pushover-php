@@ -27,6 +27,8 @@ use Serhiy\Pushover\Client\Response\ReceiptResponse;
  * up to 1 week after your notification has been received.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class Receipt
 {

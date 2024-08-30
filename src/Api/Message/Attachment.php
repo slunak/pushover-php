@@ -23,6 +23,8 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * Attachments uploaded for devices that are not running at least version 3.0 of our apps will be discarded as they cannot be displayed by those devices.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class Attachment
 {

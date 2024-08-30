@@ -21,6 +21,8 @@ use Serhiy\Pushover\Recipient;
 
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class SubscriptionClient extends Client implements ClientInterface
 {

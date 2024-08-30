@@ -18,6 +18,9 @@ use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Exception\LogicException;
 use Serhiy\Pushover\Recipient;
 
+/**
+ * @final since 1.7.0, real final in 2.0
+ */
 class UserGroupValidationClient extends Client implements ClientInterface
 {
     public const API_PATH = 'users/validate.json';
