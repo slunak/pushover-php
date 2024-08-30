@@ -20,6 +20,8 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
  * See {@link https://pushover.net/api#registration} for more information.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class Application
 {

@@ -15,6 +15,8 @@ namespace Serhiy\Pushover\Client;
 
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 interface ClientInterface
 {

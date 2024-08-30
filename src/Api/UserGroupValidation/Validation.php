@@ -25,6 +25,8 @@ use Serhiy\Pushover\Recipient;
  * a user has copied them properly,that the account is valid, and that there is at least one active device on the account.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class Validation
 {

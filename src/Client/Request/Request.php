@@ -17,6 +17,8 @@ namespace Serhiy\Pushover\Client\Request;
  * Holds curl and other request data.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
+ *
+ * @final since 1.7.0, real final in 2.0
  */
 class Request implements RequestInterface
 {
