@@ -51,52 +51,40 @@ class GroupsClientTest extends TestCase
         $this->assertSame('https://api.pushover.net/1/groups.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
     }
 
-    public function testBuildCurlPostFields(): void
+    /**
+     * @dataProvider buildCurlPostFieldsProvider
+     */
+    public function testBuildCurlPostFields(array $expected, string $action): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
         $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
 
-        // testing various "actions" below
+        $client = new GroupsClient($group, $action);
 
-        $client = new GroupsClient($group, GroupsClient::ACTION_ADD_USER);
-
-        $this->assertEquals(
-            [
-                'token' => 'cccc3333CCCC3333dddd4444DDDD44',
-                'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
-            ],
+        $this->assertSame(
+            $expected,
             $client->buildCurlPostFields($recipient),
         );
+    }
 
-        $client = new GroupsClient($group, GroupsClient::ACTION_REMOVE_USER);
+    /**
+     * @return iterable<array{array<string, string>, string}>
+     */
+    public static function buildCurlPostFieldsProvider(): iterable
+    {
+        $base = [
+            'token' => 'cccc3333CCCC3333dddd4444DDDD44',
+            'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
+        ];
 
-        $this->assertEquals(
-            [
-                'token' => 'cccc3333CCCC3333dddd4444DDDD44',
-                'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
-            ],
-            $client->buildCurlPostFields($recipient),
-        );
-
-        $client = new GroupsClient($group, GroupsClient::ACTION_ENABLE_USER);
-
-        $this->assertEquals(
-            [
-                'token' => 'cccc3333CCCC3333dddd4444DDDD44',
-                'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
-            ],
-            $client->buildCurlPostFields($recipient),
-        );
-
-        $client = new GroupsClient($group, GroupsClient::ACTION_DISABLE_USER);
-
-        $this->assertEquals(
-            [
-                'token' => 'cccc3333CCCC3333dddd4444DDDD44',
-                'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
-            ],
-            $client->buildCurlPostFields($recipient),
-        );
+        foreach ([
+            GroupsClient::ACTION_ADD_USER,
+            GroupsClient::ACTION_REMOVE_USER,
+            GroupsClient::ACTION_ENABLE_USER,
+            GroupsClient::ACTION_DISABLE_USER,
+        ] as $action) {
+            yield [$base, $action];
+        }
     }
 }
