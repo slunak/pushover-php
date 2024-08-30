@@ -11,6 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 use Serhiy\Pushover\Recipient;
@@ -39,13 +40,13 @@ class RecipientTest extends TestCase
         new Recipient('Lorem ipsum dolor sit amet');
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetUserKey(Recipient $recipient): void
     {
         $this->assertSame('aaaa1111AAAA1111bbbb2222BBBB22', $recipient->getUserKey());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetDevice(Recipient $recipient): void
     {
         $this->assertSame(
@@ -57,39 +58,39 @@ class RecipientTest extends TestCase
         );
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetDeviceListCommaSeparated(Recipient $recipient): void
     {
         $this->assertSame('test-device-1,test-device-2', $recipient->getDeviceListCommaSeparated());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testIsDisabled(Recipient $recipient): void
     {
         $this->assertFalse($recipient->isDisabled());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetMemo(Recipient $recipient): void
     {
         $this->assertSame('This is test memo', $recipient->getMemo());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testSetIsDisabled(Recipient $recipient): void
     {
         $recipient->setIsDisabled(true);
         $this->assertTrue($recipient->isDisabled());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testSetMemo(Recipient $recipient): void
     {
         $this->expectException(InvalidArgumentException::class);
         $recipient->setMemo('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testAddDevice(Recipient $recipient): void
     {
         $this->expectException(InvalidArgumentException::class);

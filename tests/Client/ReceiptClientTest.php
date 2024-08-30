@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\ReceiptClient;
@@ -32,7 +33,7 @@ class ReceiptClientTest extends TestCase
         return $client;
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testBuildApiUrl(ReceiptClient $client): void
     {
         $this->assertEquals(

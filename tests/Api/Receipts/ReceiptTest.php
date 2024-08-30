@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Api\Receipts;
 
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Receipts\Receipt;
 use Serhiy\Pushover\Application;
@@ -35,7 +37,7 @@ class ReceiptTest extends TestCase
         return $receipt;
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetApplication(Receipt $receipt): void
     {
         $application = $receipt->getApplication();
@@ -44,7 +46,7 @@ class ReceiptTest extends TestCase
         $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $application->getToken());
     }
 
-    #[\PHPUnit\Framework\Attributes\Group('Integration')]
+    #[Group('Integration')]
     public function testQuery(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -55,7 +57,7 @@ class ReceiptTest extends TestCase
         $this->assertInstanceOf(ReceiptResponse::class, $response);
     }
 
-    #[\PHPUnit\Framework\Attributes\Group('Integration')]
+    #[Group('Integration')]
     public function testCancelRetry(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token

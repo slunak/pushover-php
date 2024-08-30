@@ -11,6 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
@@ -44,7 +45,7 @@ class ApplicationTest extends TestCase
         new Application('token');
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetToken(Application $application): void
     {
         $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $application->getToken());

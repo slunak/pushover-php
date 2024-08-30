@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Api\Groups;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Groups\Group;
 use Serhiy\Pushover\Application;
@@ -35,14 +36,14 @@ class GroupTest extends TestCase
         return $group;
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetApplication(Group $group): void
     {
         $this->assertInstanceOf(Application::class, $group->getApplication());
         $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $group->getApplication()->getToken());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetKey(Group $group): void
     {
         $this->assertSame('eeee5555EEEE5555ffff6666FFFF66', $group->getKey());

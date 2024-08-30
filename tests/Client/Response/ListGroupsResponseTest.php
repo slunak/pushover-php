@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client\Response;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\ListGroupsResponse;
 
@@ -30,7 +31,7 @@ final class ListGroupsResponseTest extends TestCase
         return $response;
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetGroups(ListGroupsResponse $response): void
     {
         $groups = $response->getGroups();

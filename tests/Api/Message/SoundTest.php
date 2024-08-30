@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Api\Message;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Sound;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
@@ -29,13 +30,13 @@ class SoundTest extends TestCase
         return $sound;
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetSound(Sound $sound): void
     {
         $this->assertSame('pushover', $sound->getSound());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testAvailableSounds(Sound $sound): void
     {
         $availableSounds = new \ReflectionClass(Sound::class);
@@ -43,7 +44,7 @@ class SoundTest extends TestCase
         $this->assertEquals($availableSounds->getConstants(), $sound->getAvailableSounds());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testSetSound(Sound $sound): void
     {
         $sound->setSound(Sound::ECHO);

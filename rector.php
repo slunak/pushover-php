@@ -24,4 +24,5 @@ return RectorConfig::configure()
     ->withSets([
         PHPUnitSetList::PHPUNIT_110,
     ])
+    ->withImportNames(importNames: true)
     ->withTypeCoverageLevel(0);

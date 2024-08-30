@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Api\Message;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
@@ -44,19 +45,19 @@ class AttachmentTest extends TestCase
         new Attachment('/images/test.invalid', Attachment::MIME_TYPE_JPEG);
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetMimeType(Attachment $attachment): void
     {
         $this->assertSame(Attachment::MIME_TYPE_JPEG, $attachment->getMimeType());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetFilename(Attachment $attachment): void
     {
         $this->assertSame('/images/test.jpeg', $attachment->getFilename());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testSetMimeType(Attachment $attachment): void
     {
         $attachment->setMimeType(Attachment::MIME_TYPE_JPEG);
@@ -66,7 +67,7 @@ class AttachmentTest extends TestCase
         $attachment->setMimeType('image/invalid');
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testSetFilename(Attachment $attachment): void
     {
         $attachment->setMimeType(Attachment::MIME_TYPE_JPEG);
@@ -76,7 +77,7 @@ class AttachmentTest extends TestCase
         $attachment->setMimeType('image/invalid');
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetSupportedAttachmentTypes(Attachment $attachment): void
     {
         $supportedAttachmentsTypes = new \ReflectionClass(Attachment::class);
@@ -84,7 +85,7 @@ class AttachmentTest extends TestCase
         $this->assertEquals($supportedAttachmentsTypes->getConstants(), $attachment->getSupportedAttachmentTypes());
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testCanBeConstructed')]
+    #[Depends('testCanBeConstructed')]
     public function testGetSupportedAttachmentExtensions(Attachment $attachment): void
     {
         $supportedAttachmentExtensions = [
