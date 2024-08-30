@@ -63,7 +63,7 @@ class GroupsClient extends Client implements ClientInterface
             'token' => $this->group->getApplication()->getToken(),
         ];
 
-        if (in_array($this->action, [self::ACTION_ADD_USER, self::ACTION_REMOVE_USER, self::ACTION_DISABLE_USER, self::ACTION_ENABLE_USER], true)) {
+        if (\in_array($this->action, [self::ACTION_ADD_USER, self::ACTION_REMOVE_USER, self::ACTION_DISABLE_USER, self::ACTION_ENABLE_USER], true)) {
             if (!$recipient instanceof Recipient) {
                 throw new \LogicException('Recipient object must be provided for this action.');
             }
@@ -81,7 +81,7 @@ class GroupsClient extends Client implements ClientInterface
             }
         }
 
-        if (in_array($this->action, [self::ACTION_RENAME_GROUP, self::ACTION_CREATE_GROUP], true)) {
+        if (\in_array($this->action, [self::ACTION_RENAME_GROUP, self::ACTION_CREATE_GROUP], true)) {
             $curlPostFields['name'] = $this->group->getName();
         }
 

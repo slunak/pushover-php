@@ -68,9 +68,9 @@ class GroupsClientTest extends TestCase
     }
 
     /**
-     * @param array<string, string> $expected
-     *
      * @dataProvider buildCurlPostFieldsProvider
+     *
+     * @param array<string, string> $expected
      */
     public function testBuildCurlPostFields(array $expected, string $action): void
     {
