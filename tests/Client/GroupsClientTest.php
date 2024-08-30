@@ -68,6 +68,8 @@ class GroupsClientTest extends TestCase
     }
 
     /**
+     * @param array<string, string> $expected
+     *
      * @dataProvider buildCurlPostFieldsProvider
      */
     public function testBuildCurlPostFields(array $expected, string $action): void
@@ -102,5 +104,34 @@ class GroupsClientTest extends TestCase
         ] as $action) {
             yield [$base, $action];
         }
+    }
+
+    /**
+     * @dataProvider actionsNeedRecipientProvider
+     */
+    public function testBuildCurlPostFieldsThrowsExceptionWhenRecipientIsNotProvided(string $action): void
+    {
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $group = new Group('eeee5555EEEE5555ffff6666FFFF66', $application); // using dummy group key
+
+        $client = new GroupsClient($group, $action);
+
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Recipient object must be provided for this action.');
+
+        $client->buildCurlPostFields();
+    }
+
+    /**
+     * @return iterable<list<string>>
+     */
+    public static function actionsNeedRecipientProvider(): iterable
+    {
+        return [
+            [GroupsClient::ACTION_ADD_USER],
+            [GroupsClient::ACTION_REMOVE_USER],
+            [GroupsClient::ACTION_ENABLE_USER],
+            [GroupsClient::ACTION_DISABLE_USER],
+        ];
     }
 }

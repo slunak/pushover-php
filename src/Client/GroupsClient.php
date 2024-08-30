@@ -35,32 +35,23 @@ class GroupsClient extends Client implements ClientInterface
     public const ACTION_LIST_GROUPS = 'list';
 
     /**
-     * @param string $action Action that client performs
+     * @param self::ACTION_* $action Action that client performs
      */
     public function __construct(
         private readonly Group $group,
         private readonly string $action,
     ) {
-        if (!$this->isActionValid($action)) {
-            throw new InvalidArgumentException('Action argument provided to construct method is invalid.');
-        }
+        $this->validateAction($action);
     }
 
     public function buildApiUrl(): string
     {
-        if ($this->action === self::ACTION_CREATE_GROUP) {
-            return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json';
-        }
-
-        if ($this->action === self::ACTION_LIST_GROUPS) {
-            return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups.json?token='.$this->group->getApplication()->getToken();
-        }
-
-        if ($this->action === self::ACTION_RETRIEVE_GROUP) {
-            return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups/'.$this->group->getKey().'.json?token='.$this->group->getApplication()->getToken();
-        }
-
-        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/groups/'.$this->group->getKey().'/'.$this->action.'.json?token='.$this->group->getApplication()->getToken();
+        return match ($this->action) {
+            self::ACTION_CREATE_GROUP => sprintf('%s/%s/groups.json', Curl::API_BASE_URL, Curl::API_VERSION),
+            self::ACTION_LIST_GROUPS => sprintf('%s/%s/groups.json?token=%s', Curl::API_BASE_URL, Curl::API_VERSION, $this->group->getApplication()->getToken()),
+            self::ACTION_RETRIEVE_GROUP => sprintf('%s/%s/groups/%s.json?token=%s', Curl::API_BASE_URL, Curl::API_VERSION, $this->group->getKey(), $this->group->getApplication()->getToken()),
+            default => sprintf('%s/%s/groups/%s/%s.json?token=%s', Curl::API_BASE_URL, Curl::API_VERSION, $this->group->getKey(), $this->action, $this->group->getApplication()->getToken()),
+        };
     }
 
     /**
@@ -72,28 +63,25 @@ class GroupsClient extends Client implements ClientInterface
             'token' => $this->group->getApplication()->getToken(),
         ];
 
-        if (
-            $this->action === self::ACTION_ADD_USER
-            || $this->action === self::ACTION_REMOVE_USER
-            || $this->action === self::ACTION_DISABLE_USER
-            || $this->action === self::ACTION_ENABLE_USER
-        ) {
+        if (in_array($this->action, [self::ACTION_ADD_USER, self::ACTION_REMOVE_USER, self::ACTION_DISABLE_USER, self::ACTION_ENABLE_USER], true)) {
+            if (!$recipient instanceof Recipient) {
+                throw new \LogicException('Recipient object must be provided for this action.');
+            }
+
             $curlPostFields['user'] = $recipient->getUserKey();
+
+            if ($this->action === self::ACTION_ADD_USER) {
+                if (!empty($recipient->getDevice())) {
+                    $curlPostFields['device'] = $recipient->getDevice()[0];
+                }
+
+                if (null !== $recipient->getMemo()) {
+                    $curlPostFields['memo'] = $recipient->getMemo();
+                }
+            }
         }
 
-        if ($this->action === self::ACTION_ADD_USER) {
-            if (!empty($recipient->getDevice())) {
-                $curlPostFields['device'] = $recipient->getDevice()[0];
-            }
-
-            if (null !== $recipient->getMemo()) {
-                $curlPostFields['memo'] = $recipient->getMemo();
-            }
-        }
-
-        if ($this->action === self::ACTION_RENAME_GROUP
-            || $this->action === self::ACTION_CREATE_GROUP
-        ) {
+        if (in_array($this->action, [self::ACTION_RENAME_GROUP, self::ACTION_CREATE_GROUP], true)) {
             $curlPostFields['name'] = $this->group->getName();
         }
 
@@ -103,14 +91,12 @@ class GroupsClient extends Client implements ClientInterface
     /**
      * Checks if action that was provided into construct is valid.
      */
-    private function isActionValid(string $action): bool
+    private function validateAction(string $action): void
     {
         $oClass = new \ReflectionClass(self::class);
 
-        if (\in_array($action, $oClass->getConstants(), true)) {
-            return true;
+        if (!\in_array($action, $oClass->getConstants(), true)) {
+            throw new InvalidArgumentException('Action argument provided to construct method is invalid.');
         }
-
-        return false;
     }
 }
