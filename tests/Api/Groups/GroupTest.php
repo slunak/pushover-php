@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Api\Groups;
 
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group as PHPUnitGroup;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Groups\Group;
 use Serhiy\Pushover\Application;
@@ -49,9 +50,7 @@ class GroupTest extends TestCase
         $this->assertSame('eeee5555EEEE5555ffff6666FFFF66', $group->getKey());
     }
 
-    /**
-     * @group Integration
-     */
+    #[PHPUnitGroup('Integration')]
     public function testRetrieveGroupInformation(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -62,9 +61,7 @@ class GroupTest extends TestCase
         $this->assertInstanceOf(RetrieveGroupResponse::class, $response);
     }
 
-    /**
-     * @group Integration
-     */
+    #[PHPUnitGroup('Integration')]
     public function testCreate(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -75,9 +72,7 @@ class GroupTest extends TestCase
         $this->assertInstanceOf(CreateGroupResponse::class, $response);
     }
 
-    /**
-     * @group Integration
-     */
+    #[PHPUnitGroup('Integration')]
     public function testList(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
