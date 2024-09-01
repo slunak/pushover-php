@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Example;
 
-use DateTime;
 use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Api\Message\CustomSound;
 use Serhiy\Pushover\Api\Message\Message;
@@ -44,7 +43,7 @@ final class CompleteNotificationExample
         $message->setUrl('https://www.example.com');
         $message->setUrlTitle('Example URL');
         $message->setisHtml(false);
-        $message->setTimestamp(new DateTime('now'));
+        $message->setTimestamp(new \DateTime('now'));
         $message->setTtl(60 * 60 * 24); // 1 day
         // assign priority to the notification
         $message->setPriority(new Priority(Priority::NORMAL));

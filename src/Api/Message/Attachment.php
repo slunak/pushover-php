@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Api\Message;
 
-use ReflectionClass;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**
@@ -96,7 +95,7 @@ class Attachment
      */
     public static function getSupportedAttachmentTypes(): array
     {
-        $oClass = new ReflectionClass(self::class);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }

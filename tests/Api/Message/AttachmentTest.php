@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Api\Message;
 
-use ReflectionClass;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Attachment;
@@ -81,7 +80,7 @@ class AttachmentTest extends TestCase
     #[Depends('testCanBeConstructed')]
     public function testGetSupportedAttachmentTypes(Attachment $attachment): void
     {
-        $supportedAttachmentsTypes = new ReflectionClass(Attachment::class);
+        $supportedAttachmentsTypes = new \ReflectionClass(Attachment::class);
 
         $this->assertEquals($supportedAttachmentsTypes->getConstants(), $attachment->getSupportedAttachmentTypes());
     }

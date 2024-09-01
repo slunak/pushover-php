@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Api\Message;
 
-use ReflectionClass;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Sound;
@@ -40,7 +39,7 @@ class SoundTest extends TestCase
     #[Depends('testCanBeConstructed')]
     public function testAvailableSounds(Sound $sound): void
     {
-        $availableSounds = new ReflectionClass(Sound::class);
+        $availableSounds = new \ReflectionClass(Sound::class);
 
         $this->assertEquals($availableSounds->getConstants(), $sound->getAvailableSounds());
     }

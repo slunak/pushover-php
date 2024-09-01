@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Client;
 
-use ReflectionClass;
 use Serhiy\Pushover\Api\Groups\Group;
 use Serhiy\Pushover\Client\Curl\Curl;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
@@ -106,7 +105,7 @@ class GroupsClient extends Client implements ClientInterface
      */
     private function isActionValid(string $action): bool
     {
-        $oClass = new ReflectionClass(self::class);
+        $oClass = new \ReflectionClass(self::class);
 
         if (\in_array($action, $oClass->getConstants(), true)) {
             return true;

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Example;
 
-use DateTime;
 use Serhiy\Pushover\Api\Receipts\Receipt;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\Response\CancelRetryResponse;
@@ -39,7 +38,7 @@ final class ReceiptExample
         if ($response->isSuccessful()) {
             // True or False whether the user has acknowledged the notification
             if ($response->isAcknowledged()) {
-                /** @var DateTime $dateTime Timestamp of when the user acknowledged, or null */
+                /** @var \DateTime $dateTime Timestamp of when the user acknowledged, or null */
                 $acknowledgedAt = $response->getAcknowledgedAt();
 
                 /** @var Recipient $recipient User that first acknowledged the notification */
@@ -49,19 +48,19 @@ final class ReceiptExample
                 $acknowledgedByDevice = $response->getAcknowledgedByDevice();
             }
 
-            /** @var DateTime $lastDeliveredAt Timestamp of when the notification was last retried, or null */
+            /** @var \DateTime $lastDeliveredAt Timestamp of when the notification was last retried, or null */
             $lastDeliveredAt = $response->getLastDeliveredAt();
 
             /** @var bool $isExpired True or False whether the expiration date has passed */
             $isExpired = $response->isExpired();
 
-            /** @var DateTime $expiresAt Timestamp of when the notification will stop being retried */
+            /** @var \DateTime $expiresAt Timestamp of when the notification will stop being retried */
             $expiresAt = $response->getExpiresAt();
 
             /** @var bool $hasCalledBack True or False whether our server has called back to your callback URL if any */
             $hasCalledBack = $response->hasCalledBack();
 
-            /** @var DateTime $calledBackAt Timestamp of when our server called back, or null */
+            /** @var \DateTime $calledBackAt Timestamp of when our server called back, or null */
             $calledBackAt = $response->getCalledBackAt();
         }
     }

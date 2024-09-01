@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Api\Message;
 
-use ReflectionClass;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 use Serhiy\Pushover\Exception\LogicException;
 
@@ -118,7 +117,7 @@ class Priority
      */
     public static function getAvailablePriorities(): array
     {
-        $oClass = new ReflectionClass(self::class);
+        $oClass = new \ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }

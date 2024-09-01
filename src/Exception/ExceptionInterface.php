@@ -13,13 +13,11 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Exception;
 
-use Throwable;
-
 /**
  * Base ExceptionInterface for the Pushover component.
  *
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-interface ExceptionInterface extends Throwable
+interface ExceptionInterface extends \Throwable
 {
 }
