@@ -21,10 +21,6 @@ also fix common issues with [Rector](https://github.com/rector/rector)
 make refactoring
 ```
 
-#### Code Documentation
-
-Document your code with [phpDocumentor](https://github.com/phpDocumentor/phpDocumentor) version 3.
-
 #### Static Analysis
 
 Analyze your code with [PHPStan](https://github.com/phpstan/phpstan).
