@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client\Response;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\RetrieveGroupResponse;
 use Serhiy\Pushover\Recipient;
@@ -39,17 +40,13 @@ class RetrieveGroupResponseTest extends TestCase
         return $response;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetName(RetrieveGroupResponse $response): void
     {
         $this->assertEquals('Test Group', $response->getName());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetUsers(RetrieveGroupResponse $response): void
     {
         $recipient = $response->getUsers()[0];

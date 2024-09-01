@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Api\Message;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
@@ -62,9 +63,7 @@ class PriorityTest extends TestCase
         new Priority(Priority::EMERGENCY);
     }
 
-    /**
-     * @depends testCanBeConstructedWithEmergencyPriority
-     */
+    #[Depends('testCanBeConstructedWithEmergencyPriority')]
     public function testSetCallback(Priority $priority): Priority
     {
         $priority->setCallback('https://callback.example.com');
@@ -74,17 +73,13 @@ class PriorityTest extends TestCase
         return $priority;
     }
 
-    /**
-     * @depends testSetCallback
-     */
+    #[Depends('testSetCallback')]
     public function testGetCallback(Priority $priority): void
     {
         $this->assertSame('https://callback.example.com', $priority->getCallback());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testAvailablePriorities(Priority $priority): void
     {
         $availablePriorities = new \ReflectionClass(Priority::class);

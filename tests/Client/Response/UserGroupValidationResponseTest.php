@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client\Response;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 
@@ -41,25 +42,19 @@ class UserGroupValidationResponseTest extends TestCase
         return $response;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetLicenses(UserGroupValidationResponse $response): void
     {
         $this->assertEquals(['Android', 'iOS'], $response->getLicenses());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetDevices(UserGroupValidationResponse $response): void
     {
         $this->assertEquals(['test-device-1', 'test-device-2'], $response->getDevices());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetIsGroup(UserGroupValidationResponse $response): void
     {
         $this->assertFalse($response->isGroup());
