@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Api\Message;
 
+use DateTime;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
 /**
@@ -70,7 +71,7 @@ class Message
      * or delivered to Pushover out of order, this default timestamping may cause a confusing order of messages when viewed on the user's device.
      * For these scenarios, your app may send messages to the API with the timestamp parameter set to the Unix timestamp of the original message.
      */
-    private \DateTime $timestamp;
+    private DateTime $timestamp;
 
     /**
      * Normally a message delivered to a device is retained on the device until it is deleted by the user,
@@ -92,7 +93,7 @@ class Message
             $this->setTitle($title);
         }
 
-        $this->timestamp = new \DateTime();
+        $this->timestamp = new DateTime();
     }
 
     public function getMessage(): string
@@ -176,7 +177,7 @@ class Message
         return $this->timestamp->getTimestamp();
     }
 
-    public function setTimestamp(\DateTime $timestamp): void
+    public function setTimestamp(DateTime $timestamp): void
     {
         $this->timestamp = $timestamp;
     }

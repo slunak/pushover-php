@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Api\Message;
 
+use ReflectionClass;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Priority;
@@ -82,7 +83,7 @@ class PriorityTest extends TestCase
     #[Depends('testCanBeConstructed')]
     public function testAvailablePriorities(Priority $priority): void
     {
-        $availablePriorities = new \ReflectionClass(Priority::class);
+        $availablePriorities = new ReflectionClass(Priority::class);
 
         $this->assertEquals($availablePriorities->getConstants(), $priority->getAvailablePriorities());
     }

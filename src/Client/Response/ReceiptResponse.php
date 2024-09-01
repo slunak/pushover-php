@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Client\Response;
 
+use DateTime;
 use Serhiy\Pushover\Client\Response\Base\Response;
 use Serhiy\Pushover\Recipient;
 
@@ -31,7 +32,7 @@ class ReceiptResponse extends Response
     /**
      * Timestamp of when the user acknowledged, or null.
      */
-    private ?\DateTime $acknowledgedAt = null;
+    private ?DateTime $acknowledgedAt = null;
 
     /**
      * User that first acknowledged the notification.
@@ -46,7 +47,7 @@ class ReceiptResponse extends Response
     /**
      * Timestamp of when the notification was last retried, or null.
      */
-    private ?\DateTime $lastDeliveredAt = null;
+    private ?DateTime $lastDeliveredAt = null;
 
     /**
      * True or False whether the expiration date has passed.
@@ -56,7 +57,7 @@ class ReceiptResponse extends Response
     /**
      * Timestamp of when the notification will stop being retried.
      */
-    private \DateTime $expiresAt;
+    private DateTime $expiresAt;
 
     /**
      * True or False whether our server has called back to your callback URL if any.
@@ -66,7 +67,7 @@ class ReceiptResponse extends Response
     /**
      * Timestamp of when our server called back, or null.
      */
-    private ?\DateTime $calledBackAt = null;
+    private ?DateTime $calledBackAt = null;
 
     public function __construct(string $curlResponse)
     {
@@ -78,7 +79,7 @@ class ReceiptResponse extends Response
         return $this->isAcknowledged;
     }
 
-    public function getAcknowledgedAt(): ?\DateTime
+    public function getAcknowledgedAt(): ?DateTime
     {
         return $this->acknowledgedAt;
     }
@@ -93,7 +94,7 @@ class ReceiptResponse extends Response
         return $this->acknowledgedByDevice;
     }
 
-    public function getLastDeliveredAt(): ?\DateTime
+    public function getLastDeliveredAt(): ?DateTime
     {
         return $this->lastDeliveredAt;
     }
@@ -103,7 +104,7 @@ class ReceiptResponse extends Response
         return $this->isExpired;
     }
 
-    public function getExpiresAt(): \DateTime
+    public function getExpiresAt(): DateTime
     {
         return $this->expiresAt;
     }
@@ -113,7 +114,7 @@ class ReceiptResponse extends Response
         return $this->hasCalledBack;
     }
 
-    public function getCalledBackAt(): ?\DateTime
+    public function getCalledBackAt(): ?DateTime
     {
         return $this->calledBackAt;
     }
@@ -123,7 +124,7 @@ class ReceiptResponse extends Response
         $this->isAcknowledged = $isAcknowledged;
     }
 
-    private function setAcknowledgedAt(\DateTime $acknowledgedAt): void
+    private function setAcknowledgedAt(DateTime $acknowledgedAt): void
     {
         $this->acknowledgedAt = $acknowledgedAt;
     }
@@ -138,7 +139,7 @@ class ReceiptResponse extends Response
         $this->acknowledgedByDevice = $acknowledgedByDevice;
     }
 
-    private function setLastDeliveredAt(\DateTime $lastDeliveredAt): void
+    private function setLastDeliveredAt(DateTime $lastDeliveredAt): void
     {
         $this->lastDeliveredAt = $lastDeliveredAt;
     }
@@ -148,7 +149,7 @@ class ReceiptResponse extends Response
         $this->isExpired = $isExpired;
     }
 
-    private function setExpiresAt(\DateTime $expiresAt): void
+    private function setExpiresAt(DateTime $expiresAt): void
     {
         $this->expiresAt = $expiresAt;
     }
@@ -158,7 +159,7 @@ class ReceiptResponse extends Response
         $this->hasCalledBack = $hasCalledBack;
     }
 
-    private function setCalledBackAt(\DateTime $calledBackAt): void
+    private function setCalledBackAt(DateTime $calledBackAt): void
     {
         $this->calledBackAt = $calledBackAt;
     }
@@ -170,7 +171,7 @@ class ReceiptResponse extends Response
         if ($this->getRequestStatus() === 1) {
             if ($decodedCurlResponse->acknowledged === 1) {
                 $this->setIsAcknowledged(true);
-                $this->setAcknowledgedAt(new \DateTime('@'.$decodedCurlResponse->acknowledged_at));
+                $this->setAcknowledgedAt(new DateTime('@'.$decodedCurlResponse->acknowledged_at));
 
                 $recipient = new Recipient($decodedCurlResponse->acknowledged_by);
                 $recipient->addDevice($decodedCurlResponse->acknowledged_by_device);
@@ -178,7 +179,7 @@ class ReceiptResponse extends Response
                 $this->setAcknowledgedByDevice($recipient->getDeviceListCommaSeparated());
             }
 
-            $this->setLastDeliveredAt(new \DateTime('@'.$decodedCurlResponse->last_delivered_at));
+            $this->setLastDeliveredAt(new DateTime('@'.$decodedCurlResponse->last_delivered_at));
 
             if ($decodedCurlResponse->expired === 1) {
                 $this->setIsExpired(true);
@@ -186,11 +187,11 @@ class ReceiptResponse extends Response
                 $this->setIsExpired(false);
             }
 
-            $this->setExpiresAt(new \DateTime('@'.$decodedCurlResponse->expires_at));
+            $this->setExpiresAt(new DateTime('@'.$decodedCurlResponse->expires_at));
 
             if ($decodedCurlResponse->called_back === 1) {
                 $this->setHasCalledBack(true);
-                $this->setCalledBackAt(new \DateTime('@'.$decodedCurlResponse->called_back_at));
+                $this->setCalledBackAt(new DateTime('@'.$decodedCurlResponse->called_back_at));
             }
         }
     }

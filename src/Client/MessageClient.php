@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Client;
 
+use CURLFile;
 use Serhiy\Pushover\Api\Message\Notification;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Client\Curl\Curl;
@@ -40,7 +41,7 @@ class MessageClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array<string, (null|\CURLFile|int|string)>
+     * @return array<string, (null | CURLFile | int | string)>
      */
     public function buildCurlPostFields(Notification $notification): array
     {

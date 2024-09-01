@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Api\Message;
 
+use DateTime;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Priority;
@@ -154,7 +155,7 @@ EOD
     {
         $message = new Message('This is a test message');
 
-        $datetime = new \DateTime();
+        $datetime = new DateTime();
         $message->setTimestamp($datetime);
 
         $this->assertEquals($datetime->getTimestamp(), $message->getTimestamp());

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client\Response;
 
+use DateTime;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\ReceiptResponse;
@@ -59,13 +60,13 @@ class ReceiptResponseTest extends TestCase
     #[Depends('testCanBeConstructed')]
     public function testGetExpiresAt(ReceiptResponse $response): void
     {
-        $this->assertInstanceOf(\DateTime::class, $response->getExpiresAt());
+        $this->assertInstanceOf(DateTime::class, $response->getExpiresAt());
     }
 
     #[Depends('testCanBeConstructed')]
     public function testGetLastDeliveredAt(ReceiptResponse $response): void
     {
-        $this->assertInstanceOf(\DateTime::class, $response->getLastDeliveredAt());
+        $this->assertInstanceOf(DateTime::class, $response->getLastDeliveredAt());
     }
 
     #[Depends('testCanBeConstructed')]
@@ -77,13 +78,13 @@ class ReceiptResponseTest extends TestCase
     #[Depends('testCanBeConstructed')]
     public function testGetCalledBackAt(ReceiptResponse $response): void
     {
-        $this->assertInstanceOf(\DateTime::class, $response->getCalledBackAt());
+        $this->assertInstanceOf(DateTime::class, $response->getCalledBackAt());
     }
 
     #[Depends('testCanBeConstructed')]
     public function testGetAcknowledgedAt(ReceiptResponse $response): void
     {
-        $this->assertInstanceOf(\DateTime::class, $response->getAcknowledgedAt());
+        $this->assertInstanceOf(DateTime::class, $response->getAcknowledgedAt());
     }
 
     #[Depends('testCanBeConstructed')]

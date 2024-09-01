@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Serhiy\Pushover\Api\Licensing;
 
+use ReflectionClass;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\AssignLicenseClient;
 use Serhiy\Pushover\Client\CheckLicenseClient;
@@ -136,7 +137,7 @@ class License
      */
     public static function getAvailableOsTypes(): array
     {
-        $oClass = new \ReflectionClass(self::class);
+        $oClass = new ReflectionClass(self::class);
 
         return $oClass->getConstants();
     }
