@@ -23,7 +23,7 @@ interface RequestInterface
     public function getApiUrl(): string;
 
     /**
-     * @return null|array<string, string>
+     * @return array<string, string>
      */
-    public function getCurlPostFields(): ?array;
+    public function getCurlPostFields(): array;
 }

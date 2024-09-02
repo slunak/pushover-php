@@ -54,10 +54,7 @@ class Request implements RequestInterface
         return $this->apiUrl;
     }
 
-    /**
-     * @return null|array<string, string>
-     */
-    public function getCurlPostFields(): ?array
+    public function getCurlPostFields(): array
     {
         return $this->curlPostFields;
     }
