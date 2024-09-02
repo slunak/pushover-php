@@ -30,36 +30,27 @@ class GlanceDataFields
     /**
      * (100 characters) - a description of the data being shown, such as "Widgets Sold".
      */
-    private ?string $title;
+    private ?string $title = null;
 
     /**
      *  (100 characters) - the main line of data, used on most screens.
      */
-    private ?string $text;
+    private ?string $text = null;
 
     /**
      *  (100 characters) - a second line of data.
      */
-    private ?string $subtext;
+    private ?string $subtext = null;
 
     /**
      *  (integer, may be negative) - shown on smaller screens; useful for simple counts.
      */
-    private ?int $count;
+    private ?int $count = null;
 
     /**
      *  (integer 0 through 100, inclusive) - shown on some screens as a progress bar/circle.
      */
-    private ?int $percent;
-
-    public function __construct()
-    {
-        $this->title = null;
-        $this->text = null;
-        $this->subtext = null;
-        $this->count = null;
-        $this->percent = null;
-    }
+    private ?int $percent = null;
 
     public function getTitle(): ?string
     {
