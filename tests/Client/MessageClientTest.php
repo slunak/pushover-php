@@ -55,10 +55,10 @@ class MessageClientTest extends TestCase
         $client = new MessageClient();
         $curlPostFields = $client->buildCurlPostFields($notification);
 
-        $this->assertIsArray($curlPostFields);
         $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $curlPostFields['token']);
         $this->assertSame('aaaa1111AAAA1111bbbb2222BBBB22', $curlPostFields['user']);
         $this->assertSame('This is a test message', $curlPostFields['message']);
+        $this->assertSame($message->getTimestamp(), $curlPostFields['timestamp']);
         $this->assertSame('ios,android', $curlPostFields['device']);
         $this->assertSame('This is a title of the message', $curlPostFields['title']);
         $this->assertSame('https://www.example.com', $curlPostFields['url']);
