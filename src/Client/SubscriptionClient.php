@@ -36,7 +36,7 @@ class SubscriptionClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array<string, string>
+     * @return array{token: string, subscription: string, user: string, device_name?: string, sound?: string}
      */
     public function buildCurlPostFields(Subscription $subscription, Recipient $recipient, ?Sound $sound = null): array
     {
