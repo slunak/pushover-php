@@ -113,9 +113,6 @@ class Group
         return $response;
     }
 
-    /**
-     * Create a group.
-     */
     public function create(string $name): CreateGroupResponse
     {
         $this->name = $name;
@@ -131,9 +128,6 @@ class Group
         return $response;
     }
 
-    /**
-     * List groups.
-     */
     public function list(): ListGroupsResponse
     {
         $client = new GroupsClient($this, GroupsClient::ACTION_LIST_GROUPS);
@@ -211,9 +205,6 @@ class Group
         return $response;
     }
 
-    /**
-     * Renames the group. Reflected in the API and in the group editor on our website.
-     */
     public function rename(string $name): RenameGroupResponse
     {
         $this->name = $name;
