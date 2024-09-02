@@ -29,6 +29,7 @@ class Application
      * @param string $token API Token (required) - your application's API token
      */
     public function __construct(
+        #[\SensitiveParameter]
         private readonly string $token,
     ) {
         if (1 !== preg_match('/^[a-zA-Z0-9]{30}$/', $token)) {
