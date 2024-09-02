@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * Pushover Glances API (Beta).
  * With Pushover's Glances API, you can push small bits of data directly to a constantly-updated screen,
- * referred to as a widget, such as a complication on your smart watch or a widget on your phone's lock screen.
+ * referred to as a widget, such as a complication on your smartwatch or a widget on your phone's lock screen.
  * Glances API is used for sending short pieces of text or numerical data, such as "Garage door open" in response to an alarm system,
  * or just "30" representing the number of items sold in your store today.
  * These pieces of data should be low-priority since they often cannot get updated in real-time or very frequently,
