@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Api\UserGroupValidation;
 
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\UserGroupValidation\Validation;
 use Serhiy\Pushover\Application;
@@ -34,18 +36,14 @@ class ValidationTest extends TestCase
         return $validation;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetApplication(Validation $validation): void
     {
         $this->assertInstanceOf(Application::class, $validation->getApplication());
         $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $validation->getApplication()->getToken());
     }
 
-    /**
-     * @group Integration
-     */
+    #[Group('Integration')]
     public function testValidate(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token

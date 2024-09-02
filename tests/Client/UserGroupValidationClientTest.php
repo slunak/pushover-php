@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\UserGroupValidationClient;
@@ -32,9 +33,7 @@ class UserGroupValidationClientTest extends TestCase
         return $client;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testBuildCurlPostFields(UserGroupValidationClient $client): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -47,9 +46,7 @@ class UserGroupValidationClientTest extends TestCase
         ], $curlPostFields);
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testBuildApiUrl(UserGroupValidationClient $client): void
     {
         $this->assertSame('https://api.pushover.net/1/users/validate.json', $client->buildApiUrl());

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client\Request;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Request\Request;
 
@@ -30,25 +31,19 @@ class RequestTest extends TestCase
         return $request;
     }
 
-    /**
-     * @depends testCanBeCrated
-     */
+    #[Depends('testCanBeCrated')]
     public function testGetMethod(Request $request): void
     {
         $this->assertEquals(Request::POST, $request->getMethod());
     }
 
-    /**
-     * @depends testCanBeCrated
-     */
+    #[Depends('testCanBeCrated')]
     public function testGetApiUrl(Request $request): void
     {
         $this->assertEquals('https://test.com/api', $request->getApiUrl());
     }
 
-    /**
-     * @depends testCanBeCrated
-     */
+    #[Depends('testCanBeCrated')]
     public function testGetCurlPostFields(Request $request): void
     {
         $this->assertIsArray($request->getCurlPostFields());

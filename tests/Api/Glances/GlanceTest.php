@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Api\Glances;
 
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Glances\Glance;
 use Serhiy\Pushover\Api\Glances\GlanceDataFields;
@@ -39,33 +41,25 @@ class GlanceTest extends TestCase
         return $glance;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetGlanceDataFields(Glance $glance): void
     {
         $this->assertInstanceOf(GlanceDataFields::class, $glance->getGlanceDataFields());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetApplication(Glance $glance): void
     {
         $this->assertInstanceOf(Application::class, $glance->getApplication());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testGetRecipient(Glance $glance): void
     {
         $this->assertInstanceOf(Recipient::class, $glance->getRecipient());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetApplication(Glance $glance): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -74,9 +68,7 @@ class GlanceTest extends TestCase
         $this->assertInstanceOf(Application::class, $glance->getApplication());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetGlanceDataFields(Glance $glance): void
     {
         $glanceDataFields = new GlanceDataFields();
@@ -85,9 +77,7 @@ class GlanceTest extends TestCase
         $this->assertInstanceOf(GlanceDataFields::class, $glance->getGlanceDataFields());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetRecipient(Glance $glance): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22'); // using dummy user key
@@ -96,9 +86,7 @@ class GlanceTest extends TestCase
         $this->assertInstanceOf(Recipient::class, $recipient);
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testHasAtLeastOneField(Glance $glance): void
     {
         $this->assertFalse($glance->hasAtLeastOneField());
@@ -108,17 +96,13 @@ class GlanceTest extends TestCase
         $this->assertTrue($glance->hasAtLeastOneField());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testHasRecipient(Glance $glance): void
     {
         $this->assertTrue($glance->hasRecipient());
     }
 
-    /**
-     * @group Integration
-     */
+    #[Group('Integration')]
     public function testPush(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token

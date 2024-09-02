@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Api\Message;
 
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Message\Attachment;
 use Serhiy\Pushover\Api\Message\CustomSound;
@@ -42,9 +44,7 @@ class NotificationTest extends TestCase
         return $notification;
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetSound(Notification $notification): void
     {
         $notification->setSound(new Sound(Sound::PUSHOVER));
@@ -52,9 +52,7 @@ class NotificationTest extends TestCase
         $this->assertSame('pushover', $notification->getSound()->getSound());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetSoundNull(Notification $notification): void
     {
         $notification->setSound(null);
@@ -62,9 +60,7 @@ class NotificationTest extends TestCase
         $this->assertNull($notification->getSound());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetCustomSound(Notification $notification): void
     {
         $notification->setCustomSound(new CustomSound('door_open'));
@@ -72,9 +68,7 @@ class NotificationTest extends TestCase
         $this->assertSame('door_open', $notification->getCustomSound()->getCustomSound());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetCustomSoundNull(Notification $notification): void
     {
         $notification->setCustomSound(null);
@@ -82,9 +76,7 @@ class NotificationTest extends TestCase
         $this->assertNull($notification->getCustomSound());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetAttachment(Notification $notification): void
     {
         $notification->setAttachment(new Attachment('/path/to/file.jpg', Attachment::MIME_TYPE_JPEG));
@@ -93,9 +85,7 @@ class NotificationTest extends TestCase
         $this->assertSame('image/jpeg', $notification->getAttachment()->getMimeType());
     }
 
-    /**
-     * @depends testCanBeConstructed
-     */
+    #[Depends('testCanBeConstructed')]
     public function testSetAttachmentNull(Notification $notification): void
     {
         $notification->setAttachment(null);
@@ -103,9 +93,7 @@ class NotificationTest extends TestCase
         $this->assertNull($notification->getAttachment());
     }
 
-    /**
-     * @group Integration
-     */
+    #[Group('Integration')]
     public function testPush(): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
