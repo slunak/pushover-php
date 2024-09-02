@@ -29,8 +29,8 @@ use Serhiy\Pushover\Recipient;
 readonly class Subscription
 {
     public function __construct(
-        private readonly Application $application,
-        private readonly string $subscriptionCode,
+        private Application $application,
+        private string $subscriptionCode,
     ) {
     }
 
