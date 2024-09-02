@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Groups\Group;
 use Serhiy\Pushover\Application;
@@ -34,9 +35,7 @@ class GroupsClientTest extends TestCase
         $this->assertInstanceOf(GroupsClient::class, $client);
     }
 
-    /**
-     * @dataProvider buildApiUrlProvider
-     */
+    #[DataProvider('buildApiUrlProvider')]
     public function testBuildApiUrl(string $expected, string $action): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -68,10 +67,9 @@ class GroupsClientTest extends TestCase
     }
 
     /**
-     * @dataProvider buildCurlPostFieldsProvider
-     *
      * @param array<string, string> $expected
      */
+    #[DataProvider('buildCurlPostFieldsProvider')]
     public function testBuildCurlPostFields(array $expected, string $action): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
@@ -106,9 +104,7 @@ class GroupsClientTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider actionsNeedRecipientProvider
-     */
+    #[DataProvider('actionsNeedRecipientProvider')]
     public function testBuildCurlPostFieldsThrowsExceptionWhenRecipientIsNotProvided(string $action): void
     {
         $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
