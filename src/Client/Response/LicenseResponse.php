@@ -25,14 +25,14 @@ class LicenseResponse extends Response
     /**
      * Number of license credits remaining.
      */
-    private int $credits;
+    private ?int $credits = null;
 
     public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }
 
-    public function getCredits(): int
+    public function getCredits(): ?int
     {
         return $this->credits;
     }
