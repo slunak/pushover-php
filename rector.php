@@ -23,5 +23,6 @@ return RectorConfig::configure()
     ->withPhpSets(php82: true)
     ->withSets([
         PHPUnitSetList::PHPUNIT_110,
+        PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ])
     ->withTypeCoverageLevel(0);
