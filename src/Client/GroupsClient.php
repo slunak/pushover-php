@@ -35,7 +35,7 @@ class GroupsClient extends Client implements ClientInterface
     public const ACTION_LIST_GROUPS = 'list';
 
     /**
-     * @param string $action Action that client performs
+     * @param self::ACTION_* $action Action that client performs
      */
     public function __construct(
         private readonly Group $group,
