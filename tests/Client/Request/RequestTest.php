@@ -34,13 +34,13 @@ class RequestTest extends TestCase
     #[Depends('testCanBeCrated')]
     public function testGetMethod(Request $request): void
     {
-        $this->assertEquals(Request::POST, $request->getMethod());
+        $this->assertSame(Request::POST, $request->getMethod());
     }
 
     #[Depends('testCanBeCrated')]
     public function testGetApiUrl(Request $request): void
     {
-        $this->assertEquals('https://test.com/api', $request->getApiUrl());
+        $this->assertSame('https://test.com/api', $request->getApiUrl());
     }
 
     #[Depends('testCanBeCrated')]

@@ -28,14 +28,14 @@ class CancelRetryResponseTest extends TestCase
 
         $this->assertInstanceOf(CancelRetryResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
 
         $unSuccessfulCurlResponse = '{"receipt":"not found","errors":["receipt not found; may be invalid or expired"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
         $response = new CancelRetryResponse($unSuccessfulCurlResponse);
 
         $this->assertInstanceOf(CancelRetryResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
-        $this->assertEquals([0 => 'receipt not found; may be invalid or expired'], $response->getErrors());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame([0 => 'receipt not found; may be invalid or expired'], $response->getErrors());
     }
 }

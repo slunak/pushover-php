@@ -95,7 +95,7 @@ EOD
         $message = new Message('This is a test message');
         $message->setUrl('https://www.example.com');
 
-        $this->assertEquals('https://www.example.com', $message->getUrl());
+        $this->assertSame('https://www.example.com', $message->getUrl());
     }
 
     public function testSetUrlTitle(): void
@@ -157,7 +157,7 @@ EOD
         $datetime = new \DateTime();
         $message->setTimestamp($datetime);
 
-        $this->assertEquals($datetime->getTimestamp(), $message->getTimestamp());
+        $this->assertSame($datetime->getTimestamp(), $message->getTimestamp());
     }
 
     public function testSetAndGetTtl(): void

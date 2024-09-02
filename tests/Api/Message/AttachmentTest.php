@@ -92,6 +92,6 @@ class AttachmentTest extends TestCase
             'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp',
         ];
 
-        $this->assertEquals($supportedAttachmentExtensions, $attachment->getSupportedAttachmentExtensions());
+        $this->assertSame($supportedAttachmentExtensions, $attachment->getSupportedAttachmentExtensions());
     }
 }

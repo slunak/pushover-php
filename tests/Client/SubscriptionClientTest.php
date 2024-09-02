@@ -47,7 +47,7 @@ class SubscriptionClientTest extends TestCase
             'user' => 'aaaa1111AAAA1111bbbb2222BBBB22',
         ];
 
-        $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient));
+        $this->assertSame($curlPostFields, $client->buildCurlPostFields($subscription, $recipient));
 
         // add recipient device
         $recipient->addDevice('test-device-1');
@@ -59,7 +59,7 @@ class SubscriptionClientTest extends TestCase
             'device_name' => 'test-device-1',
         ];
 
-        $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient));
+        $this->assertSame($curlPostFields, $client->buildCurlPostFields($subscription, $recipient));
 
         // add sound
         $curlPostFields = [
@@ -70,13 +70,13 @@ class SubscriptionClientTest extends TestCase
             'sound' => 'pushover',
         ];
 
-        $this->assertEquals($curlPostFields, $client->buildCurlPostFields($subscription, $recipient, new Sound(Sound::PUSHOVER)));
+        $this->assertSame($curlPostFields, $client->buildCurlPostFields($subscription, $recipient, new Sound(Sound::PUSHOVER)));
     }
 
     public function testBuildApiUrl(): void
     {
         $client = new SubscriptionClient();
 
-        $this->assertEquals('https://api.pushover.net/1/subscriptions/migrate.json', $client->buildApiUrl());
+        $this->assertSame('https://api.pushover.net/1/subscriptions/migrate.json', $client->buildApiUrl());
     }
 }

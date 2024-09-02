@@ -41,7 +41,7 @@ class GroupTest extends TestCase
     public function testGetApplication(Group $group): void
     {
         $this->assertInstanceOf(Application::class, $group->getApplication());
-        $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $group->getApplication()->getToken());
+        $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $group->getApplication()->getToken());
     }
 
     #[Depends('testCanBeConstructed')]

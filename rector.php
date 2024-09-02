@@ -24,5 +24,6 @@ return RectorConfig::configure()
     ->withSets([
         PHPUnitSetList::PHPUNIT_110,
         PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
+        PHPUnitSetList::PHPUNIT_CODE_QUALITY,
     ])
     ->withTypeCoverageLevel(0);

@@ -41,7 +41,7 @@ class CancelRetryClientTest extends TestCase
 
         $curlPostFields = $client->buildCurlPostFields($receipt); // using dummy receipt
 
-        $this->assertEquals([
+        $this->assertSame([
             'token' => 'cccc3333CCCC3333dddd4444DDDD44',
         ], $curlPostFields);
     }
@@ -49,7 +49,7 @@ class CancelRetryClientTest extends TestCase
     #[Depends('testCabBeCreated')]
     public function testBuildApiUrl(CancelRetryClient $client): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88/cancel.json',
             $client->buildApiUrl(),
         );

@@ -29,6 +29,6 @@ class CheckLicenseClientTest extends TestCase
 
         $this->assertInstanceOf(CheckLicenseClient::class, $client);
 
-        $this->assertEquals('https://api.pushover.net/1/licenses.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
+        $this->assertSame('https://api.pushover.net/1/licenses.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
     }
 }
