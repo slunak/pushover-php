@@ -39,7 +39,7 @@ class CancelRetryClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array<string, string>
+     * @return array{token: string}
      */
     public function buildCurlPostFields(Receipt $receipt): array
     {

@@ -33,7 +33,7 @@ class UserGroupValidationClient extends Client implements ClientInterface
     /**
      * Builds array for CURLOPT_POSTFIELDS curl argument.
      *
-     * @return array<string, string>
+     * @return array{token: string, user: string, device?: string}
      */
     public function buildCurlPostFields(Application $application, Recipient $recipient): array
     {
