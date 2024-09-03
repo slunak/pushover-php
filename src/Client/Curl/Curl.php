@@ -38,7 +38,7 @@ class Curl
             \CURLOPT_RETURNTRANSFER => true,
         ];
 
-        if (null !== $request->getCurlPostFields()) {
+        if ([] !== $request->getCurlPostFields()) {
             $curlOptions[\CURLOPT_POSTFIELDS] = $request->getCurlPostFields();
         }
 

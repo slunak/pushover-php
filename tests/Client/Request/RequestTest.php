@@ -42,10 +42,4 @@ class RequestTest extends TestCase
     {
         $this->assertEquals('https://test.com/api', $request->getApiUrl());
     }
-
-    #[Depends('testCanBeCrated')]
-    public function testGetCurlPostFields(Request $request): void
-    {
-        $this->assertIsArray($request->getCurlPostFields());
-    }
 }
