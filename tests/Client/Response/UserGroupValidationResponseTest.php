@@ -20,43 +20,44 @@ use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class UserGroupValidationResponseTest extends TestCase
+final class UserGroupValidationResponseTest extends TestCase
 {
     public function testCanBeConstructed(): UserGroupValidationResponse
     {
-        $unSuccessfulCurlResponse = '{"user":"invalid","errors":["user key is invalid"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new UserGroupValidationResponse($unSuccessfulCurlResponse);
-
-        $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
-        $this->assertFalse($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
-        $this->assertEquals([0 => 'user key is invalid'], $response->getErrors());
-
-        $successfulCurlResponse = '{"status":1,"group":0,"devices":["test-device-1", "test-device-2"],"licenses":["Android","iOS"],"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new UserGroupValidationResponse($successfulCurlResponse);
+        $response = new UserGroupValidationResponse('{"status":1,"group":0,"devices":["test-device-1", "test-device-2"],"licenses":["Android","iOS"],"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
 
         return $response;
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testGetLicenses(UserGroupValidationResponse $response): void
+    public function testCanBeConstructedWithUnsuccessfulCurlResponse(): void
     {
-        $this->assertEquals(['Android', 'iOS'], $response->getLicenses());
+        $response = new UserGroupValidationResponse('{"user":"invalid","errors":["user key is invalid"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
+
+        $this->assertInstanceOf(UserGroupValidationResponse::class, $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame([0 => 'user key is invalid'], $response->getErrors());
     }
 
     #[Depends('testCanBeConstructed')]
     public function testGetDevices(UserGroupValidationResponse $response): void
     {
-        $this->assertEquals(['test-device-1', 'test-device-2'], $response->getDevices());
+        $this->assertSame(['test-device-1', 'test-device-2'], $response->getDevices());
     }
 
     #[Depends('testCanBeConstructed')]
     public function testGetIsGroup(UserGroupValidationResponse $response): void
     {
         $this->assertFalse($response->isGroup());
+    }
+
+    #[Depends('testCanBeConstructed')]
+    public function testGetLicenses(UserGroupValidationResponse $response): void
+    {
+        $this->assertSame(['Android', 'iOS'], $response->getLicenses());
     }
 }

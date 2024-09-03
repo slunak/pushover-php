@@ -24,7 +24,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class SubscriptionTest extends TestCase
+final class SubscriptionTest extends TestCase
 {
     public function testCanBeConstructed(): Subscription
     {

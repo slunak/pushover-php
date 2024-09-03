@@ -18,7 +18,7 @@ use Serhiy\Pushover\Api\Licensing\License;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\CheckLicenseClient;
 
-class CheckLicenseClientTest extends TestCase
+final class CheckLicenseClientTest extends TestCase
 {
     public function testBuildApiUrl(): void
     {
@@ -29,6 +29,6 @@ class CheckLicenseClientTest extends TestCase
 
         $this->assertInstanceOf(CheckLicenseClient::class, $client);
 
-        $this->assertEquals('https://api.pushover.net/1/licenses.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
+        $this->assertSame('https://api.pushover.net/1/licenses.json?token=cccc3333CCCC3333dddd4444DDDD44', $client->buildApiUrl());
     }
 }

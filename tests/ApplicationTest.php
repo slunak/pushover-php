@@ -11,20 +11,18 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
-class ApplicationTest extends TestCase
+final class ApplicationTest extends TestCase
 {
-    public function testCanBeConstructed(): Application
+    public function testCanBeConstructed(): void
     {
-        $application = new Application('cccc3333CCCC3333dddd4444DDDD44');
-
-        $this->assertInstanceOf(Application::class, $application);
-
-        return $application;
+        $this->assertInstanceOf(
+            Application::class,
+            new Application('cccc3333CCCC3333dddd4444DDDD44'),
+        );
     }
 
     public function testCannotBeConstructed(): void
@@ -45,9 +43,10 @@ class ApplicationTest extends TestCase
         new Application('token');
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testGetToken(Application $application): void
+    public function testGetToken(): void
     {
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44');
+
         $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $application->getToken());
     }
 }

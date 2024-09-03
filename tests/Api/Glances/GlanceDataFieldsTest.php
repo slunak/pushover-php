@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Api\Glances;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Api\Glances\GlanceDataFields;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
@@ -20,123 +21,166 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class GlanceDataFieldsTest extends TestCase
+final class GlanceDataFieldsTest extends TestCase
 {
     public function testCanBeConstructed(): void
     {
-        $glanceDataFields = new GlanceDataFields();
-
-        $this->assertInstanceOf(GlanceDataFields::class, $glanceDataFields);
+        $this->assertInstanceOf(GlanceDataFields::class, new GlanceDataFields());
     }
 
-    public function testSetTitle(): void
+    #[DataProvider('setTitleProvider')]
+    public function testSetTitle(?string $expected, ?string $value): void
+    {
+        $glanceDataFields = (new GlanceDataFields())
+            ->setTitle($value);
+
+        $this->assertSame($expected, $glanceDataFields->getTitle());
+    }
+
+    /**
+     * @return iterable<array{?string, ?string}>
+     */
+    public static function setTitleProvider(): iterable
+    {
+        yield [null, null];
+        yield ['This is test title', 'This is test title'];
+        yield ['', ''];
+    }
+
+    public function testSetTitleThrowsInvalidArgumentExceptionIfValueIsAbove100(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        (new GlanceDataFields())->setTitle(str_repeat('a', 101));
+    }
+
+    #[DataProvider('setTextProvider')]
+    public function testSetText(?string $expected, ?string $value): void
+    {
+        $glanceDataFields = (new GlanceDataFields())
+            ->setText($value);
+
+        $this->assertSame($expected, $glanceDataFields->getText());
+    }
+    /**
+     * @return iterable<array{?string, ?string}>
+     */
+    public static function setTextProvider(): iterable
+    {
+        yield [null, null];
+        yield ['This is test text', 'This is test text'];
+        yield ['', ''];
+    }
+
+    public function testSetTextThrowsInvalidArgumentExceptionIfValueIsAbove100(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        (new GlanceDataFields())->setText(str_repeat('a', 101));
+    }
+
+    #[DataProvider('setSubtextProvider')]
+    public function testSetSubtext(?string $expected, ?string $value): void
+    {
+        $glanceDataFields = (new GlanceDataFields())
+            ->setSubtext($value);
+
+        $this->assertSame($expected, $glanceDataFields->getSubtext());
+    }
+
+    /**
+     * @return iterable<array{?string, ?string}>
+     */
+    public static function setSubtextProvider(): iterable
+    {
+        yield [null, null];
+        yield ['This is test subtext', 'This is test subtext'];
+        yield ['', ''];
+    }
+
+    public function testSetSubtextThrowsInvalidArgumentExceptionIfValueIsAbove100(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        (new GlanceDataFields())->setSubtext(str_repeat('a', 101));
+    }
+
+    #[DataProvider('setCountProvider')]
+    public function testSetCount(int $value): void
+    {
+        $glanceDataFields = (new GlanceDataFields())
+            ->setCount($value);
+
+        $this->assertSame($value, $glanceDataFields->getCount());
+    }
+
+    /**
+     * @return iterable<int[]>
+     */
+    public static function setCountProvider(): iterable
+    {
+        yield [0];
+        yield [-1000];
+        yield [1000];
+    }
+
+    public function testSetPercentThrowsInvalidArgumentExceptionIfValueIsAbove100(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        (new GlanceDataFields())->setPercent(101);
+    }
+
+    public function testSetPercentThrowsInvalidArgumentExceptionIfValueIsBelowMinus1(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        (new GlanceDataFields())->setPercent(-1);
+    }
+
+    #[DataProvider('setPercentProvider')]
+    public function testSetPercent(int $value): void
+    {
+        $glanceDataFields = (new GlanceDataFields())
+            ->setPercent($value);
+
+        $this->assertSame($value, $glanceDataFields->getPercent());
+    }
+
+    /**
+     * @return iterable<int[]>
+     */
+    public static function setPercentProvider(): iterable
+    {
+        yield [0];
+        yield [100];
+        yield [50];
+    }
+
+    public function testGetTitleReturnsNullPerDefault(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
-        $glanceDataFields->setTitle('This is test title');
-        $this->assertSame('This is test title', $glanceDataFields->getTitle());
-
-        $glanceDataFields->setTitle(null);
         $this->assertNull($glanceDataFields->getTitle());
-
-        $glanceDataFields->setTitle('');
-        $this->assertSame('', $glanceDataFields->getTitle());
-
-        $this->expectException(InvalidArgumentException::class);
-        $glanceDataFields->setTitle('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
     }
 
-    public function testSetText(): void
-    {
-        $glanceDataFields = new GlanceDataFields();
-
-        $glanceDataFields->setText('This is test text');
-        $this->assertSame('This is test text', $glanceDataFields->getText());
-
-        $glanceDataFields->setText(null);
-        $this->assertNull($glanceDataFields->getText());
-
-        $glanceDataFields->setText('');
-        $this->assertSame('', $glanceDataFields->getText());
-
-        $this->expectException(InvalidArgumentException::class);
-        $glanceDataFields->setText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
-    }
-
-    public function testSetSubtext(): void
-    {
-        $glanceDataFields = new GlanceDataFields();
-
-        $glanceDataFields->setSubtext('This is test subtext');
-        $this->assertSame('This is test subtext', $glanceDataFields->getSubtext());
-
-        $glanceDataFields->setSubtext(null);
-        $this->assertNull($glanceDataFields->getSubtext());
-
-        $glanceDataFields->setSubtext('');
-        $this->assertSame('', $glanceDataFields->getSubtext());
-
-        $this->expectException(InvalidArgumentException::class);
-        $glanceDataFields->setSubtext('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
-    }
-
-    public function testSetCount(): void
-    {
-        $glanceDataFields = new GlanceDataFields();
-
-        $glanceDataFields->setCount(0);
-        $this->assertSame(0, $glanceDataFields->getCount());
-
-        $glanceDataFields->setCount(-1000);
-        $this->assertSame(-1000, $glanceDataFields->getCount());
-
-        $glanceDataFields->setCount(1000);
-        $this->assertSame(1000, $glanceDataFields->getCount());
-    }
-
-    public function testSetPercent(): void
-    {
-        $glanceDataFields = new GlanceDataFields();
-
-        $glanceDataFields->setPercent(0);
-        $this->assertSame(0, $glanceDataFields->getPercent());
-
-        $glanceDataFields->setPercent(100);
-        $this->assertSame(100, $glanceDataFields->getPercent());
-
-        $this->expectException(InvalidArgumentException::class);
-        $glanceDataFields->setPercent(101);
-    }
-
-    public function testGetTitle(): void
-    {
-        $glanceDataFields = new GlanceDataFields();
-
-        $this->assertNull($glanceDataFields->getTitle());
-    }
-
-    public function testGetText(): void
+    public function testGetTextReturnsNullPerDefault(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
         $this->assertNull($glanceDataFields->getText());
     }
 
-    public function testGetSubtext(): void
+    public function testGetSubtextReturnsNullPerDefault(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
         $this->assertNull($glanceDataFields->getSubtext());
     }
 
-    public function testGetCount(): void
+    public function testGetCountReturnsNullPerDefault(): void
     {
         $glanceDataFields = new GlanceDataFields();
 
         $this->assertNull($glanceDataFields->getCount());
     }
 
-    public function testGetPercent(): void
+    public function testGetPercentReturnsNullPerDefault(): void
     {
         $glanceDataFields = new GlanceDataFields();
 

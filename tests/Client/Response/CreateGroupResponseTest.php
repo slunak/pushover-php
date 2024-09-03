@@ -21,8 +21,7 @@ final class CreateGroupResponseTest extends TestCase
 {
     public function testCanBeConstructed(): CreateGroupResponse
     {
-        $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc","group":"go4abk17j3itsva6thz99mdudgq2gm"}';
-        $response = new CreateGroupResponse($successfulCurlResponse);
+        $response = new CreateGroupResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc","group":"go4abk17j3itsva6thz99mdudgq2gm"}');
 
         $this->assertInstanceOf(CreateGroupResponse::class, $response);
         $this->assertTrue($response->isSuccessful());

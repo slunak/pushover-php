@@ -19,23 +19,24 @@ use Serhiy\Pushover\Client\Response\CancelRetryResponse;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class CancelRetryResponseTest extends TestCase
+final class CancelRetryResponseTest extends TestCase
 {
-    public function testCenBeCreated(): void
+    public function testCanBeCreatedWithSuccessfulCurlResponse(): void
     {
-        $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new CancelRetryResponse($successfulCurlResponse);
+        $response = new CancelRetryResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(CancelRetryResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+    }
 
-        $unSuccessfulCurlResponse = '{"receipt":"not found","errors":["receipt not found; may be invalid or expired"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new CancelRetryResponse($unSuccessfulCurlResponse);
+    public function testCanBeCreatedWithUnsuccessfulCurlResponse(): void
+    {
+        $response = new CancelRetryResponse('{"receipt":"not found","errors":["receipt not found; may be invalid or expired"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(CancelRetryResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
-        $this->assertEquals([0 => 'receipt not found; may be invalid or expired'], $response->getErrors());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame([0 => 'receipt not found; may be invalid or expired'], $response->getErrors());
     }
 }

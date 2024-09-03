@@ -18,7 +18,7 @@ use Serhiy\Pushover\Api\Message\Message;
 use Serhiy\Pushover\Api\Message\Priority;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 
-class MessageTest extends TestCase
+final class MessageTest extends TestCase
 {
     public function testCanBeConstructed(): void
     {
@@ -95,7 +95,7 @@ EOD
         $message = new Message('This is a test message');
         $message->setUrl('https://www.example.com');
 
-        $this->assertEquals('https://www.example.com', $message->getUrl());
+        $this->assertSame('https://www.example.com', $message->getUrl());
     }
 
     public function testSetUrlTitle(): void
@@ -157,7 +157,7 @@ EOD
         $datetime = new \DateTime();
         $message->setTimestamp($datetime);
 
-        $this->assertEquals($datetime->getTimestamp(), $message->getTimestamp());
+        $this->assertSame($datetime->getTimestamp(), $message->getTimestamp());
     }
 
     public function testSetAndGetTtl(): void

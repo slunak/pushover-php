@@ -19,32 +19,39 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class MessageResponseTest extends TestCase
+final class MessageResponseTest extends TestCase
 {
-    public function testCanBeCrated(): void
+    public function testCanBeCreatedWithSuccessfulCurlResponse(): void
     {
-        $successfulCurlResponse = '{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new MessageResponse($successfulCurlResponse);
+        $response = new MessageResponse('{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(MessageResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
-        $this->assertEquals('gggg7777GGGG7777hhhh8888HHHH88', $response->getReceipt());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame('gggg7777GGGG7777hhhh8888HHHH88', $response->getReceipt());
+    }
 
-        $unSuccessfulCurlResponse = '{"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new MessageResponse($unSuccessfulCurlResponse);
+    public function testCanBeCreatedWitUnsuccessfulResponse(): void
+    {
+        $response = new MessageResponse('{"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(MessageResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
-        $this->assertEquals([0 => 'user identifier is not a valid user, group, or subscribed user key'], $response->getErrors());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame(['user identifier is not a valid user, group, or subscribed user key'], $response->getErrors());
+    }
+
+    public function testGetRequestToken(): void
+    {
+        $response = new MessageResponse('{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
+
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
     }
 
     public function testGetReceipt(): void
     {
-        $successfulCurlResponse = '{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new MessageResponse($successfulCurlResponse);
+        $response = new MessageResponse('{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
-        $this->assertEquals('gggg7777GGGG7777hhhh8888HHHH88', $response->getReceipt());
+        $this->assertSame('gggg7777GGGG7777hhhh8888HHHH88', $response->getReceipt());
     }
 }

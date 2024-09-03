@@ -20,7 +20,7 @@ use Serhiy\Pushover\Application;
 use Serhiy\Pushover\Client\GlancesClient;
 use Serhiy\Pushover\Recipient;
 
-class GlancesClientTest extends TestCase
+final class GlancesClientTest extends TestCase
 {
     public function testCanBeConstructed(): void
     {
@@ -33,7 +33,7 @@ class GlancesClientTest extends TestCase
     {
         $client = new GlancesClient();
 
-        $this->assertEquals('https://api.pushover.net/1/glances.json', $client->buildApiUrl());
+        $this->assertSame('https://api.pushover.net/1/glances.json', $client->buildApiUrl());
     }
 
     public function testBuildCurlPostFields(): void
@@ -54,6 +54,6 @@ class GlancesClientTest extends TestCase
             'title' => 'This is test title',
         ];
 
-        $this->assertEquals($curlPostFields, $client->buildCurlPostFields($glance));
+        $this->assertSame($curlPostFields, $client->buildCurlPostFields($glance));
     }
 }

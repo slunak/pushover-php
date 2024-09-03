@@ -24,7 +24,7 @@ use Serhiy\Pushover\Client\Response\ReceiptResponse;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class ReceiptTest extends TestCase
+final class ReceiptTest extends TestCase
 {
     public function testCanBeConstructed(): Receipt
     {
