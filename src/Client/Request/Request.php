@@ -20,7 +20,7 @@ namespace Serhiy\Pushover\Client\Request;
  *
  * @final since 1.7.0, real final in 2.0
  */
-class Request implements RequestInterface
+readonly class Request implements RequestInterface
 {
     /**
      * HTTP GET method.
@@ -38,9 +38,9 @@ class Request implements RequestInterface
      * @param array<string, string> $curlPostFields array for CURLOPT_POSTFIELDS curl argument
      */
     public function __construct(
-        private readonly string $apiUrl,
-        private readonly string $method,
-        private readonly ?array $curlPostFields = [],
+        private string $apiUrl,
+        private string $method,
+        private array $curlPostFields = [],
     ) {
     }
 
