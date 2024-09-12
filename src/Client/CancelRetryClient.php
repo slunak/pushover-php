@@ -33,7 +33,12 @@ class CancelRetryClient extends Client implements ClientInterface
 
     public function buildApiUrl(): string
     {
-        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/receipts/'.$this->receipt.'/cancel.json';
+        return sprintf(
+            '%s/%s/receipts/%s/cancel.json',
+            Curl::API_BASE_URL,
+            Curl::API_VERSION,
+            $this->receipt,
+        );
     }
 
     /**

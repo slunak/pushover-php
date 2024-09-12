@@ -30,7 +30,12 @@ class SubscriptionClient extends Client implements ClientInterface
 
     public function buildApiUrl(): string
     {
-        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/'.self::API_PATH;
+        return sprintf(
+            '%s/%s/%s',
+            Curl::API_BASE_URL,
+            Curl::API_VERSION,
+            self::API_PATH,
+        );
     }
 
     /**

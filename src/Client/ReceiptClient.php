@@ -31,6 +31,12 @@ class ReceiptClient extends Client implements ClientInterface
 
     public function buildApiUrl(): string
     {
-        return Curl::API_BASE_URL.'/'.Curl::API_VERSION.'/receipts/'.$this->receipt.'.json?token='.$this->application->getToken();
+        return sprintf(
+            '%s/%s/receipts/%s.json?token=%s',
+            Curl::API_BASE_URL,
+            Curl::API_VERSION,
+            $this->receipt,
+            $this->application->getToken(),
+        );
     }
 }
