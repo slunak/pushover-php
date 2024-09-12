@@ -22,8 +22,6 @@ interface ClientInterface
 {
     /**
      * Builds and returns full API URL.
-     *
-     * @return string
      */
-    public function buildApiUrl();
+    public function buildApiUrl(): string;
 }
