@@ -32,6 +32,9 @@ class SubscriptionResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
+    /**
+     * @return null|string Subscribed user key or null if the request failed
+     */
     public function getSubscribedUserKey(): ?string
     {
         return $this->subscribed_user_key;

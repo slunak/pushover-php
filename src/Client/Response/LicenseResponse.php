@@ -32,6 +32,9 @@ class LicenseResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
+    /**
+     * @return null|int License credits or null if the request failed
+     */
     public function getCredits(): ?int
     {
         return $this->credits;

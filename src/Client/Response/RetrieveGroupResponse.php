@@ -40,6 +40,9 @@ class RetrieveGroupResponse extends Response
         $this->processCurlResponse($curlResponse);
     }
 
+    /**
+     * @return null|string Group name or null if the request failed
+     */
     public function getName(): ?string
     {
         return $this->name;
