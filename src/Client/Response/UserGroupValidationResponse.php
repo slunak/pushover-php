@@ -22,17 +22,17 @@ use Serhiy\Pushover\Client\Response\Base\Response;
  */
 class UserGroupValidationResponse extends Response
 {
-    private bool $isGroup;
+    private ?bool $isGroup = null;
 
     /**
      * @var array<string>
      */
-    private array $devices;
+    private array $devices = [];
 
     /**
      * @var array<string>
      */
-    private array $licenses;
+    private array $licenses = [];
 
     public function __construct(string $curlResponse)
     {
@@ -60,41 +60,20 @@ class UserGroupValidationResponse extends Response
         return $this->licenses;
     }
 
-    private function setIsGroup(bool $isGroup): void
-    {
-        $this->isGroup = $isGroup;
-    }
-
-    /**
-     * @param array<string> $devices
-     */
-    private function setDevices(array $devices): void
-    {
-        $this->devices = $devices;
-    }
-
-    /**
-     * @param array<string> $licenses
-     */
-    private function setLicenses(array $licenses): void
-    {
-        $this->licenses = $licenses;
-    }
-
     private function processCurlResponse(string $curlResponse): void
     {
         $decodedCurlResponse = $this->processInitialCurlResponse($curlResponse);
 
         if ($this->getRequestStatus() === 1) {
-            $this->setDevices($decodedCurlResponse->devices);
-            $this->setLicenses($decodedCurlResponse->licenses);
+            $this->devices = $decodedCurlResponse->devices;
+            $this->licenses = $decodedCurlResponse->licenses;
 
             if ($decodedCurlResponse->group === 1) {
-                $this->setIsGroup(true);
+                $this->isGroup = true;
             }
 
             if ($decodedCurlResponse->group === 0) {
-                $this->setIsGroup(false);
+                $this->isGroup = false;
             }
         }
     }
