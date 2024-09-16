@@ -70,8 +70,6 @@ plus its curl and json extensions. See below the `require` section of project's 
 
 ## Pushing Messages
 
-*Note: For more code examples, see [examples](examples) folder in the root of the project.*
-
 Instantiate pushover application and recipient of the notification:
 
 ```php
@@ -107,9 +105,10 @@ Push it:
 $response = $notification->push();
 ```
 
-## Working with response
+> [!TIP]
+> For more code examples, see [examples](examples) folder in the root of the project.
 
-*Note: For complete example refer to [ResponseExample.php](examples/ResponseExample.php)*
+## Working with response
 
 Client returns Response object. Checking if the message was accepted is easy:
 
@@ -145,6 +144,9 @@ Request contains array for CURLOPT_POSTFIELDS curl argument and full API URL.
 $request->getCurlPostFields();
 $request->getApiUrl();
 ``` 
+
+> [!TIP]
+> For complete example refer to [ResponseExample.php](examples/ResponseExample.php).
 
 ## Contributing
 
