@@ -179,13 +179,7 @@ class ReceiptResponse extends Response
             }
 
             $this->setLastDeliveredAt(new \DateTime('@'.$decodedCurlResponse->last_delivered_at));
-
-            if ($decodedCurlResponse->expired === 1) {
-                $this->setIsExpired(true);
-            } else {
-                $this->setIsExpired(false);
-            }
-
+            $this->setIsExpired($decodedCurlResponse->expired === 1);
             $this->setExpiresAt(new \DateTime('@'.$decodedCurlResponse->expires_at));
 
             if ($decodedCurlResponse->called_back === 1) {
