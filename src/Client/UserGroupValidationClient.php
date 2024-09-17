@@ -47,12 +47,12 @@ class UserGroupValidationClient extends Client implements ClientInterface
             'user' => $recipient->getUserKey(),
         ];
 
-        if (!empty($recipient->getDevice())) {
-            if (\count($recipient->getDevice()) > 1) {
-                throw new LogicException(sprintf('API can validate only 1 device at a time. "%s" devices provided.', \count($recipient->getDevice())));
+        if (!empty($recipient->getDevices())) {
+            if (\count($recipient->getDevices()) > 1) {
+                throw new LogicException(sprintf('API can validate only 1 device at a time. "%s" devices provided.', \count($recipient->getDevices())));
             }
 
-            $curlPostFields['device'] = $recipient->getDeviceListCommaSeparated();
+            $curlPostFields['device'] = $recipient->getDevicesCommaSeparated();
         }
 
         return $curlPostFields;

@@ -35,7 +35,7 @@ class Recipient
      *
      * @var array<string>
      */
-    private array $device = [];
+    private array $devices = [];
 
     /**
      * Used only when sending messages to a Group. If user is disabled in a group, they won't receive messages.
@@ -73,11 +73,21 @@ class Recipient
      */
     public function getDevice(): array
     {
-        return $this->device;
+        trigger_deprecation('serhiy/pushover', '1.7.0', 'Method %s() is deprecated and will be removed in 2.0. Use %s() instead.', __METHOD__, 'getDevices()');
+
+        return $this->getDevices();
     }
 
     /**
-     * Adds device to the device list / array.
+     * @return array<string>
+     */
+    public function getDevices(): array
+    {
+        return $this->devices;
+    }
+
+    /**
+     * Adds device to the devices list / array.
      */
     public function addDevice(string $device): void
     {
@@ -85,17 +95,24 @@ class Recipient
             throw new InvalidArgumentException(sprintf('Device names are optional, may be up to 25 characters long, and will contain the character set [A-Za-z0-9_-]. "%s" given with "%s" characters."', $device, \strlen($device)));
         }
 
-        if (!\in_array($device, $this->device, true)) {
-            $this->device[] = $device;
+        if (!\in_array($device, $this->devices, true)) {
+            $this->devices[] = $device;
         }
     }
 
     /**
-     * Converts device array to comma separated list and returns it.
+     * Converts devices array to comma separated list and returns it.
      */
     public function getDeviceListCommaSeparated(): string
     {
-        return implode(',', $this->device);
+        trigger_deprecation('serhiy/pushover', '1.7.0', 'Method %s() is deprecated and will be removed in 2.0. Use %s() instead.', __METHOD__, 'getDevicesCommaSeparated()');
+
+        return $this->getDevicesCommaSeparated();
+    }
+
+    public function getDevicesCommaSeparated(): string
+    {
+        return implode(',', $this->devices);
     }
 
     public function isDisabled(): bool
@@ -116,7 +133,7 @@ class Recipient
     public function setMemo(?string $memo): void
     {
         if (\is_string($memo) && $length = \strlen($memo) > 200) {
-            throw new InvalidArgumentException('Memo contained '.$length.' characters. Memos are limited to 200 characters.');
+            throw new InvalidArgumentException(sprintf('Memo contained %s characters. Memos are limited to 200 characters.', $length));
         }
 
         $this->memo = $memo;

@@ -53,6 +53,9 @@ final class RecipientTest extends TestCase
         $this->assertSame($userKey, $recipient->getUserKey());
     }
 
+    /**
+     * @group legacy
+     */
     public function testGetDevice(): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
@@ -62,6 +65,18 @@ final class RecipientTest extends TestCase
         $this->assertSame(['test-device-1', 'test-device-2'], $recipient->getDevice());
     }
 
+    public function testGetDevices(): void
+    {
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
+        $recipient->addDevice('test-device-1');
+        $recipient->addDevice('test-device-2');
+
+        $this->assertSame(['test-device-1', 'test-device-2'], $recipient->getDevices());
+    }
+
+    /**
+     * @group legacy
+     */
     public function testGetDeviceListCommaSeparated(): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
@@ -69,6 +84,15 @@ final class RecipientTest extends TestCase
         $recipient->addDevice('test-device-2');
 
         $this->assertSame('test-device-1,test-device-2', $recipient->getDeviceListCommaSeparated());
+    }
+
+    public function testGetDevicesCommaSeparated(): void
+    {
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
+        $recipient->addDevice('test-device-1');
+        $recipient->addDevice('test-device-2');
+
+        $this->assertSame('test-device-1,test-device-2', $recipient->getDevicesCommaSeparated());
     }
 
     public function testIsDisabledReturnsFalse(): void

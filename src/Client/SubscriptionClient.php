@@ -51,12 +51,12 @@ class SubscriptionClient extends Client implements ClientInterface
             'user' => $recipient->getUserKey(),
         ];
 
-        if (!empty($recipient->getDevice())) {
-            if (\count($recipient->getDevice()) > 1) {
-                throw new LogicException(sprintf('Only one device is supported. "%s" devices provided.', \count($recipient->getDevice())));
+        if (!empty($recipient->getDevices())) {
+            if (\count($recipient->getDevices()) > 1) {
+                throw new LogicException(sprintf('Only one device is supported. "%s" devices provided.', \count($recipient->getDevices())));
             }
 
-            $curlPostFields['device_name'] = $recipient->getDeviceListCommaSeparated();
+            $curlPostFields['device_name'] = $recipient->getDevicesCommaSeparated();
         }
 
         if (null !== $sound) {

@@ -56,12 +56,12 @@ class GlancesClient extends Client implements ClientInterface
             'user' => $glance->getRecipient()->getUserKey(),
         ];
 
-        if (!empty($glance->getRecipient()->getDevice())) {
-            if (\count($glance->getRecipient()->getDevice()) > 1) {
-                throw new LogicException(sprintf('Glance can be pushed to only one device. "%s" devices provided.', \count($glance->getRecipient()->getDevice())));
+        if (!empty($glance->getRecipient()->getDevices())) {
+            if (\count($glance->getRecipient()->getDevices()) > 1) {
+                throw new LogicException(sprintf('Glance can be pushed to only one device. "%s" devices provided.', \count($glance->getRecipient()->getDevices())));
             }
 
-            $curlPostFields['device'] = $glance->getRecipient()->getDeviceListCommaSeparated();
+            $curlPostFields['device'] = $glance->getRecipient()->getDevicesCommaSeparated();
         }
 
         $title = $glance->getGlanceDataFields()->getTitle();

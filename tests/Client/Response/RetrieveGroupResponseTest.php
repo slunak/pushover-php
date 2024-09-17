@@ -56,6 +56,6 @@ final class RetrieveGroupResponseTest extends TestCase
         $this->assertSame('aaaa1111AAAA1111bbbb2222BBBB22', $recipient->getUserKey());
         $this->assertFalse($recipient->isDisabled());
         $this->assertSame('This is a test memo', $recipient->getMemo());
-        $this->assertSame(['test-device-1'], $recipient->getDevice());
+        $this->assertSame(['test-device-1'], $recipient->getDevices());
     }
 }
