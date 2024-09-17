@@ -25,7 +25,7 @@ class CreateGroupResponse extends Response
     /**
      * Obtained group key.
      */
-    private string $groupKey;
+    private ?string $groupKey = null;
 
     public function __construct(string $curlResponse)
     {
@@ -33,9 +33,9 @@ class CreateGroupResponse extends Response
     }
 
     /**
-     * @return string Obtained group key
+     * @return null|string Obtained group key or null if the request failed
      */
-    public function getGroupKey(): string
+    public function getGroupKey(): ?string
     {
         return $this->groupKey;
     }

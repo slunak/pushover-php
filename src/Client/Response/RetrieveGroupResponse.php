@@ -28,19 +28,22 @@ class RetrieveGroupResponse extends Response
     /**
      * Name of the group.
      */
-    private string $name;
+    private ?string $name = null;
 
     /**
      * @var Recipient[] Group users
      */
-    private array $users;
+    private array $users = [];
 
     public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }
 
-    public function getName(): string
+    /**
+     * @return null|string Group name or null if the request failed
+     */
+    public function getName(): ?string
     {
         return $this->name;
     }

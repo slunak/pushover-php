@@ -25,14 +25,17 @@ class SubscriptionResponse extends Response
     /**
      * Applications that formerly collected Pushover user keys are encouraged to migrate to subscription keys.
      */
-    private string $subscribed_user_key;
+    private ?string $subscribed_user_key = null;
 
     public function __construct(string $curlResponse)
     {
         $this->processCurlResponse($curlResponse);
     }
 
-    public function getSubscribedUserKey(): string
+    /**
+     * @return null|string Subscribed user key or null if the request failed
+     */
+    public function getSubscribedUserKey(): ?string
     {
         return $this->subscribed_user_key;
     }
