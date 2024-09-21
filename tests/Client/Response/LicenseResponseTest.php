@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client\Response;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\LicenseResponse;
 
@@ -21,7 +22,7 @@ use Serhiy\Pushover\Client\Response\LicenseResponse;
  */
 final class LicenseResponseTest extends TestCase
 {
-    public function testCanBeCreatedWithSuccessfulCurlResponse(): void
+    public function testSuccessfulResponse(): LicenseResponse
     {
         $response = new LicenseResponse('{"credits":5,"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -29,9 +30,11 @@ final class LicenseResponseTest extends TestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
         $this->assertSame(5, $response->getCredits());
+
+        return $response;
     }
 
-    public function testCanBeCreatedWithUnsuccessfulCurlResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
         $response = new LicenseResponse('{"token":"is out of available license credits","errors":["application is out of available license credits"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -41,10 +44,9 @@ final class LicenseResponseTest extends TestCase
         $this->assertSame([0 => 'application is out of available license credits'], $response->getErrors());
     }
 
-    public function testGetCredits(): void
+    #[Depends('testSuccessfulResponse')]
+    public function testGetCredits(LicenseResponse $response): void
     {
-        $response = new LicenseResponse('{"credits":5,"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
-
         $this->assertSame(5, $response->getCredits());
     }
 }

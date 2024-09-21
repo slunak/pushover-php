@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Client\Response;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Client\Response\MessageResponse;
 
@@ -21,7 +22,7 @@ use Serhiy\Pushover\Client\Response\MessageResponse;
  */
 final class MessageResponseTest extends TestCase
 {
-    public function testCanBeCreatedWithSuccessfulCurlResponse(): void
+    public function testSuccessfulResponse(): MessageResponse
     {
         $response = new MessageResponse('{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -29,9 +30,11 @@ final class MessageResponseTest extends TestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
         $this->assertSame('gggg7777GGGG7777hhhh8888HHHH88', $response->getReceipt());
+
+        return $response;
     }
 
-    public function testCanBeCreatedWitUnsuccessfulResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
         $response = new MessageResponse('{"user":"invalid","errors":["user identifier is not a valid user, group, or subscribed user key"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -41,17 +44,15 @@ final class MessageResponseTest extends TestCase
         $this->assertSame(['user identifier is not a valid user, group, or subscribed user key'], $response->getErrors());
     }
 
-    public function testGetRequestToken(): void
+    #[Depends('testSuccessfulResponse')]
+    public function testGetRequestToken(MessageResponse $response): void
     {
-        $response = new MessageResponse('{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
-
         $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
     }
 
-    public function testGetReceipt(): void
+    #[Depends('testSuccessfulResponse')]
+    public function testGetReceipt(MessageResponse $response): void
     {
-        $response = new MessageResponse('{"receipt":"gggg7777GGGG7777hhhh8888HHHH88","status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
-
         $this->assertSame('gggg7777GGGG7777hhhh8888HHHH88', $response->getReceipt());
     }
 }

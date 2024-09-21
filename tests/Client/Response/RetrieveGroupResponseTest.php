@@ -20,7 +20,7 @@ use Serhiy\Pushover\Recipient;
 
 final class RetrieveGroupResponseTest extends TestCase
 {
-    public function testCanBeConstructed(): RetrieveGroupResponse
+    public function testSuccessfulResponse(): RetrieveGroupResponse
     {
         $response = new RetrieveGroupResponse('{"name":"Test Group","users":[{"user":"aaaa1111AAAA1111bbbb2222BBBB22","device":"test-device-1","memo":"This is a test memo","disabled":false}],"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -31,7 +31,7 @@ final class RetrieveGroupResponseTest extends TestCase
         return $response;
     }
 
-    public function canBeConstructedWithUnsuccessfulCurlResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
         $response = new RetrieveGroupResponse('{"group":"not found","errors":["group not found or you are not authorized to edit it"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -41,13 +41,13 @@ final class RetrieveGroupResponseTest extends TestCase
         $this->assertSame([0 => 'group not found or you are not authorized to edit it'], $response->getErrors());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetName(RetrieveGroupResponse $response): void
     {
         $this->assertSame('Test Group', $response->getName());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetUsers(RetrieveGroupResponse $response): void
     {
         $recipient = $response->getUsers()[0];

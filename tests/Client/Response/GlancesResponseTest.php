@@ -18,7 +18,7 @@ use Serhiy\Pushover\Client\Response\GlancesResponse;
 
 final class GlancesResponseTest extends TestCase
 {
-    public function testCanBeCreatedWithSuccessfulCurlResponse(): void
+    public function testSuccessfulResponse(): void
     {
         $response = new GlancesResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -27,9 +27,9 @@ final class GlancesResponseTest extends TestCase
         $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
     }
 
-    public function testCanBeCreatedWithUnsuccessfulCurlResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
-        $response = new GlancesResponse('{"token":"invalid","errors":["application token is invalid"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
+        $response = new GlancesResponse('{"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc","errors":[ "application token is invalid" ]}');
 
         $this->assertInstanceOf(GlancesResponse::class, $response);
         $this->assertFalse($response->isSuccessful());

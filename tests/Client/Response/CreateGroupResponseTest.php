@@ -19,7 +19,7 @@ use Serhiy\Pushover\Client\Response\CreateGroupResponse;
 
 final class CreateGroupResponseTest extends TestCase
 {
-    public function testCanBeConstructed(): CreateGroupResponse
+    public function testSuccessfulResponse(): CreateGroupResponse
     {
         $response = new CreateGroupResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc","group":"go4abk17j3itsva6thz99mdudgq2gm"}');
 
@@ -30,7 +30,17 @@ final class CreateGroupResponseTest extends TestCase
         return $response;
     }
 
-    #[Depends('testCanBeConstructed')]
+    public function testUnsuccessfulResponse(): void
+    {
+        $response = new CreateGroupResponse('{"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc","errors":[ "application token is invalid" ]}');
+
+        $this->assertInstanceOf(CreateGroupResponse::class, $response);
+        $this->assertFalse($response->isSuccessful());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame([0 => 'application token is invalid'], $response->getErrors());
+    }
+
+    #[Depends('testSuccessfulResponse')]
     public function testGetGroup(CreateGroupResponse $response): void
     {
         $group = $response->getGroupKey();

@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\CancelRetryResponse;
  */
 final class CancelRetryResponseTest extends TestCase
 {
-    public function testCanBeCreatedWithSuccessfulCurlResponse(): void
+    public function testSuccessfulResponse(): void
     {
         $response = new CancelRetryResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -30,7 +30,7 @@ final class CancelRetryResponseTest extends TestCase
         $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
     }
 
-    public function testCanBeCreatedWithUnsuccessfulCurlResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
         $response = new CancelRetryResponse('{"receipt":"not found","errors":["receipt not found; may be invalid or expired"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 

@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
  */
 final class ReceiptResponseTest extends TestCase
 {
-    public function testCanBeConstructed(): ReceiptResponse
+    public function testSuccessfulResponse(): ReceiptResponse
     {
         $response = new ReceiptResponse('{"status":1,"acknowledged":1,"acknowledged_at":1593975206,"acknowledged_by":"aaaa1111AAAA1111bbbb2222BBBB22","acknowledged_by_device":"test-device-1","last_delivered_at":1593975186,"expired":1,"expires_at":1593975485,"called_back":1,"called_back_at":1593975206,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -34,7 +34,7 @@ final class ReceiptResponseTest extends TestCase
         return $response;
     }
 
-    public function testCanBeConstructedWithUnsuccessfulResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
         $response = new ReceiptResponse('{"receipt":"not found","errors":["receipt not found; may be invalid or expired"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -44,56 +44,56 @@ final class ReceiptResponseTest extends TestCase
         $this->assertSame([0 => 'receipt not found; may be invalid or expired'], $response->getErrors());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetAcknowledgedBy(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(Recipient::class, $response->getAcknowledgedBy());
         $this->assertSame('aaaa1111AAAA1111bbbb2222BBBB22', $response->getAcknowledgedBy()->getUserKey());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetAcknowledgedByDevice(ReceiptResponse $response): void
     {
         $this->assertSame('test-device-1', $response->getAcknowledgedByDevice());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetExpiresAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getExpiresAt());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetLastDeliveredAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getLastDeliveredAt());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testIsAcknowledged(ReceiptResponse $response): void
     {
         $this->assertTrue($response->isAcknowledged());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetCalledBackAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getCalledBackAt());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetAcknowledgedAt(ReceiptResponse $response): void
     {
         $this->assertInstanceOf(\DateTime::class, $response->getAcknowledgedAt());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testHasCalledBack(ReceiptResponse $response): void
     {
         $this->assertTrue($response->hasCalledBack());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testIsExpired(ReceiptResponse $response): void
     {
         $this->assertTrue($response->isExpired());

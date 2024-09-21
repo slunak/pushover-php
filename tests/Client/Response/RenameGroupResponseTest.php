@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\RenameGroupResponse;
  */
 final class RenameGroupResponseTest extends TestCase
 {
-    public function testCanBeCreatedWithSuccessfulCurlResponse(): void
+    public function testSuccessfulResponse(): void
     {
         $response = new RenameGroupResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -30,7 +30,7 @@ final class RenameGroupResponseTest extends TestCase
         $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
     }
 
-    public function testCanBeCreatedWithUnsuccessfulCurlResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
         $response = new RenameGroupResponse('{"group":"not found","errors":["group not found or you are not authorized to edit it"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 

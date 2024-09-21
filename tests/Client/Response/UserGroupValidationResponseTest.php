@@ -22,7 +22,7 @@ use Serhiy\Pushover\Client\Response\UserGroupValidationResponse;
  */
 final class UserGroupValidationResponseTest extends TestCase
 {
-    public function testCanBeConstructed(): UserGroupValidationResponse
+    public function testSuccessfulResponse(): UserGroupValidationResponse
     {
         $response = new UserGroupValidationResponse('{"status":1,"group":0,"devices":["test-device-1", "test-device-2"],"licenses":["Android","iOS"],"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -33,7 +33,7 @@ final class UserGroupValidationResponseTest extends TestCase
         return $response;
     }
 
-    public function testCanBeConstructedWithUnsuccessfulCurlResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
         $response = new UserGroupValidationResponse('{"user":"invalid","errors":["user key is invalid"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -43,19 +43,19 @@ final class UserGroupValidationResponseTest extends TestCase
         $this->assertSame([0 => 'user key is invalid'], $response->getErrors());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetDevices(UserGroupValidationResponse $response): void
     {
         $this->assertSame(['test-device-1', 'test-device-2'], $response->getDevices());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetIsGroup(UserGroupValidationResponse $response): void
     {
         $this->assertFalse($response->isGroup());
     }
 
-    #[Depends('testCanBeConstructed')]
+    #[Depends('testSuccessfulResponse')]
     public function testGetLicenses(UserGroupValidationResponse $response): void
     {
         $this->assertSame(['Android', 'iOS'], $response->getLicenses());

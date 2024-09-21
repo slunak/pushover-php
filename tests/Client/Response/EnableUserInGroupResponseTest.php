@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\Response\EnableUserInGroupResponse;
  */
 final class EnableUserInGroupResponseTest extends TestCase
 {
-    public function testCanBeCreatedWithSuccessfulCurlResponse(): void
+    public function testSuccessfulResponse(): void
     {
         $response = new EnableUserInGroupResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
@@ -30,7 +30,7 @@ final class EnableUserInGroupResponseTest extends TestCase
         $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
     }
 
-    public function testCanBeCreatedWithUnsuccessfulCurlResponse(): void
+    public function testUnsuccessfulResponse(): void
     {
         $response = new EnableUserInGroupResponse('{"user":"invalid","errors":["user is not a member of this group"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
