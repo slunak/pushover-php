@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Api\Glances;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +26,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class GlanceTest extends TestCase
+final class GlanceTest extends TestCase
 {
     public function testCanBeConstructed(): Glance
     {
@@ -86,14 +87,31 @@ class GlanceTest extends TestCase
         $this->assertInstanceOf(Recipient::class, $recipient);
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testHasAtLeastOneField(Glance $glance): void
+    #[DataProvider('hasAtLeastOneFieldProvider')]
+    public function testHasAtLeastOneField(bool $expected, ?string $title, ?string $subtext, ?int $count, ?int $percent): void
     {
-        $this->assertFalse($glance->hasAtLeastOneField());
+        $application = new Application('cccc3333CCCC3333dddd4444DDDD44'); // using dummy token
+        $glanceDataFields = (new GlanceDataFields())
+            ->setTitle($title)
+            ->setSubtext($subtext)
+            ->setCount($count)
+            ->setPercent($percent);
 
-        $glance->getGlanceDataFields()->setTitle('This is test title');
+        $glance = new Glance($application, $glanceDataFields);
 
-        $this->assertTrue($glance->hasAtLeastOneField());
+        $this->assertSame($expected, $glance->hasAtLeastOneField());
+    }
+
+    /**
+     * @return iterable<array{bool, ?string, ?string, ?int, ?int}>
+     */
+    public static function hasAtLeastOneFieldProvider(): iterable
+    {
+        yield [false, null, null, null, null];
+        yield [true, 'Title', null, null, null];
+        yield [true, null, 'Subtext', null, null];
+        yield [true, null, null, 199, null];
+        yield [true, null, null, null, 99];
     }
 
     #[Depends('testCanBeConstructed')]

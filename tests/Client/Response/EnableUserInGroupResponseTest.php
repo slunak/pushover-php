@@ -19,23 +19,24 @@ use Serhiy\Pushover\Client\Response\EnableUserInGroupResponse;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class EnableUserInGroupResponseTest extends TestCase
+final class EnableUserInGroupResponseTest extends TestCase
 {
-    public function testCenBeCreated(): void
+    public function testSuccessfulResponse(): void
     {
-        $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new EnableUserInGroupResponse($successfulCurlResponse);
+        $response = new EnableUserInGroupResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(EnableUserInGroupResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+    }
 
-        $unSuccessfulCurlResponse = '{"user":"invalid","errors":["user is not a member of this group"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new EnableUserInGroupResponse($unSuccessfulCurlResponse);
+    public function testUnsuccessfulResponse(): void
+    {
+        $response = new EnableUserInGroupResponse('{"user":"invalid","errors":["user is not a member of this group"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(EnableUserInGroupResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
-        $this->assertEquals([0 => 'user is not a member of this group'], $response->getErrors());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame([0 => 'user is not a member of this group'], $response->getErrors());
     }
 }

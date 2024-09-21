@@ -21,7 +21,7 @@ use Serhiy\Pushover\Client\ReceiptClient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class ReceiptClientTest extends TestCase
+final class ReceiptClientTest extends TestCase
 {
     public function testCanBeConstructed(): ReceiptClient
     {
@@ -36,7 +36,7 @@ class ReceiptClientTest extends TestCase
     #[Depends('testCanBeConstructed')]
     public function testBuildApiUrl(ReceiptClient $client): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'https://api.pushover.net/1/receipts/gggg7777GGGG7777hhhh8888HHHH88.json?token=cccc3333CCCC3333dddd4444DDDD44',
             $client->buildApiUrl(),
         );

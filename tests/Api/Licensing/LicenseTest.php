@@ -22,7 +22,7 @@ use Serhiy\Pushover\Client\Response\LicenseResponse;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 use Serhiy\Pushover\Recipient;
 
-class LicenseTest extends TestCase
+final class LicenseTest extends TestCase
 {
     public function testCanBeConstructed(): License
     {

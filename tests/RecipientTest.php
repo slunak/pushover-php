@@ -11,7 +11,6 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 use Serhiy\Pushover\Recipient;
@@ -19,7 +18,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class RecipientTest extends TestCase
+final class RecipientTest extends TestCase
 {
     public function testCanBeConstructed(): Recipient
     {
@@ -34,66 +33,83 @@ class RecipientTest extends TestCase
         return $recipient;
     }
 
-    public function testCannotBeConstructed(): void
+    public function testCannotBeConstructedWithInvalidUserKey(): void
     {
+        $userKey = 'Lorem ipsum dolor sit amet';
+
         $this->expectException(InvalidArgumentException::class);
-        new Recipient('Lorem ipsum dolor sit amet');
+        $this->expectExceptionMessage(sprintf(
+            'User and group identifiers are 30 characters long, case-sensitive, and may contain the character set [A-Za-z0-9]. "%s" given with "%s" characters.',
+            $userKey,
+            \strlen($userKey),
+        ));
+        new Recipient($userKey);
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testGetUserKey(Recipient $recipient): void
+    public function testGetUserKey(): void
     {
-        $this->assertSame('aaaa1111AAAA1111bbbb2222BBBB22', $recipient->getUserKey());
+        $recipient = new Recipient($userKey = 'aaaa1111AAAA1111bbbb2222BBBB22');
+
+        $this->assertSame($userKey, $recipient->getUserKey());
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testGetDevice(Recipient $recipient): void
+    public function testGetDevice(): void
     {
-        $this->assertSame(
-            [
-                'test-device-1',
-                'test-device-2',
-            ],
-            $recipient->getDevice(),
-        );
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
+        $recipient->addDevice('test-device-1');
+        $recipient->addDevice('test-device-2');
+
+        $this->assertSame(['test-device-1', 'test-device-2'], $recipient->getDevice());
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testGetDeviceListCommaSeparated(Recipient $recipient): void
+    public function testGetDeviceListCommaSeparated(): void
     {
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
+        $recipient->addDevice('test-device-1');
+        $recipient->addDevice('test-device-2');
+
         $this->assertSame('test-device-1,test-device-2', $recipient->getDeviceListCommaSeparated());
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testIsDisabled(Recipient $recipient): void
+    public function testIsDisabledReturnsFalse(): void
     {
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
+        $recipient->setIsDisabled(false);
+
         $this->assertFalse($recipient->isDisabled());
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testGetMemo(Recipient $recipient): void
+    public function testIsDisabledReturnsTrue(): void
     {
-        $this->assertSame('This is test memo', $recipient->getMemo());
-    }
-
-    #[Depends('testCanBeConstructed')]
-    public function testSetIsDisabled(Recipient $recipient): void
-    {
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
         $recipient->setIsDisabled(true);
+
         $this->assertTrue($recipient->isDisabled());
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testSetMemo(Recipient $recipient): void
+    public function testGetMemo(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $recipient->setMemo('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
+        $recipient->setMemo('This is test memo');
+
+        $this->assertSame('This is test memo', $recipient->getMemo());
     }
 
-    #[Depends('testCanBeConstructed')]
-    public function testAddDevice(Recipient $recipient): void
+    public function testSetMemoThrowsInvalidArgumentExceptionIfMemoIsLongerThan200Characters(): void
     {
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
+
         $this->expectException(InvalidArgumentException::class);
+
+        $recipient->setMemo(str_repeat('a', 201));
+    }
+
+    public function testAddDeviceThrowsInvalidArgumentExceptionIfDeviceNameIsInvalid(): void
+    {
+        $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
+
+        $this->expectException(InvalidArgumentException::class);
+
         $recipient->addDevice('Lorem-ipsum-dolor-sit-amet');
     }
 }

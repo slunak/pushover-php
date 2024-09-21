@@ -23,7 +23,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class GroupsClientTest extends TestCase
+final class GroupsClientTest extends TestCase
 {
     public function testCanBeConstructed(): void
     {
@@ -115,7 +115,7 @@ class GroupsClientTest extends TestCase
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Recipient object must be provided for this action.');
 
-        $client->buildCurlPostFields();
+        $client->buildCurlPostFields(recipient: null);
     }
 
     /**
@@ -123,11 +123,9 @@ class GroupsClientTest extends TestCase
      */
     public static function actionsNeedRecipientProvider(): iterable
     {
-        return [
-            [GroupsClient::ACTION_ADD_USER],
-            [GroupsClient::ACTION_REMOVE_USER],
-            [GroupsClient::ACTION_ENABLE_USER],
-            [GroupsClient::ACTION_DISABLE_USER],
-        ];
+        yield [GroupsClient::ACTION_ADD_USER];
+        yield [GroupsClient::ACTION_REMOVE_USER];
+        yield [GroupsClient::ACTION_ENABLE_USER];
+        yield [GroupsClient::ACTION_DISABLE_USER];
     }
 }

@@ -22,7 +22,7 @@ use Serhiy\Pushover\Exception\LogicException;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class PriorityTest extends TestCase
+final class PriorityTest extends TestCase
 {
     public function testCanBeConstructed(): Priority
     {

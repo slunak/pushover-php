@@ -21,7 +21,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class AttachmentTest extends TestCase
+final class AttachmentTest extends TestCase
 {
     public function testCanBeConstructed(): Attachment
     {
@@ -92,6 +92,6 @@ class AttachmentTest extends TestCase
             'bmp', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp',
         ];
 
-        $this->assertEquals($supportedAttachmentExtensions, $attachment->getSupportedAttachmentExtensions());
+        $this->assertSame($supportedAttachmentExtensions, $attachment->getSupportedAttachmentExtensions());
     }
 }

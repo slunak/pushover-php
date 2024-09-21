@@ -19,23 +19,24 @@ use Serhiy\Pushover\Client\Response\RenameGroupResponse;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class RenameGroupResponseTest extends TestCase
+final class RenameGroupResponseTest extends TestCase
 {
-    public function testCenBeCreated(): void
+    public function testSuccessfulResponse(): void
     {
-        $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new RenameGroupResponse($successfulCurlResponse);
+        $response = new RenameGroupResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(RenameGroupResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+    }
 
-        $unSuccessfulCurlResponse = '{"group":"not found","errors":["group not found or you are not authorized to edit it"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new RenameGroupResponse($unSuccessfulCurlResponse);
+    public function testUnsuccessfulResponse(): void
+    {
+        $response = new RenameGroupResponse('{"group":"not found","errors":["group not found or you are not authorized to edit it"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(RenameGroupResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
-        $this->assertEquals([0 => 'group not found or you are not authorized to edit it'], $response->getErrors());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame([0 => 'group not found or you are not authorized to edit it'], $response->getErrors());
     }
 }

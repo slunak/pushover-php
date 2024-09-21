@@ -24,7 +24,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class ValidationTest extends TestCase
+final class ValidationTest extends TestCase
 {
     public function testCanBeConstructed(): Validation
     {

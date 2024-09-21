@@ -22,7 +22,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class UserGroupValidationClientTest extends TestCase
+final class UserGroupValidationClientTest extends TestCase
 {
     public function testCanBeConstructed(): UserGroupValidationClient
     {

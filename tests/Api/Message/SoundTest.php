@@ -21,7 +21,7 @@ use Serhiy\Pushover\Exception\InvalidArgumentException;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class SoundTest extends TestCase
+final class SoundTest extends TestCase
 {
     public function testCanBeConstructed(): Sound
     {

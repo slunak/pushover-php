@@ -20,13 +20,13 @@ use Serhiy\Pushover\Client\AssignLicenseClient;
 use Serhiy\Pushover\Exception\LogicException;
 use Serhiy\Pushover\Recipient;
 
-class AssignLicenseClientTest extends TestCase
+final class AssignLicenseClientTest extends TestCase
 {
     public function testBuildApiUrl(): void
     {
         $client = new AssignLicenseClient();
         $this->assertInstanceOf(AssignLicenseClient::class, $client);
-        $this->assertEquals('https://api.pushover.net/1/licenses/assign.json', $client->buildApiUrl());
+        $this->assertSame('https://api.pushover.net/1/licenses/assign.json', $client->buildApiUrl());
     }
 
     public function testBuildCurlPostFields(): void
@@ -49,7 +49,7 @@ class AssignLicenseClientTest extends TestCase
             'os' => 'Android',
         ];
 
-        $this->assertEquals($curlPostFields, $client->buildCurlPostFields($license));
+        $this->assertSame($curlPostFields, $client->buildCurlPostFields($license));
 
         $license->setRecipient(null);
         $license->setEmail(null);

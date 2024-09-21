@@ -28,7 +28,7 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class NotificationTest extends TestCase
+final class NotificationTest extends TestCase
 {
     public function testCanBeConstructed(): Notification
     {

@@ -19,23 +19,24 @@ use Serhiy\Pushover\Client\Response\AddUserToGroupResponse;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class AddUserToGroupResponseTest extends TestCase
+final class AddUserToGroupResponseTest extends TestCase
 {
-    public function testCenBeCreated(): void
+    public function testSuccessfulResponse(): void
     {
-        $successfulCurlResponse = '{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new AddUserToGroupResponse($successfulCurlResponse);
+        $response = new AddUserToGroupResponse('{"status":1,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(AddUserToGroupResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+    }
 
-        $unSuccessfulCurlResponse = '{"user":"invalid","errors":["user is already a member of this group"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}';
-        $response = new AddUserToGroupResponse($unSuccessfulCurlResponse);
+    public function testUnsuccessfulResponse(): void
+    {
+        $response = new AddUserToGroupResponse('{"user":"invalid","errors":["user is already a member of this group"],"status":0,"request":"aaaaaaaa-1111-bbbb-2222-cccccccccccc"}');
 
         $this->assertInstanceOf(AddUserToGroupResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
-        $this->assertEquals([0 => 'user is already a member of this group'], $response->getErrors());
+        $this->assertSame('aaaaaaaa-1111-bbbb-2222-cccccccccccc', $response->getRequestToken());
+        $this->assertSame([0 => 'user is already a member of this group'], $response->getErrors());
     }
 }

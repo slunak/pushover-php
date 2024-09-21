@@ -25,13 +25,13 @@ use Serhiy\Pushover\Recipient;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-class MessageClientTest extends TestCase
+final class MessageClientTest extends TestCase
 {
     public function testBuildApiUrl(): void
     {
         $client = new MessageClient();
 
-        $this->assertEquals('https://api.pushover.net/1/messages.json', $client->buildApiUrl());
+        $this->assertSame('https://api.pushover.net/1/messages.json', $client->buildApiUrl());
     }
 
     public function testBuildCurlPostFields(): void
@@ -56,19 +56,19 @@ class MessageClientTest extends TestCase
         $curlPostFields = $client->buildCurlPostFields($notification);
 
         $this->assertIsArray($curlPostFields);
-        $this->assertEquals('cccc3333CCCC3333dddd4444DDDD44', $curlPostFields['token']);
-        $this->assertEquals('aaaa1111AAAA1111bbbb2222BBBB22', $curlPostFields['user']);
-        $this->assertEquals('This is a test message', $curlPostFields['message']);
-        $this->assertEquals('ios,android', $curlPostFields['device']);
-        $this->assertEquals('This is a title of the message', $curlPostFields['title']);
-        $this->assertEquals('https://www.example.com', $curlPostFields['url']);
-        $this->assertEquals('Example.com', $curlPostFields['url_title']);
-        $this->assertEquals('2', $curlPostFields['priority']);
-        $this->assertEquals('30', $curlPostFields['retry']);
-        $this->assertEquals('300', $curlPostFields['expire']);
-        $this->assertEquals('https://callback.example.com', $curlPostFields['callback']);
-        $this->assertEquals('1', $curlPostFields['html']);
-        $this->assertEquals('86400', $curlPostFields['ttl']);
-        $this->assertEquals('pushover', $curlPostFields['sound']);
+        $this->assertSame('cccc3333CCCC3333dddd4444DDDD44', $curlPostFields['token']);
+        $this->assertSame('aaaa1111AAAA1111bbbb2222BBBB22', $curlPostFields['user']);
+        $this->assertSame('This is a test message', $curlPostFields['message']);
+        $this->assertSame('ios,android', $curlPostFields['device']);
+        $this->assertSame('This is a title of the message', $curlPostFields['title']);
+        $this->assertSame('https://www.example.com', $curlPostFields['url']);
+        $this->assertSame('Example.com', $curlPostFields['url_title']);
+        $this->assertSame(2, $curlPostFields['priority']);
+        $this->assertSame(30, $curlPostFields['retry']);
+        $this->assertSame(300, $curlPostFields['expire']);
+        $this->assertSame('https://callback.example.com', $curlPostFields['callback']);
+        $this->assertSame(1, $curlPostFields['html']);
+        $this->assertSame(86400, $curlPostFields['ttl']);
+        $this->assertSame('pushover', $curlPostFields['sound']);
     }
 }
