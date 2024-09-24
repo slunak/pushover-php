@@ -20,7 +20,8 @@
     "require": {
         "php": ">=8.2",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "symfony/deprecation-contracts": "^3.5"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.43",
