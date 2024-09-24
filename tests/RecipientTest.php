@@ -11,6 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Serhiy\Pushover\Exception\InvalidArgumentException;
 use Serhiy\Pushover\Recipient;
@@ -53,9 +54,7 @@ final class RecipientTest extends TestCase
         $this->assertSame($userKey, $recipient->getUserKey());
     }
 
-    /**
-     * @group legacy
-     */
+    #[Group('legacy')]
     public function testGetDevice(): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
@@ -74,9 +73,7 @@ final class RecipientTest extends TestCase
         $this->assertSame(['test-device-1', 'test-device-2'], $recipient->getDevices());
     }
 
-    /**
-     * @group legacy
-     */
+    #[Group('legacy')]
     public function testGetDeviceListCommaSeparated(): void
     {
         $recipient = new Recipient('aaaa1111AAAA1111bbbb2222BBBB22');
