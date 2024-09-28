@@ -69,11 +69,13 @@ class Recipient
     }
 
     /**
+     * @deprecated since 1.7.0, to be removed in 2.0. Use getDevices() instead.
+     *
      * @return array<string>
      */
     public function getDevice(): array
     {
-        trigger_deprecation('serhiy/pushover', '1.7.0', 'Method %s() is deprecated and will be removed in 2.0. Use %s() instead.', __METHOD__, 'getDevices()');
+        @trigger_error(sprintf('Since serhiy/pushover 1.7.0: Method %s() is deprecated and will be removed in 2.0. Use %s() instead.', __METHOD__, 'getDevices()'), \E_USER_DEPRECATED);
 
         return $this->getDevices();
     }
@@ -101,11 +103,13 @@ class Recipient
     }
 
     /**
+     * @deprecated since 1.7.0, to be removed in 2.0. Use getDeviceListCommaSeparated() instead.
+     *
      * Converts devices array to comma separated list and returns it.
      */
     public function getDeviceListCommaSeparated(): string
     {
-        trigger_deprecation('serhiy/pushover', '1.7.0', 'Method %s() is deprecated and will be removed in 2.0. Use %s() instead.', __METHOD__, 'getDevicesCommaSeparated()');
+        @trigger_error(sprintf('Since serhiy/pushover 1.7.0: Method %s() is deprecated and will be removed in 2.0. Use %s() instead.', __METHOD__, 'getDevicesCommaSeparated()'), \E_USER_DEPRECATED);
 
         return $this->getDevicesCommaSeparated();
     }
