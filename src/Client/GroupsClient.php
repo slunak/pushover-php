@@ -71,8 +71,8 @@ class GroupsClient extends Client implements ClientInterface
             $curlPostFields['user'] = $recipient->getUserKey();
 
             if ($this->action === self::ACTION_ADD_USER) {
-                if (!empty($recipient->getDevice())) {
-                    $curlPostFields['device'] = $recipient->getDevice()[0];
+                if (!empty($recipient->getDevices())) {
+                    $curlPostFields['device'] = $recipient->getDevices()[0];
                 }
 
                 if (null !== $recipient->getMemo()) {

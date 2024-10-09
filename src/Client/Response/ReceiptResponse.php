@@ -175,7 +175,7 @@ class ReceiptResponse extends Response
                 $recipient = new Recipient($decodedCurlResponse->acknowledged_by);
                 $recipient->addDevice($decodedCurlResponse->acknowledged_by_device);
                 $this->setAcknowledgedBy($recipient);
-                $this->setAcknowledgedByDevice($recipient->getDeviceListCommaSeparated());
+                $this->setAcknowledgedByDevice($recipient->getDevicesCommaSeparated());
             }
 
             $this->setLastDeliveredAt(new \DateTime('@'.$decodedCurlResponse->last_delivered_at));
