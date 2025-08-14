@@ -1,6 +1,6 @@
 # Pushover PHP API Wrapper
 
-[![Build Status](https://github.com/slunak/pushover-php/workflows/CI/badge.svg?branch=master)](https://github.com/slunak/pushover-php/actions)
+[![CI](https://github.com/slunak/pushover-php/actions/workflows/ci.yaml/badge.svg)](https://github.com/slunak/pushover-php/actions/workflows/ci.yaml)
 [![Latest Stable Version](https://poser.pugx.org/serhiy/pushover/v)](https://packagist.org/packages/serhiy/pushover)
 [![Total Downloads](https://poser.pugx.org/serhiy/pushover/downloads)](https://packagist.org/packages/serhiy/pushover)
 [![License](https://poser.pugx.org/serhiy/pushover/license)](LICENSE)
