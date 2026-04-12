@@ -31,6 +31,9 @@ Light, simple and fast, yet comprehensive wrapper for the [Pushover](https://pus
   - Add / Remove users
   - Enable / Disable users
   - Rename the group
+- Teams API ([Example](examples/TeamsExample.php))
+  - Retrieve information about the team
+  - Add / Remove users
 - Glances API ([Example](examples/GlancesExample.php))
   - Title
   - Text
@@ -147,6 +150,47 @@ $request->getApiUrl();
 
 > [!TIP]
 > For complete example refer to [ResponseExample.php](examples/ResponseExample.php).
+
+## Managing Teams
+
+Instantiate a Pushover team and a user to manage:
+
+```php
+use Serhiy\Pushover\Api\Teams\Team;
+use Serhiy\Pushover\Api\Teams\User;
+
+$team = new Team('replace_with_pushover_team_api_token');
+$user = new User('an email address of the user to add');
+```
+
+Retrieve team information:
+
+```php
+/** @var \Serhiy\Pushover\Client\Response\RetrieveTeamResponse $response */
+$response = $team->retrieveTeamInformation();
+
+$teamName = $team->getName();
+$users = $team->getUsers();
+```
+
+Add a user to the team:
+
+```php
+$user->setName('Example User');
+$user->setInstant(true);
+$user->setIsAdministrator(true);
+$user->setGroup('Operations');
+
+/** @var \Serhiy\Pushover\Client\Response\AddUserToTeamResponse $response */
+$response = $team->addUser($user);
+```
+
+Remove a user from the team:
+
+```php
+/** @var \Serhiy\Pushover\Client\Response\RemoveUserFromTeamResponse $response */
+$response = $team->removeUser($user);
+```
 
 ## Contributing
 
