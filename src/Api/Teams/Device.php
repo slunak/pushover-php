@@ -16,7 +16,7 @@ namespace Serhiy\Pushover\Api\Teams;
 /**
  * @author Serhiy Lunak <serhiy.lunak@gmail.com>
  */
-readonly final class Device
+final readonly class Device
 {
     public function __construct(
         private string $name,
